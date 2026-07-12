@@ -1,0 +1,621 @@
+{
+  "contestSource": "PRMO 2018",
+  "contestYear": 2018,
+  "examType": "PRMO",
+  "questions": [
+    {
+      "externalId": "PRMO-2018-P1",
+      "examType": "PRMO",
+      "problemNumber": 1,
+      "statement": "A book is published in three volumes, the pages being numbered from 1 onwards. The page numbers are continued from the first volume to the second volume to the third. The number of pages in the second volume is 50 more than that in the first volume, and the number of pages in the third volume is one and a half times that in the second. The sum of the page numbers on the first pages of the three volumes is 1709. If $n$ is the last page number, what is the largest prime factor of $n$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "17",
+      "baseRating": 1050,
+      "difficultyLabel": "Easy",
+      "tags": ["Prime Numbers"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "17",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Let the first volume have p pages; express the page counts of the second and third volumes in terms of p."},
+        {"level": 2, "content": "Write the first-page numbers of each volume in terms of p and set their sum equal to 1709 to solve for p."},
+        {"level": 3, "content": "Compute the total pages n and factor it."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P2",
+      "examType": "PRMO",
+      "problemNumber": 2,
+      "statement": "In a quadrilateral $ABCD$, it is given that $AB = AD = 13$, $BC = CD = 20$, $BD = 24$. If $r$ is the radius of the circle inscribable in the quadrilateral, then what is the integer closest to $r$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "8",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Area", "Triangles"],
+      "topics": ["geometry-quadrilaterals"],
+      "diagramSvg": null,
+      "solutionMarkdown": "8",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Since AB=AD and CB=CD, the quadrilateral is a kite symmetric about diagonal AC; use this to find AC and the total area via two triangles split by BD."},
+        {"level": 2, "content": "Compute the area of ABCD by finding heights from A and C to BD."},
+        {"level": 3, "content": "Use area = r × s (semiperimeter) for the tangential quadrilateral to solve for r."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P3",
+      "examType": "PRMO",
+      "problemNumber": 3,
+      "statement": "Consider all 6-digit numbers of the form $abccba$ where $b$ is odd. Determine the number of all such 6-digit numbers that are divisible by 7.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "70",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Divisibility", "Casework"],
+      "topics": ["nt-divisibility"],
+      "diagramSvg": null,
+      "solutionMarkdown": "70",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Write $abccba$ as a linear combination of a, b, c using place values, then reduce each coefficient mod 7."},
+        {"level": 2, "content": "This reduces to a congruence relation among a, b, c mod 7; enumerate valid digit combinations with b restricted to odd digits."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P4",
+      "examType": "PRMO",
+      "problemNumber": 4,
+      "statement": "The equation $166 \\times 56 = 8590$ is valid in some base $b \\geq 10$ (that is, 1, 6, 5, 8, 9, 0 are digits in base $b$ in the above equation). Find the sum of all possible values of $b \\geq 10$ satisfying the equation.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "12",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Number Bases"],
+      "topics": ["nt-base-representations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "12",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Convert each side of the equation into a polynomial in base b."},
+        {"level": 2, "content": "Set the two polynomials equal and solve the resulting equation in b, checking which integer roots satisfy b≥10."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P5",
+      "examType": "PRMO",
+      "problemNumber": 5,
+      "statement": "Let $ABCD$ be a trapezium in which $AB \\parallel CD$ and $AD \\perp AB$. Suppose $ABCD$ has an incircle which touches $AB$ at $Q$ and $CD$ at $P$. Given that $PC = 36$ and $QB = 49$, find $PQ$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "84",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Circles", "Perimeter"],
+      "topics": ["geometry-quadrilaterals"],
+      "diagramSvg": null,
+      "solutionMarkdown": "84",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "PQ equals the height of the trapezium (since AD is perpendicular to the parallel sides and the incircle's diameter spans that height)."},
+        {"level": 2, "content": "Use equal tangent lengths from each vertex to express the sides in terms of PC, QB, and the radius."},
+        {"level": 3, "content": "Apply the tangential quadrilateral property (AB+CD=AD+BC) combined with a right-triangle relation to solve for the height."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P6",
+      "examType": "PRMO",
+      "problemNumber": 6,
+      "statement": "Integers $a,b,c$ satisfy $a + b - c = 1$ and $a^2 + b^2 - c^2 = -1$. What is the sum of all possible values of $a^2 + b^2 + c^2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "18",
+      "baseRating": 1100,
+      "difficultyLabel": "Medium",
+      "tags": ["Diophantine Equations"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "18",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "From the first equation, express c=a+b-1 and substitute into the second equation."},
+        {"level": 2, "content": "Simplify to a relation between a and b (likely factorable), then find all integer solutions."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P7",
+      "examType": "PRMO",
+      "problemNumber": 7,
+      "statement": "A point $P$ in the interior of a regular hexagon is at distances 8, 8, 16 units from three consecutive vertices of the hexagon, respectively. If $r$ is radius of the circumscribed circle of the hexagon, what is the integer closest to $r$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "14",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": ["Triangles", "Transformations"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "14",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Use a rotation by 60° about the center to relate the three consecutive vertices and set up relations involving P and its rotated images."},
+        {"level": 2, "content": "Alternatively, use coordinates with the hexagon's center at origin and the three consecutive vertices at known angles, then solve the distance equations for r."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P8",
+      "examType": "PRMO",
+      "problemNumber": 8,
+      "statement": "Let $AB$ be a chord of a circle with centre $O$. Let $C$ be a point on the circle such that $\\angle ABC = 30^\\circ$ and $O$ lies inside the triangle $ABC$. Let $D$ be a point on $AB$ such that $\\angle DCO = \\angle OCB = 20^\\circ$. Find the measure of $\\angle CDO$ in degrees.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "80",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": ["Angle Chasing", "Circles"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "80",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Use the central angle / inscribed angle relationship: angle AOB relates to angle ACB (inscribed angle) which is 30°."},
+        {"level": 2, "content": "Note OC=OB (radii), so triangle OCB is isosceles; use the given 20° angles to find angle OBC and other angles around C."},
+        {"level": 3, "content": "Chase angles around triangle CDB or use the exterior angle theorem to find angle CDO."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P9",
+      "examType": "PRMO",
+      "problemNumber": 9,
+      "statement": "Suppose $a,b$ are integers and $a + b$ is a root of $x^2 + a x + b = 0$. What is the maximum possible value of $b^2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "81",
+      "baseRating": 1100,
+      "difficultyLabel": "Medium",
+      "tags": ["Quadratic Expressions"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "81",
+      "estimatedSolveSeconds": 160,
+      "hints": [
+        {"level": 1, "content": "Substitute $x=a+b$ into the quadratic and simplify the resulting equation in a and b."},
+        {"level": 2, "content": "Try to factor the simplified equation to find relations like $(a+?)(b+?) = $ constant."},
+        {"level": 3, "content": "Enumerate integer factor pairs of the constant to find all (a,b) and maximize b²."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P10",
+      "examType": "PRMO",
+      "problemNumber": 10,
+      "statement": "In a triangle $ABC$, the median from $B$ to $CA$ is perpendicular to the median from $C$ to $AB$. If the median from $A$ to $BC$ is 30, determine $(BC^2 + CA^2 + AB^2)/100$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "24",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["Triangles"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "24",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "Recall the median length formulas relating each median to the side lengths a, b, c."},
+        {"level": 2, "content": "Use the perpendicularity of two medians condition: this gives a known relation like $b^2+c^2=5a^2$ (for medians from B and C)."},
+        {"level": 3, "content": "Combine with the formula for the third median (from A) equal to 30, and use the sum-of-squares identity for medians."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P11",
+      "examType": "PRMO",
+      "problemNumber": 11,
+      "statement": "There are several tea cups in the kitchen, some with handles and the others without handles. The number of ways of selecting two cups without a handle and three with a handle is exactly 1200. What is the maximum possible number of cups in the kitchen?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "29",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Combinations"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "29",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Let there be m cups without handles and n with handles; set up $\\binom{m}{2}\\binom{n}{3}=1200$."},
+        {"level": 2, "content": "Factor 1200 into a product of a triangular number and a tetrahedral-type number to find valid (m,n) pairs, then maximize m+n."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P12",
+      "examType": "PRMO",
+      "problemNumber": 12,
+      "statement": "Determine the number of 8-tuples $(\\epsilon_1, \\epsilon_2, \\dots, \\epsilon_8)$ such that $\\epsilon_1, \\epsilon_2, \\dots \\epsilon_8 \\in \\{1, -1\\}$ and $\\epsilon_1 + 2\\epsilon_2 + 3\\epsilon_3 + \\cdots + 8\\epsilon_8$ is a multiple of 3.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "88",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Counting", "Modular Arithmetic"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "88",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "Use a generating function / roots of unity filter approach with $\\omega=e^{2\\pi i/3}$ to count tuples with sum divisible by 3."},
+        {"level": 2, "content": "Compute the product $\\prod_{k=1}^8 (\\omega^k+\\omega^{-k})$ style expression for the filter, simplifying using periodicity of $k \\bmod 3$."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P13",
+      "examType": "PRMO",
+      "problemNumber": 13,
+      "statement": "In a triangle $ABC$, right-angled at $A$, the altitude through $A$ and the internal bisector of $\\angle A$ have lengths 3 and 4, respectively. Find the length of the median through $A$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "24",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": ["Triangles", "Angle Chasing"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "24",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "In a right triangle, the altitude, bisector, and median from the right angle all lie between the same two rays; use their known relation to the angle B (or C)."},
+        {"level": 2, "content": "The altitude, bisector, and median lengths from A relate through trigonometric functions of half the angle between the legs."},
+        {"level": 3, "content": "Set up equations using $h = m\\cos\\theta$ type relations (where θ is the angle between median and altitude) to solve for the median."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P14",
+      "examType": "PRMO",
+      "problemNumber": 14,
+      "statement": "If $x = \\cos 1^\\circ \\cos 2^\\circ \\cos 3^\\circ \\cdots \\cos 89^\\circ$ and $y = \\cos 2^\\circ \\cos 6^\\circ \\cos 10^\\circ \\cdots \\cos 86^\\circ$, then what is the integer nearest to $\\frac{2}{7} \\log_2 (y/x)$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "19",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": ["Logarithms"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "19",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Split x's product into the cosines that appear in y and the remaining ones (those not multiples of 4°)."},
+        {"level": 2, "content": "Use the known product formula for cosines of angles in arithmetic progression to simplify y and the leftover part of x."},
+        {"level": 3, "content": "Combine simplifications to get y/x as a power of 2, then compute the logarithm."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P15",
+      "examType": "PRMO",
+      "problemNumber": 15,
+      "statement": "Let $a$ and $b$ be natural numbers such that $2a - b$, $a - 2b$ and $a + b$ are all distinct squares. What is the smallest possible value of $b$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "21",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": ["Diophantine Equations"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "21",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Let $2a-b=p^2$, $a-2b=q^2$, $a+b=r^2$; find linear relations among p², q², r² by eliminating a and b."},
+        {"level": 2, "content": "Show that $r^2$ relates to $p^2$ and $q^2$ via a fixed linear combination, then search small square values satisfying it."},
+        {"level": 3, "content": "Once valid (p,q,r) are found, back-solve for a and b and verify they are natural numbers."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P16",
+      "examType": "PRMO",
+      "problemNumber": 16,
+      "statement": "What is the value of $\\sum_{1 \\leq i < j \\leq 10 \\atop i+j=\\rm odd} (i+j) - \\sum_{1 \\leq i < j \\leq 10 \\atop i+j=\\rm even} (i+j)$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "55",
+      "baseRating": 1000,
+      "difficultyLabel": "Easy",
+      "tags": ["Parity"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "55",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Classify pairs (i,j) by the parities of i and j to determine when i+j is odd or even."},
+        {"level": 2, "content": "Compute each sum by grouping pairs based on parity classes among 1 to 10, then subtract."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P17",
+      "examType": "PRMO",
+      "problemNumber": 17,
+      "statement": "Triangles $ABC$ and $DEF$ are such that $\\angle A = \\angle D$, $AB = DE = 17$, $BC = EF = 10$ and $AC - DF = 12$. What is $AC + DF$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "30",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Triangles", "Congruence"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "30",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Since angle A = angle D and two sides match (SSA-type ambiguous case), use the Law of Cosines to relate AC and DF to a common angle A."},
+        {"level": 2, "content": "Set up the Law of Cosines equation for both triangles; the two solutions for the third side are roots of the same quadratic in the side length."},
+        {"level": 3, "content": "Use Vieta's formulas on that quadratic to directly get the sum of the two roots (AC and DF)."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P18",
+      "examType": "PRMO",
+      "problemNumber": 18,
+      "statement": "If $a,b,c \\geq 4$ are integers, not all equal, and $4abc = (a+3)(b+3)(c+3)$, then what is the value of $a + b + c$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "16",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": ["Symmetric Expressions", "Factorization"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "16",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "WLOG assume $a \\le b \\le c$ and analyze the equation as a bound: show that a cannot be too large by comparing growth rates."},
+        {"level": 2, "content": "Fix small values of a (starting at 4) and reduce to a two-variable equation in b and c, then search for integer solutions."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P19",
+      "examType": "PRMO",
+      "problemNumber": 19,
+      "statement": "Let $N = 6 + 66 + 666 + \\cdots + 666\\cdots66$, where there are hundred 6’s in the last term in the sum. How many times does the digit 7 occur in the number $N$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "33",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Number Bases"],
+      "topics": ["nt-base-representations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "33",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Express each term as $\\frac{6}{9}(10^k-1)$ and sum over k from 1 to 100 using a geometric series."},
+        {"level": 2, "content": "Simplify N into a closed form and examine its digit pattern directly (it should resemble mostly 7's with distinctive ends)."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P20",
+      "examType": "PRMO",
+      "problemNumber": 20,
+      "statement": "Determine the sum of all possible positive integers $n$, the product of whose digits equals $n^2 - 15n - 27$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "17",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Casework"],
+      "topics": ["nt-divisibility"],
+      "diagramSvg": null,
+      "solutionMarkdown": "17",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Since digit products are relatively small compared to n² for large n, bound n using the fact that the digit product of an n-digit number is much less than $10^{(\\text{digits})}$."},
+        {"level": 2, "content": "Test small ranges of n directly, checking when $n^2-15n-27$ is non-negative and matches the actual digit product."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P21",
+      "examType": "PRMO",
+      "problemNumber": 21,
+      "statement": "Let $ABC$ be an acute-angled triangle and let $H$ be its orthocentre. Let $G_1, G_2$ and $G_3$ be the centroids of the triangles $HBC$, $HCA$ and $HAB$, respectively. If the area of triangle $G_1G_2G_3$ is 7 units, what is the area of triangle $ABC$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "63",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": ["Triangles", "Transformations"],
+      "topics": ["geometry-transformations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "63",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Express each centroid $G_1,G_2,G_3$ as an average of vertex position vectors involving H."},
+        {"level": 2, "content": "Show that triangle $G_1G_2G_3$ is similar to ABC via a specific scale factor (a homothety), and find that ratio."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P22",
+      "examType": "PRMO",
+      "problemNumber": 22,
+      "statement": "A positive integer $k$ is said to be good if there exists a partition of $\\{1,2,3,\\dots,20\\}$ into disjoint proper subsets such that the sum of the numbers in each subset of the partition is $k$. How many good numbers are there?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "6",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": ["Casework"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "6",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "The total sum 1 to 20 is 210; k must divide 210 and also be achievable as a subset sum multiple times over."},
+        {"level": 2, "content": "k must be at least 20 (to contain the element 20 in some subset) and no more than 210; check each divisor of 210 in that range for feasibility."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P23",
+      "examType": "PRMO",
+      "problemNumber": 23,
+      "statement": "What is the largest positive integer $n$ such that $\\frac{a^2}{\\frac{b}{29} + \\frac{c}{31}} + \\frac{b^2}{\\frac{c}{29}+\\frac{a}{31}} + \\frac{c^2}{\\frac{a}{29} +\\frac{b}{31}} \\geq n(a + b + c)$ holds for all positive real numbers $a,b,c$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "14",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": ["Inequalities"],
+      "topics": ["inequalities-cs-pm"],
+      "diagramSvg": null,
+      "solutionMarkdown": "14",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Apply the Cauchy-Schwarz (Engel form / Titu's Lemma) inequality to the sum of fractions."},
+        {"level": 2, "content": "After applying Cauchy-Schwarz, the denominator simplifies to a multiple of (a+b+c); find the exact constant."},
+        {"level": 3, "content": "Check equality conditions (a=b=c) to confirm the bound is tight and extract n."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P24",
+      "examType": "PRMO",
+      "problemNumber": 24,
+      "statement": "If $N$ is the number of triangles of different shapes (i.e., not similar) whose angles are all integers (in degrees), what is $N/100$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "27",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Counting"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "27",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Count ordered integer triples (A,B,C) with A+B+C=180, A,B,C≥1, then adjust for the fact that similarity classes are unordered up to relabeling."},
+        {"level": 2, "content": "Use stars and bars for the ordered count, then divide appropriately accounting for triangles with repeated angle values (isosceles/equilateral)."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P25",
+      "examType": "PRMO",
+      "problemNumber": 25,
+      "statement": "Let $T$ be the smallest positive integer which, when divided by 11, 13, 15 leaves remainders in the sets $\\{7,8,9\\}$, $\\{1,2,3\\}$, $\\{4,5,6\\}$ respectively. What is the sum of the squares of the digits of $T$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "81",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["Congruences"],
+      "topics": ["nt-modular-arithmetic"],
+      "diagramSvg": null,
+      "solutionMarkdown": "81",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "Use trial values of remainders mod 15 and mod 11 together to narrow down using the Chinese Remainder Theorem approach."},
+        {"level": 2, "content": "Since each modulus has 3 possible remainders, there are 27 combinations to check; look for patterns (e.g., remainder mod 15 minus remainder mod 13 being constant) to reduce cases."},
+        {"level": 3, "content": "Once a consistent small combination is found, solve the resulting simultaneous congruences via CRT for the smallest T."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P26",
+      "examType": "PRMO",
+      "problemNumber": 26,
+      "statement": "What is the number of ways in which one can choose 60 unit squares from a $11 \\times 11$ chessboard such that no two chosen squares have a side in common?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "62",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": ["Pigeonhole Principle", "Coloring"],
+      "topics": ["combinatorics-pigeonhole"],
+      "diagramSvg": null,
+      "solutionMarkdown": "62",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Color the board like a checkerboard; consider the maximum independent set size and how close 60 is to that maximum."},
+        {"level": 2, "content": "Analyze how many squares must come from each color class and what near-maximum configurations look like, using row/column pigeonhole arguments."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P27",
+      "examType": "PRMO",
+      "problemNumber": 27,
+      "statement": "What is the number of ways in which one can colour the squares of a $4 \\times 4$ chessboard with colours red and blue such that each row as well as each column has exactly two red squares and two blue squares?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "90",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": ["Coloring", "Combinations"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "90",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "This is equivalent to counting 4x4 0-1 matrices with row sums and column sums equal to 2."},
+        {"level": 2, "content": "Build up row by row, tracking how many red squares remain to be placed in each column, using casework on overlap patterns between consecutive rows."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P28",
+      "examType": "PRMO",
+      "problemNumber": 28,
+      "statement": "Let $N$ be the number of ways of distributing 8 chocolates of different brands among 3 children such that each child gets at least one chocolate, and no two children get the same number of chocolates. Find the sum of the digits of $N$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "24",
+      "baseRating": 1250,
+      "difficultyLabel": "Medium",
+      "tags": ["Permutations", "Casework"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "24",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Find all unordered triples of distinct positive integers summing to 8, representing the numbers of chocolates each child gets."},
+        {"level": 2, "content": "For each triple, count the number of ways to assign it to the 3 distinct children, then the number of ways to choose which chocolates go to which child."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P29",
+      "examType": "PRMO",
+      "problemNumber": 29,
+      "statement": "Let $D$ be an interior point of the side $BC$ of a triangle $ABC$. Let $I_1$ and $I_2$ be the incentres of triangles $ABD$ and $ACD$ respectively. Let $AI_1$ and $AI_2$ meet $BC$ in $E$ and $F$ respectively. If $\\angle BI_1E = 60^\\circ$, what is the measure of $\\angle CI_2F$ in degrees?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "30",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": ["Angle Chasing", "Triangles"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "30",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Use the incenter angle formula: angle BI1D = 90° + (angle BAD)/2 in triangle ABD, and similarly for the other incenter."},
+        {"level": 2, "content": "Relate angle BI1E to this incenter angle formula since E lies on line AI1, and derive an equation for angle BAD."},
+        {"level": 3, "content": "Apply the analogous formula for triangle ACD to find angle CI2F using the relation between angle BAD and angle CAD (which sum to angle BAC)."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2018-P30",
+      "examType": "PRMO",
+      "problemNumber": 30,
+      "statement": "Let $P(x) = a_0 + a_1 x + a_2 x^2 + \\cdots + a_n x^n$ be a polynomial in which $a_i$ is a non-negative integer for each $i \\in \\{0,1,2,3,\\dots,n\\}$. If $P(1) = 4$ and $P(5) = 136$, what is the value of $P(3)$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "34",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": ["Polynomials", "Number Bases"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "34",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Since coefficients are non-negative integers summing to 4 (from P(1)=4), there are limited possibilities for the coefficient multiset."},
+        {"level": 2, "content": "Use P(5)=136 to pin down exactly which powers of x have nonzero coefficients, treating it almost like a base-5 representation with digit sum 4."},
+        {"level": 3, "content": "Once coefficients are determined, evaluate P(3) directly."}
+      ]
+    }
+  ]
+}

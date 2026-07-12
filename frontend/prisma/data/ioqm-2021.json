@@ -1,0 +1,427 @@
+{
+  "contestSource": "IOQM 2021-22",
+  "contestYear": 2021,
+  "examType": "IOQM",
+  "questions": [
+    {
+  "externalId": "IOQM-2021-P1",
+  "examType": "IOQM",
+  "problemNumber": 1,
+  "statement": "Three parallel lines $L_1, L_2, L_3$ are drawn in the plane such that the perpendicular distance between $L_1$ and $L_2$ is 3 and the perpendicular distance between $L_2$ and $L_3$ is also 3. A square $ABCD$ is constructed such that $A$ lies on $L_1$, $B$ lies on $L_3$ and $C$ lies on $L_2$. Find the area of the square.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "45",
+  "baseRating": 1225,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Area",
+    "Transformations"
+  ],
+  "topics": [
+    "geometry-transformations"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "45",
+  "estimatedSolveSeconds": 420,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Let the side length of the square be s and let one side make an angle θ with the parallel lines."
+    },
+    {
+      "level": 2,
+      "content": "Express the perpendicular distances from A to B and from B to C in terms of s, sin θ and cos θ."
+    },
+    {
+      "level": 3,
+      "content": "Use sin θ + cos θ and the identity sin² θ + cos² θ = 1 to determine s."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P2",
+  "examType": "IOQM",
+  "problemNumber": 2,
+  "statement": "Ria writes down the numbers 1, 2, ..., 101 in red and blue pens. The largest blue number is equal to the number of numbers written in blue and the smallest red number is equal to half the number of numbers written in red. How many numbers did Ria write with red pen?",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "68",
+  "baseRating": 1125,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Counting",
+    "Casework"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "68",
+  "estimatedSolveSeconds": 360,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Let B and R denote the numbers written in blue and red respectively."
+    },
+    {
+      "level": 2,
+      "content": "Use the given conditions to identify the largest blue number and the smallest red number."
+    },
+    {
+      "level": 3,
+      "content": "Since every number from 1 to 101 is used exactly once, relate B and R using B + R = 101."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P3",
+  "examType": "IOQM",
+  "problemNumber": 3,
+  "statement": "Consider the set $T$ of all triangles whose sides are distinct prime numbers which are also in arithmetic progression. Let $\\triangle \\in T$ be the triangle with the least perimeter. If $\\alpha^\\circ$ is the largest angle of $\\triangle$ and if $L$ is its perimeter, determine the value of $\\frac{\\alpha}{L}$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "8",
+  "baseRating": 1325,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Prime Numbers",
+    "Triangles"
+  ],
+  "topics": [
+    "nt-primes-factorization",
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "8",
+  "estimatedSolveSeconds": 480,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Search for the smallest three distinct primes that are in arithmetic progression and satisfy the triangle inequality."
+    },
+    {
+      "level": 2,
+      "content": "Once the triangle is identified, use the cosine rule to determine its largest angle."
+    },
+    {
+      "level": 3,
+      "content": "Compute the perimeter and evaluate the required ratio."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P4",
+  "examType": "IOQM",
+  "problemNumber": 4,
+  "statement": "Consider the set of all 6-digit numbers consisting of only 3 digits, $a,b,c$, where $a,b,c$ are distinct. Suppose the sum of all these numbers is 593999406. What is the largest remainder when the three digit number $abc$ is divided by 100?",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "98",
+  "baseRating": 1475,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Counting",
+    "Number Bases"
+  ],
+  "topics": [
+    "combinatorics-counting",
+    "nt-base-representations"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "98",
+  "estimatedSolveSeconds": 660,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Determine how often each of the digits a, b and c appears in each decimal place among all valid numbers."
+    },
+    {
+      "level": 2,
+      "content": "Express the total sum in terms of a + b + c."
+    },
+    {
+      "level": 3,
+      "content": "Recover the digits and maximize the last two digits of abc."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P5",
+  "examType": "IOQM",
+  "problemNumber": 5,
+  "statement": "In parallelogram $ABCD$ the longer side is twice the shorter side. Let $XYZW$ be the quadrilateral formed by the internal bisectors of the angles of $ABCD$. If the area of $XYZW$ is 10, find the area of $ABCD$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "40",
+  "baseRating": 1500,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Area",
+    "Angle Chasing"
+  ],
+  "topics": [
+    "geometry-quadrilaterals"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "40",
+  "estimatedSolveSeconds": 720,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Draw the angle bisectors and examine the shape of the quadrilateral they form."
+    },
+    {
+      "level": 2,
+      "content": "Relate the distances between opposite angle bisectors to the side lengths of the parallelogram."
+    },
+    {
+      "level": 3,
+      "content": "Use the side-length ratio 2:1 to derive the ratio of the two areas."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P6",
+  "examType": "IOQM",
+  "problemNumber": 6,
+  "statement": "Let $x,y,z$ be positive real numbers such that $x^2 + y^2 = 49$, $y^2 + yz + z^2 = 36$ and $x^2 + \\sqrt{3} xz + z^2 = 25$. If the value of $2xy + \\sqrt{3} yz + zx$ can be written as $p\\sqrt{q}$ where $p,q$ are integers and $q$ is not divisible by square of any prime number, find $p + q$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "30",
+  "baseRating": 1650,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Quadratic Expressions"
+  ],
+  "topics": [
+    "algebra-manipulation"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "30",
+  "estimatedSolveSeconds": 900,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Look for linear combinations whose squares produce the given quadratic forms."
+    },
+    {
+      "level": 2,
+      "content": "Expand the square of a suitable expression involving x, y and z."
+    },
+    {
+      "level": 3,
+      "content": "Use the three given identities to eliminate x², y² and z² and isolate the required expression."
+    }
+  ]
+},
+    {
+  "externalId": "IOQM-2021-P7",
+  "examType": "IOQM",
+  "problemNumber": 7,
+  "statement": "Find the number of maps $f : \\{1,2,3\\} \\to \\{1,2,3,4,5\\}$ such that $f(i) \\leq f(j)$ whenever $i < j$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "35",
+  "baseRating": 1025,
+  "difficultyLabel": "Easy",
+  "tags": [
+    "Counting",
+    "Combinations"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "35",
+  "estimatedSolveSeconds": 240,
+  "hints": [
+    {
+      "level": 1,
+      "content": "A non-decreasing map is determined by choosing a multiset of three elements from {1,2,3,4,5}."
+    },
+    {
+      "level": 2,
+      "content": "Relate the problem to combinations with repetition."
+    },
+    {
+      "level": 3,
+      "content": "Apply the stars-and-bars formula for multisets."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P8",
+  "examType": "IOQM",
+  "problemNumber": 8,
+  "statement": "For any real number $t$, let $\\lfloor t \\rfloor$ denote the largest integer $\\leq t$. Suppose that $N$ is the greatest integer such that $\\left\\lfloor \\sqrt{\\left\\lfloor \\sqrt{\\left\\lfloor \\sqrt{N} \\right\\rfloor} \\right\\rfloor} \\right\\rfloor = 4$. Find the sum of digits of $N$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "24",
+  "baseRating": 1350,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Number Bases",
+    "Casework"
+  ],
+  "topics": [
+    "nt-base-representations"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "24",
+  "estimatedSolveSeconds": 480,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Work from the outermost floor function backwards."
+    },
+    {
+      "level": 2,
+      "content": "Determine the largest possible value at each nested square-root stage."
+    },
+    {
+      "level": 3,
+      "content": "Reverse the inequalities one layer at a time to maximize N."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P9",
+  "examType": "IOQM",
+  "problemNumber": 9,
+  "statement": "Let $P_0 = (3,1)$ and define $P_{n+1} = (x_{n}, y_{n})$ for $n \\geq 0$ by $x_{n+1} = -\\frac{3x_n - y_n}{2}$, $y_{n+1} = -\\frac{x_n + y_n}{2}$. Find the area of the quadrilateral formed by the points $P_{96}, P_{97}, P_{98}, P_{99}$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "8",
+  "baseRating": 1500,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Recurrence Relations",
+    "Coordinate Geometry"
+  ],
+  "topics": [
+    "algebra-sequences-series",
+    "geometry-coordinate"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "8",
+  "estimatedSolveSeconds": 720,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Interpret the recurrence as a linear transformation of the plane."
+    },
+    {
+      "level": 2,
+      "content": "Study how the transformation affects vectors between consecutive points."
+    },
+    {
+      "level": 3,
+      "content": "Use invariance of the shape under repeated application to compute the area."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P10",
+  "examType": "IOQM",
+  "problemNumber": 10,
+  "statement": "Suppose that $P$ is the polynomial of least degree with integer coefficients such that $P(\\sqrt{7} + \\sqrt{5}) = 2(\\sqrt{7} - \\sqrt{5})$. Find $P(2).",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "40",
+  "baseRating": 1625,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Polynomials"
+  ],
+  "topics": [
+    "algebra-polynomials"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "40",
+  "estimatedSolveSeconds": 840,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Find all conjugates of √7+√5 over the integers."
+    },
+    {
+      "level": 2,
+      "content": "Construct the least-degree polynomial satisfying the required values on the conjugates."
+    },
+    {
+      "level": 3,
+      "content": "Evaluate the resulting polynomial at x=2."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P11",
+  "examType": "IOQM",
+  "problemNumber": 11,
+  "statement": "In how many ways can four married couples sit in a merry-go-round with identical seats such that men and women occupy alternate seats and no husband seats next to his wife?",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "12",
+  "baseRating": 1375,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Permutations",
+    "Casework"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "12",
+  "estimatedSolveSeconds": 540,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Fix the circular symmetry by fixing the positions of the men."
+    },
+    {
+      "level": 2,
+      "content": "Arrange the women in the remaining seats while avoiding adjacency to their husbands."
+    },
+    {
+      "level": 3,
+      "content": "Apply inclusion-exclusion or careful casework."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2021-P12",
+  "examType": "IOQM",
+  "problemNumber": 12,
+  "statement": "A $12 \\times 12$ board is divided into 144 unit squares by drawing lines parallel to the sides. Two rooks placed on two unit squares are said to be non attacking if they are not in the same column or same row. Find the least number $N$ such that if $N$ rooks are placed on the unit squares, one rook per square, we can always find 7 rooks such that no two are attacking each other.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "73",
+  "baseRating": 1550,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Pigeonhole Principle"
+  ],
+  "topics": [
+    "combinatorics-pigeonhole"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "73",
+  "estimatedSolveSeconds": 780,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Interpret the board as a bipartite graph between rows and columns."
+    },
+    {
+      "level": 2,
+      "content": "Relate a set of non-attacking rooks to a matching in the graph."
+    },
+    {
+      "level": 3,
+      "content": "Use Hall's theorem (or König's theorem) to determine the extremal configuration."
+    }
+  ]
+}
+  ]
+}

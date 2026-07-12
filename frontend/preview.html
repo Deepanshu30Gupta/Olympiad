@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Question Preview — IOQM 2024 (2024)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #fafafa; color: #1a1a1a; }
+  h1 { font-size: 20px; }
+  .question-card { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pill { background: #eef2ff; color: #3730a3; font-size: 12px; padding: 3px 8px; border-radius: 12px; }
+  .topics { font-size: 12px; color: #666; margin-bottom: 12px; }
+  .topics code { background: #f1f1f1; padding: 1px 5px; border-radius: 4px; }
+  .statement { font-size: 15px; line-height: 1.6; margin-bottom: 12px; white-space: pre-wrap; }
+  .diagram { margin: 12px 0; text-align: center; }
+  .diagram svg { max-width: 100%; height: auto; border: 1px solid #eee; }
+  .options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .option { padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 6px; }
+  .option.correct { background: #f0fdf4; border-color: #86efac; }
+  .badge { float: right; color: #16a34a; font-size: 12px; }
+  .answer-box { background: #f9fafb; padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; }
+  .solution { margin-top: 12px; border-top: 1px solid #eee; padding-top: 12px; }
+  .solution summary { cursor: pointer; font-weight: 600; color: #4338ca; }
+  .solution-source { font-size: 12px; color: #999; margin: 6px 0; }
+  .markdown-body { font-size: 14px; line-height: 1.6; margin-top: 8px; }
+  .hints-section { margin-top: 12px; font-size: 14px; }
+  .hint { margin: 6px 0; padding: 6px 10px; background: #fffbeb; border-radius: 6px; }
+  .hint summary { cursor: pointer; color: #92400e; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>IOQM 2024 (2024) — 30 questions</h1>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P1</span>
+      <span class="pill">Problem 1</span>
+      <span class="pill">Easy · rating 900</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~2 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-divisibility</code> <code>nt-primes-factorization</code></div>
+    <div class="statement">The smallest positive integer that does not divide $1 \times 2 \times 3 \times 4 \times 5 \times 6 \times 7 \times 8 \times 9$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>11</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="11"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Express $9!$ as a product of prime powers.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>A divisor cannot require a prime factor absent from the factorization.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P2</span>
+      <span class="pill">Problem 2</span>
+      <span class="pill">Easy · rating 850</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~1 min</span>
+    </div>
+    <div class="topics">Topics: <code>combinatorics-counting</code></div>
+    <div class="statement">The number of four-digit odd numbers having digits 1, 2, 3, 4, each occurring exactly once, is:</div>
+    
+    <div class="answer-box">Answer: <strong>12</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="12"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>An odd number must end with an odd digit.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Choose the last digit first, then arrange the remaining digits.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P3</span>
+      <span class="pill">Problem 3</span>
+      <span class="pill">Easy · rating 900</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~1 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-modular-arithmetic</code></div>
+    <div class="statement">The number obtained by taking the last two digits of $5^{2024}$ in the same order is:</div>
+    
+    <div class="answer-box">Answer: <strong>25</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="25"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Work modulo 100.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Compute the first few powers of 5 and look for a stable pattern.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P4</span>
+      <span class="pill">Problem 4</span>
+      <span class="pill">Medium · rating 1300</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~3 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-triangles</code> <code>geometry-quadrilaterals</code></div>
+    <div class="statement">Let $ABCD$ be a quadrilateral with $\angle ADC = 70^\circ$, $\angle ACD = 70^\circ$, $\angle ACB = 10^\circ$ and $\angle BAD = 110^\circ$. The measure of $\angle CAB$ (in degrees) is:</div>
+    
+    <div class="answer-box">Answer: <strong>70</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="70"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Determine all missing angles in triangle $ACD$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Use the angle sum in quadrilateral $ABCD$ and continue angle chasing.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Express $\angle CAB$ in terms of the known angles.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P5</span>
+      <span class="pill">Problem 5</span>
+      <span class="pill">Medium · rating 1400</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>algebra-manipulation</code></div>
+    <div class="statement">Let $a = \frac{x}{y} + \frac{y}{z} + \frac{z}{x}$, let $b = \frac{x}{z} + \frac{y}{x} + \frac{z}{y}$ and let $c = \left( \frac{x}{y} + \frac{y}{z} \right) \left( \frac{y}{z} + \frac{z}{x} \right) \left( \frac{z}{x} + \frac{x}{y} \right)$. The value of $|ab - c|$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>1</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="1"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Set $u=\frac{x}{y}$, $v=\frac{y}{z}$ and $w=\frac{z}{x}$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Use the relation $uvw=1$ to simplify the expressions.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Expand carefully and factor the resulting expression.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P6</span>
+      <span class="pill">Problem 6</span>
+      <span class="pill">Hard · rating 1600</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~6 min</span>
+    </div>
+    <div class="topics">Topics: <code>inequalities-classical</code></div>
+    <div class="statement">Find the number of triples of real numbers $(a,b,c)$ such that $a^{20} + b^{20} + c^{20} = a^{24} + b^{24} + c^{24} = 1$.</div>
+    
+    <div class="answer-box">Answer: <strong>6</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="6"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Compare $x^{20}$ and $x^{24}$ for every real number.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Determine when equality between the two sums is possible.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Classify the possible values of each variable before counting the triples.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P7</span>
+      <span class="pill">Problem 7</span>
+      <span class="pill">Hard · rating 1650</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~5 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-coordinate</code> <code>geometry-transformations</code></div>
+    <div class="statement">Determine the sum of all possible surface areas of a cube two of whose vertices are $(1,2,0)$ and $(3,3,2)$.</div>
+    
+    <div class="answer-box">Answer: <strong>99</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="99"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Compute the distance between the given vertices.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>The segment may be an edge, a face diagonal, or a space diagonal of the cube.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Determine the corresponding side length in each case before finding the surface area.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P8</span>
+      <span class="pill">Problem 8</span>
+      <span class="pill">Medium · rating 1250</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~3 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-base-representations</code></div>
+    <div class="statement">Let $n$ be the smallest integer such that the sum of digits of $n$ is divisible by 5 as well as the sum of digits of $(n+1)$ is divisible by 5. What are the first two digits of $n$ in the same order?</div>
+    
+    <div class="answer-box">Answer: <strong>49</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="49"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Study how the digit sum changes after adding 1.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>A carry through trailing 9s changes the digit sum by more than 1.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Determine the smallest decimal pattern satisfying both divisibility conditions.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P9</span>
+      <span class="pill">Problem 9</span>
+      <span class="pill">Medium · rating 1350</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~3 min</span>
+    </div>
+    <div class="topics">Topics: <code>combinatorics-counting</code></div>
+    <div class="statement">Consider the grid of points $X = \{(m,n) \mid 0 \leq m,n \leq 4\}$. We say a pair of points $\{(a,b),(c,d)\}$ in $X$ is a knight-move pair if $(c=a\pm2$ and $d=b\pm1)$ or $(c=a\pm1$ and $d=b\pm2)$. The number of knight-move pairs in $X$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>48</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="48"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Count the number of knight moves available from each grid point.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Separate corner, edge and interior points if it simplifies the counting.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Each unordered pair is counted twice when summing over starting points.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P10</span>
+      <span class="pill">Problem 10</span>
+      <span class="pill">Very Hard · rating 1800</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~7 min</span>
+    </div>
+    <div class="topics">Topics: <code>algebra-manipulation</code> <code>geometry-triangles</code></div>
+    <div class="statement">Determine the number of positive integral values of $p$ for which there exists a triangle with sides $a,b$, and $c$ which satisfy $a^2 + (p^2 + 9)b^2 + 9c^2 - 6ab - 6pbc = 0$.</div>
+    
+    <div class="answer-box">Answer: <strong>5</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="5"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Rewrite the quadratic expression by completing squares.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Interpret the equality conditions obtained after simplification.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Use the triangle inequalities to determine the admissible values of $p$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P11</span>
+      <span class="pill">Problem 11</span>
+      <span class="pill">Hard · rating 1700</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~6 min</span>
+    </div>
+    <div class="topics">Topics: <code>algebra-manipulation</code></div>
+    <div class="statement">The positive real numbers $a,b,c$ satisfy: $\frac{a}{2b+1} + \frac{2b}{3c+1} + \frac{3c}{a+1} = 1$ and $\frac{1}{a+1} + \frac{1}{2b+1} + \frac{1}{3c+1} = 2$. What is the value of $\frac{1}{a} + \frac{1}{b} + \frac{1}{c}$?</div>
+    
+    <div class="answer-box">Answer: <strong>12</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="12"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Introduce new variables for the repeated denominators.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Combine the two equations to eliminate the fractions systematically.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Recover the reciprocals of $a$, $b$ and $c$ from the resulting identities.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P12</span>
+      <span class="pill">Problem 12</span>
+      <span class="pill">Medium · rating 1350</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-coordinate</code></div>
+    <div class="statement">Consider a square $ABCD$ of side length 16. Let $E,F$ be points on $CD$ such that $CE=EF=FD$. Let the line $BF$ and $AE$ meet in $M$. The area of $\triangle MAB$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>96</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="96"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Assign coordinates to the vertices of the square.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Find equations of lines $AE$ and $BF$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Determine the coordinates of $M$ and compute the triangle's area.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P13</span>
+      <span class="pill">Problem 13</span>
+      <span class="pill">Medium · rating 1200</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~3 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-diophantine</code> <code>algebra-manipulation</code></div>
+    <div class="statement">Three positive integers $a,b,c$ with $a &gt; c$ satisfy the following equations: $ac + b + c = bc + a + 66$, $a + b + c = 32$. Find the value of $a$.</div>
+    
+    <div class="answer-box">Answer: <strong>19</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="19"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Use $a+b+c=32$ to eliminate $b$ from the first equation.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Rearrange the resulting equation so it factors into a product of two simple terms.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Use the constraint $a&gt;c$ together with the factorization to pin down $a$ and $c$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P14</span>
+      <span class="pill">Problem 14</span>
+      <span class="pill">Very Hard · rating 1750</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~7 min</span>
+    </div>
+    <div class="topics">Topics: <code>combinatorics-counting</code></div>
+    <div class="statement">Initially, there are $3^80$ particles at the origin $(0,0)$. At each step the particles are moved to points above the $x$-axis as follows: if there are $n$ particles at any point $(x,y)$, then $\lfloor n/3 \rfloor$ of them are moved to $(x+1,y+1)$, $\lfloor n/3 \rfloor$ are moved to $(x,y+1)$ and the remaining to $(x-1,y+1)$. After 80 steps, the number of particles at $(79,80)$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>80</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="80"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Consider what happens at points far from the center, where no rounding loss occurs.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Determine the exact split of particles along the rightmost achievable path.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Track how many particles reach the extreme point $(79,80)$ step by step.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P15</span>
+      <span class="pill">Problem 15</span>
+      <span class="pill">Hard · rating 1550</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-triangles</code></div>
+    <div class="statement">Let $X$ be the set consisting of twenty positive integers $n, n+2, \dots, n+38$. The smallest value of $n$ for which any three numbers $a,b,c \in X$, not necessarily distinct, form the sides of an acute-angled triangle is:</div>
+    
+    <div class="answer-box">Answer: <strong>92</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="92"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Identify the worst-case triple: the two smallest sides and the largest side.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Recall the condition for a triangle with sides $a\le b\le c$ to be acute.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Apply this condition to the extreme triple to bound $n$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P16</span>
+      <span class="pill">Problem 16</span>
+      <span class="pill">Medium · rating 1400</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~3 min</span>
+    </div>
+    <div class="topics">Topics: <code>algebra-functional-equations</code></div>
+    <div class="statement">Let $f : \mathbb{R} \to \mathbb{R}$ be a function satisfying the relation $4f(3-x) + 3f(x) = x^2$ for any real $x$. Find the value of $f(27) - f(25)$ to the nearest integer.</div>
+    
+    <div class="answer-box">Answer: <strong>8</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="8"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Substitute $3-x$ in place of $x$ to get a second relation.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Solve the two linear equations in $f(x)$ and $f(3-x)$ simultaneously.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Evaluate the resulting closed form at the two required inputs.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P17</span>
+      <span class="pill">Problem 17</span>
+      <span class="pill">Hard · rating 1600</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-circles</code> <code>geometry-triangles</code></div>
+    <div class="statement">Consider an isosceles triangle $ABC$ with sides $BC=30$, $CA=AB=20$. Let $D$ be the foot of the perpendicular from $A$ to $BC$, and let $M$ be the midpoint of $AD$. Let $PQ$ be a chord of the circumcircle of triangle $ABC$, such that $M$ lies on $PQ$ and $PQ$ is parallel to $BC$. The length of $PQ$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>25</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="25"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Place the triangle symmetrically so the circumcenter lies on the axis of symmetry.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Find the circumradius and the position of $M$ relative to the center.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Use the perpendicular distance from the center to the chord to find its length.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P18</span>
+      <span class="pill">Problem 18</span>
+      <span class="pill">Very Hard · rating 1700</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~5 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-gcd-lcm</code> <code>nt-divisibility</code></div>
+    <div class="statement">Let $p,q$ be two-digit numbers neither of which are divisible by 10. Let $r$ be the four-digit number by putting the digits of $p$ followed by the digits of $q$ (in order). As $p,q$ vary, a computer prints $r$ on the screen if $\gcd(p,q)=1$ and $p+q$ divides $r$. Suppose that the largest number that is printed by the computer is $N$. Determine the number formed by the last two digits of $N$ (in the same order).</div>
+    
+    <div class="answer-box">Answer: <strong>13</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="13"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Write $r = 100p + q$ in terms of $p$ and $q$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Reduce the divisibility condition $p+q \mid r$ modulo $p+q$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Search from the largest possible $p$ downward, checking the gcd condition.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P19</span>
+      <span class="pill">Problem 19</span>
+      <span class="pill">Medium · rating 1500</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>combinatorics-graph-theory</code></div>
+    <div class="statement">Consider five points in the plane, with no three of them collinear. Every pair of points among them is joined by a line. In how many ways can we color these lines by red or blue, so that no three of the points form a triangle with lines of the same color.</div>
+    
+    <div class="answer-box">Answer: <strong>12</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="12"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Model the points and lines as the complete graph $K_5$ with edges colored red or blue.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Recall what is known about avoiding monochromatic triangles in small complete graphs.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Look for the essentially unique valid coloring pattern and count its symmetric variants.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P20</span>
+      <span class="pill">Problem 20</span>
+      <span class="pill">Medium · rating 1300</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~3 min</span>
+    </div>
+    <div class="topics">Topics: <code>combinatorics-graph-theory</code></div>
+    <div class="statement">On a natural number $n$ you are allowed two operations: (1) multiply $n$ by 2 or (2) subtract 3 from $n$. Starting from 11, what is the least number of steps required to reach 121?</div>
+    
+    <div class="answer-box">Answer: <strong>10</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="10"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Think of each reachable number as a vertex, connected by the two allowed operations.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Working backward from 121 can prune the search significantly.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Compare a few short sequences that mix doublings with subtractions of 3.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P21</span>
+      <span class="pill">Problem 21</span>
+      <span class="pill">Hard · rating 1550</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-divisibility</code></div>
+    <div class="statement">An integer $n$ is such that $\lfloor n/9 \rfloor$ is a three digit number with equal digits, and $\lfloor (n-172)/4 \rfloor$ is a 4 digit number with the digits 2, 0, 2, 4 in some order. What is the remainder when $n$ is divided by 100?</div>
+    
+    <div class="answer-box">Answer: <strong>91</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="91"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>List the possible values of the repeated-digit three-digit number $\lfloor n/9 \rfloor$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>For each candidate, determine the resulting range of $n$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Within that range, check which permutations of 2,0,2,4 are achievable for the second floor expression.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P22</span>
+      <span class="pill">Problem 22</span>
+      <span class="pill">Very Hard · rating 1750</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~5 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-triangles</code></div>
+    <div class="statement">In a triangle $ABC$, $\angle BAC = 90^\circ$. Let $D$ be the point on $BC$ such that $AB + BD = AC + CD$. Suppose $BD : DC = 2 : 1$. If $\frac{AC}{AB} = \frac{m + \sqrt{p}}{n}$, where $m,n$ are relatively prime positive integers and $p$ is a prime number, determine the value of $m + n + p$.</div>
+    
+    <div class="answer-box">Answer: <strong>34</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="34"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Let $AB=c$, $AC=b$ and use the Pythagorean relation for the right angle at $A$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Express $BD$ and $DC$ in terms of $BC$ using the given ratio.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Substitute into the condition $AB+BD=AC+CD$ and solve for the ratio $AC/AB$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P23</span>
+      <span class="pill">Problem 23</span>
+      <span class="pill">Hard · rating 1600</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~5 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-modular-arithmetic</code></div>
+    <div class="statement">Consider the fourteen numbers, $1^4, 2^4, \dots, 14^4$. The smallest natural number $n$ such that they leave distinct remainders when divided by $n$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>31</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="31"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Two numbers $a^4$ and $b^4$ give the same remainder mod $n$ exactly when $n \mid a^4-b^4$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Factor $a^4-b^4$ and think about which small $n$ are forced to divide it for some pair.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Test candidate values of $n$ upward until all fourteen remainders are distinct.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P24</span>
+      <span class="pill">Problem 24</span>
+      <span class="pill">Very Hard · rating 1800</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~6 min</span>
+    </div>
+    <div class="topics">Topics: <code>algebra-polynomials</code></div>
+    <div class="statement">Consider the set $F$ of all polynomials whose coefficients are in the set of $\{0,1\}$. Let $q(x) = x^3 + x + 1$. The number of polynomials $p(x)$ in $F$ of degree 14 such that the product $p(x)q(x)$ is also in $F$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>50</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="50"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Think of the coefficients of $p(x)q(x)$ as a linear recurrence in the coefficients of $p(x)$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Determine the condition on consecutive coefficients of $p(x)$ that keeps every product coefficient in $\{0,1\}$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Count the binary sequences of the required length satisfying that local condition.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P25</span>
+      <span class="pill">Problem 25</span>
+      <span class="pill">Medium · rating 1500</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-diophantine</code></div>
+    <div class="statement">A finite set $M$ of positive integers consists of distinct perfect squares and the number 92. The average of the numbers in $M$ is 85. If we remove 92 from $M$, the average drops to 84. If $N^2$ is the largest possible square in $M$, what is the value of $N$?</div>
+    
+    <div class="answer-box">Answer: <strong>22</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="22"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Let $k$ be the number of elements in $M$ and set up an equation using both averages.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Determine the exact sum of the perfect squares in $M$ and how many there are.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Maximize the largest square subject to all squares being distinct and summing correctly.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P26</span>
+      <span class="pill">Problem 26</span>
+      <span class="pill">Hard · rating 1650</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~5 min</span>
+    </div>
+    <div class="topics">Topics: <code>algebra-manipulation</code></div>
+    <div class="statement">The sum of $\lfloor x \rfloor$ for all real numbers $x$ satisfying the equation $16 + 15x + 15x^2 = \lfloor x \rfloor^3$ is:</div>
+    
+    <div class="answer-box">Answer: <strong>33</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="33"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Let $\lfloor x \rfloor = k$ and bound $x$ between $k$ and $k+1$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Substitute to get a quadratic in $x$ whose value must lie in a bounded range.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Solve for the finitely many integers $k$ for which a valid $x$ exists.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P27</span>
+      <span class="pill">Problem 27</span>
+      <span class="pill">Very Hard · rating 1850</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~7 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-triangles</code></div>
+    <div class="statement">In a triangle $ABC$, a point $P$ in the interior of $ABC$ is such that $\angle BPC - \angle BAC = \angle CPA - \angle CBA = \angle APB - \angle ACB$. Suppose $\angle BAC = 30^\circ$ and $AP = 12$. Let $D,E,F$ be the feet of perpendiculars from $P$ on to $BC,CA,AB$ respectively. If $m\sqrt{n}$ is the area of the triangle $DEF$ where $m,n$ are integers with $n$ prime, then what is the value of the product $mn$?</div>
+    
+    <div class="answer-box">Answer: <strong>27</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="27"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Determine the common value of the three angle differences using the total angle sum around $P$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Identify the pedal triangle $DEF$ of $P$ and relate its side lengths to segments from $P$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Use the special angle condition to find the specific size of the pedal triangle relative to $AP$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P28</span>
+      <span class="pill">Problem 28</span>
+      <span class="pill">Medium · rating 1400</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-primes-factorization</code></div>
+    <div class="statement">Find the largest positive integer $n &lt; 30$ such that $\frac{1}{2}(n^8 + 3n^4 - 4)$ is not divisible by the square of any prime number.</div>
+    
+    <div class="answer-box">Answer: <strong>20</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="20"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Factor $n^8+3n^4-4$ as a product of simpler polynomial factors in $n^4$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Further factor each piece completely over the integers.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Check the largest candidates below 30 for repeated prime factors, starting from $n=29$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P29</span>
+      <span class="pill">Problem 29</span>
+      <span class="pill">Hard · rating 1550</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~4 min</span>
+    </div>
+    <div class="topics">Topics: <code>nt-divisibility</code> <code>combinatorics-counting</code></div>
+    <div class="statement">Let $n = 2^{19}3^{12}$. Let $M$ denote the number of positive divisors of $n^2$ which are less than $n$ but would not divide $n$. What is the number formed by taking the last two digits of $M$ (in the same order)?</div>
+    
+    <div class="answer-box">Answer: <strong>28</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="28"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Count the total divisors of $n^2$ and how many of them are less than $n$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Separately count how many divisors of $n^2$ that are less than $n$ actually divide $n$.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Subtract to isolate the divisors that are less than $n$ but do not divide $n$.</div>
+    </details></div>
+  </div>
+
+  <div class="question-card">
+    <div class="meta">
+      <span class="pill">IOQM-2024-P30</span>
+      <span class="pill">Problem 30</span>
+      <span class="pill">Very Hard · rating 1750</span>
+      <span class="pill">NUMERIC</span>
+      <span class="pill">~6 min</span>
+    </div>
+    <div class="topics">Topics: <code>geometry-triangles</code> <code>nt-diophantine</code></div>
+    <div class="statement">Let $ABC$ be a right-angled triangle with $\angle B = 90^\circ$. Let the length of the altitude $BD$ be equal to 12. What is the minimum possible length of $AC$, given that $AC$ and the perimeter of triangle $ABC$ are integers?</div>
+    
+    <div class="answer-box">Answer: <strong>25</strong></div>
+    <details class="solution">
+      <summary>Show Solution</summary>
+      <div class="solution-source">IOQM 2024 (2024)</div>
+      <div class="markdown-body" data-markdown="25"></div>
+    </details>
+    <div class="hints-section"><strong>Hints:</strong>
+    <details class="hint">
+      <summary>Hint 1</summary>
+      <div>Relate the legs, hypotenuse, and altitude using $AB \cdot BC = AC \cdot BD$ and the Pythagorean theorem.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 2</summary>
+      <div>Express the perimeter in terms of the hypotenuse and search for integer solutions.</div>
+    </details>
+    <details class="hint">
+      <summary>Hint 3</summary>
+      <div>Test small integer hypotenuse values satisfying the altitude condition, from smallest upward.</div>
+    </details></div>
+  </div>
+<script>
+  document.querySelectorAll('.markdown-body').forEach(el => {
+    const md = decodeURIComponent(el.getAttribute('data-markdown'));
+    el.innerHTML = marked.parse(md);
+  });
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "$", right: "$", display: false}
+    ],
+    throwOnError: false
+  });
+</script>
+</body>
+</html>

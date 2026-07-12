@@ -1,0 +1,211 @@
+{
+  "contestSource": "PRMO 2017 Sample",
+  "contestYear": 2017,
+  "examType": "PRMO",
+  "questions": [
+    {
+      "externalId": "PRMO-2017-SAMPLE-P1",
+      "examType": "PRMO",
+      "problemNumber": 1,
+      "statement": "Two positive integers $a$ and $b$ are such that $a + b = \\frac{a}{b} + \\frac{b}{a}$. What is the value of $a^2 + b^2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "2",
+      "baseRating": 950,
+      "difficultyLabel": "Easy",
+      "tags": ["Factorization"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "2",
+      "estimatedSolveSeconds": 150,
+      "hints": [
+        {"level": 1, "content": "Multiply both sides by ab to clear denominators."},
+        {"level": 2, "content": "Since a, b are positive integers, use bounding/divisibility to conclude a=b."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P2",
+      "examType": "PRMO",
+      "problemNumber": 2,
+      "statement": "The equations $x^2 - 4x + k = 0$ and $x^2 + kx - 4 = 0$, where $k$ is a real number, have exactly one common root. What is the value of $k$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "3",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Quadratic Expressions"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "3",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Let r be the common root and subtract the two equations to eliminate the quadratic term."},
+        {"level": 2, "content": "Express r linearly in terms of k, then substitute back into one of the original equations."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P3",
+      "examType": "PRMO",
+      "problemNumber": 3,
+      "statement": "Let $P(x)$ be a non-zero polynomial with integer coefficients. If $P(n)$ is divisible by $n$ for each positive integer $n$, what is the value of $P(0)$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "0",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Polynomials", "Divisibility"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "0",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Recall that $P(n) - P(0)$ is always divisible by n for integer-coefficient polynomials."},
+        {"level": 2, "content": "Combine this with the given condition that n divides P(n) to conclude about P(0)."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P4",
+      "examType": "PRMO",
+      "problemNumber": 4,
+      "statement": "A natural number $k$ is such that $k^2 < 2014 < (k + 1)^2$. What is the largest prime factor of $k$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "11",
+      "baseRating": 750,
+      "difficultyLabel": "Easy",
+      "tags": ["Prime Numbers"],
+      "topics": ["nt-primes-factorization"],
+      "diagramSvg": null,
+      "solutionMarkdown": "11",
+      "estimatedSolveSeconds": 90,
+      "hints": [
+        {"level": 1, "content": "Estimate the square root of 2014 to find k directly."},
+        {"level": 2, "content": "Factor the resulting k into primes."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P5",
+      "examType": "PRMO",
+      "problemNumber": 5,
+      "statement": "How many two-digit positive integers $N$ have the property that the sum of $N$ and the number obtained reversing the order of the digits of $N$ is a perfect square?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "8",
+      "baseRating": 1050,
+      "difficultyLabel": "Easy",
+      "tags": ["Number Bases"],
+      "topics": ["nt-base-representations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "8",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Express N and its reversal in terms of its two digits, then add them."},
+        {"level": 2, "content": "Notice the sum is always a multiple of 11; determine which multiples of 11 in the valid range are perfect squares."},
+        {"level": 3, "content": "Count digit pairs producing each qualifying sum."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P6",
+      "examType": "PRMO",
+      "problemNumber": 6,
+      "statement": "What is the greatest possible perimeter of a right-angled triangle with integer side lengths if one of the sides has length 12?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "84",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Triangles"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "84",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Consider 12 as a leg and use the Pythagorean relation $12^2 = c^2-b^2 = (c-b)(c+b)$."},
+        {"level": 2, "content": "To maximize the perimeter, minimize $c-b$, i.e., try $c-b=1$."},
+        {"level": 3, "content": "Solve for b and c under that choice and compute the perimeter."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P7",
+      "examType": "PRMO",
+      "problemNumber": 7,
+      "statement": "In rectangle $ABCD$, $AB = 8$ and $BC = 20$. Let $P$ be a point on $AD$ such that $\\angle BPC = 90^\\circ$. If $r_1, r_2, r_3$ are the radii of the incircles of triangles $APB$, $BPC$ and $CPD$, what is the value of $r_1 + r_2 + r_3$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "8",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": ["Triangles", "Similarity"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "8",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {"level": 1, "content": "Let AP = x and PD = 20-x, and use the right angle at P to relate x to AB=8 via similar triangles."},
+        {"level": 2, "content": "Show triangles APB, BPC, and CPD are all similar right triangles."},
+        {"level": 3, "content": "Express each inradius using the standard right-triangle inradius formula and sum them."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P8",
+      "examType": "PRMO",
+      "problemNumber": 8,
+      "statement": "Let $n$ be the largest integer that is the product of exactly 3 distinct prime numbers, $x$, $y$ and $10x + y$, where $x$ and $y$ are digits. What is the sum of the digits of $n$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "12",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Prime Numbers"],
+      "topics": ["nt-primes-factorization"],
+      "diagramSvg": null,
+      "solutionMarkdown": "12",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "Restrict x and y to single-digit primes, and require 10x+y to also be prime."},
+        {"level": 2, "content": "Compute n=x·y·(10x+y) for each valid (x,y) and find the maximum."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P9",
+      "examType": "PRMO",
+      "problemNumber": 9,
+      "statement": "A subset $B$ of the set of first 100 positive integers has the property that no two elements of $B$ sum to 125. What is the maximum possible number of elements in $B$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "62",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Extremal Principle", "Pigeonhole Principle"],
+      "topics": ["combinatorics-pigeonhole"],
+      "diagramSvg": null,
+      "solutionMarkdown": "62",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Pair up numbers from 1 to 100 that sum to 125, and note some numbers have no partner in range."},
+        {"level": 2, "content": "From each summing pair, at most one can be included; count the unpaired numbers separately."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-SAMPLE-P10",
+      "examType": "PRMO",
+      "problemNumber": 10,
+      "statement": "The circle $\\omega$ touches the circle $\\Omega$ internally at $P$. The centre $O$ of $\\Omega$ is outside $\\omega$. Let $XY$ be a diameter of $\\Omega$ which is also tangent to $\\omega$. Assume $PY > PX$. Let $PY$ intersect $\\omega$ at $Z$. If $YZ = 2PZ$, what is the magnitude of $\\angle PYX$ in degrees?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "15",
+      "baseRating": 1650,
+      "difficultyLabel": "Hard",
+      "tags": ["Circles", "Power of a Point"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "15",
+      "estimatedSolveSeconds": 480,
+      "hints": [
+        {"level": 1, "content": "Use the homothety centered at P that maps ω to Ω to relate points on ω to points on Ω."},
+        {"level": 2, "content": "Use the tangency of XY to ω to identify the point of tangency and relate distances."},
+        {"level": 3, "content": "Combine the ratio YZ=2PZ with the power of a point at the tangency to determine the angle."}
+      ]
+    }
+  ]
+}

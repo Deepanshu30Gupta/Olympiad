@@ -1,0 +1,23 @@
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import pg from "pg";
+
+// In Next.js dev mode, modules can be re-evaluated on every hot reload.
+// Without caching the client on `globalThis`, each reload would open a
+// fresh connection pool without closing the old one, eventually exhausting
+// Neon's connection limit. This pattern is the standard fix.
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+  pgPool: pg.Pool | undefined;
+};
+
+const pool = globalForPrisma.pgPool ?? new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+  globalForPrisma.pgPool = pool;
+}

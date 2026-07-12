@@ -1,0 +1,843 @@
+{
+  "contestSource": "IOQM 2022",
+  "contestYear": 2022,
+  "examType": "IOQM",
+  "questions": [
+    {
+  "externalId": "IOQM-2022-P1",
+  "examType": "IOQM",
+  "problemNumber": 1,
+  "statement": "A triangle $ABC$ with $AC=20$ is inscribed in a circle $\\omega$. A tangent $t$ to $\\omega$ is drawn through $B$. The distance of $t$ from $A$ is 25 and that from $C$ is 16. If $S$ denotes the area of the triangle $ABC$, find the largest integer not exceeding $S/20$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "10",
+  "baseRating": 1450,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Circles",
+    "Triangles",
+    "Area"
+  ],
+  "topics": [
+    "geometry-circles",
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "10",
+  "estimatedSolveSeconds": 600,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Let the tangent be the x-axis and express the coordinates of A, B and C using the given perpendicular distances."
+    },
+    {
+      "level": 2,
+      "content": "Use AC = 20 to determine the horizontal separation between A and C."
+    },
+    {
+      "level": 3,
+      "content": "Since A, B and C lie on one circle with tangent at B, use the circle equation (or power/tangent property) to determine B and hence the area."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P2",
+  "examType": "IOQM",
+  "problemNumber": 2,
+  "statement": "In a parallelogram $ABCD$, a point $P$ on the segment $AB$ is taken such that $\\frac{AP}{AB} = \\frac{61}{2022}$ and a point $Q$ on the segment $AD$ is taken such that $\\frac{AQ}{AD} = \\frac{61}{2065}$. If $PQ$ intersects $AC$ at $T$, find $\\frac{AC}{AT}$ to the nearest integer.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "67",
+  "baseRating": 1500,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Coordinate Geometry"
+  ],
+  "topics": [
+    "geometry-coordinate"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "67",
+  "estimatedSolveSeconds": 660,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Assign coordinates A=(0,0), B=u and D=v."
+    },
+    {
+      "level": 2,
+      "content": "Write the equations of AC and PQ using vector parametrizations."
+    },
+    {
+      "level": 3,
+      "content": "Equate the two parametrizations to determine the fraction AT/AC."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P3",
+  "examType": "IOQM",
+  "problemNumber": 3,
+  "statement": "In a trapezoid $ABCD$, the internal bisector of angle $A$ intersects the base $BC$ (or its extension) at the point $E$. Inscribed in the triangle $ABE$ is a circle touching the side $AB$ at $M$ and side $BE$ at the point $P$. Find the angle $DAE$ in degrees, if $AB : MP = 2$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "60",
+  "baseRating": 1525,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Triangles",
+    "Angle Chasing"
+  ],
+  "topics": [
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "60",
+  "estimatedSolveSeconds": 720,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Relate MP to the inradius of triangle ABE."
+    },
+    {
+      "level": 2,
+      "content": "Use the angle bisector AE to express the inradius in terms of AB and ∠BAE."
+    },
+    {
+      "level": 3,
+      "content": "Since AE bisects ∠A, convert the obtained angle into ∠DAE."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P4",
+  "examType": "IOQM",
+  "problemNumber": 4,
+  "statement": "Starting with a positive integer $M$ written on the board, Alice plays the following game: in each move, if $x$ is the number on the board, she replaces it with $3x + 2$. Similarly, starting with a positive integer $N$ written on the board, Bob plays the following game: in each move, if $x$ is the number on the board, he replaces it with $2x + 27$. Given that Alice and Bob reach the same number after playing 4 moves each, find the smallest value of $M + N$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "10",
+  "baseRating": 1325,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Recurrence Relations"
+  ],
+  "topics": [
+    "algebra-sequences-series"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "10",
+  "estimatedSolveSeconds": 420,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Write a closed form for the result after four moves in each game."
+    },
+    {
+      "level": 2,
+      "content": "Equate the two expressions and simplify the resulting linear Diophantine equation."
+    },
+    {
+      "level": 3,
+      "content": "Choose the smallest positive solution that minimizes M+N."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P5",
+  "examType": "IOQM",
+  "problemNumber": 5,
+  "statement": "Let $m$ be the smallest positive integer such that $m^2 + (m+1)^2 + \\cdots + (m+10)^2$ is the square of a positive integer $n$. Find $m + n$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "95",
+  "baseRating": 1400,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Quadratic Expressions"
+  ],
+  "topics": [
+    "algebra-manipulation"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "95",
+  "estimatedSolveSeconds": 540,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Expand the sum using the formulas for consecutive squares."
+    },
+    {
+      "level": 2,
+      "content": "Complete the square or factor the resulting quadratic expression."
+    },
+    {
+      "level": 3,
+      "content": "Search for the smallest positive integer m that makes the expression a perfect square."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P6",
+  "examType": "IOQM",
+  "problemNumber": 6,
+  "statement": "Let $a,b$ be positive integers satisfying $a^3 - b^3 - ab = 25$. Find the largest possible value of $a^2 + b^3$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "43",
+  "baseRating": 1525,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Diophantine Equations"
+  ],
+  "topics": [
+    "nt-diophantine"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "43",
+  "estimatedSolveSeconds": 720,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Rewrite a³−b³ as (a−b)(a²+ab+b²)."
+    },
+    {
+      "level": 2,
+      "content": "Use positivity to obtain strong bounds on a−b."
+    },
+    {
+      "level": 3,
+      "content": "Check the few remaining integer possibilities and maximize a²+b³."
+    }
+  ]
+},
+    {
+  "externalId": "IOQM-2022-P7",
+  "examType": "IOQM",
+  "problemNumber": 7,
+  "statement": "Find the number of ordered pairs $(a,b)$ such that $a,b \\in \\{10,11,\\dots,29,30\\}$ and $\\gcd(a,b) + \\mathrm{lcm}(a,b) = a + b$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "35",
+  "baseRating": 1425,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "GCD and LCM",
+    "Diophantine Equations"
+  ],
+  "topics": [
+    "nt-gcd-lcm"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "35",
+  "estimatedSolveSeconds": 540,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Write a=dx and b=dy where d=gcd(a,b) and gcd(x,y)=1."
+    },
+    {
+      "level": 2,
+      "content": "Rewrite the given equation in terms of d, x and y."
+    },
+    {
+      "level": 3,
+      "content": "Show that the coprimality condition leaves only a few possibilities for x and y."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P8",
+  "examType": "IOQM",
+  "problemNumber": 8,
+  "statement": "Suppose the prime numbers $p$ and $q$ satisfy $q^2 + 3p = 197p^2 + q$. Write $\\frac{q}{p}$ as $l + \\frac{m}{n}$, where $l,m,n$ are positive integers, $m < n$ and $\\gcd(m,n)=1$. Find the maximum value of $l + m + n$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "32",
+  "baseRating": 1600,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Prime Numbers",
+    "Diophantine Equations"
+  ],
+  "topics": [
+    "nt-primes-factorization",
+    "nt-diophantine"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "32",
+  "estimatedSolveSeconds": 780,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Treat the equation as a quadratic in q."
+    },
+    {
+      "level": 2,
+      "content": "Use the discriminant condition to obtain strong restrictions on p."
+    },
+    {
+      "level": 3,
+      "content": "Test the remaining prime values and compute q/p."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P9",
+  "examType": "IOQM",
+  "problemNumber": 9,
+  "statement": "Two sides of an integer sided triangle have lengths 18 and $x$ where $x < 100$. If there are exactly 35 possible integer values $y$ such that 18, $x$, $y$ are the sides of a non-degenerate triangle, find the number of possible integer values $x$ can have.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "82",
+  "baseRating": 1375,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Triangles",
+    "Casework"
+  ],
+  "topics": [
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "82",
+  "estimatedSolveSeconds": 480,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Use the triangle inequalities to determine the range of possible values of y."
+    },
+    {
+      "level": 2,
+      "content": "Express the number of integer values of y as a function of x."
+    },
+    {
+      "level": 3,
+      "content": "Solve for all x giving exactly 35 admissible values."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P10",
+  "examType": "IOQM",
+  "problemNumber": 10,
+  "statement": "Consider the 10-digit number $M = 9876543210$. We obtain a new 10-digit number from $M$ according to the following rule: we can choose one or more disjoint pairs of adjacent digits in $M$ and interchange the digits in these chosen pairs, keeping the remaining digits in their own places. Find the number of new numbers that can be so obtained from $M$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "88",
+  "baseRating": 1475,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Counting",
+    "Recursion"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "88",
+  "estimatedSolveSeconds": 600,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Represent each chosen adjacent swap by a domino covering two consecutive positions."
+    },
+    {
+      "level": 2,
+      "content": "Count the selections of pairwise disjoint dominoes."
+    },
+    {
+      "level": 3,
+      "content": "Exclude the empty selection since the question asks for new numbers."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P11",
+  "examType": "IOQM",
+  "problemNumber": 11,
+  "statement": "Let $AB$ be a diameter of a circle $\\omega$ and let $C$ be a point on $\\omega$, different from $A$ and $B$. The perpendicular from $C$ intersects $AB$ at $D$ and $\\omega$ at $E(\\neq C)$. The circle with centre at $C$ and radius $CD$ intersects $\\omega$ at $P$ and $Q$. If the perimeter of the triangle $PEQ$ is 24, find the length of the side $PQ$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "8",
+  "baseRating": 1675,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Circles",
+    "Power of a Point"
+  ],
+  "topics": [
+    "geometry-circles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "8",
+  "estimatedSolveSeconds": 900,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Use the fact that AB is a diameter and CD is perpendicular to AB."
+    },
+    {
+      "level": 2,
+      "content": "Relate P, Q and E using intersecting circles and power of a point."
+    },
+    {
+      "level": 3,
+      "content": "Express the sides of triangle PEQ in terms of one parameter and use the given perimeter."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P12",
+  "examType": "IOQM",
+  "problemNumber": 12,
+  "statement": "Given $\\triangle ABC$ with $\\angle B = 60^\\circ$ and $\\angle C = 30^\\circ$, let $P,Q,R$ be points on sides $BA,AC,CB$ respectively such that $BPQR$ is an isosceles trapezium with $PQ \\parallel BR$ and $BP = QR$. Find the minimum possible value of $\\frac{2[ABC]}{[BPQR]}$ where $[S]$ denotes the area of any polygon $S$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "3",
+  "baseRating": 1700,
+  "difficultyLabel": "Very Hard",
+  "tags": [
+    "Triangles",
+    "Area",
+    "Similarity"
+  ],
+  "topics": [
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "3",
+  "estimatedSolveSeconds": 1020,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Use the 30°–60°–90° triangle to express all lengths in a common scale."
+    },
+    {
+      "level": 2,
+      "content": "Introduce a parameter for BP and express the area of the trapezium in terms of it."
+    },
+    {
+      "level": 3,
+      "content": "Optimize the resulting function to obtain the minimum ratio."
+    }
+  ]
+},
+    {
+  "externalId": "IOQM-2022-P13",
+  "examType": "IOQM",
+  "problemNumber": 13,
+  "statement": "Let $ABC$ be a triangle and let $D$ be a point on the segment $BC$ such that $AD = BC$. Suppose $\\angle CAD = x^\\circ$, $\\angle ABC = y^\\circ$ and $\\angle ACB = z^\\circ$ and $x,y,z$ are in an arithmetic progression in that order where the first term and the common difference are positive integers. Find the largest possible value of $\\angle ABC$ in degrees.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "59",
+  "baseRating": 1625,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Triangles",
+    "Angle Chasing"
+  ],
+  "topics": [
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "59",
+  "estimatedSolveSeconds": 840,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Let the common difference of the arithmetic progression be d and express x, y and z in terms of x and d."
+    },
+    {
+      "level": 2,
+      "content": "Use the angle sum of the triangle together with AD = BC to obtain another relation among the angles."
+    },
+    {
+      "level": 3,
+      "content": "Determine the largest integer value of y consistent with all the constraints."
+    }]
+},
+{
+  "externalId": "IOQM-2022-P14",
+  "examType": "IOQM",
+  "problemNumber": 14,
+  "statement": "Let $x,y,z$ be complex numbers such that $\\frac{x}{y+z} + \\frac{y}{z+x} + \\frac{z}{x+y} = 9$, $\\frac{x^2}{y+z} + \\frac{y^2}{z+x} + \\frac{z^2}{x+y} = 64$, $\\frac{x^3}{y+z} + \\frac{y^3}{z+x} + \\frac{z^3}{x+y} = 488$. If $\\frac{x}{yz} + \\frac{y}{zx} + \\frac{z}{xy} = \\frac{m}{n}$ where $m,n$ are positive integers with $\\gcd(m,n)=1$, find $m+n$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "16",
+  "baseRating": 1800,
+  "difficultyLabel": "Very Hard",
+  "tags": [
+    "Symmetric Expressions"
+  ],
+  "topics": [
+    "algebra-manipulation"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "16",
+  "estimatedSolveSeconds": 1200,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Introduce the symmetric sums x+y+z, xy+yz+zx and xyz."
+    },
+    {
+      "level": 2,
+      "content": "Rewrite each given sum in terms of these symmetric quantities."
+    },
+    {
+      "level": 3,
+      "content": "Solve for the symmetric sums and then evaluate (x²+y²+z²)/xyz."
+}]
+},
+{
+  "externalId": "IOQM-2022-P15",
+  "examType": "IOQM",
+  "problemNumber": 15,
+  "statement": "Let $x,y$ be real numbers such that $xy=1$. Let $T$ and $t$ be the largest and the smallest values of the expression $\\frac{(x+y)^2 - (x-y) - 2}{(x+y)^2 + (x-y) - 2}$. If $T+t$ can be expressed in the form $\\frac{m}{n}$ where $m,n$ are nonzero integers with $\\gcd(m,n)=1$, find the value of $m+n$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "25",
+  "baseRating": 1550,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Quadratic Expressions",
+    "Inequalities"
+  ],
+  "topics": [
+    "inequalities-substitution"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "25",
+  "estimatedSolveSeconds": 720,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Use xy=1 to write everything in terms of x+1/x."
+    },
+    {
+      "level": 2,
+      "content": "Express x−y using the same parameter."
+    },
+    {
+      "level": 3,
+      "content": "Reduce the problem to finding the extrema of a single-variable rational expression."
+}]
+},
+{
+  "externalId": "IOQM-2022-P16",
+  "examType": "IOQM",
+  "problemNumber": 16,
+  "statement": "Let $a,b,c$ be reals satisfying $3ab + 2 = 6b$, $3bc + 2 = 5c$, $3ca + 2 = 4a$. Let $Q$ denote the set of all rational numbers. Given that the product $abc$ can take two values $\\frac{r}{s} \\in Q$ and $\\frac{t}{u} \\in Q$, in lowest form, find $r + s + t + u$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "18",
+  "baseRating": 1675,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Symmetric Expressions",
+    "Quadratic Expressions"
+  ],
+  "topics": [
+    "algebra-manipulation"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "18",
+  "estimatedSolveSeconds": 900,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Rewrite each equation to express one variable as a rational function of another."
+    },
+    {
+      "level": 2,
+      "content": "Multiply the three equations to obtain an equation involving only abc."
+    },
+    {
+      "level": 3,
+      "content": "Solve the resulting quadratic equation for abc."
+}]
+},
+{
+  "externalId": "IOQM-2022-P17",
+  "examType": "IOQM",
+  "problemNumber": 17,
+  "statement": "For a positive integer $n > 1$, let $g(n)$ denote the largest positive proper divisor of $n$ and $f(n) = n - g(n)$. For example, $g(10)=5$, $f(10)=5$ and $g(13)=1$, $f(13)=12$. Let $N$ be the smallest positive integer such that $f(f(f(N)))=97$. Find the largest integer not exceeding $\\sqrt{N}$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "19",
+  "baseRating": 1625,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Divisibility",
+    "Prime Numbers"
+  ],
+  "topics": [
+    "nt-divisibility",
+    "nt-primes-factorization"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "19",
+  "estimatedSolveSeconds": 840,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Express g(n) using the smallest prime factor of n."
+    },
+    {
+      "level": 2,
+      "content": "Work backwards from 97 through the function f."
+    },
+    {
+      "level": 3,
+      "content": "Among all predecessors at each stage, keep only the smallest possible values."
+}]
+},
+{
+  "externalId": "IOQM-2022-P18",
+  "examType": "IOQM",
+  "problemNumber": 18,
+  "statement": "Let $m,n$ be natural numbers such that $m + 3n - 5 = 2\\mathrm{LCM}(m,n) - 11\\mathrm{GCD}(m,n)$. Find the maximum possible value of $m + n$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "70",
+  "baseRating": 1525,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "GCD and LCM",
+    "Diophantine Equations"
+  ],
+  "topics": [
+    "nt-gcd-lcm",
+    "nt-diophantine"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "70",
+  "estimatedSolveSeconds": 720,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Write m=da and n=db where d=gcd(m,n) and gcd(a,b)=1."
+    },
+    {
+      "level": 2,
+      "content": "Substitute lcm(m,n)=dab into the equation."
+    },
+    {
+      "level": 3,
+      "content": "Reduce the search to a small number of coprime pairs (a,b) and maximize m+n."
+    }
+]
+},
+    {
+  "externalId": "IOQM-2022-P19",
+  "examType": "IOQM",
+  "problemNumber": 19,
+  "statement": "Consider a string of $n$ 1’s. We wish to place some + signs in between so that the sum is 1000. If $a$ is the number of positive integers $n$ for which it is possible to place + signs so as to get the sum 1000, then find the sum of the digits of $a$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "9",
+  "baseRating": 1500,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Counting",
+    "Combinations"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "9",
+  "estimatedSolveSeconds": 660,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Each summand is a positive integer consisting only of the digit 1."
+    },
+    {
+      "level": 2,
+      "content": "Express 1000 as a sum of repunits and determine the possible total number of digits used."
+    },
+    {
+      "level": 3,
+      "content": "Count the distinct values of n that can occur."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P20",
+  "examType": "IOQM",
+  "problemNumber": 20,
+  "statement": "For an integer $n \\geq 3$ and a permutation $\\sigma = (p_1, p_2, \\dots, p_n)$ of $\\{1,2,\\dots,n\\}$, we say $p_l$ is a landmark point if $2 \\leq l \\leq n-1$ and $(p_{l-1} - p_l)(p_{l+1} - p_l) > 0$. For a given $n \\geq 3$, let $L(n)$ denote the number of permutations of $\\{1,2,\\dots,n\\}$ with exactly one landmark point. Find the maximum $n \\geq 3$ for which $L(n)$ is a perfect square.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "3",
+  "baseRating": 1800,
+  "difficultyLabel": "Very Hard",
+  "tags": [
+    "Permutations",
+    "Counting"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "3",
+  "estimatedSolveSeconds": 1200,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Interpret a landmark as a local maximum or local minimum."
+    },
+    {
+      "level": 2,
+      "content": "Derive a counting formula for permutations with exactly one local extremum."
+    },
+    {
+      "level": 3,
+      "content": "Determine for which values of n this count is a perfect square."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P21",
+  "examType": "IOQM",
+  "problemNumber": 21,
+  "statement": "An ant is at a vertex of a cube. Every 10 minutes it moves to an adjacent vertex along an edge. If $N$ is the number of one hour journeys that end at the starting vertex, find the sum of the squares of the digits of $N$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "74",
+  "baseRating": 1450,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Graph Theory",
+    "Recursion"
+  ],
+  "topics": [
+    "combinatorics-graph-theory"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "74",
+  "estimatedSolveSeconds": 600,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Model the cube as a graph with 8 vertices."
+    },
+    {
+      "level": 2,
+      "content": "Classify vertices by their distance from the starting vertex."
+    },
+    {
+      "level": 3,
+      "content": "Set up a recurrence or transition matrix for six moves."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P22",
+  "examType": "IOQM",
+  "problemNumber": 22,
+  "statement": "A binary sequence is a sequence in which each term is equal to 0 or 1. A binary sequence is called friendly if each term is adjacent to at least one term that is equal to 1. Let $F_n$ denote the number of friendly binary sequences with $n$ terms. Find the smallest positive integer $n \\geq 2$ such that $F_n > 100$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "11",
+  "baseRating": 1375,
+  "difficultyLabel": "Medium",
+  "tags": [
+    "Recursion",
+    "Counting"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "11",
+  "estimatedSolveSeconds": 480,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Describe how a friendly sequence can end."
+    },
+    {
+      "level": 2,
+      "content": "Develop a recurrence for Fₙ using the last few positions."
+    },
+    {
+      "level": 3,
+      "content": "Compute successive values until the count exceeds 100."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P23",
+  "examType": "IOQM",
+  "problemNumber": 23,
+  "statement": "In a triangle $ABC$, the median $AD$ divides $\\angle BAC$ in the ratio 1:2. Extend $AD$ to $E$ such that $EB$ is perpendicular $AB$. Given that $BE=3$, $BA=4$, find the integer nearest to $BC^2$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "29",
+  "baseRating": 1650,
+  "difficultyLabel": "Hard",
+  "tags": [
+    "Triangles",
+    "Angle Chasing"
+  ],
+  "topics": [
+    "geometry-triangles"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "29",
+  "estimatedSolveSeconds": 900,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Place A and B conveniently using coordinates."
+    },
+    {
+      "level": 2,
+      "content": "Use the angle-bisecting condition together with the median condition to determine C."
+    },
+    {
+      "level": 3,
+      "content": "Compute BC² and round to the nearest integer."
+    }
+  ]
+},
+{
+  "externalId": "IOQM-2022-P24",
+  "examType": "IOQM",
+  "problemNumber": 24,
+  "statement": "Let $N$ be the number of ways of distributing 52 identical balls into 4 distinguishable boxes such that no box is empty and the difference between the number of balls in any two of the boxes is not a multiple of 6. If $N = 100a + b$, where $a,b$ are positive integers less than 100, find $a + b$.",
+  "answerType": "NUMERIC",
+  "options": null,
+  "correctAnswer": "81",
+  "baseRating": 1700,
+  "difficultyLabel": "Very Hard",
+  "tags": [
+    "Counting",
+    "Casework"
+  ],
+  "topics": [
+    "combinatorics-counting"
+  ],
+  "diagramSvg": null,
+  "solutionMarkdown": "81",
+  "estimatedSolveSeconds": 1080,
+  "hints": [
+    {
+      "level": 1,
+      "content": "Begin with all positive distributions of 52 balls into 4 boxes."
+    },
+    {
+      "level": 2,
+      "content": "Track the residues of the four box sizes modulo 6."
+    },
+    {
+      "level": 3,
+      "content": "Count only residue patterns where no two box sizes are congruent modulo 6."
+    }
+  ]
+}
+  ]
+}

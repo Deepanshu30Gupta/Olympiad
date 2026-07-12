@@ -1,0 +1,607 @@
+{
+  "contestSource": "PRMO 2019",
+  "contestYear": 2019,
+  "examType": "PRMO",
+  "questions": [
+    {
+      "externalId": "PRMO-2019-P1",
+      "examType": "PRMO",
+      "problemNumber": 1,
+      "statement": "From a square with sides of length 5, triangular pieces from the four corners are removed to form a regular octagon. Find the area removed to the nearest integer.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "4",
+      "baseRating": 1000,
+      "difficultyLabel": "Easy",
+      "tags": ["Area"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "4",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Let the removed corner triangles be isosceles right triangles with leg length x; express the octagon's side length in terms of x."},
+        {"level": 2, "content": "Set the leg length equal to the remaining straight portion of the square's side, then solve for x."},
+        {"level": 3, "content": "Compute the total area of the four corner triangles once x is known."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P2",
+      "examType": "PRMO",
+      "problemNumber": 2,
+      "statement": "Let $f(x) = x^2 + a x + b$. If for all nonzero real $x$, $f(x + 1/x) = f(x) + f(1/x)$ and the roots of $f(x) = 0$ are integers, what is the value of $a^2 + b^2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "13",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Functional Equations", "Quadratic Expressions"],
+      "topics": ["algebra-functional-equations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "13",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Expand both sides of the functional equation in terms of x and 1/x, and compare coefficients."},
+        {"level": 2, "content": "This should force a relation between a and b (likely b=0 or similar), reducing the problem to finding integer roots."},
+        {"level": 3, "content": "Use the constraint that roots are integers together with the derived relation to pin down a and b."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P3",
+      "examType": "PRMO",
+      "problemNumber": 3,
+      "statement": "Let $x_1$ be a positive real number and for every integer $n \\geq 1$ let $x_{n+1} = 1 + x_1 x_2 \\dots x_{n-1} x_n$. If $x_5 = 43$, what is the sum of digits of the largest prime factor of $x_6$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "13",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Recurrence Relations"],
+      "topics": ["algebra-sequences-series"],
+      "diagramSvg": null,
+      "solutionMarkdown": "13",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Notice that $x_{n+1}-1 = x_1x_2\\cdots x_n$, so $x_{n+1}-1$ equals the product of all previous terms, which relates neighboring terms multiplicatively."},
+        {"level": 2, "content": "Show that $x_{n+1} = x_n(x_n-1)+1$ using the relation between consecutive terms."},
+        {"level": 3, "content": "Use $x_5=43$ and the recurrence to compute $x_6$, then factor it."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P4",
+      "examType": "PRMO",
+      "problemNumber": 4,
+      "statement": "An ant leaves the anthill for its morning exercise. It walks 4 feet east and then makes a $160^\\circ$ turn to the right and walks 4 more feet. It then makes another $160^\\circ$ turn to the right and walks 4 more feet. If the ant continues this pattern until it reaches the anthill again, what is the distance in feet it would have walked?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "36",
+      "baseRating": 1050,
+      "difficultyLabel": "Easy",
+      "tags": ["Transformations"],
+      "topics": ["geometry-transformations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "36",
+      "estimatedSolveSeconds": 150,
+      "hints": [
+        {"level": 1, "content": "Each turn traces out an exterior angle of a regular polygon; find how many sides (steps) are needed for the total turning to sum to 360°."},
+        {"level": 2, "content": "Divide 360° by the turn angle to find the number of segments the ant walks."},
+        {"level": 3, "content": "Multiply the number of segments by 4 feet."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P5",
+      "examType": "PRMO",
+      "problemNumber": 5,
+      "statement": "Five persons wearing badges with numbers 1, 2, 3, 4, 5 are seated on 5 chairs around a circular table. In how many ways can they be seated so that no two persons whose badges have consecutive numbers are seated next to each other? (Two arrangements obtained by rotation around the table are considered different.)",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "10",
+      "baseRating": 1100,
+      "difficultyLabel": "Medium",
+      "tags": ["Permutations", "Casework"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "10",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Treat this as counting circular arrangements avoiding adjacency between numbers differing by 1 (and note 1 and 5 are not considered consecutive here unless stated)."},
+        {"level": 2, "content": "Use complementary counting or direct casework by fixing one person's seat since rotations are distinct."},
+        {"level": 3, "content": "Enumerate systematically, checking each arrangement against the adjacency constraint."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P6",
+      "examType": "PRMO",
+      "problemNumber": 6,
+      "statement": "Let $\\overline{abc}$ be a three digit number with nonzero digits such that $a^2 + b^2 = c^2$. What is the largest possible prime factor of $\\overline{abc}$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "29",
+      "baseRating": 900,
+      "difficultyLabel": "Easy",
+      "tags": ["Prime Numbers"],
+      "topics": ["nt-primes-factorization"],
+      "diagramSvg": null,
+      "solutionMarkdown": "29",
+      "estimatedSolveSeconds": 150,
+      "hints": [
+        {"level": 1, "content": "List Pythagorean-like digit triples (a,b,c) with a,b,c all single nonzero digits satisfying $a^2+b^2=c^2$."},
+        {"level": 2, "content": "For each valid triple, form the number $\\overline{abc}$ and factor it to find its largest prime factor."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P7",
+      "examType": "PRMO",
+      "problemNumber": 7,
+      "statement": "On a clock, there are two instants between 12 noon and 1 PM, when the hour hand and the minute hand are at right angles. The difference in minutes between these two instants is written as $a + b/c$, where $a,b,c$ are positive integers, with $b < c$ and $b/c$ in the reduced form. What is the value of $a + b + c$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "51",
+      "baseRating": 1250,
+      "difficultyLabel": "Medium",
+      "tags": ["Angle Chasing"],
+      "topics": ["geometry-transformations"],
+      "diagramSvg": null,
+      "solutionMarkdown": "51",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Express the angles of the hour and minute hands as functions of time t in minutes after 12."},
+        {"level": 2, "content": "Set up the equation |angle difference| = 90° and solve for the two values of t."},
+        {"level": 3, "content": "Subtract the two solutions and simplify to the required fractional form."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P8",
+      "examType": "PRMO",
+      "problemNumber": 8,
+      "statement": "How many positive integers $n$ are there such that $3 \\leq n \\leq 100$ and $x^{2^n} + x + 1$ is divisible by $x^2 + x + 1$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "49",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Polynomials", "Modular Arithmetic"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "49",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Use the fact that roots of $x^2+x+1$ are primitive cube roots of unity, $\\omega$."},
+        {"level": 2, "content": "Divisibility requires $\\omega^{2^n}+\\omega+1=0$, meaning $\\omega^{2^n}$ must equal $\\omega$ or $\\omega^2$ appropriately; analyze $2^n \\bmod 3$."},
+        {"level": 3, "content": "Determine the pattern of $2^n \\bmod 3$ and count qualifying n in the range."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P9",
+      "examType": "PRMO",
+      "problemNumber": 9,
+      "statement": "Let the rational number $p/q$ be closest to but not equal to $22/7$ among all rational numbers with denominator $< 100$. What is the value of $p - 3q$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "14",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["GCD and LCM"],
+      "topics": ["nt-gcd-lcm"],
+      "diagramSvg": null,
+      "solutionMarkdown": "14",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Think in terms of Farey sequences / mediants: the closest fraction to 22/7 with smaller denominator relates via the mediant property."},
+        {"level": 2, "content": "Use the fact that for fractions near 22/7, |p/q - 22/7| is minimized when 7p-22q = ±1."},
+        {"level": 3, "content": "Maximize q under 100 satisfying that Diophantine condition to get the closest fraction."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P10",
+      "examType": "PRMO",
+      "problemNumber": 10,
+      "statement": "Let $ABC$ be a triangle and let $\\Omega$ be its circumcircle. The internal bisectors of angles $A$, $B$ and $C$ intersect $\\Omega$ at $A_1$, $B_1$, and $C_1$, respectively, and the internal bisectors of angles $A_1$, $B_1$ and $C_1$ of the triangle $A_1B_1C_1$ intersect $\\Omega$ at $A_2$, $B_2$ and $C_2$, respectively. If the smallest angle of triangle $ABC$ is $40^\\circ$, what is the magnitude of the smallest angle of triangle $A_2B_2C_2$ in degrees?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "55",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": ["Angle Chasing", "Cyclic Quadrilaterals"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "55",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {"level": 1, "content": "Express the angles of triangle $A_1B_1C_1$ in terms of the angles of ABC using the inscribed angle theorem."},
+        {"level": 2, "content": "Find a general transformation rule mapping the angle triple of a triangle to that of the 'bisector triangle' on the circle."},
+        {"level": 3, "content": "Apply the transformation twice starting from ABC's angles to reach $A_2B_2C_2$'s angles."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P11",
+      "examType": "PRMO",
+      "problemNumber": 11,
+      "statement": "How many distinct triangles $ABC$ are there, up to similarity, such that the magnitudes of angles $A$, $B$ and $C$ in degrees are positive integers and satisfy $\\cos A \\cos B + \\sin A \\sin B \\sin kC = 1$ for some positive integer $k$, where $kC$ does not exceed $360^\\circ$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "6",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": ["Angle Chasing", "Triangles"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "6",
+      "estimatedSolveSeconds": 320,
+      "hints": [
+        {"level": 1, "content": "Rewrite the equation using $\\cos(A-B) = \\cos A\\cos B + \\sin A\\sin B$ and compare to the given expression involving $\\sin kC$."},
+        {"level": 2, "content": "Deduce that the equation forces $\\sin kC = 1$ and $A=B$, i.e., an isosceles triangle with $kC=90°$."},
+        {"level": 3, "content": "Use $A+B+C=180°$ with $A=B$ to write C in terms of A, then find integer solutions for A and k with $kC=90$."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P12",
+      "examType": "PRMO",
+      "problemNumber": 12,
+      "statement": "A natural number $k > 1$ is called good if there exist natural numbers $a_1 < a_2 < \\cdots < a_k$ such that $\\frac{1}{\\sqrt{a_1}} + \\frac{1}{\\sqrt{a_2}} + \\dots + \\frac{1}{\\sqrt{a_k}} = 1$. Let $f(n)$ be the sum of the first $n$ good numbers, $n \\geq 1$. Find the sum of all values of $n$ for which $f(n + 5)/f(n)$ is an integer.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "18",
+      "baseRating": 1650,
+      "difficultyLabel": "Hard",
+      "tags": ["Sequences"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "18",
+      "estimatedSolveSeconds": 340,
+      "hints": [
+        {"level": 1, "content": "First determine which small k (like k=2,3) fail to be good and show all k≥3 (or similar threshold) are good using a splitting/doubling construction."},
+        {"level": 2, "content": "Once you know the set of good numbers, compute f(n) as a simple arithmetic-like sum."},
+        {"level": 3, "content": "Set up the ratio f(n+5)/f(n) using the formula for f(n) and find integer n satisfying divisibility."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P13",
+      "examType": "PRMO",
+      "problemNumber": 13,
+      "statement": "Each of the numbers $x_1, x_2, \\dots, x_{101}$ is $\\pm 1$. What is the smallest positive value of $\\sum_{1 \\leq i < j \\leq 101} x_i x_j$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "10",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Parity"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "10",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Relate the double sum to $(\\sum x_i)^2$ using $(\\sum x_i)^2 = \\sum x_i^2 + 2\\sum_{i<j}x_ix_j$."},
+        {"level": 2, "content": "Since $\\sum x_i^2 = 101$, express the target sum in terms of $S=\\sum x_i$."},
+        {"level": 3, "content": "Find the smallest positive value of $(S^2-101)/2$ given that S must have the same parity as 101."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P14",
+      "examType": "PRMO",
+      "problemNumber": 14,
+      "statement": "Find the smallest positive integer $n \\geq 10$ such that $n + 6$ is a prime and $9n + 7$ is a perfect square.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "53",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Prime Numbers", "Diophantine Equations"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "53",
+      "estimatedSolveSeconds": 190,
+      "hints": [
+        {"level": 1, "content": "Write $9n+7 = m^2$ and solve for n in terms of m, keeping in mind n must be an integer."},
+        {"level": 2, "content": "Check which resulting n values (increasing from small m) also make n+6 prime."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P15",
+      "examType": "PRMO",
+      "problemNumber": 15,
+      "statement": "In how many ways can a pair of parallel diagonals of a regular polygon of 10 sides be selected?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "45",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Counting"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "45",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Group diagonals (and sides) of the decagon by direction; diagonals parallel to each other share the same 'slope class'."},
+        {"level": 2, "content": "Count how many lines fall in each direction class, then sum $\\binom{k}{2}$ over classes with k≥2 diagonals."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P16",
+      "examType": "PRMO",
+      "problemNumber": 16,
+      "statement": "A pen costs Rs. 13 and a note book costs Rs. 17. A school spends exactly Rs. 10000 in the year 2017-18 to buy $x$ pens and $y$ note books such that $x$ and $y$ are as close as possible (i.e., $|x - y|$ is minimum). Next year, in 2018-19, the school spends a little more than Rs. 10000 and buys $y$ pens and $x$ note books. How much more did the school pay?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 1100,
+      "difficultyLabel": "Medium",
+      "tags": ["Diophantine Equations"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "40",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Set up $13x+17y=10000$ and search for integer solutions with x close to y."},
+        {"level": 2, "content": "Once (x,y) is found, compute the new total $13y+17x$ and find the difference."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P17",
+      "examType": "PRMO",
+      "problemNumber": 17,
+      "statement": "Find the number of ordered triples $(a,b,c)$ of positive integers such that $30a + 50b + 70c \\leq 343$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "30",
+      "baseRating": 1100,
+      "difficultyLabel": "Medium",
+      "tags": ["Counting"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "30",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Divide through to simplify: since all coefficients share a common factor of 10, rewrite as $3a+5b+7c\\le 34.3$, i.e., $\\le 34$."},
+        {"level": 2, "content": "Fix c first (small range), then for each c fix b, and count valid a."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P18",
+      "examType": "PRMO",
+      "problemNumber": 18,
+      "statement": "How many ordered pairs $(a,b)$ of positive integers with $a < b$ and $100 \\leq a,b \\leq 1000$ satisfy $\\gcd(a,b) : \\mathrm{lcm}(a,b) = 1 : 495$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "20",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["GCD and LCM"],
+      "topics": ["nt-gcd-lcm"],
+      "diagramSvg": null,
+      "solutionMarkdown": "20",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Write $a=dx$, $b=dy$ with $\\gcd(x,y)=1$; the ratio condition gives $xy=495$."},
+        {"level": 2, "content": "Factor 495 and find coprime factor pairs (x,y) with x<y."},
+        {"level": 3, "content": "For each valid (x,y), determine the range of d satisfying $100\\le dx,dy\\le 1000$."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P19",
+      "examType": "PRMO",
+      "problemNumber": 19,
+      "statement": "Let $AB$ be a diameter of a circle and let $C$ be a point on the segment $AB$ such that $AC : CB = 6 : 7$. Let $D$ be a point on the circle such that $DC$ is perpendicular to $AB$. Let $DE$ be the diameter through $D$. If $[XYZ]$ denotes the area of the triangle $XYZ$, find $[ABD]/[CDE]$ to the nearest integer.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "13",
+      "baseRating": 1450,
+      "difficultyLabel": "Medium",
+      "tags": ["Circles", "Area"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "13",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Use the geometric mean relation: since DC is perpendicular to diameter AB at C, $DC^2=AC\\cdot CB$."},
+        {"level": 2, "content": "Set up coordinates with AB on the x-axis and compute the coordinates of D, E, and then both triangle areas."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P21",
+      "examType": "PRMO",
+      "problemNumber": 21,
+      "statement": "Consider the set $E = \\{5,6,7,8,9\\}$. For any partition $\\{A,B\\}$ of $E$, with both $A$ and $B$ non-empty, consider the number obtained by adding the product of elements of $A$ to the product of elements of $B$. Let $N$ be the largest prime number among these numbers. Find the sum of the digits of $N$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "17",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Casework", "Prime Numbers"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "17",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "List all non-trivial partitions of {5,6,7,8,9} into two non-empty subsets (there aren't many)."},
+        {"level": 2, "content": "Compute the sum of products for each partition and test primality of each result."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P22",
+      "examType": "PRMO",
+      "problemNumber": 22,
+      "statement": "What is the greatest integer not exceeding the sum $\\sum_{n=1}^{1599} \\frac{1}{\\sqrt{n}}$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "78",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences"],
+      "topics": ["algebra-sequences-series"],
+      "diagramSvg": null,
+      "solutionMarkdown": "78",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Bound each term using an integral comparison: $2(\\sqrt{n+1}-\\sqrt{n}) < 1/\\sqrt{n} < 2(\\sqrt{n}-\\sqrt{n-1})$."},
+        {"level": 2, "content": "Sum the bounding telescoping series over n=1 to 1599 to sandwich the total sum."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P23",
+      "examType": "PRMO",
+      "problemNumber": 23,
+      "statement": "Let $ABCD$ be a convex cyclic quadrilateral. Suppose $P$ is a point in the plane of the quadrilateral such that the sum of its distances from the vertices of $ABCD$ is the least. If $\\{PA, PB, PC, PD\\} = \\{3,4,6,8\\}$, what is the maximum possible area of $ABCD$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "55",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": ["Cyclic Quadrilaterals", "Area"],
+      "topics": ["geometry-quadrilaterals"],
+      "diagramSvg": null,
+      "solutionMarkdown": "55",
+      "estimatedSolveSeconds": 340,
+      "hints": [
+        {"level": 1, "content": "The point minimizing the sum of distances to the vertices of a cyclic quadrilateral is the intersection of its diagonals."},
+        {"level": 2, "content": "This means PA·PC and PB·PD relate to the diagonals split at P; assign the four given lengths to maximize resulting triangle areas."},
+        {"level": 3, "content": "The area of ABCD is the sum of four triangle areas formed at P; use $\\frac{1}{2}d_1d_2\\sin\\theta$ type expressions with $\\theta=90°$ maximizing sine."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P24",
+      "examType": "PRMO",
+      "problemNumber": 24,
+      "statement": "A $1\\times n$ rectangle ($n \\geq 1$) is divided into $n$ unit ($1\\times1$) squares. Each square of this rectangle is coloured red, blue or green. Let $f(n)$ be the number of colourings of the rectangle in which there are an even number of red squares. What is the largest prime factor of $f(9)/f(3)$? (The number of red squares can be zero.)",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "37",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Counting", "Parity"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "37",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Use the standard trick: $f(n) = \\frac{3^n + 1^n}{2}$ by considering red as -1 and others as +1 in a generating function."},
+        {"level": 2, "content": "Compute f(9) and f(3) using this formula, then find their ratio and factor it."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P25",
+      "examType": "PRMO",
+      "problemNumber": 25,
+      "statement": "A village has a circular wall around it, and the wall has four gates pointing north, south, east and west. A tree stands outside the village, 16 m north of the north gate, and it can be just seen appearing on the horizon from a point 48 m east of the south gate. What is the diameter, in meters, of the wall that surrounds the village?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "48",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["Circles", "Power of a Point"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "48",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "The line of sight from the point east of the south gate to the tree is tangent to the circular wall."},
+        {"level": 2, "content": "Use the tangent-secant / power of a point relation from the observation point to set up an equation in the diameter."},
+        {"level": 3, "content": "Use similar triangles formed by the tangent line and the wall's diameter to relate the given distances."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P26",
+      "examType": "PRMO",
+      "problemNumber": 26,
+      "statement": "Positive integers $x,y,z$ satisfy $xy + z = 160$. Compute the smallest possible value of $x + yz$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "50",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Factorization"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "50",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Try to factor $x+yz$ nicely by adding 1 to both terms: consider $(x+1)$ and manipulate using the constraint xy+z=160."},
+        {"level": 2, "content": "Notice that $x+yz+1 = (x+1)(?)$ style factoring can emerge from rewriting z=160-xy and substituting."},
+        {"level": 3, "content": "Search small values of x to minimize the resulting expression directly."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P27",
+      "examType": "PRMO",
+      "problemNumber": 27,
+      "statement": "We will say that a rearrangement of the letters of a word has no fixed letters if, when the rearrangement is placed directly below the word, no column has the same letter repeated. For instance, $H B R A T A$ is a rearrangement with no fixed letters of $B H A R A T$. How many distinguishable rearrangements with no fixed letters does $B H A R A T$ have? (The two $As$ are considered identical.)",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "84",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": ["Permutations", "Combinations"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "84",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Use inclusion-exclusion for derangement-type counting, adjusted for the repeated letter A."},
+        {"level": 2, "content": "Carefully handle the repeated A's since a 'fixed' position involving either A copy counts as a fixed letter."},
+        {"level": 3, "content": "Compute the total permutations of the multiset, then subtract/add cases via inclusion-exclusion over fixed positions."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P28",
+      "examType": "PRMO",
+      "problemNumber": 28,
+      "statement": "Let $ABC$ be a triangle with sides 51, 52, 53. Let $\\Omega$ denote the incircle of $\\triangle ABC$. Draw tangents to $\\Omega$ which are parallel to the sides of $ABC$. Let $r_1, r_2, r_3$ be the inradii of the three corner triangles so formed. Find the largest integer that does not exceed $r_1 + r_2 + r_3$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "15",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": ["Triangles", "Similarity"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "15",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Each corner triangle is similar to ABC; the ratio of inradii equals the similarity ratio."},
+        {"level": 2, "content": "Find the similarity ratio for each corner triangle by considering how far the parallel tangent line is from that vertex compared to the full altitude."},
+        {"level": 3, "content": "Compute r (inradius of ABC) via Heron's formula, then sum the three scaled inradii."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P29",
+      "examType": "PRMO",
+      "problemNumber": 29,
+      "statement": "In a triangle $ABC$, the median $AD$ (with $D$ on $BC$) and the angle bisector $BE$ (with $E$ on $AC$) are perpendicular to each other. If $AD = 7$ and $BE = 9$, find the integer nearest to the area of triangle $ABC$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "47",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": ["Triangles"],
+      "topics": ["geometry-triangles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "47",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {"level": 1, "content": "Let the intersection point of AD and BE be F; use the perpendicularity to set up right-triangle relations along AD and BE."},
+        {"level": 2, "content": "Use coordinates or vectors with F at the origin, placing AD and BE along perpendicular axes."},
+        {"level": 3, "content": "Express the area of ABC in terms of the segments into which F divides AD and BE, using the median and bisector length constraints."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2019-P30",
+      "examType": "PRMO",
+      "problemNumber": 30,
+      "statement": "Let $E$ denote the set of all natural numbers $n$ such that $3 < n < 100$ and the set $\\{1,2,3,\\dots,n\\}$ can be partitioned into 3 subsets with equal sums. Find the number of elements of $E$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "64",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Casework"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "64",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "A necessary condition is that the total sum $n(n+1)/2$ is divisible by 3."},
+        {"level": 2, "content": "Check small cases (n=3,4,5,...) to see which values fail despite satisfying the divisibility condition, to find the true starting point."},
+        {"level": 3, "content": "Show that beyond some small threshold, all n satisfying the divisibility condition do admit such a partition, then count in range."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1027 @@
+{
+  "contestSource": "IOQM 2025 7september",
+  "contestYear": 2025,
+  "examType": "IOQM",
+  "questions": [
+    {
+      "externalId": "IOQM-2025-P1",
+      "examType": "IOQM",
+      "problemNumber": 1,
+      "statement": "If 60% of a number $x$ is 40, then what is $x\\%$ of 60?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 800,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "Exponents"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "40",
+      "estimatedSolveSeconds": 60,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Translate the percentage statement into an equation to find $x$."
+        },
+        {
+          "level": 2,
+          "content": "Substitute the value of $x$ into the second percentage expression."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P2",
+      "examType": "IOQM",
+      "problemNumber": 2,
+      "statement": "Find the number of positive integers $n$ less than or equal to 100, which are divisible by 3 but are not divisible by 2.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "17",
+      "baseRating": 800,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "Divisibility"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "17",
+      "estimatedSolveSeconds": 60,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Count the multiples of 3 up to 100."
+        },
+        {
+          "level": 2,
+          "content": "Remove those multiples of 3 that are also even."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P3",
+      "examType": "IOQM",
+      "problemNumber": 3,
+      "statement": "The area of an integer-sided rectangle is 20. What is the minimum possible value of its perimeter?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "18",
+      "baseRating": 850,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "Divisibility"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "18",
+      "estimatedSolveSeconds": 60,
+      "hints": [
+        {
+          "level": 1,
+          "content": "List all factor pairs of 20."
+        },
+        {
+          "level": 2,
+          "content": "The perimeter is minimized when the two sides are as close as possible."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P4",
+      "examType": "IOQM",
+      "problemNumber": 4,
+      "statement": "How many isosceles integer-sided triangles are there with perimeter 23?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "6",
+      "baseRating": 950,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "Triangles",
+        "Counting"
+      ],
+      "topics": [
+        "geometry-triangles",
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "6",
+      "estimatedSolveSeconds": 100,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let the equal sides have length $a$ and the base have length $b=23-2a$."
+        },
+        {
+          "level": 2,
+          "content": "Apply the triangle inequality to bound the possible values of $a$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P5",
+      "examType": "IOQM",
+      "problemNumber": 5,
+      "statement": "How many 3-digit numbers $\\overline{abc}$ in base 10 are there with $a \\neq 0$ and $c = a + b$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "45",
+      "baseRating": 900,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "Counting"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "45",
+      "estimatedSolveSeconds": 90,
+      "hints": [
+        {
+          "level": 1,
+          "content": "For each choice of $a$ from 1 to 9, determine which values of $b$ keep $c=a+b$ a valid digit."
+        },
+        {
+          "level": 2,
+          "content": "Sum the number of valid $b$ values over all choices of $a$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P6",
+      "examType": "IOQM",
+      "problemNumber": 6,
+      "statement": "The age of a person (in years) in 2025 is a perfect square. His age (in years) was also a perfect square in 2012. His age (in years) will be a perfect cube $m$ years after 2025. Determine the smallest value of $m$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "15",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "Diophantine Equations"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "15",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let the age in 2025 be $k^2$; the age in 2012 is then $k^2-13$, which must also be a perfect square."
+        },
+        {
+          "level": 2,
+          "content": "Factor the difference of the two squares to find $k$."
+        },
+        {
+          "level": 3,
+          "content": "Search upward from $k^2$ for the nearest perfect cube."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P7",
+      "examType": "IOQM",
+      "problemNumber": 7,
+      "statement": "The sum of two real numbers is a positive integer $n$ and the sum of their squares is $n+1012$. Find the maximum possible value of $n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "46",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "Inequalities",
+        "Quadratic Expressions"
+      ],
+      "topics": [
+        "inequalities-classical",
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "46",
+      "estimatedSolveSeconds": 160,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let the two numbers be $x$ and $y$, and express $x^2+y^2$ in terms of $x+y$ and $xy$."
+        },
+        {
+          "level": 2,
+          "content": "Use the constraint that $x^2+y^2 \\geq \\frac{(x+y)^2}{2}$ for real numbers."
+        },
+        {
+          "level": 3,
+          "content": "Translate this inequality into a bound on $n$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P8",
+      "examType": "IOQM",
+      "problemNumber": 8,
+      "statement": "A quadrilateral has four vertices $A, B, C, D$. We want to colour each vertex in one of the four colours red, blue, green or yellow, so that every side of the quadrilateral and the diagonal $AC$ have end points of different colours. In how many ways can we do this?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "48",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "Graph Theory",
+        "Coloring"
+      ],
+      "topics": [
+        "combinatorics-graph-theory"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "48",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Model the vertices and constrained edges as a graph to be properly colored."
+        },
+        {
+          "level": 2,
+          "content": "Notice that $A,B,C$ form a triangle in this constraint graph."
+        },
+        {
+          "level": 3,
+          "content": "Color the triangle first, then count valid choices for $D$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P9",
+      "examType": "IOQM",
+      "problemNumber": 9,
+      "statement": "Four sides and a diagonal of a quadrilateral are of lengths 10, 20, 28, 50, 75, not necessarily in that order. Which amongst them is the only possible length of the diagonal?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "28",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "Quadrilaterals"
+      ],
+      "topics": [
+        "geometry-quadrilaterals"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "28",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {
+          "level": 1,
+          "content": "The diagonal splits the quadrilateral into two triangles, each of which must satisfy the triangle inequality."
+        },
+        {
+          "level": 2,
+          "content": "Test each of the five given lengths as the diagonal and check whether the remaining four can be split into two valid triangles."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P10",
+      "examType": "IOQM",
+      "problemNumber": 10,
+      "statement": "The height and the base radius of a closed right circular cylinder are positive integers and its total surface area is numerically equal to its volume. If its volume is $k\\pi$ where $k$ is a positive integer, what is the smallest possible value of $k$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "54",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "Diophantine Equations"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "54",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Write the surface area and volume formulas in terms of the radius $r$ and height $h$."
+        },
+        {
+          "level": 2,
+          "content": "Set the two expressions equal and solve for $h$ in terms of $r$."
+        },
+        {
+          "level": 3,
+          "content": "Search for the smallest positive integer $r$ giving an integer $h$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P11",
+      "examType": "IOQM",
+      "problemNumber": 11,
+      "statement": "Consider a fraction $\\frac{a}{b} \\neq \\frac{3}{4}$, where $a,b$ are positive integers with $\\gcd(a,b)=1$ and $b \\leq 15$. If this fraction is chosen closest to $\\frac{3}{4}$ amongst all such fractions, then what is the value of $a + b$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "26",
+      "baseRating": 1250,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "GCD and LCM"
+      ],
+      "topics": [
+        "nt-gcd-lcm"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "26",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {
+          "level": 1,
+          "content": "For a fixed denominator $b$, the closest fraction to $3/4$ minimizes $|4a-3b|$."
+        },
+        {
+          "level": 2,
+          "content": "Check each denominator up to 15 for the numerator making $|4a-3b|$ smallest while keeping the gcd condition."
+        },
+        {
+          "level": 3,
+          "content": "Compare the resulting distances across all denominators to find the overall closest fraction."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P12",
+      "examType": "IOQM",
+      "problemNumber": 12,
+      "statement": "Consider five-digit positive integers of the form $\\overline{abcab}$ that are divisible by the two digit number $\\overline{ab}$ but not divisible by 13. What is the largest possible sum of the digits of such a number?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "33",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Divisibility",
+        "Casework"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "33",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Express $\\overline{abcab}$ algebraically in terms of $\\overline{ab}$ and $c$."
+        },
+        {
+          "level": 2,
+          "content": "Reduce the divisibility condition modulo $\\overline{ab}$."
+        },
+        {
+          "level": 3,
+          "content": "Search among the resulting candidates, excluding those divisible by 13, for the maximum digit sum."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P13",
+      "examType": "IOQM",
+      "problemNumber": 13,
+      "statement": "Three sides of a quadrilateral are $a=4\\sqrt{3}$, $b=9$ and $c=\\sqrt{3}$. The sides $a$ and $b$ enclose an angle of $30^\\circ$, and the sides $b$ and $c$ enclose an angle of $90^\\circ$. If the acute angle between the diagonals is $x^\\circ$, what is the value of $x$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "60",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Quadrilaterals",
+        "Coordinate Geometry"
+      ],
+      "topics": [
+        "geometry-quadrilaterals",
+        "geometry-coordinate"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "60",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Place one vertex at the origin and use the given angles to find coordinates of the other vertices."
+        },
+        {
+          "level": 2,
+          "content": "The fourth vertex is determined by the two known sides and angles at the shared vertex."
+        },
+        {
+          "level": 3,
+          "content": "Compute the direction vectors of both diagonals and find the angle between them."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P14",
+      "examType": "IOQM",
+      "problemNumber": 14,
+      "statement": "A function $f$ is defined on the set of integers such that for any two integers $m$ and $n$, $f(mn+1) = f(m)f(n) - f(n) - m + 2$ holds and $f(0)=1$. Determine the largest positive integer $N$ such that $\\sum_{k=1}^N f(k) < 100$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "12",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Functional Equations"
+      ],
+      "topics": [
+        "algebra-functional-equations"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "12",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Substitute specific small values of $m$ and $n$ to find $f(1)$."
+        },
+        {
+          "level": 2,
+          "content": "Use the relation with $n=1$ to derive a formula for $f(m+1)$ in terms of $f(m)$."
+        },
+        {
+          "level": 3,
+          "content": "Identify the pattern for $f(k)$ and sum it until the partial sum reaches 100."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P15",
+      "examType": "IOQM",
+      "problemNumber": 15,
+      "statement": "There are six coupons numbered 1 to 6 and six envelopes, also numbered 1 to 6. The first two coupons are placed together in any one envelope. Similarly, the third and the fourth are placed together in a different envelope, and the last two are placed together in yet another different envelope. How many ways can this be done if no coupon is placed in the envelope having the same number as the coupon?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 1450,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "Permutations",
+        "Casework"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "40",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Treat the three coupon pairs as three objects to be distributed into three of the six envelopes."
+        },
+        {
+          "level": 2,
+          "content": "For each pair, determine which envelopes are forbidden."
+        },
+        {
+          "level": 3,
+          "content": "Count valid assignments carefully using casework on shared forbidden envelopes."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P16",
+      "examType": "IOQM",
+      "problemNumber": 16,
+      "statement": "Let $f(x)$ and $g(x)$ be two polynomials of degree 2 such that $\\frac{f(-2)}{g(-2)} = \\frac{f(3)}{g(3)} = 4$. If $g(5)=2$, $f(7)=12$, $g(7)=-6$, what is the value of $f(5)$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "22",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Polynomials"
+      ],
+      "topics": [
+        "algebra-polynomials"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "22",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Consider the polynomial $h(x)=f(x)-4g(x)$, which vanishes at $x=-2$ and $x=3$."
+        },
+        {
+          "level": 2,
+          "content": "Since $h$ is quadratic with two known roots, write it as a constant multiple of $(x+2)(x-3)$."
+        },
+        {
+          "level": 3,
+          "content": "Use the values at $x=7$ to find the constant, then evaluate at $x=5$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P17",
+      "examType": "IOQM",
+      "problemNumber": 17,
+      "statement": "$MTAI$ is a parallelogram of area $\\frac{40}{41}$ square units such that $MI = 1/MT$. If $d$ is the least possible length of the diagonal $MA$, and $d^2 = \\frac{a}{b}$, where $a,b$ are positive integers with $\\gcd(a,b)=1$, find $|a-b|$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "23",
+      "baseRating": 1650,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Inequalities"
+      ],
+      "topics": [
+        "geometry-quadrilaterals",
+        "inequalities-classical"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "23",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Express the diagonal length in terms of the two sides and the included angle using the law of cosines."
+        },
+        {
+          "level": 2,
+          "content": "Use the area formula to relate the sides and angle, letting $MT=t$ so $MI=1/t$."
+        },
+        {
+          "level": 3,
+          "content": "Minimize the resulting expression for $d^2$ using an inequality on $t+1/t$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P18",
+      "examType": "IOQM",
+      "problemNumber": 18,
+      "statement": "Let $N$ be the number of nine-digit integers that can be obtained by permuting the digits of 223334444 and which have at least one 3 to the right of the right-most occurrence of 4. What is the remainder when $N$ is divided by 100?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 1650,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Permutations",
+        "Combinations"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "40",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Count the total number of distinct permutations of the multiset of digits."
+        },
+        {
+          "level": 2,
+          "content": "It may be easier to count the complementary case: permutations with no 3 after the last 4."
+        },
+        {
+          "level": 3,
+          "content": "Subtract the complementary count from the total, then reduce modulo 100."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P19",
+      "examType": "IOQM",
+      "problemNumber": 19,
+      "statement": "In triangle $ABC$, $\\angle B=90^\\circ$, $AB=1$ and $BC=2$. On the side $BC$ there are two points $D$ and $E$ such that $E$ lies between $C$ and $D$ and $DEFG$ is a square, where $F$ lies on $AC$ and $G$ lies on the circle through $B$ with centre $A$. If the area of $DEFG$ is $\\frac{m}{n}$ where $m$ and $n$ are positive integers with $\\gcd(m,n)=1$, what is the value of $m+n$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "29",
+      "baseRating": 1750,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Triangles",
+        "Circles"
+      ],
+      "topics": [
+        "geometry-triangles",
+        "geometry-circles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "29",
+      "estimatedSolveSeconds": 340,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Set up coordinates with $B$ at the origin, using the given right angle and side lengths."
+        },
+        {
+          "level": 2,
+          "content": "Let the square have side $s$ and express the coordinates of $F$ and $G$ in terms of $s$."
+        },
+        {
+          "level": 3,
+          "content": "Use the condition that $G$ lies on the circle centered at $A$ through $B$ to solve for $s$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P20",
+      "examType": "IOQM",
+      "problemNumber": 20,
+      "statement": "Let $f$ be the function defined by $f(n)=$ remainder when $n^n$ is divided by 7, for all positive integers $n$. Find the smallest positive integer $T$ such that $f(n+T)=f(n)$ for all positive integers $n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "42",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Modular Arithmetic",
+        "Congruences"
+      ],
+      "topics": [
+        "nt-modular-arithmetic"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "42",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {
+          "level": 1,
+          "content": "The base $n \\bmod 7$ and exponent $n \\bmod 6$ both matter, by Fermat's little theorem."
+        },
+        {
+          "level": 2,
+          "content": "Find the period needed for both the base's residue and the exponent's residue to repeat simultaneously."
+        },
+        {
+          "level": 3,
+          "content": "Combine the two periods using their least common multiple."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P21",
+      "examType": "IOQM",
+      "problemNumber": 21,
+      "statement": "For some real numbers $m,n$ and a positive integer $a$, the list $(a+1)n^2, m^2, a(n+1)^2$ consists of three consecutive integers written in increasing order. What is the largest possible value of $m^2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "49",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Quadratic Expressions"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "49",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Write the three consecutive integers as $k-1,k,k+1$ and set up equations in $m,n,a$."
+        },
+        {
+          "level": 2,
+          "content": "Subtract the first and third expressions to get a relation between $n$ and $a$."
+        },
+        {
+          "level": 3,
+          "content": "Search for integer values satisfying all constraints to maximize $m^2$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P22",
+      "examType": "IOQM",
+      "problemNumber": 22,
+      "statement": "There are $m$ blue marbles and $n$ red marbles on a table. Armaan and Babita play a game by taking turns. In each turn the player has to pick a marble of the colour of his/her choice. Armaan starts first, and the player who picks the last red marble wins. For how many choices of $(m,n)$ with $1 \\leq m,n \\leq 11$ can Armaan force a win?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "66",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "Parity",
+        "Invariants"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "66",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Consider small cases of $(m,n)$ to find a pattern for who wins."
+        },
+        {
+          "level": 2,
+          "content": "Focus on the parity of $n$ and how it interacts with $m$."
+        },
+        {
+          "level": 3,
+          "content": "Once the winning condition is characterized, count the qualifying pairs."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P23",
+      "examType": "IOQM",
+      "problemNumber": 23,
+      "statement": "Let $ABCD$ be a rectangle and let $M,N$ be points lying on sides $AB$ and $BC$, respectively. Assume that $MC=CD$ and $MD=MN$, and that points $C,D,M,N$ lie on a circle. If $(AB/BC)^2 = m/n$ where $m$ and $n$ are positive integers with $\\gcd(m,n)=1$, what is the value of $m+n$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "3",
+      "baseRating": 1800,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Cyclic Quadrilaterals",
+        "Coordinate Geometry"
+      ],
+      "topics": [
+        "geometry-quadrilaterals",
+        "geometry-coordinate"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "3",
+      "estimatedSolveSeconds": 320,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Set up coordinates for the rectangle and express $M$, $N$ in terms of two unknown lengths."
+        },
+        {
+          "level": 2,
+          "content": "Use the condition $MC=CD$ to relate the coordinates."
+        },
+        {
+          "level": 3,
+          "content": "Use the concyclicity of $C,D,M,N$ together with $MD=MN$ to derive the required ratio."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P24",
+      "examType": "IOQM",
+      "problemNumber": 24,
+      "statement": "Let $P(x) = x^{2025}$, $Q(x) = x^4 + x^3 + 2x^2 + x + 1$. Let $R(x)$ be the polynomial remainder when the polynomial $P(x)$ is divided by the polynomial $Q(x)$. Find $R(3)$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "53",
+      "baseRating": 1700,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Polynomials",
+        "Factorization"
+      ],
+      "topics": [
+        "algebra-polynomials"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "53",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Try to factor $Q(x)$ into simpler pieces, such as products related to roots of unity."
+        },
+        {
+          "level": 2,
+          "content": "Use the factorization to find a periodic relation satisfied by powers of $x$ modulo $Q(x)$."
+        },
+        {
+          "level": 3,
+          "content": "Reduce the exponent 2025 using this periodicity before evaluating at $x=3$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P25",
+      "examType": "IOQM",
+      "problemNumber": 25,
+      "statement": "For how many numbers $n$ in the set $\\{1,2,3,\\dots,37\\}$ can we split the $2n$ numbers $1,2,\\dots,2n$ into $n$ pairs $\\{a_i,b_i\\}$, $1\\leq i \\leq n$, such that $\\prod_{i=1}^n (a_i + b_i)$ is a square?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "36",
+      "baseRating": 1750,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Pigeonhole Principle",
+        "Casework"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "36",
+      "estimatedSolveSeconds": 320,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Try small cases of $n$ to find a construction that makes the product a perfect square."
+        },
+        {
+          "level": 2,
+          "content": "Look for a general pairing strategy that works for most values of $n$."
+        },
+        {
+          "level": 3,
+          "content": "Identify the exceptional value(s) of $n$ where no such pairing exists."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P26",
+      "examType": "IOQM",
+      "problemNumber": 26,
+      "statement": "Consider a sequence of real numbers of finite length. Consecutive four term averages of this sequence are strictly increasing, but consecutive seven term averages are strictly decreasing. What is the maximum possible length of such a sequence?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "10",
+      "baseRating": 1800,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Sequences",
+        "Inequalities"
+      ],
+      "topics": [
+        "algebra-sequences-series",
+        "inequalities-classical"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "10",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Translate the average conditions into inequalities between consecutive terms of the sequence."
+        },
+        {
+          "level": 2,
+          "content": "Combine several of these inequalities to derive a contradiction for long sequences."
+        },
+        {
+          "level": 3,
+          "content": "Construct an explicit sequence achieving the maximum length to confirm the bound."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P27",
+      "examType": "IOQM",
+      "problemNumber": 27,
+      "statement": "Find the number of ordered triples $(a,b,c)$ of positive integers such that $1 \\leq a,b,c \\leq 50$ which satisfy the relation $\\frac{\\mathrm{lcm}(a,c) + \\mathrm{lcm}(b,c)}{a+b} = \\frac{26c}{27}$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 1780,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "GCD and LCM",
+        "Casework"
+      ],
+      "topics": [
+        "nt-gcd-lcm"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "40",
+      "estimatedSolveSeconds": 340,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rewrite $\\mathrm{lcm}(a,c)$ and $\\mathrm{lcm}(b,c)$ using $\\gcd$ relations with $c$."
+        },
+        {
+          "level": 2,
+          "content": "Look for structure by considering when $a,b$ are multiples or divisors of $c$."
+        },
+        {
+          "level": 3,
+          "content": "Use the fraction $26/27$ to constrain which values of $c$ are feasible."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P28",
+      "examType": "IOQM",
+      "problemNumber": 28,
+      "statement": "Assume $a$ is a positive integer which is not a perfect square. Let $x,y$ be non-negative integers such that $\\sqrt{x} - \\sqrt{x+a} = \\sqrt{a} - y$. What is the largest possible value of $a$ such that $a < 100$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "91",
+      "baseRating": 1700,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Diophantine Equations"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "91",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Isolate the irrational terms on one side of the equation."
+        },
+        {
+          "level": 2,
+          "content": "Since $a$ is not a perfect square, $\\sqrt{a}$ is irrational, so match rational and irrational parts separately."
+        },
+        {
+          "level": 3,
+          "content": "Determine the resulting constraints on $x$ in terms of $a$ and $y$, then search downward from 99."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P29",
+      "examType": "IOQM",
+      "problemNumber": 29,
+      "statement": "A regular polygon with $n \\geq 5$ vertices is said to be colourful if it is possible to colour the vertices using at most 6 colours such that each vertex is coloured with exactly one colour, and such that any 5 consecutive vertices have different colours. Find the largest number $n$ for which a regular polygon with $n$ vertices is not colourful.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "19",
+      "baseRating": 1850,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Coloring",
+        "Graph Theory"
+      ],
+      "topics": [
+        "combinatorics-graph-theory"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "19",
+      "estimatedSolveSeconds": 340,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Model the vertices arranged in a cycle with a constraint on every window of 5 consecutive vertices."
+        },
+        {
+          "level": 2,
+          "content": "Consider a natural periodic coloring pattern using 5 colors and check when it wraps around consistently."
+        },
+        {
+          "level": 3,
+          "content": "Determine which values of $n$ break every possible periodic pattern, then find the largest such $n$."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2025-P30",
+      "examType": "IOQM",
+      "problemNumber": 30,
+      "statement": "Let $S$ be a circle of radius 10 with centre $O$. Suppose $S_1$ and $S_2$ are two circles which touch $S$ internally and intersect each other at two distinct points $A$ and $B$. If $\\angle OAB = 90^\\circ$ what is the sum of the radii of $S_1$ and $S_2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "10",
+      "baseRating": 1900,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "Circles",
+        "Power of a Point"
+      ],
+      "topics": [
+        "geometry-circles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "10",
+      "estimatedSolveSeconds": 360,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Use the fact that internal tangency lets you relate each smaller circle's radius to distances from $O$."
+        },
+        {
+          "level": 2,
+          "content": "Exploit the right angle $\\angle OAB=90^\\circ$ together with the perpendicularity of $OA$... consider the radical axis $AB$."
+        },
+        {
+          "level": 3,
+          "content": "Combine the tangency conditions for both circles to find a clean relation between their radii."
+        }
+      ]
+    }
+  ]
+}

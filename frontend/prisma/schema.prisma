@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+ }
+
+enum AnswerType {
+  NUMERIC
+  MCQ
+  PROOF
+}
+
+enum AttemptStatus {
+  SOLVED
+  WRONG
+  SKIPPED
+  ABANDONED
+  SURRENDERED
+}
+
+enum SavedType {
+  BOOKMARK
+  REVIEW_LATER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+
+  overallRating  Int       @default(1200)
+  currentStreak  Int       @default(0)
+  longestStreak  Int       @default(0)
+  lastActiveDate DateTime?
+  totalAttempted Int       @default(0)
+  totalSolved    Int       @default(0)
+
+  dailyGoal Int @default(10)
+  surrenderLockSeconds Int @default(0)
+
+  topicRatings   StudentTopicRating[]
+  attempts       Attempt[]
+  savedQuestions SavedQuestion[]
+}
+
+model Topic {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  parentId String?
+  parent   Topic?  @relation("TopicHierarchy", fields: [parentId], references: [id])
+  children Topic[] @relation("TopicHierarchy")
+
+  questions      QuestionTopic[]
+  studentRatings StudentTopicRating[]
+}
+
+model Question {
+  id String @id @default(cuid())
+
+  externalId    String @unique
+  problemNumber Int
+
+  statement     String
+  answerType    AnswerType
+  options       Json?
+  correctAnswer String
+
+  baseRating    Int @default(1200)
+  currentRating Int @default(1200)
+
+  difficultyLabel String?
+  tags            String[]
+
+  contestSource String?
+  examType      String?
+  contestYear   Int?
+
+  diagramSvg       String?
+  solutionMarkdown String
+
+  estimatedSolveSeconds Int?
+
+  createdAt DateTime @default(now())
+
+  topics   QuestionTopic[]
+  attempts Attempt[]
+  hints    Hint[]
+  savedBy  SavedQuestion[]
+}
+
+model QuestionTopic {
+  questionId String
+  topicId    String
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  topic    Topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@id([questionId, topicId])
+}
+
+model Hint {
+  id         String @id @default(cuid())
+  questionId String
+  level      Int
+  content    String
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, level])
+}
+
+model StudentTopicRating {
+  id            String   @id @default(cuid())
+  userId        String
+  topicId       String
+  rating        Int      @default(1200)
+  attemptsCount Int      @default(0)
+  updatedAt     DateTime @updatedAt
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+}
+
+model Attempt {
+  id         String        @id @default(cuid())
+  userId     String
+  questionId String
+  status     AttemptStatus
+
+  startedAt            DateTime
+  submittedAt          DateTime?
+  activeSolvingSeconds Int?
+
+  hintLevelUsed    Int?
+  solutionViewed   Boolean @default(false)
+  confidenceRating Int?
+
+  studentRatingBefore  Int
+  studentRatingAfter   Int
+  questionRatingBefore Int
+  questionRatingAfter  Int
+
+  createdAt DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+model SavedQuestion {
+  id         String    @id @default(cuid())
+  userId     String
+  questionId String
+  type       SavedType
+  note       String?
+  createdAt  DateTime  @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId, type])
+}

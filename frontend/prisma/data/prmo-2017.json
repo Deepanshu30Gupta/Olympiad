@@ -1,0 +1,573 @@
+{
+  "contestSource": "PRMO 2017",
+  "contestYear": 2017,
+  "examType": "PRMO",
+  "questions": [
+    {
+      "externalId": "PRMO-2017-P1",
+      "examType": "PRMO",
+      "problemNumber": 1,
+      "statement": "How many positive integers less than 1000 have the property that the sum of the digits of each such number is divisible by 7 and the number itself is divisible by 3?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "28",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": ["Divisibility"],
+      "topics": ["nt-divisibility"],
+      "diagramSvg": null,
+      "solutionMarkdown": "28",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {"level": 1, "content": "List which digit sums between 1 and 27 are multiples of 7."},
+        {"level": 2, "content": "For each valid digit-sum, count 1-, 2-, and 3-digit numbers with that digit sum."},
+        {"level": 3, "content": "From those, further restrict to numbers whose digit sum is also a multiple of 3 (i.e. divisible by 3)."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P2",
+      "examType": "PRMO",
+      "problemNumber": 2,
+      "statement": "Suppose $a, b$ are positive real numbers such that $a\\sqrt{a} + b\\sqrt{b} = 183$, $a\\sqrt{b} + b\\sqrt{a} = 182$. Find $\\frac{9}{5}(a+b)$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "73",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Symmetric Expressions", "Factorization"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "73",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Let $x=\\sqrt a$, $y=\\sqrt b$ and rewrite both equations in terms of x and y."},
+        {"level": 2, "content": "Add the two equations and factor the result using $x^3+y^3$ and $x^2y+xy^2$ identities."},
+        {"level": 3, "content": "Show the sum factors as $(x+y)(x-y)^2+xy(x+y)$ or similar, then solve for x+y."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P3",
+      "examType": "PRMO",
+      "problemNumber": 3,
+      "statement": "A contractor has two teams of workers: team A and team B. Team A can complete a job in 12 days and team B can do the same job in 36 days. Team A starts working on the job and team B joins team A after four days. The team A withdraws after two more days. For how many more days should team B work to complete the job?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "16",
+      "baseRating": 1050,
+      "difficultyLabel": "Easy",
+      "tags": ["Sequences"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "16",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Compute the fraction of work done by team A alone in the first 6 days."},
+        {"level": 2, "content": "Add the work done by team B during the 2 days it overlaps with team A."},
+        {"level": 3, "content": "Find the remaining work and divide by team B's daily rate."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P4",
+      "examType": "PRMO",
+      "problemNumber": 4,
+      "statement": "Let $a, b$ be integers such that all the roots of the equation $(x^2 + a x + 20)(x^2 + 17 x + b) = 0$ are negative integers. What is the smallest possible value of $a+b$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "25",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Quadratic Expressions", "Factorization"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "25",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Use Vieta's formulas: the roots of each quadratic multiply to the constant term and sum to the negative of the linear coefficient."},
+        {"level": 2, "content": "List all factor pairs of 20 (for negative integer roots) and of the constant term of the second quadratic given its root sum is 17."},
+        {"level": 3, "content": "Compute a and b for each valid factorization and minimize a+b."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P5",
+      "examType": "PRMO",
+      "problemNumber": 5,
+      "statement": "Let $u, v, w$ be real numbers in geometric progression such that $u > v > w$. Suppose $u^{40} = v^n = w^{60}$. Find the value of $n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "48",
+      "baseRating": 1250,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences", "Exponents"],
+      "topics": ["algebra-sequences-series"],
+      "diagramSvg": null,
+      "solutionMarkdown": "48",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Write u and w in terms of v and the common ratio r."},
+        {"level": 2, "content": "Take logarithms of all three expressions to convert the equal-power condition into linear relations."},
+        {"level": 3, "content": "Combine the relations to eliminate r and solve for n."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P6",
+      "examType": "PRMO",
+      "problemNumber": 6,
+      "statement": "Let the sum $\\sum_{n=1}^{9} \\frac{1}{n(n+1)(n+2)}$ written in its lowest terms be $\\frac{p}{q}$. Find the value of $q-p$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "83",
+      "baseRating": 1100,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences"],
+      "topics": ["algebra-sequences-series"],
+      "diagramSvg": null,
+      "solutionMarkdown": "83",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Decompose the general term using partial fractions of the form A/n + B/(n+1) + C/(n+2)."},
+        {"level": 2, "content": "Notice the telescoping pattern when summing from n=1 to 9."},
+        {"level": 3, "content": "Simplify the resulting fraction to lowest terms before computing q-p."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P7",
+      "examType": "PRMO",
+      "problemNumber": 7,
+      "statement": "Find the number of positive integers $n$, such that $\\sqrt{n} + \\sqrt{n+1} < 11$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "29",
+      "baseRating": 900,
+      "difficultyLabel": "Easy",
+      "tags": ["Inequalities"],
+      "topics": ["inequalities-classical"],
+      "diagramSvg": null,
+      "solutionMarkdown": "29",
+      "estimatedSolveSeconds": 150,
+      "hints": [
+        {"level": 1, "content": "Since the function is increasing in n, find the boundary value of n where equality is nearly reached."},
+        {"level": 2, "content": "Square or bound the inequality to estimate the largest valid n."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P8",
+      "examType": "PRMO",
+      "problemNumber": 8,
+      "statement": "A pen costs ₹11 and a notebook costs ₹13. Find the number of ways in which a person can spend exactly ₹1000 to buy pens and notebooks.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "7",
+      "baseRating": 1050,
+      "difficultyLabel": "Easy",
+      "tags": ["Diophantine Equations"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "7",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {"level": 1, "content": "Set up the linear equation $11x+13y=1000$ for non-negative integers x, y."},
+        {"level": 2, "content": "Find one particular solution, then use the general solution form for linear Diophantine equations."},
+        {"level": 3, "content": "Count how many values in the general solution keep both x and y non-negative."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P9",
+      "examType": "PRMO",
+      "problemNumber": 9,
+      "statement": "There are five cities A, B, C, D, E on a certain island. Each city is connected to every other city by road. In how many ways can a person starting from city A come back to A after visiting some cities without visiting a city more than once and without taking the same road more than once? (The order in which he visits the cities also matters)",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "60",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["Graph Theory", "Counting"],
+      "topics": ["combinatorics-graph-theory"],
+      "diagramSvg": null,
+      "solutionMarkdown": "60",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {"level": 1, "content": "Consider cycles of each possible length through A, from 3 up to 5 vertices."},
+        {"level": 2, "content": "For a cycle of length k, count the number of ways to choose and order the other k-1 cities."},
+        {"level": 3, "content": "Remember each undirected cycle corresponds to two directed traversals; sum over all cycle lengths."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P10",
+      "examType": "PRMO",
+      "problemNumber": 10,
+      "statement": "There are eight rooms on the first floor of a hotel, with four rooms on each side of the corridor, symmetrically situated. Four guests have to be accommodated in four of the eight rooms such that no two guests are in adjacent rooms or in opposite rooms. In how many ways can the guests be accommodated?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "48",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": ["Counting", "Casework"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "48",
+      "estimatedSolveSeconds": 340,
+      "hints": [
+        {"level": 1, "content": "Model the room-adjacency and opposite-room constraints as a graph and find independent sets of size 4."},
+        {"level": 2, "content": "Use the symmetry between the two sides of the corridor to organize casework."},
+        {"level": 3, "content": "Multiply the number of valid room selections by the number of ways to assign the 4 distinct guests."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P11",
+      "examType": "PRMO",
+      "problemNumber": 11,
+      "statement": "Let $f(x) = \\sin \\frac{x}{3} + \\cos \\frac{3x}{10}$ for all real $x$. Find the least natural number $n$ such that $f(n\\pi + x) = f(x)$ for all real $x$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "60",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "60",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Find the periods of the two individual trigonometric terms separately, in units of π."},
+        {"level": 2, "content": "The overall period must be a common multiple of both individual periods."},
+        {"level": 3, "content": "Find the least common multiple to get the smallest valid n."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P12",
+      "examType": "PRMO",
+      "problemNumber": 12,
+      "statement": "In a class, the total numbers of boys and girls are in the ratio 4 : 3. On one day it was found that 8 boys and 14 girls were absent from the class, and that the number of boys was the square of the number of girls. What is the total number of students in the class?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "42",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Quadratic Expressions"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "42",
+      "estimatedSolveSeconds": 200,
+      "hints": [
+        {"level": 1, "content": "Let the total number of boys be 4k and girls be 3k for some positive integer k."},
+        {"level": 2, "content": "Use the absent-student information to set up an equation relating present boys and present girls."},
+        {"level": 3, "content": "Solve the resulting quadratic in k."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P13",
+      "examType": "PRMO",
+      "problemNumber": 13,
+      "statement": "In a rectangle $ABCD$, $E$ is the midpoint of $AB$; $F$ is a point on $AC$ such that $BF$ is perpendicular to $AC$; and $FE$ perpendicular to $BD$. Suppose $BC = 8\\sqrt{3}$. Find $AB$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "difficultyLabel": "Hard",
+      "options": null,
+      "correctAnswer": "24",
+      "baseRating": 1600,
+      "tags": ["Coordinate Geometry", "Perpendicularity"],
+      "topics": ["geometry-coordinate"],
+      "diagramSvg": null,
+      "solutionMarkdown": "24",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {"level": 1, "content": "Assign coordinates to the rectangle with A at the origin."},
+        {"level": 2, "content": "Find F as the foot of perpendicular from B to AC using coordinate projections."},
+        {"level": 3, "content": "Impose the condition FE ⊥ BD and solve for the ratio AB:BC."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P14",
+      "examType": "PRMO",
+      "problemNumber": 14,
+      "statement": "Suppose $x$ is a positive real number such that $\\{x\\}, [x]$ and $x$ are in a geometric progression. Find the least positive integer $n$ such that $x^n > 100$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "10",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "10",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "Write x = [x] + {x} and use the geometric progression condition to relate {x} and [x]."},
+        {"level": 2, "content": "Solve the resulting equation for x, treating [x] as an unknown positive integer and checking consistency."},
+        {"level": 3, "content": "Once x is found numerically, determine the smallest n with $x^n>100$."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P15",
+      "examType": "PRMO",
+      "problemNumber": 15,
+      "statement": "Integers 1, 2, 3, ..., $n$, where $n > 2$, are written on a board. Two numbers $m, k$ such that $1 < m < n$, $1 < k < n$ are removed and the average of the remaining numbers is found to be 17. What is the maximum sum of the two removed numbers?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "51",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences"],
+      "topics": ["algebra-sequences-series"],
+      "diagramSvg": null,
+      "solutionMarkdown": "51",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Express the sum of all n numbers and set up an equation using the given average of the remaining n-2 numbers."},
+        {"level": 2, "content": "Bound n by requiring the sum removed, $\\frac{n(n+1)}{2}-17(n-2)$, to be achievable by two distinct numbers strictly between 1 and n."},
+        {"level": 3, "content": "Maximize the removed sum over all valid n."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P16",
+      "examType": "PRMO",
+      "problemNumber": 16,
+      "statement": "Five distinct 2-digit numbers are in a geometric progression. Find the middle term.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "36",
+      "baseRating": 1250,
+      "difficultyLabel": "Medium",
+      "tags": ["Sequences"],
+      "topics": ["algebra-sequences-series"],
+      "diagramSvg": null,
+      "solutionMarkdown": "36",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Let the common ratio be a rational number p/q in lowest terms, since all terms are integers."},
+        {"level": 2, "content": "The middle term must be divisible by $q^2$; use the 2-digit constraint to bound possibilities."},
+        {"level": 3, "content": "Search small coprime (p,q) pairs that keep all five terms as 2-digit integers."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P18",
+      "examType": "PRMO",
+      "problemNumber": 18,
+      "statement": "If the real numbers $x, y, z$ are such that $x^2 + 4y^2 + 16z^2 = 48$ and $xy + 4yz + 2zx = 24$, what is the value of $x^2 + y^2 + z^2$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "21",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["Quadratic Expressions", "Symmetric Expressions"],
+      "topics": ["algebra-manipulation"],
+      "diagramSvg": null,
+      "solutionMarkdown": "21",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Notice that $x^2+4y^2+16z^2 = 2(xy+4yz+2zx)$ resembles an expansion of $(x-2y)^2+(2y-4z)^2+(4z-x)^2$ or similar."},
+        {"level": 2, "content": "Try to show the given conditions force $x=2y=4z$."},
+        {"level": 3, "content": "Substitute back to find individual values of x, y, z, then compute the target sum."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P19",
+      "examType": "PRMO",
+      "problemNumber": 19,
+      "statement": "Suppose 1, 2, 3 are the roots of the equation $x^4 + a x^2 + b x = c$. Find the value of $c$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "36",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": ["Polynomials"],
+      "topics": ["algebra-polynomials"],
+      "diagramSvg": null,
+      "solutionMarkdown": "36",
+      "estimatedSolveSeconds": 240,
+      "hints": [
+        {"level": 1, "content": "Since the polynomial has degree 4 but only 3 given roots, let the fourth root be r and use Vieta's formulas."},
+        {"level": 2, "content": "The coefficient of $x^3$ is 0, which determines r from the sum of the four roots."},
+        {"level": 3, "content": "Use the product of all four roots to find c."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P20",
+      "examType": "PRMO",
+      "problemNumber": 20,
+      "statement": "What is the number of triples $(a, b, c)$ of positive integers such that (i) $a < b < c < 10$ and (ii) $a, b, c, 10$ form the sides of a quadrilateral?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "73",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": ["Counting", "Casework"],
+      "topics": ["combinatorics-counting"],
+      "diagramSvg": null,
+      "solutionMarkdown": "73",
+      "estimatedSolveSeconds": 220,
+      "hints": [
+        {"level": 1, "content": "Recall the quadrilateral inequality: each side must be less than the sum of the other three."},
+        {"level": 2, "content": "Since a<b<c<10, the binding constraint is $10 < a+b+c$."},
+        {"level": 3, "content": "Count triples with $a<b<c<10$ satisfying $a+b+c>10$ using complementary counting."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P21",
+      "examType": "PRMO",
+      "problemNumber": 21,
+      "statement": "Find the number of ordered triples $(a, b, c)$ of positive integers such that $abc = 108$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "60",
+      "baseRating": 1000,
+      "difficultyLabel": "Easy",
+      "tags": ["Prime Numbers", "Counting"],
+      "topics": ["nt-primes-factorization"],
+      "diagramSvg": null,
+      "solutionMarkdown": "60",
+      "estimatedSolveSeconds": 160,
+      "hints": [
+        {"level": 1, "content": "Factor 108 into primes and distribute each prime's exponent among a, b, c independently."},
+        {"level": 2, "content": "Use stars and bars separately for each prime's exponent distribution, then multiply the counts."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P23",
+      "examType": "PRMO",
+      "problemNumber": 23,
+      "statement": "Suppose an integer $x$, a natural number $n$ and a prime number $p$ satisfy the equation $7x^2 - 44x + 12 = p^n$. Find the largest value of $p$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "47",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["Diophantine Equations", "Prime Numbers"],
+      "topics": ["nt-diophantine"],
+      "diagramSvg": null,
+      "solutionMarkdown": "47",
+      "estimatedSolveSeconds": 280,
+      "hints": [
+        {"level": 1, "content": "Factor the left side of the equation if possible, or analyze it as a quadratic in x."},
+        {"level": 2, "content": "Test small integer values of x directly since the quadratic grows quickly."},
+        {"level": 3, "content": "For each resulting value, check whether it's a prime power and record the prime."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P25",
+      "examType": "PRMO",
+      "problemNumber": 25,
+      "statement": "Let $ABCD$ be a rectangle and let $E$ and $F$ be points on $CD$ and $BC$ respectively such that area($ADE$) = 16, area($CEF$) = 9 and area($ABF$) = 25. What is the area of triangle $AEF$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "30",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": ["Area", "Quadrilaterals"],
+      "topics": ["geometry-quadrilaterals"],
+      "diagramSvg": null,
+      "solutionMarkdown": "30",
+      "estimatedSolveSeconds": 320,
+      "hints": [
+        {"level": 1, "content": "Let the rectangle have width w and height h, and parameterize E and F's positions."},
+        {"level": 2, "content": "Express each given triangle's area in terms of w, h and the parameters, then set up equations."},
+        {"level": 3, "content": "Use area(AEF) = area(ABCD) − area(ADE) − area(CEF) − area(ABF) to finish."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P26",
+      "examType": "PRMO",
+      "problemNumber": 26,
+      "statement": "Let $AB$ and $CD$ be two parallel chords in a circle with radius 5 such that the centre $O$ lies between these chords. Suppose $AB = 6$, $CD = 8$. Suppose further that the area of the part of the circle lying between the chords $AB$ and $CD$ is $(m\\pi + n)/k$, where $m, n, k$ are positive integers with $\\gcd(m,n,k)=1$. What is the value of $m + n + k$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "75",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": ["Circles", "Area"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "75",
+      "estimatedSolveSeconds": 360,
+      "hints": [
+        {"level": 1, "content": "Find the perpendicular distance from O to each chord using the chord-length/radius relationship."},
+        {"level": 2, "content": "Compute the areas of the two circular segments cut off outside the region between the chords."},
+        {"level": 3, "content": "Subtract those segment areas from the total circle area to get the middle region."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P27",
+      "examType": "PRMO",
+      "problemNumber": 27,
+      "statement": "Let $\\Omega_1$ be a circle with centre $O$ and let $AB$ be a diameter of $\\Omega_1$. Let $P$ be a point on the segment $OB$ different from $O$. Suppose another circle $\\Omega_2$ with centre $P$ lies in the interior of $\\Omega_1$. Tangents are drawn from $A$ and $B$ to the circle $\\Omega_2$ intersecting $\\Omega_1$ again at $A_1$ and $B_1$ respectively such that $A_1$ and $B_1$ are on the opposite sides of $AB$. Given that $A_1B = 5$, $AB_1 = 15$ and $OP = 10$, find the radius of $\\Omega_1$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "20",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": ["Circles", "Power of a Point"],
+      "topics": ["geometry-circles"],
+      "diagramSvg": null,
+      "solutionMarkdown": "20",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {"level": 1, "content": "Use the fact that AB is a diameter to note that angle $AA_1B$ and angle $AB_1B$ are right angles."},
+        {"level": 2, "content": "Relate the tangent length from A (and from B) to $\\Omega_2$ using the tangent-length formula involving OP and the radius of $\\Omega_2$."},
+        {"level": 3, "content": "Combine the right-triangle relations with the tangent-length equations to solve for the radius of $\\Omega_1$."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P28",
+      "examType": "PRMO",
+      "problemNumber": 28,
+      "statement": "Let $p, q$ be prime numbers such that $n^{3pq} - n$ is a multiple of $3 p q$ for all positive integers $n$. Find the least possible value of $p + q$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "28",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": ["Modular Arithmetic", "Prime Numbers"],
+      "topics": ["nt-modular-arithmetic"],
+      "diagramSvg": null,
+      "solutionMarkdown": "28",
+      "estimatedSolveSeconds": 360,
+      "hints": [
+        {"level": 1, "content": "Use a Fermat/Korselt-type criterion: $n^{3pq}-n$ divisible by 3pq for all n requires $3pq$ to be squarefree and $(prime-1)$ divides $(3pq-1)$ for each prime factor."},
+        {"level": 2, "content": "Apply this condition separately to 3, p, and q."},
+        {"level": 3, "content": "Search small primes p, q satisfying all resulting divisibility conditions to minimize p+q."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P29",
+      "examType": "PRMO",
+      "problemNumber": 29,
+      "statement": "For each positive integer $n$, consider the highest common factor $h_n$ of the two numbers $n! + 1$ and $(n + 1)!$. For $n < 100$, find the largest value of $h_n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "97",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": ["GCD and LCM", "Prime Numbers"],
+      "topics": ["nt-gcd-lcm"],
+      "diagramSvg": null,
+      "solutionMarkdown": "97",
+      "estimatedSolveSeconds": 260,
+      "hints": [
+        {"level": 1, "content": "Note that $(n+1)! = (n+1)\\cdot n!$, so $\\gcd(n!+1,(n+1)!) = \\gcd(n!+1, n+1)$."},
+        {"level": 2, "content": "Use Wilson's theorem to analyze this gcd when n+1 is prime versus composite."},
+        {"level": 3, "content": "Determine which n<100 gives the maximal gcd value."}
+      ]
+    },
+    {
+      "externalId": "PRMO-2017-P30",
+      "examType": "PRMO",
+      "problemNumber": 30,
+      "statement": "Consider the areas of the four triangles obtained by drawing the diagonals $AC$ and $BD$ of a trapezium $ABCD$. The product of these areas, taken two at a time, are computed. If among the six products so obtained, two products are 1296 and 576, determine the square root of the maximum possible area of the trapezium to the nearest integer.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "13",
+      "baseRating": 1650,
+      "difficultyLabel": "Hard",
+      "tags": ["Area", "Quadrilaterals"],
+      "topics": ["geometry-quadrilaterals"],
+      "diagramSvg": null,
+      "solutionMarkdown": "13",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {"level": 1, "content": "Recall that in a trapezium, the two triangles adjacent to the parallel sides have equal area, and the other two triangles' areas multiply to that same common value squared."},
+        {"level": 2, "content": "Use this relation to identify which of the given products (1296, 576) corresponds to which pair of triangles."},
+        {"level": 3, "content": "Set up the total area in terms of the two triangle areas and maximize under the given constraints."}
+      ]
+    }
+  ]
+}
