@@ -44,7 +44,7 @@ function escapeHtml(str: string): string {
     .replace(/>/g, "&gt;");
 }
 
-function renderQuestion(q: SeedQuestion, index: number): string {
+function renderQuestion(q: SeedQuestion, contestLabel: string): string {
   const optionsHtml =
     q.answerType === "MCQ" && q.options
       ? `<div class="options">
@@ -76,6 +76,7 @@ function renderQuestion(q: SeedQuestion, index: number): string {
   <div class="question-card">
     <div class="meta">
       <span class="pill">${escapeHtml(q.externalId)}</span>
+      <span class="pill">${escapeHtml(q.examType ?? "?")}</span>
       <span class="pill">Problem ${q.problemNumber}</span>
       <span class="pill">${escapeHtml(q.difficultyLabel ?? "?")} · rating ${q.baseRating}</span>
       <span class="pill">${escapeHtml(q.answerType)}</span>
@@ -87,7 +88,7 @@ function renderQuestion(q: SeedQuestion, index: number): string {
     ${optionsHtml}
     <details class="solution">
       <summary>Show Solution</summary>
-      <div class="solution-source">${escapeHtml(q.contestSourceLabel ?? "")}</div>
+      <div class="solution-source">${escapeHtml(contestLabel)}</div>
       <div class="markdown-body" data-markdown="${encodeURIComponent(q.solutionMarkdown)}"></div>
     </details>
     ${hintsHtml ? `<div class="hints-section"><strong>Hints:</strong>${hintsHtml}</div>` : ""}
@@ -106,7 +107,7 @@ function main() {
 
   const contestLabel = `${data.contestSource} (${data.contestYear})`;
   const cardsHtml = data.questions
-    .map((q, i) => renderQuestion({ ...q, contestSourceLabel: contestLabel } as any, i))
+    .map((q) => renderQuestion(q, contestLabel))
     .join("\n");
 
   const html = `<!DOCTYPE html>
