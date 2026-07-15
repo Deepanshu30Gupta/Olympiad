@@ -9,17 +9,16 @@
  *      (from the Elo formula) between 0.5–0.65: favored but not
  *      guaranteed, the actual learning sweet spot.
  *
- * Session-level filters (examType, topicFocus) are optional and never
- * persisted — passed in fresh each call, per the "ask every session"
- * decision made earlier.
+ * Session-level filters (examTypes, topicFocus) are optional, multi-select,
+ * and never persisted — passed in fresh each call.
  */
 
 import { prisma } from "@/lib/prisma";
 import { expectedScore, ratingWindowForExpectedScore } from "@/lib/rating";
 
 interface RecommendationOptions {
-  examType?: string;
-  topicFocus?: string; // a specific topic or category slug
+  examTypes?: string[];
+  topicFocus?: string[]; // one or more topic/category slugs
 }
 
 const DEFAULT_RATING = 1200;
@@ -27,15 +26,11 @@ const MIN_EXPECTED_SCORE = 0.5;
 const MAX_EXPECTED_SCORE = 0.65;
 
 export async function getNextQuestion(userId: string, options: RecommendationOptions = {}) {
-  // Step 1: determine the candidate topic pool.
   const candidateTopics = await resolveCandidateTopics(options.topicFocus);
   if (candidateTopics.length === 0) {
     return { question: null, reason: "No topics match the given focus." };
   }
 
-  // Step 2: get the student's rating in each candidate topic (default
-  // 1200 for topics they've never attempted — no StudentTopicRating row
-  // exists yet for a brand-new user).
   const existingRatings = await prisma.studentTopicRating.findMany({
     where: { userId, topicId: { in: candidateTopics.map((t) => t.id) } },
   });
@@ -46,9 +41,6 @@ export async function getNextQuestion(userId: string, options: RecommendationOpt
     rating: ratingByTopicId.get(t.id) ?? DEFAULT_RATING,
   }));
 
-  // Step 3: weighted pick — weaker topics more likely, but every topic
-  // has some nonzero chance (the "+50 baseline" keeps this from being
-  // pure worst-first drilling, which gets discouraging fast).
   const avgRating =
     topicsWithRating.reduce((sum, t) => sum + t.rating, 0) / topicsWithRating.length;
   const weights = topicsWithRating.map((t) => Math.max(0, avgRating - t.rating) + 50);
@@ -65,11 +57,6 @@ export async function getNextQuestion(userId: string, options: RecommendationOpt
   }
   const chosenTopic = topicsWithRating[chosenIndex];
 
-  // Step 4: find a question in that topic, in the ideal rating window,
-  // excluding anything already solved correctly. Progressively widen
-  // the window if the topic is too thin to find an exact match — this
-  // is a real possibility given some topics/difficulties are still thin
-  // per the coverage reports run earlier.
   const alreadySolvedIds = (
     await prisma.attempt.findMany({
       where: { userId, status: "SOLVED" },
@@ -77,10 +64,15 @@ export async function getNextQuestion(userId: string, options: RecommendationOpt
     })
   ).map((a) => a.questionId);
 
+  const examTypeFilter =
+    options.examTypes && options.examTypes.length > 0
+      ? { examType: { in: options.examTypes } }
+      : {};
+
   const attempts = [
-    [MIN_EXPECTED_SCORE, MAX_EXPECTED_SCORE], // ideal window
-    [0.35, 0.8], // widened
-    [0.15, 0.95], // last resort — almost anything unsolved
+    [MIN_EXPECTED_SCORE, MAX_EXPECTED_SCORE],
+    [0.35, 0.8],
+    [0.15, 0.95],
   ];
 
   for (const [minE, maxE] of attempts) {
@@ -90,10 +82,10 @@ export async function getNextQuestion(userId: string, options: RecommendationOpt
       where: {
         id: { notIn: alreadySolvedIds },
         currentRating: { gte: minRating, lte: maxRating },
-        ...(options.examType ? { examType: options.examType } : {}),
+        ...examTypeFilter,
         topics: { some: { topicId: chosenTopic.id } },
       },
-      orderBy: { createdAt: "asc" }, // deterministic-ish; real randomization can improve later
+      orderBy: { createdAt: "asc" },
     });
 
     if (question) {
@@ -114,32 +106,32 @@ export async function getNextQuestion(userId: string, options: RecommendationOpt
   };
 }
 
-/** Resolves which topics are eligible, given an optional focus. If the
- * focus is a parent category slug, includes all its children too. */
-async function resolveCandidateTopics(topicFocus?: string) {
-  if (!topicFocus) {
-    // No focus given: every topic that actually has at least one question,
-    // to avoid ever "selecting" an empty topic.
-    return prisma.topic.findMany({
-      where: { questions: { some: {} } },
-    });
+/** Resolves which topics are eligible, given optional focus slugs. Any
+ * slug that's a parent category expands to include its children too.
+ * Results are de-duplicated across multiple focus slugs. */
+async function resolveCandidateTopics(topicFocus?: string[]) {
+  if (!topicFocus || topicFocus.length === 0) {
+    return prisma.topic.findMany({ where: { questions: { some: {} } } });
   }
 
-  const focusTopic = await prisma.topic.findUnique({
-    where: { slug: topicFocus },
+  const focusTopics = await prisma.topic.findMany({
+    where: { slug: { in: topicFocus } },
     include: { children: true },
   });
-  if (!focusTopic) return [];
 
-  // If it's a parent category, include its children too. Otherwise it's
-  // already a leaf subtopic — just itself.
-  if (focusTopic.children.length > 0) {
-    return prisma.topic.findMany({
-      where: {
-        OR: [{ id: focusTopic.id }, { parentId: focusTopic.id }],
-        questions: { some: {} },
-      },
-    });
+  const resultIds = new Set<string>();
+  for (const t of focusTopics) {
+    if (t.children.length > 0) {
+      resultIds.add(t.id);
+      t.children.forEach((c) => resultIds.add(c.id));
+    } else {
+      resultIds.add(t.id);
+    }
   }
-  return [focusTopic];
+
+  if (resultIds.size === 0) return [];
+
+  return prisma.topic.findMany({
+    where: { id: { in: [...resultIds] }, questions: { some: {} } },
+  });
 }

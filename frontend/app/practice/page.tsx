@@ -6,19 +6,19 @@ import { renderMathText } from "@/lib/render-math";
 export default async function PracticePage({
   searchParams,
 }: {
-  searchParams: Promise<{ examType?: string; topicFocus?: string }>;
+  searchParams: Promise<{ examTypes?: string; topicFocus?: string }>;
 }) {
   const params = await searchParams;
-  const clerkUser = await currentUser();
+  const examTypes = params.examTypes ? params.examTypes.split(",").filter(Boolean) : undefined;
+  const topicFocus = params.topicFocus ? params.topicFocus.split(",").filter(Boolean) : undefined;
 
+  const clerkUser = await currentUser();
   if (!clerkUser) {
     return <div className="p-8 text-neutral-300">Not signed in.</div>;
   }
 
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) {
-    // Should not normally happen — would mean the webhook hasn't synced
-    // this user yet. Worth a clear message rather than a silent crash.
     return (
       <div className="p-8 text-neutral-300">
         Your account is still syncing. Try refreshing in a moment.
@@ -26,10 +26,7 @@ export default async function PracticePage({
     );
   }
 
-  const result = await getNextQuestion(dbUser.id, {
-    examType: params.examType,
-    topicFocus: params.topicFocus,
-  });
+  const result = await getNextQuestion(dbUser.id, { examTypes, topicFocus });
 
   if (!result.question) {
     return (
