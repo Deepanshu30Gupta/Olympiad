@@ -64,6 +64,7 @@ export default async function PracticePage({
       )}
 
       <AttemptForm
+        key={q.id}
         questionId={q.id}
         answerType={q.answerType}
         options={q.options as Record<string, string> | null}
