@@ -3,12 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
-import {
-  submitAnswerAction,
-  surrenderAction,
-  revealSolutionAction,
-  submitProofSelfAssessment,
-} from "@/app/practice/actions";
+import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
 
 interface Hint {
   level: number;
@@ -44,38 +39,6 @@ export function AttemptForm({
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [revealedSolution, setRevealedSolution] = useState<string | null>(null);
-
-  async function handleRevealSolution() {
-    if (submitting) return;
-    setSubmitting(true);
-    try {
-      const res = await revealSolutionAction(questionId);
-      setRevealedSolution(res.solutionMarkdown);
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  async function handleProofSelfAssess(wasCorrect: boolean) {
-    if (submitting) return;
-    setSubmitting(true);
-    try {
-      const res = await submitProofSelfAssessment({
-        questionId,
-        startedAtMs: startedAtMs.current,
-        hintLevelUsed: revealedHintLevel || null,
-        wasCorrect,
-      });
-      setResult({
-        correctAnswer: "(self-graded)",
-        solutionMarkdown: revealedSolution ?? "",
-        newRating: res.newRating,
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  }
 
   useEffect(() => {
     if (result) return; // stop the timer once answered
@@ -133,14 +96,9 @@ export function AttemptForm({
             {result.isCorrect ? "Correct." : `Not quite. Correct answer: ${result.correctAnswer}`}
           </div>
         )}
-        {!("isCorrect" in result) && result.correctAnswer !== "(self-graded)" && (
+        {!("isCorrect" in result) && (
           <div className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-3 text-sm text-neutral-300">
             Correct answer: {result.correctAnswer}
-          </div>
-        )}
-        {result.correctAnswer === "(self-graded)" && (
-          <div className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-3 text-sm text-neutral-300">
-            Recorded — self-graded attempt.
           </div>
         )}
 
@@ -202,46 +160,9 @@ export function AttemptForm({
         </div>
       )}
 
-      {answerType === "PROOF" && !revealedSolution && (
-        <div>
-          <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-400">
-            Work through this on paper, then reveal the solution to compare.
-          </div>
-          <button
-            onClick={handleRevealSolution}
-            disabled={submitting}
-            className="mt-4 rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-40"
-          >
-            Show Solution
-          </button>
-        </div>
-      )}
-
-      {answerType === "PROOF" && revealedSolution && (
-        <div>
-          <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3">
-            <div
-              className="text-sm leading-relaxed text-neutral-300"
-              dangerouslySetInnerHTML={{ __html: renderMathText(revealedSolution) }}
-            />
-          </div>
-          <p className="mt-4 text-sm text-neutral-400">Did your proof match this approach?</p>
-          <div className="mt-2 flex gap-3">
-            <button
-              onClick={() => handleProofSelfAssess(true)}
-              disabled={submitting}
-              className="rounded-lg border border-emerald-800 bg-emerald-950 px-4 py-2 text-sm text-emerald-300 disabled:opacity-40"
-            >
-              I got it right
-            </button>
-            <button
-              onClick={() => handleProofSelfAssess(false)}
-              disabled={submitting}
-              className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2 text-sm text-neutral-300 disabled:opacity-40"
-            >
-              I didn't get it
-            </button>
-          </div>
+      {answerType === "PROOF" && (
+        <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-400">
+          Proof-based self-grading UI is a follow-up build, not in this pass.
         </div>
       )}
 
