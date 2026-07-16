@@ -2,6 +2,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { getNextQuestion } from "@/services/recommendation-service";
 import { renderMathText } from "@/lib/render-math";
+import { AttemptForm } from "@/features/questions/AttemptForm";
 
 export default async function PracticePage({
   searchParams,
@@ -37,7 +38,9 @@ export default async function PracticePage({
     );
   }
 
-  const q = result.question;
+  const q = result.question as typeof result.question & {
+    hints: { level: number; content: string }[];
+  };
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-10">
@@ -60,25 +63,13 @@ export default async function PracticePage({
         />
       )}
 
-      {q.answerType === "MCQ" && q.options && (
-        <div className="mt-6 flex flex-col gap-2">
-          {Object.entries(q.options as Record<string, string>).map(([key, val]) => (
-            <div
-              key={key}
-              className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-200"
-            >
-              <span className="mr-2 font-mono text-neutral-500">{key}.</span>
-              <span dangerouslySetInnerHTML={{ __html: renderMathText(val) }} />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {q.answerType === "NUMERIC" && (
-        <div className="mt-6 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-400">
-          Numeric answer input — not built yet, this page is read-only for now.
-        </div>
-      )}
+      <AttemptForm
+        questionId={q.id}
+        answerType={q.answerType}
+        options={q.options as Record<string, string> | null}
+        hints={q.hints}
+        surrenderLockSeconds={dbUser.surrenderLockSeconds}
+      />
 
       <div className="mt-8 border-t border-neutral-800 pt-4 font-mono text-xs text-neutral-600">
         {result.reason}

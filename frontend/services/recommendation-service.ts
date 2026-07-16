@@ -86,6 +86,7 @@ export async function getNextQuestion(userId: string, options: RecommendationOpt
         topics: { some: { topicId: chosenTopic.id } },
       },
       orderBy: { createdAt: "asc" },
+      include: { hints: { orderBy: { level: "asc" } } },
     });
 
     if (question) {
