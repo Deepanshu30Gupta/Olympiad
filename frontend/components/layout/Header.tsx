@@ -12,7 +12,7 @@ export function Header() {
           <Link href="/dashboard" className="text-sm text-neutral-400 hover:text-neutral-200">
             Dashboard
           </Link>
-          <UserButton afterSignOutUrl="/" />
+          <UserButton />
         </div>
       </Show>
       <Show when="signed-out">
