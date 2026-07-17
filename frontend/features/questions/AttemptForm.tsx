@@ -11,6 +11,7 @@ interface Hint {
 }
 
 interface AttemptFormProps {
+  sessionId: string;
   questionId: string;
   answerType: "NUMERIC" | "MCQ" | "PROOF";
   options: Record<string, string> | null;
@@ -26,6 +27,7 @@ type SubmitResult = {
 };
 
 export function AttemptForm({
+  sessionId,
   questionId,
   answerType,
   options,
@@ -39,9 +41,10 @@ export function AttemptForm({
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState<SubmitResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (result) return; // stop the timer once answered
+    if (result) return;
     const interval = setInterval(() => {
       setElapsedSeconds(Math.round((Date.now() - startedAtMs.current) / 1000));
     }, 1000);
@@ -53,15 +56,28 @@ export function AttemptForm({
   async function handleSubmit() {
     if (!answer.trim() || submitting) return;
     setSubmitting(true);
+    setError(null);
     try {
       const res = await submitAnswerAction({
+        sessionId,
         questionId,
         userAnswer: answer,
         startedAtMs: startedAtMs.current,
         hintLevelUsed: revealedHintLevel || null,
-        confidenceRating: null, // confidence rating UI is a follow-up addition, not in this pass
+        confidenceRating: null,
       });
-      setResult(res);
+      if (res.error || res.correctAnswer === null) {
+        setError(res.error ?? "Something went wrong.");
+        return;
+      }
+      setResult({
+        isCorrect: res.isCorrect ?? undefined,
+        correctAnswer: res.correctAnswer,
+        solutionMarkdown: res.solutionMarkdown ?? "",
+        newRating: res.newRating ?? 0,
+      });
+    } catch {
+      setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -70,13 +86,25 @@ export function AttemptForm({
   async function handleSurrender() {
     if (!canSurrender || submitting) return;
     setSubmitting(true);
+    setError(null);
     try {
       const res = await surrenderAction({
+        sessionId,
         questionId,
         startedAtMs: startedAtMs.current,
         hintLevelUsed: revealedHintLevel || null,
       });
-      setResult(res);
+      if (res.error || res.correctAnswer === null) {
+        setError(res.error ?? "Something went wrong.");
+        return;
+      }
+      setResult({
+        correctAnswer: res.correctAnswer,
+        solutionMarkdown: res.solutionMarkdown ?? "",
+        newRating: res.newRating ?? 0,
+      });
+    } catch {
+      setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -85,7 +113,7 @@ export function AttemptForm({
   if (result) {
     return (
       <div className="mt-6">
-        {"isCorrect" in result && (
+        {"isCorrect" in result && result.isCorrect !== undefined && (
           <div
             className={`rounded-lg border px-4 py-3 text-sm font-medium ${
               result.isCorrect
@@ -96,7 +124,7 @@ export function AttemptForm({
             {result.isCorrect ? "Correct." : `Not quite. Correct answer: ${result.correctAnswer}`}
           </div>
         )}
-        {!("isCorrect" in result) && (
+        {(!("isCorrect" in result) || result.isCorrect === undefined) && (
           <div className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-3 text-sm text-neutral-300">
             Correct answer: {result.correctAnswer}
           </div>
@@ -129,6 +157,12 @@ export function AttemptForm({
       <div className="mb-4 font-mono text-xs text-neutral-500">
         {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
       </div>
+
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm text-red-300">
+          {error}
+        </div>
+      )}
 
       {answerType === "NUMERIC" && (
         <input
@@ -201,7 +235,7 @@ export function AttemptForm({
           disabled={!answer.trim() || submitting}
           className="rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-40"
         >
-          Submit
+          {submitting ? "Submitting..." : "Submit"}
         </button>
         <button
           onClick={handleSurrender}

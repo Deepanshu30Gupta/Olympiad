@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { getActiveSession } from "@/services/session-service";
 
 export default async function DashboardPage() {
   const clerkUser = await currentUser();
@@ -17,6 +18,8 @@ export default async function DashboardPage() {
     );
   }
 
+  const activeSession = await getActiveSession(dbUser.id);
+
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
       <h1 className="text-2xl font-semibold text-neutral-100">
@@ -30,18 +33,31 @@ export default async function DashboardPage() {
         <StatCard label="Attempted" value={dbUser.totalAttempted} />
       </div>
 
-      <div className="mt-10">
-        <Link
-          href="/onboarding"
-          className="inline-block rounded-lg bg-[#5B8DEF] px-6 py-3 text-sm font-medium text-white hover:bg-[#4A7CDE]"
-        >
-          Start Practice Session →
-        </Link>
+      <div className="mt-10 flex gap-3">
+        {activeSession ? (
+          <>
+            <Link
+              href={`/practice?sessionId=${activeSession.id}`}
+              className="rounded-lg bg-[#5B8DEF] px-6 py-3 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+            >
+              Resume Session ({activeSession.questionsCompleted} done) →
+            </Link>
+            <Link
+              href="/onboarding"
+              className="rounded-lg border border-neutral-800 px-6 py-3 text-sm font-medium text-neutral-300 hover:border-neutral-700"
+            >
+              Start New Session
+            </Link>
+          </>
+        ) : (
+          <Link
+            href="/onboarding"
+            className="rounded-lg bg-[#5B8DEF] px-6 py-3 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+          >
+            Start Practice Session →
+          </Link>
+        )}
       </div>
-
-      {/* Per-topic breakdown, attempt history charts, daily goal progress:
-          real analytics, deliberately not built yet — this is the
-          placeholder home base the practice loop launches from. */}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { EXAM_TYPES } from "@/lib/exam-types";
+import { createSessionAction, updateSessionFocusAction } from "@/app/practice/actions";
 
 interface TopicNode {
   id: string;
@@ -11,25 +12,47 @@ interface TopicNode {
   children: { id: string; slug: string; name: string }[];
 }
 
-export function OnboardingWizard({ categories }: { categories: TopicNode[] }) {
+export function OnboardingWizard({
+  categories,
+  existingSessionId,
+}: {
+  categories: TopicNode[];
+  existingSessionId?: string;
+}) {
   const router = useRouter();
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [examTypes, setExamTypes] = useState<string[]>([]);
   const [categorySlugs, setCategorySlugs] = useState<string[]>([]);
   const [subtopicSlugs, setSubtopicSlugs] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const selectedCategories = categories.filter((c) => categorySlugs.includes(c.slug));
-  // Subtopic step only makes sense when exactly one category was picked —
-  // with multiple categories, their subtopics don't combine meaningfully,
-  // so we skip straight to practice instead of a confusing mixed list.
   const showSubtopicStep =
     selectedCategories.length === 1 && selectedCategories[0].children.length > 0;
 
-  function goToPractice(topics: string[]) {
-    const params = new URLSearchParams();
-    if (examTypes.length > 0) params.set("examTypes", examTypes.join(","));
-    if (topics.length > 0) params.set("topicFocus", topics.join(","));
-    router.push(`/practice${params.toString() ? `?${params}` : ""}`);
+  async function goToPractice(topics: string[]) {
+    setSubmitting(true);
+    setError(null);
+    try {
+      if (existingSessionId) {
+        const res = await updateSessionFocusAction(existingSessionId, examTypes, topics);
+        if (res.error) {
+          setError(res.error);
+          return;
+        }
+        router.push(`/practice?sessionId=${existingSessionId}`);
+      } else {
+        const res = await createSessionAction(examTypes, topics);
+        if (res.error || !res.sessionId) {
+          setError(res.error ?? "Something went wrong.");
+          return;
+        }
+        router.push(`/practice?sessionId=${res.sessionId}`);
+      }
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function toggle(list: string[], setList: (v: string[]) => void, value: string) {
@@ -54,6 +77,12 @@ export function OnboardingWizard({ categories }: { categories: TopicNode[] }) {
         <StepDot active={step >= 2} />
       </div>
 
+      {error && (
+        <div className="mb-6 rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm text-red-300">
+          {error}
+        </div>
+      )}
+
       {step === 0 && (
         <StepPanel
           title="What are you preparing for?"
@@ -64,6 +93,7 @@ export function OnboardingWizard({ categories }: { categories: TopicNode[] }) {
             setStep(1);
           }}
           onContinue={() => setStep(1)}
+          disabled={submitting}
         >
           <div className="grid grid-cols-2 gap-3">
             {EXAM_TYPES.map((e) => (
@@ -87,6 +117,7 @@ export function OnboardingWizard({ categories }: { categories: TopicNode[] }) {
           onSkip={() => goToPractice([])}
           onBack={() => setStep(0)}
           onContinue={handleCategoryContinue}
+          disabled={submitting}
         >
           <div className="grid grid-cols-2 gap-3">
             {categories.map((c) => (
@@ -114,6 +145,7 @@ export function OnboardingWizard({ categories }: { categories: TopicNode[] }) {
           onContinue={() =>
             goToPractice(subtopicSlugs.length > 0 ? subtopicSlugs : categorySlugs)
           }
+          disabled={submitting}
         >
           <div className="grid grid-cols-2 gap-3">
             {selectedCategories[0].children.map((sub) => (
@@ -139,6 +171,7 @@ function StepPanel({
   onSkip,
   onBack,
   onContinue,
+  disabled,
   children,
 }: {
   title: string;
@@ -147,6 +180,7 @@ function StepPanel({
   onSkip: () => void;
   onBack?: () => void;
   onContinue: () => void;
+  disabled: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -159,7 +193,7 @@ function StepPanel({
         <button onClick={onSelectAll} className="text-[#5B8DEF] hover:text-[#7BA3F5]">
           Select all
         </button>
-        <button onClick={onSkip} className="text-neutral-500 hover:text-neutral-300">
+        <button onClick={onSkip} disabled={disabled} className="text-neutral-500 hover:text-neutral-300">
           Skip this step
         </button>
       </div>
@@ -174,9 +208,10 @@ function StepPanel({
         )}
         <button
           onClick={onContinue}
-          className="rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+          disabled={disabled}
+          className="rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-50"
         >
-          Continue →
+          {disabled ? "..." : "Continue →"}
         </button>
       </div>
     </div>
