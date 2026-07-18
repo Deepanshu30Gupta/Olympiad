@@ -65,6 +65,7 @@ model PracticeSession {
 
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   attempts Attempt[]
+  name String?
 }
 
 model Topic {

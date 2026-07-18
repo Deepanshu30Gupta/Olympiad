@@ -9,7 +9,8 @@ export async function getActiveSession(userId: string) {
 }
 
 /** Ends any existing active session (a user only has one at a time) and
- * starts a fresh one with the given filters. */
+ * starts a fresh one with the given filters. Auto-names it "Session N"
+ * based on how many sessions this user has ever had. */
 export async function createSession(
   userId: string,
   examTypes: string[],
@@ -20,14 +21,27 @@ export async function createSession(
     data: { status: "COMPLETED" },
   });
 
+  const existingCount = await prisma.practiceSession.count({ where: { userId } });
+
   return prisma.practiceSession.create({
-    data: { userId, examTypes, topicFocus },
+    data: {
+      userId,
+      examTypes,
+      topicFocus,
+      name: `Session ${existingCount + 1}`,
+    },
   });
 }
 
-/** Updates an existing session's filters in place (the "choose another
- * topic" path — keeps the same session, questionsCompleted count, and
- * history, just changes what it's pulling from). */
+export async function renameSession(sessionId: string, userId: string, name: string) {
+  // Scoped by userId too, not just sessionId — prevents renaming a
+  // session that isn't yours even if you somehow guessed its id.
+  return prisma.practiceSession.updateMany({
+    where: { id: sessionId, userId },
+    data: { name: name.trim().slice(0, 60) || undefined },
+  });
+}
+
 export async function updateSessionFocus(
   sessionId: string,
   examTypes: string[],
@@ -39,11 +53,6 @@ export async function updateSessionFocus(
   });
 }
 
-/** The core resume logic: if this session already has a question "in
- * progress" (shown but not yet answered), return that exact same
- * question — this is what makes a page refresh or closed tab resumable
- * rather than silently skipping to a new question. Otherwise, ask the
- * recommendation engine for a new one and remember it on the session. */
 export async function getOrPickCurrentQuestion(sessionId: string, userId: string) {
   const session = await prisma.practiceSession.findUniqueOrThrow({
     where: { id: sessionId },
@@ -57,7 +66,6 @@ export async function getOrPickCurrentQuestion(sessionId: string, userId: string
     if (question) {
       return { question, reason: "Resumed — this question was already in progress." };
     }
-    // Fall through if the remembered question somehow no longer exists.
   }
 
   const result = await getNextQuestion(userId, {
@@ -75,9 +83,6 @@ export async function getOrPickCurrentQuestion(sessionId: string, userId: string
   return result;
 }
 
-/** Called after an attempt is submitted — clears the "in progress"
- * question so the next page load picks a fresh one, and increments the
- * session's completed count. */
 export async function advanceSession(sessionId: string) {
   await prisma.practiceSession.update({
     where: { id: sessionId },
