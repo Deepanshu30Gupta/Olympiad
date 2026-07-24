@@ -52,12 +52,9 @@ export default function SignInPage() {
           variables: {
             colorPrimary: "#FF6B4A",
             colorBackground: "#FFFFFF",
-            colorText: "#2B2118",
-            colorTextSecondary: "#6B5D4F",
-            colorInputText: "#2B2118",
             borderRadius: "12px",
             fontFamily: "var(--font-jakarta), sans-serif",
-          },
+            },
           elements: {
             card: {
               boxShadow: "none",
