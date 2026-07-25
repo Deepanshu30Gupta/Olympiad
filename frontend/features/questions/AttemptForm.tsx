@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
 import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
 import { Spinner } from "@/components/ui/Spinner";
+import { ratingToStars } from "@/lib/rating-display";
 
 interface Hint {
   level: number;
@@ -25,6 +26,7 @@ type SubmitResult = {
   correctAnswer: string;
   solutionMarkdown: string;
   newRating: number;
+  previousRating: number;
 };
 
 export function AttemptForm({
@@ -40,23 +42,27 @@ export function AttemptForm({
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [revealedHintLevel, setRevealedHintLevel] = useState(0);
   const [answer, setAnswer] = useState("");
+  const [submittedAnswer, setSubmittedAnswer] = useState<string | null>(null);
   const [result, setResult] = useState<SubmitResult | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [pendingWrongResult, setPendingWrongResult] = useState<SubmitResult | null>(null);
+  const [loadingAction, setLoadingAction] = useState<"submit" | "surrender" | "next" | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const done = result !== null;
+
   useEffect(() => {
-    if (result) return;
+    if (done || pendingWrongResult) return;
     const interval = setInterval(() => {
       setElapsedSeconds(Math.round((Date.now() - startedAtMs.current) / 1000));
     }, 1000);
     return () => clearInterval(interval);
-  }, [result]);
+  }, [done, pendingWrongResult]);
 
   const canSurrender = elapsedSeconds >= surrenderLockSeconds;
 
   async function handleSubmit() {
-    if (!answer.trim() || submitting) return;
-    setSubmitting(true);
+    if (!answer.trim() || loadingAction) return;
+    setLoadingAction("submit");
     setError(null);
     try {
       const res = await submitAnswerAction({
@@ -71,22 +77,29 @@ export function AttemptForm({
         setError(res.error ?? "Something went wrong.");
         return;
       }
-      setResult({
+      setSubmittedAnswer(answer);
+      const finalResult: SubmitResult = {
         isCorrect: res.isCorrect ?? undefined,
         correctAnswer: res.correctAnswer,
         solutionMarkdown: res.solutionMarkdown ?? "",
         newRating: res.newRating ?? 0,
-      });
+        previousRating: res.previousRating ?? res.newRating ?? 0,
+      };
+      if (res.isCorrect) {
+        setResult(finalResult);
+      } else {
+        setPendingWrongResult(finalResult);
+      }
     } catch {
       setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
-      setSubmitting(false);
+      setLoadingAction(null);
     }
   }
 
   async function handleSurrender() {
-    if (!canSurrender || submitting) return;
-    setSubmitting(true);
+    if (!canSurrender || loadingAction) return;
+    setLoadingAction("surrender");
     setError(null);
     try {
       const res = await surrenderAction({
@@ -103,15 +116,76 @@ export function AttemptForm({
         correctAnswer: res.correctAnswer,
         solutionMarkdown: res.solutionMarkdown ?? "",
         newRating: res.newRating ?? 0,
+        previousRating: res.previousRating ?? res.newRating ?? 0,
       });
     } catch {
       setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
-      setSubmitting(false);
+      setLoadingAction(null);
     }
   }
 
+  function handleNextQuestion() {
+    setLoadingAction("next");
+    router.refresh();
+  }
+
+  function revealFromPending() {
+    if (pendingWrongResult) {
+      setResult(pendingWrongResult);
+      setPendingWrongResult(null);
+    }
+  }
+
+  const nextHint = hints.find((h) => h.level === revealedHintLevel + 1);
+
+  if (pendingWrongResult && !done) {
+    return (
+      <div className="mt-6">
+        <div className="rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm font-medium text-red-300">
+          Not quite.
+        </div>
+
+        {revealedHintLevel > 0 && (
+          <div className="mt-3 flex flex-col gap-2">
+            {hints
+              .filter((h) => h.level <= revealedHintLevel)
+              .map((h) => (
+                <div key={h.level} className="rounded-lg bg-amber-950/30 px-3 py-2 text-xs text-amber-200">
+                  Hint {h.level}: {h.content}
+                </div>
+              ))}
+          </div>
+        )}
+
+        <p className="mt-4 text-sm text-neutral-400">
+          {nextHint ? "Want a hint before we show the answer?" : "Ready to see the answer?"}
+        </p>
+        <div className="mt-3 flex gap-3">
+          {nextHint && (
+            <button
+              onClick={() => setRevealedHintLevel(nextHint.level)}
+              className="rounded-lg border border-amber-700 bg-amber-950/60 px-4 py-2 text-sm font-medium text-amber-200 transition-colors hover:bg-amber-900/60"
+            >
+              Get a hint
+            </button>
+          )}
+          <button
+            onClick={revealFromPending}
+            className="rounded-lg bg-[#5B8DEF] px-4 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+          >
+            Show correct answer
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (result) {
+    const beforeStars = ratingToStars(result.previousRating);
+    const afterStars = ratingToStars(result.newRating);
+    const delta = Math.round((afterStars - beforeStars) * 10) / 10;
+
     return (
       <div className="mt-6">
         {"isCorrect" in result && result.isCorrect !== undefined && (
@@ -122,12 +196,30 @@ export function AttemptForm({
                 : "border-red-900 bg-red-950 text-red-300"
             }`}
           >
-            {result.isCorrect ? "Correct." : `Not quite. Correct answer: ${result.correctAnswer}`}
+            {result.isCorrect ? "Correct." : "Here's the answer:"}
           </div>
         )}
         {(!("isCorrect" in result) || result.isCorrect === undefined) && (
-          <div className="rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-3 text-sm text-neutral-300">
+          <div className="rounded-lg border border-emerald-800 bg-emerald-950 px-4 py-3 text-sm text-emerald-300">
             Correct answer: {result.correctAnswer}
+          </div>
+        )}
+
+        {submittedAnswer && (
+          <div
+            className={`mt-2 rounded-lg border px-4 py-3 text-sm ${
+              result.isCorrect
+                ? "border-emerald-800 bg-emerald-950 text-emerald-300"
+                : "border-red-900 bg-red-950 text-red-300"
+            }`}
+          >
+            Your answer: {submittedAnswer}
+            {!result.isCorrect && result.isCorrect !== undefined && (
+              <span className="ml-2 text-neutral-400">
+                — Correct answer:{" "}
+                <span className="font-semibold text-emerald-400">{result.correctAnswer}</span>
+              </span>
+            )}
           </div>
         )}
 
@@ -135,7 +227,7 @@ export function AttemptForm({
           <div className="mt-4 flex flex-col gap-2">
             {Object.entries(options).map(([key, val]) => {
               const isCorrectOption = key === result.correctAnswer;
-              const isUserWrongPick = key === answer && key !== result.correctAnswer;
+              const isUserWrongPick = key === submittedAnswer && key !== result.correctAnswer;
               return (
                 <div
                   key={key}
@@ -155,8 +247,19 @@ export function AttemptForm({
           </div>
         )}
 
-        <div className="mt-4 font-mono text-xs text-neutral-500">
-          Updated rating: {result.newRating}
+        <div className="mt-4 flex items-center gap-3">
+          <span className="font-bold text-neutral-100" style={{ fontFamily: "var(--font-fredoka, inherit)" }}>
+            ★ {afterStars}
+          </span>
+          {delta !== 0 && (
+            <span
+              className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${
+                delta > 0 ? "bg-emerald-950 text-emerald-400" : "bg-red-950 text-red-400"
+              }`}
+            >
+              {delta > 0 ? "▲" : "▼"} {Math.abs(delta)}
+            </span>
+          )}
         </div>
 
         <div className="mt-6 border-t border-neutral-800 pt-4">
@@ -168,9 +271,11 @@ export function AttemptForm({
         </div>
 
         <button
-          onClick={() => router.refresh()}
-          className="mt-6 rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+          onClick={handleNextQuestion}
+          disabled={loadingAction === "next"}
+          className="mt-6 flex items-center gap-2 rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-60"
         >
+          {loadingAction === "next" && <Spinner />}
           Next Question →
         </button>
       </div>
@@ -243,7 +348,7 @@ export function AttemptForm({
                   alreadyRevealed
                     ? "border-amber-900 bg-amber-950/40 text-amber-300 opacity-50"
                     : locked
-                      ? "border-neutral-800 bg-neutral-900 text-neutral-600 cursor-not-allowed"
+                      ? "cursor-not-allowed border-neutral-800 bg-neutral-900 text-neutral-600"
                       : "border-amber-700 bg-amber-950/60 text-amber-200 hover:bg-amber-900/60"
                 }`}
               >
@@ -259,10 +364,7 @@ export function AttemptForm({
           {hints
             .filter((h) => h.level <= revealedHintLevel)
             .map((h) => (
-              <div
-                key={h.level}
-                className="rounded-lg bg-amber-950/30 px-3 py-2 text-xs text-amber-200"
-              >
+              <div key={h.level} className="rounded-lg bg-amber-950/30 px-3 py-2 text-xs text-amber-200">
                 {h.content}
               </div>
             ))}
@@ -272,18 +374,19 @@ export function AttemptForm({
       <div className="mt-6 flex items-center gap-3">
         <button
           onClick={handleSubmit}
-          disabled={!answer.trim() || submitting}
+          disabled={!answer.trim() || loadingAction !== null}
           className="flex items-center gap-2 rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-40"
         >
-          {submitting && <Spinner />}
-          {submitting ? "Submitting..." : "Submit"}
+          {loadingAction === "submit" && <Spinner />}
+          {loadingAction === "submit" ? "Submitting..." : "Submit"}
         </button>
         <button
           onClick={handleSurrender}
-          disabled={!canSurrender || submitting}
+          disabled={!canSurrender || loadingAction !== null}
           title={!canSurrender ? `Available after ${surrenderLockSeconds}s` : undefined}
-          className="text-sm text-neutral-500 hover:text-neutral-300 disabled:opacity-30"
+          className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-300 disabled:opacity-30"
         >
+          {loadingAction === "surrender" && <Spinner />}
           {canSurrender ? "Give up, show solution" : `Give up (available in ${surrenderLockSeconds - elapsedSeconds}s)`}
         </button>
       </div>

@@ -18,7 +18,7 @@ interface ExamTypeOption {
   label: string;
 }
 
-const STEP_LABELS = ["Exam focus", "Topic areas", "Subtopics"];
+type LoadingAction = "continue" | "skip" | null;
 
 export function OnboardingWizard({
   categories,
@@ -35,14 +35,21 @@ export function OnboardingWizard({
   const [categorySlugs, setCategorySlugs] = useState<string[]>([]);
   const [subtopicSlugs, setSubtopicSlugs] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [loadingAction, setLoadingAction] = useState<LoadingAction>(null);
 
   const selectedCategories = categories.filter((c) => categorySlugs.includes(c.slug));
   const showSubtopicStep =
     selectedCategories.length === 1 && selectedCategories[0].children.length > 0;
 
-  async function goToPractice(topics: string[]) {
-    setSubmitting(true);
+  // The indicator (and step numbering) reflects however many steps are
+  // ACTUALLY reachable given current selections — 2 steps once more than
+  // one category is picked (or one with no subtopics), not always 3.
+  const stepLabels = showSubtopicStep
+    ? ["Exam focus", "Topic areas", "Subtopics"]
+    : ["Exam focus", "Topic areas"];
+
+  async function goToPractice(topics: string[], action: LoadingAction) {
+    setLoadingAction(action);
     setError(null);
     try {
       if (existingSessionId) {
@@ -61,7 +68,7 @@ export function OnboardingWizard({
         router.push(`/practice?sessionId=${res.sessionId}`);
       }
     } finally {
-      setSubmitting(false);
+      setLoadingAction(null);
     }
   }
 
@@ -69,18 +76,27 @@ export function OnboardingWizard({
     setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
   }
 
+  // Dedicated category toggle — also resets subtopic selection, since a
+  // previously chosen subtopic no longer makes sense once the category
+  // set has changed (this was the reported bug: going back and picking
+  // a different category left the old subtopic selection lingering).
+  function toggleCategory(slug: string) {
+    setCategorySlugs((prev) => (prev.includes(slug) ? prev.filter((v) => v !== slug) : [...prev, slug]));
+    setSubtopicSlugs([]);
+  }
+
   function handleCategoryContinue() {
     if (showSubtopicStep) {
       setStep(2);
     } else {
-      goToPractice(categorySlugs);
+      goToPractice(categorySlugs, "continue");
     }
   }
 
   return (
-    <div className="mx-auto flex min-h-[70vh] max-w-xl flex-col justify-center px-6 text-[#2B2118] dark:text-neutral-100">
+    <div className="mx-auto flex min-h-[70vh] max-w-xl flex-col px-6 pt-16 text-[#2B2118] dark:text-neutral-100">
       <div className="mb-10 flex items-center justify-center">
-        {STEP_LABELS.map((label, i) => (
+        {stepLabels.map((label, i) => (
           <div key={label} className="flex items-center">
             <div className="flex flex-col items-center gap-2">
               <div
@@ -96,15 +112,13 @@ export function OnboardingWizard({
               </div>
               <span
                 className={`text-[10px] font-semibold uppercase tracking-wide ${
-                  i === step
-                    ? "text-[#2B2118] dark:text-neutral-100"
-                    : "text-[#6B5D4F] dark:text-neutral-500"
+                  i === step ? "text-[#2B2118] dark:text-neutral-100" : "text-[#6B5D4F] dark:text-neutral-500"
                 }`}
               >
                 {label}
               </span>
             </div>
-            {i < STEP_LABELS.length - 1 && (
+            {i < stepLabels.length - 1 && (
               <div
                 className={`mx-2 mb-4 h-1 w-12 rounded-full transition-colors duration-300 ${
                   i < step ? "bg-[#6FCF52]" : "bg-[#F0E6D6] dark:bg-neutral-800"
@@ -144,7 +158,8 @@ export function OnboardingWizard({
             setStep(1);
           }}
           onContinue={() => setStep(1)}
-          submitting={submitting}
+          loadingAction={loadingAction}
+          requireSelection={true}
         >
           {availableExamTypes.length === 0 ? (
             <p className="text-sm text-[#6B5D4F] dark:text-neutral-500">
@@ -172,18 +187,22 @@ export function OnboardingWizard({
           subtitle="Pick as many as apply, or skip to practice a mix of everything."
           selectedCount={categorySlugs.length}
           onSelectAll={() => setCategorySlugs(categories.map((c) => c.slug))}
-          onClearAll={() => setCategorySlugs([])}
-          onSkip={() => goToPractice([])}
+          onClearAll={() => {
+            setCategorySlugs([]);
+            setSubtopicSlugs([]);
+          }}
+          onSkip={() => goToPractice([], "skip")}
           onBack={() => setStep(0)}
           onContinue={handleCategoryContinue}
-          submitting={submitting}
+          loadingAction={loadingAction}
+          requireSelection={true}
         >
           <div className="grid grid-cols-2 gap-3">
             {categories.map((c) => (
               <PickButton
                 key={c.id}
                 selected={categorySlugs.includes(c.slug)}
-                onClick={() => toggle(categorySlugs, setCategorySlugs, c.slug)}
+                onClick={() => toggleCategory(c.slug)}
               >
                 {c.name}
               </PickButton>
@@ -199,10 +218,13 @@ export function OnboardingWizard({
           selectedCount={subtopicSlugs.length}
           onSelectAll={() => setSubtopicSlugs(selectedCategories[0].children.map((c) => c.slug))}
           onClearAll={() => setSubtopicSlugs([])}
-          onSkip={() => goToPractice(categorySlugs)}
+          onSkip={() => goToPractice(categorySlugs, "skip")}
           onBack={() => setStep(1)}
-          onContinue={() => goToPractice(subtopicSlugs.length > 0 ? subtopicSlugs : categorySlugs)}
-          submitting={submitting}
+          onContinue={() =>
+            goToPractice(subtopicSlugs.length > 0 ? subtopicSlugs : categorySlugs, "continue")
+          }
+          loadingAction={loadingAction}
+          requireSelection={true}
         >
           <div className="grid grid-cols-2 gap-3">
             {selectedCategories[0].children.map((sub) => (
@@ -234,7 +256,8 @@ function StepPanel({
   onSkip,
   onBack,
   onContinue,
-  submitting,
+  loadingAction,
+  requireSelection,
   children,
 }: {
   title: string;
@@ -245,23 +268,21 @@ function StepPanel({
   onSkip: () => void;
   onBack?: () => void;
   onContinue: () => void;
-  submitting: boolean;
+  loadingAction: LoadingAction;
+  // Step 0 (exam focus) is fine with 0 selected + Continue (it's genuinely
+  // optional to have an exam preference). Steps 1/2 require picking
+  // SOMETHING to Continue — 0 selected there means "use Skip instead."
+  requireSelection: boolean;
   children: React.ReactNode;
 }) {
+  const isLoading = loadingAction !== null;
+  const continueDisabled = isLoading || (requireSelection && selectedCount === 0);
+
   return (
     <div>
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold">{title}</h1>
-          <p className="mt-2 text-sm text-[#6B5D4F] dark:text-neutral-400">{subtitle}</p>
-        </div>
-        <button
-          onClick={onSkip}
-          disabled={submitting}
-          className="shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium text-[#6B5D4F] transition-colors hover:bg-[#F0E6D6] hover:text-[#2B2118] dark:text-neutral-500 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
-        >
-          Skip this step →
-        </button>
+      <div>
+        <h1 className="text-2xl font-semibold">{title}</h1>
+        <p className="mt-2 text-sm text-[#6B5D4F] dark:text-neutral-400">{subtitle}</p>
       </div>
 
       <div className="mt-5 flex items-center justify-between text-sm">
@@ -292,7 +313,7 @@ function StepPanel({
         {onBack ? (
           <button
             onClick={onBack}
-            disabled={submitting}
+            disabled={isLoading}
             className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm text-[#6B5D4F] transition-colors hover:bg-[#F0E6D6] hover:text-[#2B2118] dark:text-neutral-500 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
           >
             ← Back
@@ -300,14 +321,25 @@ function StepPanel({
         ) : (
           <span />
         )}
-        <button
-          onClick={onContinue}
-          disabled={submitting}
-          className="flex items-center gap-2 rounded-lg bg-[#FF6B4A] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#D9502F] hover:shadow-md active:scale-[0.98] disabled:opacity-60 dark:bg-[#FF7A5C] dark:hover:bg-[#FF6B4A]"
-        >
-          {submitting && <Spinner />}
-          {submitting ? "Loading..." : "Continue →"}
-        </button>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onSkip}
+            disabled={isLoading}
+            className="flex items-center gap-2 rounded-lg border border-[#F0E6D6] bg-white px-4 py-2.5 text-sm font-medium text-[#6B5D4F] transition-colors hover:border-[#FF6B4A]/40 hover:text-[#2B2118] disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
+          >
+            {loadingAction === "skip" && <Spinner />}
+            Skip this step
+          </button>
+          <button
+            onClick={onContinue}
+            disabled={continueDisabled}
+            className="flex items-center gap-2 rounded-lg bg-[#FF6B4A] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#D9502F] hover:shadow-md active:scale-[0.98] disabled:opacity-50 dark:bg-[#FF7A5C] dark:hover:bg-[#FF6B4A]"
+          >
+            {loadingAction === "continue" && <Spinner />}
+            Continue →
+          </button>
+        </div>
       </div>
     </div>
   );

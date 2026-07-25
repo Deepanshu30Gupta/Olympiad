@@ -72,6 +72,7 @@ export async function submitAnswerAction(input: SubmitAnswerInput) {
       correctAnswer: question.correctAnswer,
       solutionMarkdown: question.solutionMarkdown,
       newRating: result.primaryStudentRatingAfter,
+      previousRating: result.primaryStudentRatingBefore,
       error: null,
     };
   } catch (err) {
@@ -81,6 +82,7 @@ export async function submitAnswerAction(input: SubmitAnswerInput) {
       correctAnswer: null,
       solutionMarkdown: null,
       newRating: null,
+      previousRating: null,
       error: "Couldn't submit your answer. Please try again.",
     };
   }
@@ -116,6 +118,7 @@ export async function surrenderAction(input: SurrenderInput) {
       correctAnswer: question.correctAnswer,
       solutionMarkdown: question.solutionMarkdown,
       newRating: result.primaryStudentRatingAfter,
+      previousRating: result.primaryStudentRatingBefore,
       error: null,
     };
   } catch (err) {
@@ -124,6 +127,7 @@ export async function surrenderAction(input: SurrenderInput) {
       correctAnswer: null,
       solutionMarkdown: null,
       newRating: null,
+      previousRating: null,
       error: "Couldn't submit. Please try again.",
     };
   }

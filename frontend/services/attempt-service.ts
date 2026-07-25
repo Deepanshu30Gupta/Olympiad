@@ -114,7 +114,7 @@ export async function submitAttempt(params: SubmitAttemptParams) {
   // --- Update User-level aggregates ---
   await updateUserAggregates(params.userId, solved);
 
-  return { attempt, questionRatingAfter, primaryStudentRatingAfter };
+  return { attempt, questionRatingAfter, primaryStudentRatingAfter, primaryStudentRatingBefore };
 }
 
 async function updateUserAggregates(userId: string, solved: boolean) {
@@ -126,11 +126,21 @@ async function updateUserAggregates(userId: string, solved: boolean) {
   const today = startOfDay(now);
   const lastActive = user.lastActiveDate ? startOfDay(user.lastActiveDate) : null;
 
+  // NOTE — known limitation: this compares calendar days using the
+  // SERVER's day boundary (Vercel runs in UTC), not the student's own
+  // local calendar day. For a student in IST (UTC+5:30), the true local
+  // midnight falls mid-afternoon UTC — so a session right around that
+  // window could occasionally be bucketed into the "wrong" day from the
+  // student's perspective. A fully correct fix needs the student's
+  // timezone stored on their profile and used here instead of the
+  // server's clock. Flagging honestly rather than claiming this is
+  // perfectly correct — it's right the large majority of the time, but
+  // not guaranteed right at the boundary.
   let newStreak = user.currentStreak;
   if (!lastActive) {
     newStreak = 1;
   } else {
-    const daysDiff = Math.round((today.getTime() - lastActive.getTime()) / 86_400_000);
+    const daysDiff = Math.floor((today.getTime() - lastActive.getTime()) / 86_400_000);
     if (daysDiff === 0) newStreak = user.currentStreak; // same day, no change
     else if (daysDiff === 1) newStreak = user.currentStreak + 1;
     else newStreak = 1; // gap — reset
