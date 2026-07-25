@@ -45,7 +45,22 @@ interface SubmitAnswerInput {
   confidenceRating: number | null;
 }
 
-export async function submitAnswerAction(input: SubmitAnswerInput) {
+// Explicit return type — without this, TypeScript infers the return type
+// from the two differently-shaped object literals below (success vs.
+// catch-block failure) as an unnamed union, and chaining `??` across
+// that inferred union can confuse its control-flow narrowing (this is
+// exactly what broke the build). Declaring the shape once up front
+// removes the ambiguity entirely.
+interface SubmitAnswerResult {
+  isCorrect: boolean | null;
+  correctAnswer: string | null;
+  solutionMarkdown: string | null;
+  newRating: number | null;
+  previousRating: number | null;
+  error: string | null;
+}
+
+export async function submitAnswerAction(input: SubmitAnswerInput): Promise<SubmitAnswerResult> {
   try {
     const dbUser = await requireDbUser();
     const question = await prisma.question.findUniqueOrThrow({
@@ -95,7 +110,15 @@ interface SurrenderInput {
   hintLevelUsed: number | null;
 }
 
-export async function surrenderAction(input: SurrenderInput) {
+interface SurrenderResult {
+  correctAnswer: string | null;
+  solutionMarkdown: string | null;
+  newRating: number | null;
+  previousRating: number | null;
+  error: string | null;
+}
+
+export async function surrenderAction(input: SurrenderInput): Promise<SurrenderResult> {
   try {
     const dbUser = await requireDbUser();
     const question = await prisma.question.findUniqueOrThrow({
