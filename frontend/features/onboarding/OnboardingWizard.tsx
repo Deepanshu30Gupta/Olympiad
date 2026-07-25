@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { EXAM_TYPES } from "@/lib/exam-types";
 import { createSessionAction, updateSessionFocusAction } from "@/app/practice/actions";
+import { Spinner } from "@/components/ui/Spinner";
 
 interface TopicNode {
   id: string;
@@ -13,13 +13,20 @@ interface TopicNode {
   children: { id: string; slug: string; name: string }[];
 }
 
+interface ExamTypeOption {
+  code: string;
+  label: string;
+}
+
 const STEP_LABELS = ["Exam focus", "Topic areas", "Subtopics"];
 
 export function OnboardingWizard({
   categories,
+  availableExamTypes,
   existingSessionId,
 }: {
   categories: TopicNode[];
+  availableExamTypes: ExamTypeOption[];
   existingSessionId?: string;
 }) {
   const router = useRouter();
@@ -112,26 +119,32 @@ export function OnboardingWizard({
           title="What are you preparing for?"
           subtitle="Pick as many as apply — this shapes which questions you'll see."
           selectedCount={examTypes.length}
-          onSelectAll={() => setExamTypes(EXAM_TYPES.map((e) => e.code))}
+          onSelectAll={() => setExamTypes(availableExamTypes.map((e) => e.code))}
           onClearAll={() => setExamTypes([])}
           onSkip={() => {
             setExamTypes([]);
             setStep(1);
           }}
           onContinue={() => setStep(1)}
-          disabled={submitting}
+          submitting={submitting}
         >
-          <div className="grid grid-cols-2 gap-3">
-            {EXAM_TYPES.map((e) => (
-              <PickButton
-                key={e.code}
-                selected={examTypes.includes(e.code)}
-                onClick={() => toggle(examTypes, setExamTypes, e.code)}
-              >
-                {e.label}
-              </PickButton>
-            ))}
-          </div>
+          {availableExamTypes.length === 0 ? (
+            <p className="text-sm text-[#6B5D4F] dark:text-neutral-500">
+              No exam-tagged questions available yet — skip this step for now.
+            </p>
+          ) : (
+            <div className="grid grid-cols-2 gap-3">
+              {availableExamTypes.map((e) => (
+                <PickButton
+                  key={e.code}
+                  selected={examTypes.includes(e.code)}
+                  onClick={() => toggle(examTypes, setExamTypes, e.code)}
+                >
+                  {e.label}
+                </PickButton>
+              ))}
+            </div>
+          )}
         </StepPanel>
       )}
 
@@ -145,7 +158,7 @@ export function OnboardingWizard({
           onSkip={() => goToPractice([])}
           onBack={() => setStep(0)}
           onContinue={handleCategoryContinue}
-          disabled={submitting}
+          submitting={submitting}
         >
           <div className="grid grid-cols-2 gap-3">
             {categories.map((c) => (
@@ -171,7 +184,7 @@ export function OnboardingWizard({
           onSkip={() => goToPractice(categorySlugs)}
           onBack={() => setStep(1)}
           onContinue={() => goToPractice(subtopicSlugs.length > 0 ? subtopicSlugs : categorySlugs)}
-          disabled={submitting}
+          submitting={submitting}
         >
           <div className="grid grid-cols-2 gap-3">
             {selectedCategories[0].children.map((sub) => (
@@ -203,7 +216,7 @@ function StepPanel({
   onSkip,
   onBack,
   onContinue,
-  disabled,
+  submitting,
   children,
 }: {
   title: string;
@@ -214,7 +227,7 @@ function StepPanel({
   onSkip: () => void;
   onBack?: () => void;
   onContinue: () => void;
-  disabled: boolean;
+  submitting: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -226,14 +239,12 @@ function StepPanel({
         </div>
         <button
           onClick={onSkip}
-          disabled={disabled}
+          disabled={submitting}
           className="shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium text-[#6B5D4F] transition-colors hover:bg-[#F0E6D6] hover:text-[#2B2118] dark:text-neutral-500 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
         >
           Skip this step →
         </button>
       </div>
-
-      <div className="mt-8">{children}</div>
 
       <div className="mt-5 flex items-center justify-between text-sm">
         <span className="font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
@@ -246,19 +257,24 @@ function StepPanel({
           >
             Select all
           </button>
-          <button
-            onClick={onClearAll}
-            className="font-medium text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-200"
-          >
-            Clear all
-          </button>
+          {selectedCount > 0 && (
+            <button
+              onClick={onClearAll}
+              className="font-medium text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-200"
+            >
+              Clear all
+            </button>
+          )}
         </div>
       </div>
+
+      <div className="mt-4">{children}</div>
 
       <div className="mt-8 flex items-center justify-between">
         {onBack ? (
           <button
             onClick={onBack}
+            disabled={submitting}
             className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm text-[#6B5D4F] transition-colors hover:bg-[#F0E6D6] hover:text-[#2B2118] dark:text-neutral-500 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
           >
             ← Back
@@ -268,10 +284,11 @@ function StepPanel({
         )}
         <button
           onClick={onContinue}
-          disabled={disabled}
-          className="rounded-lg bg-[#FF6B4A] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#D9502F] hover:shadow-md active:scale-[0.98] disabled:opacity-50 dark:bg-[#FF7A5C] dark:hover:bg-[#FF6B4A]"
+          disabled={submitting}
+          className="flex items-center gap-2 rounded-lg bg-[#FF6B4A] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#D9502F] hover:shadow-md active:scale-[0.98] disabled:opacity-60 dark:bg-[#FF7A5C] dark:hover:bg-[#FF6B4A]"
         >
-          {disabled ? "..." : "Continue →"}
+          {submitting && <Spinner />}
+          {submitting ? "Loading..." : "Continue →"}
         </button>
       </div>
     </div>

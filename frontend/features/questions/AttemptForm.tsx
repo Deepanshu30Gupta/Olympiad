@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
 import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
+import { Spinner } from "@/components/ui/Spinner";
 
 interface Hint {
   level: number;
@@ -233,8 +234,9 @@ export function AttemptForm({
         <button
           onClick={handleSubmit}
           disabled={!answer.trim() || submitting}
-          className="rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-40"
+          className="flex items-center gap-2 rounded-lg bg-[#5B8DEF] px-5 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE] disabled:opacity-40"
         >
+          {submitting && <Spinner />}
           {submitting ? "Submitting..." : "Submit"}
         </button>
         <button
