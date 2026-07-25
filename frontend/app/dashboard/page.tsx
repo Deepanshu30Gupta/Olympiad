@@ -50,33 +50,41 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-[#FFFBF2] text-[#2B2118] dark:bg-neutral-950 dark:text-neutral-100">
       <div className="mx-auto max-w-3xl px-6 py-10">
-        <div className="flex items-start justify-between gap-6">
-          <h1 className="text-2xl font-semibold" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-            Welcome back{dbUser.name ? `, ${dbUser.name}` : ""}
-          </h1>
+        <div className="flex items-center justify-between gap-6">
+          <div>
+            <h1
+              className="text-2xl font-semibold"
+              style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
+            >
+              👋 Welcome back{dbUser.name ? `, ${dbUser.name}` : ""}!
+            </h1>
+            <p className="mt-1 text-sm text-[#6B5D4F] dark:text-neutral-500">
+              ★ {stars} overall rating
+            </p>
+          </div>
 
-          <div className="shrink-0 rounded-2xl border border-[#F0E6D6] bg-white px-4 py-3 text-right dark:border-neutral-800 dark:bg-neutral-900">
-            <div className="flex items-center justify-end gap-1.5 text-xs font-semibold text-[#6B5D4F] dark:text-neutral-400">
-              🔥 Streak
-            </div>
+          {/* No card/border wrapper here — an earlier boxed version left an
+              awkward gap under the heading since the box was taller than
+              the heading row. This sits inline at the same baseline instead. */}
+          <div className="shrink-0 text-right">
+            <div className="text-xs font-semibold text-[#6B5D4F] dark:text-neutral-400">🔥 Streak</div>
             <div
               className="text-xl font-bold text-[#FF6B4A]"
               style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
             >
               {dbUser.currentStreak} day{dbUser.currentStreak !== 1 ? "s" : ""}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#6B5D4F] dark:text-neutral-500">
+            <div className="text-[11px] text-[#6B5D4F] dark:text-neutral-500">
               {dbUser.currentStreak === 0
-                ? "Solve one today to start a streak!"
-                : `Keep practicing today to reach ${streakGoal}!`}
+                ? "Solve one today to start!"
+                : `Keep going to reach ${streakGoal}!`}
             </div>
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-3 gap-3">
-          <StatCard label="Your rating" value={`★ ${stars}`} accent="#4C3AA0" />
-          <StatCard label="Solved" value={dbUser.totalSolved} accent="#2E6B1B" />
-          <StatCard label="Attempted" value={dbUser.totalAttempted} accent="#6B5D4F" />
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          <StatCard label="Questions Attempted" value={dbUser.totalAttempted} accent="#6B5D4F" />
+          <StatCard label="Questions Solved" value={dbUser.totalSolved} accent="#2E6B1B" />
         </div>
 
         <div className="mt-7">

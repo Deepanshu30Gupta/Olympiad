@@ -14,15 +14,19 @@ export default async function PracticePage({
   const clerkUser = await currentUser();
 
   if (!clerkUser) {
-    return <div className="p-8 text-neutral-300">Not signed in.</div>;
+    return (
+      <div className="min-h-screen bg-neutral-950 p-8 text-neutral-300">Not signed in.</div>
+    );
   }
   if (!params.sessionId) {
     return (
-      <div className="mx-auto max-w-2xl p-8 text-neutral-300">
-        <p>No practice session specified.</p>
-        <Link href="/onboarding" className="mt-4 inline-block text-[#5B8DEF] hover:underline">
-          Start a session →
-        </Link>
+      <div className="min-h-screen bg-neutral-950 text-neutral-300">
+        <div className="mx-auto max-w-2xl p-8">
+          <p>No practice session specified.</p>
+          <Link href="/onboarding" className="mt-4 inline-block text-[#5B8DEF] hover:underline">
+            Start a session →
+          </Link>
+        </div>
       </div>
     );
   }
@@ -30,7 +34,7 @@ export default async function PracticePage({
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) {
     return (
-      <div className="p-8 text-neutral-300">
+      <div className="min-h-screen bg-neutral-950 p-8 text-neutral-300">
         Your account is still syncing. Try refreshing in a moment.
       </div>
     );
@@ -40,22 +44,24 @@ export default async function PracticePage({
 
   if (!result.question) {
     return (
-      <div className="mx-auto max-w-2xl p-8 text-neutral-300">
-        <h1 className="text-xl font-semibold">No question available</h1>
-        <p className="mt-2 text-sm text-neutral-500">{result.reason}</p>
-        <div className="mt-6 flex gap-3">
-          <Link
-            href={`/onboarding?sessionId=${params.sessionId}`}
-            className="rounded-lg border border-neutral-800 px-4 py-2 text-sm text-neutral-300 hover:border-neutral-700"
-          >
-            Choose another topic
-          </Link>
-          <Link
-            href="/onboarding"
-            className="rounded-lg bg-[#5B8DEF] px-4 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE]"
-          >
-            Start a new session
-          </Link>
+      <div className="min-h-screen bg-neutral-950 text-neutral-300">
+        <div className="mx-auto max-w-2xl p-8">
+          <h1 className="text-xl font-semibold">No question available</h1>
+          <p className="mt-2 text-sm text-neutral-500">{result.reason}</p>
+          <div className="mt-6 flex gap-3">
+            <Link
+              href={`/onboarding?sessionId=${params.sessionId}`}
+              className="rounded-lg border border-neutral-800 px-4 py-2 text-sm text-neutral-300 hover:border-neutral-700"
+            >
+              Choose another topic
+            </Link>
+            <Link
+              href="/onboarding"
+              className="rounded-lg bg-[#5B8DEF] px-4 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+            >
+              Start a new session
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -66,6 +72,7 @@ export default async function PracticePage({
   };
 
   return (
+    <div className="min-h-screen bg-neutral-950 text-neutral-100">
     <div className="mx-auto max-w-2xl px-6 py-10">
       <Link
         href="/dashboard"
@@ -106,6 +113,7 @@ export default async function PracticePage({
       <div className="mt-8 border-t border-neutral-800 pt-4 font-mono text-xs text-neutral-600">
         {result.reason}
       </div>
+    </div>
     </div>
   );
 }

@@ -60,9 +60,9 @@ export function SessionCard({
   });
 
   return (
-    <div style={{ background: "white", border: "1px solid #F0E6D6", borderRadius: 16, padding: 18 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div className="rounded-2xl border border-[#F0E6D6] bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
           {editing ? (
             <input
               autoFocus
@@ -71,76 +71,46 @@ export function SessionCard({
               onBlur={saveRename}
               onKeyDown={(e) => e.key === "Enter" && saveRename()}
               disabled={saving}
-              style={{
-                fontFamily: "var(--font-fredoka)",
-                fontWeight: 600,
-                fontSize: 16,
-                border: "1px solid #4C3AA0",
-                borderRadius: 8,
-                padding: "4px 8px",
-              }}
+              className="rounded-lg border border-[#4C3AA0] px-2 py-1 text-sm font-semibold text-[#2B2118] dark:border-indigo-500 dark:bg-neutral-800 dark:text-neutral-100"
+              style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
             />
           ) : (
             <button
               onClick={() => setEditing(true)}
-              style={{
-                fontFamily: "var(--font-fredoka)",
-                fontWeight: 600,
-                fontSize: 16,
-                color: "#2B2118",
-                background: "none",
-                border: "none",
-                cursor: "text",
-                padding: 0,
-              }}
               title="Click to rename"
+              className="text-base font-semibold text-[#2B2118] transition-colors hover:text-[#4C3AA0] dark:text-neutral-100 dark:hover:text-indigo-400"
+              style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
             >
               {name}
             </button>
           )}
           {status === "ACTIVE" && (
-            <span
-              style={{
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#2E6B1B",
-                background: "#E6F7E0",
-                padding: "2px 8px",
-                borderRadius: 999,
-              }}
-            >
+            <span className="rounded-full bg-[#E6F7E0] px-2 py-0.5 text-[11px] font-semibold text-[#2E6B1B] dark:bg-emerald-950 dark:text-emerald-300">
               Active
             </span>
           )}
         </div>
-        <span style={{ fontSize: 13, color: "#6B5D4F" }}>{dateLabel}</span>
+        <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">{dateLabel}</span>
       </div>
 
-      <div style={{ display: "flex", gap: 16, marginTop: 10, fontSize: 13 }}>
-        <span style={{ color: "#2E6B1B" }}>{solved} solved</span>
-        <span style={{ color: "#D9502F" }}>{wrong} wrong</span>
-        <span style={{ color: "#6B5D4F" }}>{surrendered} gave up</span>
-        <span style={{ color: "#6B5D4F", marginLeft: "auto" }}>{formatTime(totalTimeSeconds)}</span>
+      <div className="mt-2.5 flex gap-4 text-xs">
+        <span className="text-[#2E6B1B] dark:text-emerald-400">{solved} solved</span>
+        <span className="text-[#D9502F] dark:text-red-400">{wrong} wrong</span>
+        <span className="text-[#6B5D4F] dark:text-neutral-500">{surrendered} gave up</span>
+        <span className="ml-auto text-[#6B5D4F] dark:text-neutral-500">{formatTime(totalTimeSeconds)}</span>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 12 }}>
+      <div className="mt-3 flex items-center justify-between">
         <button
           onClick={() => setOpen(!open)}
-          style={{ fontSize: 13, fontWeight: 600, color: "#4C3AA0", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+          className="text-xs font-semibold text-[#4C3AA0] transition-colors hover:text-[#6650C4] dark:text-indigo-400 dark:hover:text-indigo-300"
         >
           {open ? "Hide" : "Show"} details {open ? "▲" : "▼"}
         </button>
         {status === "ACTIVE" && (
           <Link
             href={`/practice?sessionId=${id}`}
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: "white",
-              background: "#FF6B4A",
-              padding: "6px 14px",
-              borderRadius: 999,
-            }}
+            className="rounded-full bg-[#FF6B4A] px-3.5 py-1.5 text-xs font-semibold text-white transition-all hover:bg-[#D9502F] active:scale-[0.98] dark:bg-[#FF7A5C] dark:hover:bg-[#FF6B4A]"
           >
             Resume →
           </Link>
@@ -148,7 +118,7 @@ export function SessionCard({
       </div>
 
       {open && (
-        <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #F0E6D6", fontSize: 13, color: "#6B5D4F" }}>
+        <div className="mt-3 border-t border-[#F0E6D6] pt-3 text-xs text-[#6B5D4F] dark:border-neutral-800 dark:text-neutral-400">
           {questionsCompleted} question{questionsCompleted !== 1 ? "s" : ""} completed in this session.
         </div>
       )}

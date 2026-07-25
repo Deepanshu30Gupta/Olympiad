@@ -1,3 +1,5 @@
+import { ratingToStars } from "@/lib/rating-display";
+
 interface RatingChartProps {
   points: { date: string; rating: number }[];
 }
@@ -5,24 +7,48 @@ interface RatingChartProps {
 export function RatingChart({ points }: RatingChartProps) {
   if (points.length < 2) {
     return (
-      <div style={{ fontSize: 13, color: "#6B5D4F", padding: "40px 0", textAlign: "center" }}>
+      <div className="py-10 text-center text-sm text-[#6B5D4F] dark:text-neutral-500">
         Not enough data yet — this fills in as you practice.
       </div>
     );
   }
 
+  const starPoints = points.map((p) => ({ date: p.date, stars: ratingToStars(p.rating) }));
+
+  return (
+    <>
+      <div className="dark:hidden">
+        <ChartSvg points={starPoints} lineColor="#4C3AA0" areaColor="#ECE8FA" textColor="#6B5D4F" />
+      </div>
+      <div className="hidden dark:block">
+        <ChartSvg points={starPoints} lineColor="#A5A0E8" areaColor="#2A2550" textColor="#A3A3A3" />
+      </div>
+    </>
+  );
+}
+
+function ChartSvg({
+  points,
+  lineColor,
+  areaColor,
+  textColor,
+}: {
+  points: { date: string; stars: number }[];
+  lineColor: string;
+  areaColor: string;
+  textColor: string;
+}) {
   const width = 640;
   const height = 180;
   const padding = 24;
 
-  const ratings = points.map((p) => p.rating);
-  const min = Math.min(...ratings) - 20;
-  const max = Math.max(...ratings) + 20;
-  const range = max - min || 1;
+  const min = 0;
+  const max = 5;
+  const range = max - min;
 
   const coords = points.map((p, i) => {
     const x = padding + (i / (points.length - 1)) * (width - padding * 2);
-    const y = height - padding - ((p.rating - min) / range) * (height - padding * 2);
+    const y = height - padding - ((p.stars - min) / range) * (height - padding * 2);
     return { x, y };
   });
 
@@ -31,15 +57,14 @@ export function RatingChart({ points }: RatingChartProps) {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }}>
-      <path d={areaD} fill="#ECE8FA" />
-      <path d={pathD} fill="none" stroke="#4C3AA0" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
-      {coords.length <= 40 &&
-        coords.map((c, i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="#4C3AA0" />)}
-      <text x={padding} y={16} fontSize="12" fill="#6B5D4F">
-        {max}
+      <path d={areaD} fill={areaColor} />
+      <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+      {coords.length <= 40 && coords.map((c, i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill={lineColor} />)}
+      <text x={padding} y={16} fontSize="12" fill={textColor}>
+        ★ 5
       </text>
-      <text x={padding} y={height - padding + 4} fontSize="12" fill="#6B5D4F">
-        {min}
+      <text x={padding} y={height - padding + 4} fontSize="12" fill={textColor}>
+        ★ 0
       </text>
     </svg>
   );
