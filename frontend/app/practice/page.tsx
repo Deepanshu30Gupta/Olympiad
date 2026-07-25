@@ -67,6 +67,13 @@ export default async function PracticePage({
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-10">
+      <Link
+        href="/dashboard"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-neutral-300"
+      >
+        ← Dashboard
+      </Link>
+
       <div className="mb-4 flex flex-wrap gap-2 font-mono text-xs text-neutral-500">
         <Pill>{q.externalId}</Pill>
         {q.examType && <Pill>{q.examType}</Pill>}

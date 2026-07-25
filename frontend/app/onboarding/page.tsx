@@ -20,7 +20,7 @@ export default async function OnboardingPage({
   });
 
   return (
-    <div className="min-h-screen bg-neutral-950">
+    <div className="min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
       <OnboardingWizard categories={categories} existingSessionId={params.sessionId} />
     </div>
   );
