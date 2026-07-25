@@ -131,6 +131,30 @@ export function AttemptForm({
           </div>
         )}
 
+        {answerType === "MCQ" && options && (
+          <div className="mt-4 flex flex-col gap-2">
+            {Object.entries(options).map(([key, val]) => {
+              const isCorrectOption = key === result.correctAnswer;
+              const isUserWrongPick = key === answer && key !== result.correctAnswer;
+              return (
+                <div
+                  key={key}
+                  className={`rounded-lg border px-4 py-3 text-left text-sm ${
+                    isCorrectOption
+                      ? "border-emerald-700 bg-emerald-950 text-emerald-300"
+                      : isUserWrongPick
+                        ? "border-red-800 bg-red-950 text-red-300"
+                        : "border-neutral-800 bg-neutral-900 text-neutral-400"
+                  }`}
+                >
+                  <span className="mr-2 font-mono opacity-70">{key}.</span>
+                  <span dangerouslySetInnerHTML={{ __html: renderMathText(val) }} />
+                </div>
+              );
+            })}
+          </div>
+        )}
+
         <div className="mt-4 font-mono text-xs text-neutral-500">
           Updated rating: {result.newRating}
         </div>
@@ -203,16 +227,31 @@ export function AttemptForm({
 
       {hints.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
-          {hints.map((h) => (
-            <button
-              key={h.level}
-              onClick={() => setRevealedHintLevel(Math.max(revealedHintLevel, h.level))}
-              disabled={h.level <= revealedHintLevel}
-              className="rounded-full border border-amber-900 bg-amber-950/40 px-3 py-1 text-xs text-amber-300 disabled:opacity-40"
-            >
-              Hint {h.level}
-            </button>
-          ))}
+          {hints.map((h) => {
+            const alreadyRevealed = h.level <= revealedHintLevel;
+            const isNextUnlockable = h.level === revealedHintLevel + 1;
+            const locked = !alreadyRevealed && !isNextUnlockable;
+            return (
+              <button
+                key={h.level}
+                onClick={() => {
+                  if (isNextUnlockable) setRevealedHintLevel(h.level);
+                }}
+                disabled={alreadyRevealed || locked}
+                title={locked ? `Reveal Hint ${h.level - 1} first` : undefined}
+                className={`rounded-full border px-3 py-1 text-xs transition-colors ${
+                  alreadyRevealed
+                    ? "border-amber-900 bg-amber-950/40 text-amber-300 opacity-50"
+                    : locked
+                      ? "border-neutral-800 bg-neutral-900 text-neutral-600 cursor-not-allowed"
+                      : "border-amber-700 bg-amber-950/60 text-amber-200 hover:bg-amber-900/60"
+                }`}
+              >
+                {locked ? "🔒 " : ""}
+                Hint {h.level}
+              </button>
+            );
+          })}
         </div>
       )}
       {revealedHintLevel > 0 && (

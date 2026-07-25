@@ -79,22 +79,40 @@ export function OnboardingWizard({
 
   return (
     <div className="mx-auto flex min-h-[70vh] max-w-xl flex-col justify-center px-6 text-[#2B2118] dark:text-neutral-100">
-      <div className="mb-8 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {STEP_LABELS.map((label, i) => (
-            <div key={label} className="flex items-center gap-2">
+      <div className="mb-10 flex items-center justify-center">
+        {STEP_LABELS.map((label, i) => (
+          <div key={label} className="flex items-center">
+            <div className="flex flex-col items-center gap-2">
+              <div
+                className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${
+                  i < step
+                    ? "bg-[#6FCF52] text-white"
+                    : i === step
+                      ? "scale-110 bg-[#FF6B4A] text-white shadow-lg shadow-[#FF6B4A]/30"
+                      : "bg-[#F0E6D6] text-[#6B5D4F] dark:bg-neutral-800 dark:text-neutral-500"
+                }`}
+              >
+                {i < step ? "✓" : i + 1}
+              </div>
               <span
-                className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                  step >= i ? "bg-[#FF6B4A]" : "bg-[#F0E6D6] dark:bg-neutral-700"
+                className={`text-[10px] font-semibold uppercase tracking-wide ${
+                  i === step
+                    ? "text-[#2B2118] dark:text-neutral-100"
+                    : "text-[#6B5D4F] dark:text-neutral-500"
+                }`}
+              >
+                {label}
+              </span>
+            </div>
+            {i < STEP_LABELS.length - 1 && (
+              <div
+                className={`mx-2 mb-4 h-1 w-12 rounded-full transition-colors duration-300 ${
+                  i < step ? "bg-[#6FCF52]" : "bg-[#F0E6D6] dark:bg-neutral-800"
                 }`}
               />
-              {i < STEP_LABELS.length - 1 && <span className="h-px w-6 bg-[#F0E6D6] dark:bg-neutral-800" />}
-            </div>
-          ))}
-        </div>
-        <span className="font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
-          Step {step + 1} of 3 · {STEP_LABELS[step]}
-        </span>
+            )}
+          </div>
+        ))}
       </div>
 
       {step === 0 && (
@@ -247,25 +265,25 @@ function StepPanel({
       </div>
 
       <div className="mt-5 flex items-center justify-between text-sm">
-        <span className="font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
-          {selectedCount} selected
-        </span>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onSelectAll}
-            className="font-medium text-[#4C3AA0] transition-colors hover:text-[#6650C4] dark:text-indigo-400 dark:hover:text-indigo-300"
-          >
-            Select all
-          </button>
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
+            {selectedCount} selected
+          </span>
           {selectedCount > 0 && (
             <button
               onClick={onClearAll}
-              className="font-medium text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-200"
+              className="text-xs font-medium text-[#6B5D4F] underline decoration-dotted transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-200"
             >
-              Clear all
+              Clear
             </button>
           )}
         </div>
+        <button
+          onClick={onSelectAll}
+          className="font-medium text-[#4C3AA0] transition-colors hover:text-[#6650C4] dark:text-indigo-400 dark:hover:text-indigo-300"
+        >
+          Select all
+        </button>
       </div>
 
       <div className="mt-4">{children}</div>

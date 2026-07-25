@@ -41,29 +41,25 @@ export default function SignInPage() {
             fontWeight: 700,
           }}
         >
-          C
+          Q
         </span>
-        Contendo
+        Qublem
       </Link>
       <p style={{ color: "#6B5D4F", fontSize: 15, marginBottom: 28 }}>Welcome back.</p>
 
       <SignIn
+        forceRedirectUrl="/dashboard"
         appearance={{
           variables: {
             colorPrimary: "#FF6B4A",
             colorBackground: "#FFFFFF",
             borderRadius: "12px",
             fontFamily: "var(--font-jakarta), sans-serif",
-            },
+          },
           elements: {
             card: {
               boxShadow: "none",
               border: "1px solid #F0E6D6",
-            },
-            formButtonPrimary: {
-              backgroundColor: "#FF6B4A",
-              fontWeight: 600,
-              "&:hover": { backgroundColor: "#D9502F" },
             },
           },
         }}
