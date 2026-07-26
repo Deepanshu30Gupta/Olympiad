@@ -53,7 +53,11 @@ export async function updateSessionFocus(
   });
 }
 
-export async function getOrPickCurrentQuestion(sessionId: string, userId: string) {
+export async function getOrPickCurrentQuestion(
+  sessionId: string,
+  userId: string,
+  allowRetry: boolean = false
+) {
   const session = await prisma.practiceSession.findUniqueOrThrow({
     where: { id: sessionId },
   });
@@ -71,6 +75,7 @@ export async function getOrPickCurrentQuestion(sessionId: string, userId: string
   const result = await getNextQuestion(userId, {
     examTypes: session.examTypes,
     topicFocus: session.topicFocus,
+    allowRetry,
   });
 
   if (result.question) {
