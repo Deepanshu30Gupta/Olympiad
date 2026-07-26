@@ -44,6 +44,7 @@ model User {
   totalSolved    Int       @default(0)
 
   dailyGoal Int @default(10)
+  learnerScore Float @default(0)
   surrenderLockSeconds Int @default(0)
 
   topicRatings   StudentTopicRating[]
