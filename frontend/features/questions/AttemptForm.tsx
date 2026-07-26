@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
 import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
 import { Spinner } from "@/components/ui/Spinner";
-import { ratingToStars } from "@/lib/rating-display";
 
 interface Hint {
   level: number;
@@ -25,8 +24,8 @@ type SubmitResult = {
   isCorrect?: boolean;
   correctAnswer: string;
   solutionMarkdown: string;
-  newRating: number;
-  previousRating: number;
+  newScore: number;
+  previousScore: number;
 };
 
 export function AttemptForm({
@@ -82,8 +81,8 @@ export function AttemptForm({
         isCorrect: res.isCorrect ?? undefined,
         correctAnswer: res.correctAnswer,
         solutionMarkdown: res.solutionMarkdown ?? "",
-        newRating: res.newRating ?? 0,
-        previousRating: res.previousRating ?? res.newRating ?? 0,
+        newScore: res.newScore ?? 0,
+        previousScore: res.previousScore ?? res.newScore ?? 0,
       };
       if (res.isCorrect) {
         setResult(finalResult);
@@ -115,8 +114,8 @@ export function AttemptForm({
       setResult({
         correctAnswer: res.correctAnswer,
         solutionMarkdown: res.solutionMarkdown ?? "",
-        newRating: res.newRating ?? 0,
-        previousRating: res.previousRating ?? res.newRating ?? 0,
+        newScore: res.newScore ?? 0,
+        previousScore: res.previousScore ?? res.newScore ?? 0,
       });
     } catch {
       setError("Couldn't reach the server. Check your connection and try again.");
@@ -182,14 +181,12 @@ export function AttemptForm({
   }
 
   if (result) {
-    // Compare the DISPLAYED (already-rounded) star values only — this is
-    // what fixes the "-0.1 shown when the rating looks the same" bug.
-    // Two attempts whose raw ratings both round to the same star value
-    // should show no delta at all, not a rounding-noise artifact.
-    const beforeStars = ratingToStars(result.previousRating);
-    const afterStars = ratingToStars(result.newRating);
-    const showDelta = beforeStars !== afterStars;
-    const delta = Math.round((afterStars - beforeStars) * 10) / 10;
+    // Compare the ALREADY display-ready score values directly — no
+    // conversion function needed, learnerScore IS the star number.
+    // Delta only shows when the two values genuinely differ, avoiding
+    // the earlier rounding-noise artifact.
+    const showDelta = result.previousScore !== result.newScore;
+    const delta = Math.round((result.newScore - result.previousScore) * 10) / 10;
 
     return (
       <div className="mt-6">
@@ -256,7 +253,7 @@ export function AttemptForm({
           <div className="flex items-center gap-2">
             <span className="text-xs text-neutral-500">Your rating:</span>
             <span className="font-bold text-neutral-100" style={{ fontFamily: "var(--font-fredoka, inherit)" }}>
-              ★ {afterStars}
+              ★ {result.newScore}
             </span>
             {showDelta && (
               <span

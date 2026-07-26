@@ -45,18 +45,21 @@ interface SubmitAnswerInput {
   confidenceRating: number | null;
 }
 
-// Explicit return type — without this, TypeScript infers the return type
-// from the two differently-shaped object literals below (success vs.
-// catch-block failure) as an unnamed union, and chaining `??` across
-// that inferred union can confuse its control-flow narrowing (this is
-// exactly what broke the build). Declaring the shape once up front
-// removes the ambiguity entirely.
+// Explicit return type — see prior note: without this, TypeScript infers
+// an unnamed union from the two differently-shaped return statements,
+// and chaining `??` across it can break control-flow narrowing.
 interface SubmitAnswerResult {
   isCorrect: boolean | null;
   correctAnswer: string | null;
   solutionMarkdown: string | null;
-  newRating: number | null;
-  previousRating: number | null;
+  // Renamed from newRating/previousRating: these now carry the
+  // learnerScore values (0-starting, asymmetric, capped at +5) — the
+  // OLD field names were left over from before that field existed, and
+  // kept pointing at internal Elo values even after learnerScore was
+  // added, which is exactly what caused the display to silently show
+  // the wrong number. New names match what's actually inside them.
+  newScore: number | null;
+  previousScore: number | null;
   error: string | null;
 }
 
@@ -86,8 +89,8 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
       isCorrect,
       correctAnswer: question.correctAnswer,
       solutionMarkdown: question.solutionMarkdown,
-      newRating: result.primaryStudentRatingAfter,
-      previousRating: result.primaryStudentRatingBefore,
+      newScore: result.newScore,
+      previousScore: result.previousScore,
       error: null,
     };
   } catch (err) {
@@ -96,8 +99,8 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
       isCorrect: null,
       correctAnswer: null,
       solutionMarkdown: null,
-      newRating: null,
-      previousRating: null,
+      newScore: null,
+      previousScore: null,
       error: "Couldn't submit your answer. Please try again.",
     };
   }
@@ -113,8 +116,8 @@ interface SurrenderInput {
 interface SurrenderResult {
   correctAnswer: string | null;
   solutionMarkdown: string | null;
-  newRating: number | null;
-  previousRating: number | null;
+  newScore: number | null;
+  previousScore: number | null;
   error: string | null;
 }
 
@@ -140,8 +143,8 @@ export async function surrenderAction(input: SurrenderInput): Promise<SurrenderR
     return {
       correctAnswer: question.correctAnswer,
       solutionMarkdown: question.solutionMarkdown,
-      newRating: result.primaryStudentRatingAfter,
-      previousRating: result.primaryStudentRatingBefore,
+      newScore: result.newScore,
+      previousScore: result.previousScore,
       error: null,
     };
   } catch (err) {
@@ -149,8 +152,8 @@ export async function surrenderAction(input: SurrenderInput): Promise<SurrenderR
     return {
       correctAnswer: null,
       solutionMarkdown: null,
-      newRating: null,
-      previousRating: null,
+      newScore: null,
+      previousScore: null,
       error: "Couldn't submit. Please try again.",
     };
   }
