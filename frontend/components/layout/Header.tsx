@@ -4,21 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Show, UserButton, SignInButton } from "@clerk/nextjs";
-import { Bell, ChevronDown } from "lucide-react";
+import { Bell } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ReportWidget } from "@/components/ReportWidget";
 
-// Exams, Leaderboard, Analytics, and the Resources dropdown are shown
-// here to match the intended full nav — but NOT ALL OF THESE ARE BUILT
-// YET. Only Home, Practice (-> onboarding), and Dashboard are real,
-// working pages today. The rest are placeholders for future work.
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Practice", href: "/onboarding" },
-  { label: "Exams", href: "#" }, // not built yet
-  { label: "Leaderboard", href: "#" }, // not built yet
+  { label: "Leaderboard", href: "/leaderboard" },
   { label: "Dashboard", href: "/dashboard" },
-  { label: "Analytics", href: "#" }, // not built yet
 ];
 
 export function Header() {
@@ -57,10 +51,6 @@ export function Header() {
               </Link>
             );
           })}
-          {/* Resources dropdown — placeholder, no menu built yet */}
-          <button className="flex items-center gap-1 text-sm font-medium text-[#2B2118] hover:text-[#FF6B4A] dark:text-neutral-300 dark:hover:text-[#FF6B4A]">
-            Resources <ChevronDown size={14} />
-          </button>
           <ReportWidget
             triggerLabel="Feedback"
             triggerClassName="text-sm font-medium text-[#2B2118] hover:text-[#FF6B4A] dark:text-neutral-300 dark:hover:text-[#FF6B4A]"
@@ -92,7 +82,7 @@ export function Header() {
             href="/sign-up"
             className="rounded-lg bg-[#FF6B4A] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D9502F]"
           >
-            Start training free
+            Start solving questions
           </Link>
         </Show>
       </div>

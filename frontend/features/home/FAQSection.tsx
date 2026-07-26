@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 const FAQS = [
   {
     q: "Is Qublem free?",
-    a: "Yes — free to start, no credit card required.",
+    a: "Yes — free to start, no credit required.",
   },
   {
     q: "Which exams does Qublem cover?",

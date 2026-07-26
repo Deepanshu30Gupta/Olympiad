@@ -73,12 +73,12 @@ export default function HomePage() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Show when="signed-in">
                 <Link href="/onboarding" className="flex items-center gap-2 rounded-xl bg-[#FF6B4A] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#D9502F] hover:shadow-md">
-                  Start training free <ArrowRight size={16} />
+                  Start solving questions <ArrowRight size={16} />
                 </Link>
               </Show>
               <Show when="signed-out">
                 <Link href="/sign-up" className="flex items-center gap-2 rounded-xl bg-[#FF6B4A] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#D9502F] hover:shadow-md">
-                  Start training free <ArrowRight size={16} />
+                  Start solving questions <ArrowRight size={16} />
                 </Link>
               </Show>
               <a href="#how-it-works" className="flex items-center gap-2 rounded-xl border border-[#4C3AA0]/30 px-6 py-3 text-sm font-semibold text-[#4C3AA0] transition-all hover:bg-[#ECE8FA] dark:border-indigo-800 dark:text-indigo-400 dark:hover:bg-indigo-950/30">
@@ -284,32 +284,16 @@ export default function HomePage() {
           </div>
           <Show when="signed-in">
             <Link href="/onboarding" className="flex shrink-0 items-center gap-2 rounded-xl bg-[#FF6B4A] px-6 py-3 text-sm font-semibold text-white hover:bg-[#D9502F]">
-              Start training free <ArrowRight size={16} />
+              Start solving questions <ArrowRight size={16} />
             </Link>
           </Show>
           <Show when="signed-out">
             <Link href="/sign-up" className="flex shrink-0 items-center gap-2 rounded-xl bg-[#FF6B4A] px-6 py-3 text-sm font-semibold text-white hover:bg-[#D9502F]">
-              Start training free <ArrowRight size={16} />
+              Start solving questions <ArrowRight size={16} />
             </Link>
           </Show>
         </div>
       </section>
-
-      <footer className="border-t border-[#F0E6D6] px-6 py-8 dark:border-neutral-800">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-[#6B5D4F] dark:text-neutral-500 sm:flex-row">
-          <span className="font-bold text-[#2B2118] dark:text-neutral-200" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-            Qublem
-          </span>
-          <div className="flex items-center gap-3">
-            <Link href="/story">About</Link>
-            <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
-            <Link href="/privacy">Privacy</Link>
-            <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
-            <Link href="/contact">Contact</Link>
-          </div>
-          <span>© 2026 Qublem</span>
-        </div>
-      </footer>
     </div>
   );
 }
