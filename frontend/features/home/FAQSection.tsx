@@ -10,7 +10,7 @@ const FAQS = [
   },
   {
     q: "Which exams does Qublem cover?",
-    a: "IOQM, PRMO, RMO, INMO, AMC 10, AMC 12, British Mathematical Olympiad, and Balkan Mathematical Olympiad, with more being added over time.",
+    a: "IOQM, PRMO, RMO, INMO, NMTC, AMC 10, AMC 12, AIME, USAMO/USAJMO, and China MO, with more being added over time.",
   },
   {
     q: "How is this different from a normal problem set?",

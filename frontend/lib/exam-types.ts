@@ -4,6 +4,7 @@ export const EXAM_TYPES = [
   { code: "PRMO", label: "PRMO (legacy)" },
   { code: "RMO", label: "RMO" },
   { code: "INMO", label: "INMO" },
+  { code: "NMTC", label: "NMTC" },
 
   // USA
   { code: "AMC10", label: "AMC 10" },

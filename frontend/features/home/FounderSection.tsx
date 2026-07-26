@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
 import { MascotIllustration } from "./MascotIllustration";
 
@@ -44,9 +45,12 @@ export function FounderSection() {
             <br />
             <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">Founder, Qublem</span>
           </p>
-          <button className="mt-5 flex items-center gap-2 rounded-lg border border-[#F0E6D6] px-4 py-2 text-sm font-semibold text-[#2B2118] hover:border-[#FF6B4A]/50 dark:border-neutral-700 dark:text-neutral-100">
+          <Link
+            href="/story"
+            className="mt-5 flex w-fit items-center gap-2 rounded-lg border border-[#F0E6D6] px-4 py-2 text-sm font-semibold text-[#2B2118] hover:border-[#FF6B4A]/50 dark:border-neutral-700 dark:text-neutral-100"
+          >
             Read my full story <ArrowRight size={14} />
-          </button>
+          </Link>
         </div>
 
         <MascotIllustration className="mx-auto hidden w-28 md:block" />

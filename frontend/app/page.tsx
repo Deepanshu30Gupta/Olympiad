@@ -21,7 +21,7 @@ import { FounderSection } from "@/features/home/FounderSection";
 import { FAQSection } from "@/features/home/FAQSection";
 import { Sparkle, Squiggle, DotGrid, Blob, DottedPath, PaperAirplane, MotionLines } from "@/features/home/decorations";
 
-const EXAMS = ["IOQM", "PRMO", "RMO", "INMO", "AMC 10", "AMC 12", "British Mathematical Olympiad", "Balkan Mathematical Olympiad"];
+const EXAMS = ["IOQM", "PRMO", "RMO", "INMO", "AMC 10", "AMC 12", "NMTC", "AIME", "USAMO/USAJMO", "China MO"];
 
 const STEPS = [
   { icon: User, num: 1, color: "#FF6B4A", bg: "#FFE8E0", title: "Create your account", body: "Takes seconds. Free to start." },
@@ -228,9 +228,9 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <button className="mt-7 flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0] hover:bg-neutral-100">
+              <a href="#how-it-works" className="mt-7 flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0] hover:bg-neutral-100">
                 Learn how it works <ArrowRight size={16} />
-              </button>
+              </a>
             </div>
 
             <div className="relative">
@@ -303,11 +303,11 @@ export default function HomePage() {
             Qublem
           </span>
           <div className="flex items-center gap-3">
-            <Link href="#">About</Link>
+            <Link href="/story">About</Link>
             <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
-            <Link href="#">Privacy</Link>
+            <Link href="/privacy">Privacy</Link>
             <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
-            <Link href="#">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </div>
           <span>© 2026 Qublem</span>
         </div>
