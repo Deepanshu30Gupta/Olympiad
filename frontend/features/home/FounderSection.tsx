@@ -15,7 +15,7 @@ export function FounderSection() {
         */}
         <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-2xl bg-[#F0E6D6] md:mx-0">
           <Image
-            src="/founder-photo.jpg"
+            src="/founder-photo.jpeg"
             alt="Deepanshu Gupta, Founder of Qublem"
             fill
             className="object-cover"
