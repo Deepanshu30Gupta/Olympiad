@@ -9,22 +9,27 @@ export default async function OnboardingPage({
 }) {
   const params = await searchParams;
 
+  // Only show a major category if it (or at least one of its subtopics)
+  // actually has questions — and within a shown category, only list
+  // subtopics that themselves have questions. Same self-maintaining
+  // principle as the exam-type filter below: this is a live query, so
+  // it corrects itself the moment new content is seeded, no code change
+  // needed here.
   const categories = await prisma.topic.findMany({
-    where: { parentId: null },
+    where: {
+      parentId: null,
+      OR: [{ questions: { some: {} } }, { children: { some: { questions: { some: {} } } } }],
+    },
     orderBy: { displayOrder: "asc" },
     include: {
       children: {
+        where: { questions: { some: {} } },
         orderBy: { displayOrder: "asc" },
         select: { id: true, slug: true, name: true },
       },
     },
   });
 
-  // Only offer exam types that actually have at least one question right
-  // now — showing an exam with zero content would just lead to a dead
-  // end on the practice page. This is intentionally a live query, not a
-  // hardcoded filter, so it self-corrects the moment new content (e.g.
-  // RMO/INMO) gets seeded, without needing this code touched again.
   const distinctExamTypes = await prisma.question.findMany({
     where: { examType: { not: null } },
     distinct: ["examType"],

@@ -247,19 +247,28 @@ export function AttemptForm({
           </div>
         )}
 
-        <div className="mt-4 flex items-center gap-3">
-          <span className="font-bold text-neutral-100" style={{ fontFamily: "var(--font-fredoka, inherit)" }}>
-            ★ {afterStars}
-          </span>
-          {delta !== 0 && (
-            <span
-              className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${
-                delta > 0 ? "bg-emerald-950 text-emerald-400" : "bg-red-950 text-red-400"
-              }`}
-            >
-              {delta > 0 ? "▲" : "▼"} {Math.abs(delta)}
+        <div className="mt-4 flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-neutral-500">Your rating:</span>
+            <span className="font-bold text-neutral-100" style={{ fontFamily: "var(--font-fredoka, inherit)" }}>
+              ★ {afterStars}
             </span>
-          )}
+            {delta !== 0 && (
+              <span
+                className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${
+                  delta > 0 ? "bg-emerald-950 text-emerald-400" : "bg-red-950 text-red-400"
+                }`}
+              >
+                {delta > 0 ? "▲" : "▼"} {Math.abs(delta)}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+            <span>Time:</span>
+            <span className="font-mono text-neutral-300">
+              {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
+            </span>
+          </div>
         </div>
 
         <div className="mt-6 border-t border-neutral-800 pt-4">

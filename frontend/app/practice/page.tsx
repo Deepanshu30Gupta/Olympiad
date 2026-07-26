@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { getOrPickCurrentQuestion } from "@/services/session-service";
 import { renderMathText } from "@/lib/render-math";
 import { AttemptForm } from "@/features/questions/AttemptForm";
-import { ratingToStars } from "@/lib/rating-display";
 
 export default async function PracticePage({
   searchParams,
@@ -86,7 +85,6 @@ export default async function PracticePage({
         <Pill>{q.externalId}</Pill>
         {q.examType && <Pill>{q.examType}</Pill>}
         <Pill>{q.difficultyLabel ?? "?"}</Pill>
-        <Pill>★ {ratingToStars(q.currentRating)}</Pill>
       </div>
 
       <div

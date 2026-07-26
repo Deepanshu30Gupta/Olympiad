@@ -44,9 +44,19 @@ export function OnboardingWizard({
   // The indicator (and step numbering) reflects however many steps are
   // ACTUALLY reachable given current selections — 2 steps once more than
   // one category is picked (or one with no subtopics), not always 3.
-  const stepLabels = showSubtopicStep
-    ? ["Exam focus", "Topic areas", "Subtopics"]
-    : ["Exam focus", "Topic areas"];
+  // Default to showing all 3 steps — we don't know yet whether the
+  // subtopic step will apply until the user has actually picked
+  // categories. Only collapse to 2 once that's genuinely determined:
+  // either more than one category selected (subtopics don't combine
+  // meaningfully across categories) or exactly one category selected
+  // that has no subtopics of its own.
+  const multipleCategoriesSelected = categorySlugs.length > 1;
+  const singleChildlessCategory =
+    selectedCategories.length === 1 && selectedCategories[0].children.length === 0;
+  const stepLabels =
+    multipleCategoriesSelected || singleChildlessCategory
+      ? ["Exam focus", "Topic areas"]
+      : ["Exam focus", "Topic areas", "Subtopics"];
 
   async function goToPractice(topics: string[], action: LoadingAction) {
     setLoadingAction(action);
