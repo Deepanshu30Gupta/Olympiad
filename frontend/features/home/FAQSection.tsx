@@ -40,7 +40,7 @@ export function FAQSection() {
         return (
           <div
             key={faq.q}
-            className="rounded-2xl border border-[#F0E6D6] bg-white px-5 py-4 dark:border-neutral-800 dark:bg-neutral-900"
+            className="rounded-2xl border border-[#F0E6D6] bg-white px-5 py-4 transition-all hover:border-[#4C3AA0]/30 hover:shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}

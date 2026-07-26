@@ -79,7 +79,7 @@ export function ReportWidget({
           onClick={resetAndClose}
         >
           <div
-            className="w-full max-w-md rounded-2xl bg-white p-6 text-[#2B2118] shadow-xl"
+            className="max-h-[85vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6 text-[#2B2118] shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             {submitted ? (

@@ -92,7 +92,7 @@ export function Header() {
             href="/sign-up"
             className="rounded-lg bg-[#FF6B4A] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D9502F]"
           >
-            Start practicing free
+            Start training free
           </Link>
         </Show>
       </div>

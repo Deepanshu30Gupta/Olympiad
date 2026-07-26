@@ -14,7 +14,7 @@ export default function FounderStoryPage() {
     <div className="min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
       <div className="mx-auto max-w-3xl px-6 py-12">
         <Link
-          href="/"
+          href="/#founder"
           className="mb-8 flex items-center gap-1.5 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-400 dark:hover:text-neutral-200"
         >
           <ArrowLeft size={16} /> Back to home
