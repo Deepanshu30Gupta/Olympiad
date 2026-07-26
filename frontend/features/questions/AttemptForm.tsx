@@ -141,7 +141,7 @@ export function AttemptForm({
   if (pendingWrongResult && !done) {
     return (
       <div className="mt-6">
-        <div className="rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm font-medium text-red-300">
+        <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
           Oops!! Wrong answer.
         </div>
 
@@ -150,28 +150,31 @@ export function AttemptForm({
             {hints
               .filter((h) => h.level <= revealedHintLevel)
               .map((h) => (
-                <div key={h.level} className="rounded-lg bg-amber-950/30 px-3 py-2 text-xs text-amber-200">
+                <div
+                  key={h.level}
+                  className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:bg-amber-950/30 dark:text-amber-200"
+                >
                   Hint {h.level}: {h.content}
                 </div>
               ))}
           </div>
         )}
 
-        <p className="mt-4 text-sm text-neutral-400">
+        <p className="mt-4 text-sm text-[#6B5D4F] dark:text-neutral-400">
           {nextHint ? "Want a hint before we show the answer?" : "Ready to see the answer?"}
         </p>
         <div className="mt-3 flex gap-3">
           {nextHint && (
             <button
               onClick={() => setRevealedHintLevel(nextHint.level)}
-              className="rounded-lg border border-amber-700 bg-amber-950/60 px-4 py-2 text-sm font-medium text-amber-200 transition-colors hover:bg-amber-900/60"
+              className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-800 transition-colors hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-200 dark:hover:bg-amber-900/60"
             >
               Get a hint
             </button>
           )}
           <button
             onClick={revealFromPending}
-            className="rounded-lg bg-[#5B8DEF] px-4 py-2 text-sm font-medium text-white hover:bg-[#4A7CDE]"
+            className="rounded-lg bg-[#FF6B4A] px-4 py-2 text-sm font-medium text-white hover:bg-[#D9502F]"
           >
             Show correct answer
           </button>
@@ -181,10 +184,6 @@ export function AttemptForm({
   }
 
   if (result) {
-    // Compare the ALREADY display-ready score values directly — no
-    // conversion function needed, learnerScore IS the star number.
-    // Delta only shows when the two values genuinely differ, avoiding
-    // the earlier rounding-noise artifact.
     const showDelta = result.previousScore !== result.newScore;
     const delta = Math.round((result.newScore - result.previousScore) * 10) / 10;
 
@@ -194,15 +193,15 @@ export function AttemptForm({
           <div
             className={`rounded-lg border px-4 py-3 text-sm font-medium ${
               result.isCorrect
-                ? "border-emerald-800 bg-emerald-950 text-emerald-300"
-                : "border-red-900 bg-red-950 text-red-300"
+                ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300"
+                : "border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300"
             }`}
           >
             {result.isCorrect ? "Yeahhh!! Correct answer!" : "Here's the answer:"}
           </div>
         )}
         {(!("isCorrect" in result) || result.isCorrect === undefined) && (
-          <div className="rounded-lg border border-emerald-800 bg-emerald-950 px-4 py-3 text-sm text-emerald-300">
+          <div className="rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
             Correct answer: {result.correctAnswer}
           </div>
         )}
@@ -211,15 +210,17 @@ export function AttemptForm({
           <div
             className={`mt-2 rounded-lg border px-4 py-3 text-sm ${
               result.isCorrect
-                ? "border-emerald-800 bg-emerald-950 text-emerald-300"
-                : "border-red-900 bg-red-950 text-red-300"
+                ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300"
+                : "border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300"
             }`}
           >
             Your answer: {submittedAnswer}
             {!result.isCorrect && result.isCorrect !== undefined && (
-              <span className="ml-2 text-neutral-400">
+              <span className="ml-2 text-[#6B5D4F] dark:text-neutral-400">
                 — Correct answer:{" "}
-                <span className="font-semibold text-emerald-400">{result.correctAnswer}</span>
+                <span className="font-semibold text-emerald-700 dark:text-emerald-400">
+                  {result.correctAnswer}
+                </span>
               </span>
             )}
           </div>
@@ -235,10 +236,10 @@ export function AttemptForm({
                   key={key}
                   className={`rounded-lg border px-4 py-3 text-left text-sm ${
                     isCorrectOption
-                      ? "border-emerald-700 bg-emerald-950 text-emerald-300"
+                      ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
                       : isUserWrongPick
-                        ? "border-red-800 bg-red-950 text-red-300"
-                        : "border-neutral-800 bg-neutral-900 text-neutral-400"
+                        ? "border-red-300 bg-red-50 text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-300"
+                        : "border-[#F0E6D6] bg-white text-[#6B5D4F] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400"
                   }`}
                 >
                   <span className="mr-2 font-mono opacity-70">{key}.</span>
@@ -251,32 +252,37 @@ export function AttemptForm({
 
         <div className="mt-4 flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-neutral-500">Your rating:</span>
-            <span className="font-bold text-neutral-100" style={{ fontFamily: "var(--font-fredoka, inherit)" }}>
+            <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">Your rating:</span>
+            <span
+              className="font-bold text-[#2B2118] dark:text-neutral-100"
+              style={{ fontFamily: "var(--font-fredoka, inherit)" }}
+            >
               ★ {result.newScore}
             </span>
             {showDelta && (
               <span
                 className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${
-                  delta > 0 ? "bg-emerald-950 text-emerald-400" : "bg-red-950 text-red-400"
+                  delta > 0
+                    ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400"
+                    : "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400"
                 }`}
               >
                 {delta > 0 ? "▲" : "▼"} {Math.abs(delta)}
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+          <div className="flex items-center gap-1.5 text-xs text-[#6B5D4F] dark:text-neutral-500">
             <span>Time:</span>
-            <span className="font-mono text-neutral-300">
+            <span className="font-mono text-[#2B2118] dark:text-neutral-300">
               {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
             </span>
           </div>
         </div>
 
-        <div className="mt-6 border-t border-neutral-800 pt-4">
-          <div className="mb-2 text-sm font-medium text-neutral-300">Solution</div>
+        <div className="mt-6 border-t border-[#F0E6D6] pt-4 dark:border-neutral-800">
+          <div className="mb-2 text-sm font-medium text-[#2B2118] dark:text-neutral-300">Solution</div>
           <div
-            className="text-sm leading-relaxed text-neutral-300"
+            className="text-sm leading-relaxed text-[#2B2118]/90 dark:text-neutral-300"
             dangerouslySetInnerHTML={{ __html: renderMathText(result.solutionMarkdown) }}
           />
         </div>
@@ -295,12 +301,12 @@ export function AttemptForm({
 
   return (
     <div className="mt-6">
-      <div className="mb-4 font-mono text-xs text-neutral-500">
+      <div className="mb-4 font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
         {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
       </div>
 
       {error && (
-        <div className="mb-4 rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm text-red-300">
+        <div className="mb-4 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
           {error}
         </div>
       )}
@@ -312,7 +318,7 @@ export function AttemptForm({
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder="Your answer"
-          className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-100 outline-none focus:border-[#5B8DEF]"
+          className="w-full rounded-lg border border-[#F0E6D6] bg-white px-4 py-3 text-sm text-[#2B2118] outline-none focus:border-[#5B8DEF] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100"
         />
       )}
 
@@ -324,11 +330,11 @@ export function AttemptForm({
               onClick={() => setAnswer(key)}
               className={`rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
                 answer === key
-                  ? "border-[#5B8DEF] bg-[#5B8DEF]/10 text-neutral-100"
-                  : "border-neutral-800 bg-neutral-900 text-neutral-200 hover:border-neutral-700"
+                  ? "border-[#5B8DEF] bg-[#5B8DEF]/10 text-[#2B2118] dark:text-neutral-100"
+                  : "border-[#F0E6D6] bg-white text-[#2B2118] hover:border-[#D8CBB5] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-700"
               }`}
             >
-              <span className="mr-2 font-mono text-neutral-500">{key}.</span>
+              <span className="mr-2 font-mono text-[#6B5D4F] dark:text-neutral-500">{key}.</span>
               <span dangerouslySetInnerHTML={{ __html: renderMathText(val) }} />
             </button>
           ))}
@@ -336,7 +342,7 @@ export function AttemptForm({
       )}
 
       {answerType === "PROOF" && (
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-neutral-400">
+        <div className="rounded-lg border border-[#F0E6D6] bg-white px-4 py-3 text-sm text-[#6B5D4F] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
           Proof-based self-grading UI is a follow-up build, not in this pass.
         </div>
       )}
@@ -357,10 +363,10 @@ export function AttemptForm({
                 title={locked ? `Reveal Hint ${h.level - 1} first` : undefined}
                 className={`rounded-full border px-3 py-1 text-xs transition-colors ${
                   alreadyRevealed
-                    ? "border-amber-900 bg-amber-950/40 text-amber-300 opacity-50"
+                    ? "border-amber-300 bg-amber-50 text-amber-700 opacity-50 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
                     : locked
-                      ? "cursor-not-allowed border-neutral-800 bg-neutral-900 text-neutral-600"
-                      : "border-amber-700 bg-amber-950/60 text-amber-200 hover:bg-amber-900/60"
+                      ? "cursor-not-allowed border-[#F0E6D6] bg-[#FFFBF2] text-[#B8A990] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-600"
+                      : "border-amber-300 bg-amber-50 text-amber-700 hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-200 dark:hover:bg-amber-900/60"
                 }`}
               >
                 {locked ? "🔒 " : ""}
@@ -375,7 +381,10 @@ export function AttemptForm({
           {hints
             .filter((h) => h.level <= revealedHintLevel)
             .map((h) => (
-              <div key={h.level} className="rounded-lg bg-amber-950/30 px-3 py-2 text-xs text-amber-200">
+              <div
+                key={h.level}
+                className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:bg-amber-950/30 dark:text-amber-200"
+              >
                 {h.content}
               </div>
             ))}
@@ -395,7 +404,7 @@ export function AttemptForm({
           onClick={handleSurrender}
           disabled={!canSurrender || loadingAction !== null}
           title={!canSurrender ? `Available after ${surrenderLockSeconds}s` : undefined}
-          className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-300 disabled:opacity-30"
+          className="flex items-center gap-2 text-sm text-[#6B5D4F] hover:text-[#2B2118] disabled:opacity-30 dark:text-neutral-500 dark:hover:text-neutral-300"
         >
           {loadingAction === "surrender" && <Spinner />}
           {canSurrender ? "Give up, show solution" : `Give up (available in ${surrenderLockSeconds - elapsedSeconds}s)`}

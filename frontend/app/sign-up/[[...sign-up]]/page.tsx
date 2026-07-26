@@ -1,70 +1,50 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { SignUp } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SignUpPage() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    setIsDark(html.classList.contains("dark"));
+
+    const observer = new MutationObserver(() => {
+      setIsDark(html.classList.contains("dark"));
+    });
+    observer.observe(html, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div
-      style={{
-        minHeight: "calc(100vh - 56px)",
-        background: "#FFFBF2",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "40px 16px",
-      }}
-    >
-      <Link
-        href="/"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          fontFamily: "var(--font-fredoka), sans-serif",
-          fontWeight: 700,
-          fontSize: 22,
-          color: "#2B2118",
-          marginBottom: 8,
-        }}
-      >
+    <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center bg-[#FFFBF2] px-4 py-10 dark:bg-neutral-950">
+      <Link href="/" className="mb-2 flex items-center gap-2">
+        <Image src="/logo.svg" alt="Qublem" width={36} height={36} className="rounded-lg" />
         <span
-          style={{
-            width: 30,
-            height: 30,
-            borderRadius: 9,
-            background: "#FF6B4A",
-            color: "white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 16,
-            fontWeight: 700,
-          }}
+          className="text-xl font-bold text-[#2B2118] dark:text-neutral-100"
+          style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
         >
-          C
+          Qublem
         </span>
-        Contendo
       </Link>
-      <p style={{ color: "#6B5D4F", fontSize: 15, marginBottom: 28 }}>Start training today.</p>
+      <p className="mb-7 text-sm text-[#6B5D4F] dark:text-neutral-400">Start training today.</p>
 
       <SignUp
         forceRedirectUrl="/dashboard"
         appearance={{
           variables: {
             colorPrimary: "#FF6B4A",
-            colorBackground: "#FFFFFF",
+            colorBackground: isDark ? "#171717" : "#FFFFFF",
             borderRadius: "12px",
             fontFamily: "var(--font-jakarta), sans-serif",
-            },
+          },
           elements: {
             card: {
               boxShadow: "none",
-              border: "1px solid #F0E6D6",
-            },
-            formButtonPrimary: {
-              backgroundColor: "#FF6B4A",
-              fontWeight: 600,
-              "&:hover": { backgroundColor: "#D9502F" },
+              border: isDark ? "1px solid #262626" : "1px solid #F0E6D6",
             },
           },
         }}

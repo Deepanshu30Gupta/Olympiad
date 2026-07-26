@@ -15,21 +15,35 @@ export function ThemeToggle() {
     const next = !isDark;
     setIsDark(next);
     document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {
+      // localStorage can throw in some privacy modes — not worth failing over.
+    }
   }
 
-  // Avoid a hydration mismatch — render nothing until we know the real
-  // state from the DOM (which the inline script in layout.tsx already
-  // set before hydration, see the FOUC-prevention note there).
-  if (!mounted) return <div className="h-8 w-8" />;
+  // Same-sized placeholder until mounted, so nothing pops in after hydration.
+  if (!mounted) return <div className="h-7 w-14" />;
 
   return (
     <button
       onClick={toggle}
-      aria-label="Toggle light and dark mode"
-      className="flex h-8 w-8 items-center justify-center rounded-lg text-sm transition-colors hover:bg-neutral-800"
+      aria-label="Toggle light/dark mode"
+      aria-pressed={isDark}
+      className={`relative flex h-7 w-14 items-center rounded-full px-1 transition-colors duration-300 ${
+        isDark ? "bg-[#4C3AA0]" : "bg-[#F0E6D6]"
+      }`}
     >
-      {isDark ? "☀️" : "🌙"}
+      {/* Track icons — sit fixed in place, the thumb slides over/past them */}
+      <span className="pointer-events-none absolute left-1.5 text-[11px]">☀️</span>
+      <span className="pointer-events-none absolute right-1.5 text-[11px]">🌙</span>
+
+      {/* The sliding thumb — plain circle, track icons underneath show which mode is active */}
+      <span
+        className={`z-10 h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-300 ${
+          isDark ? "translate-x-7" : "translate-x-0"
+        }`}
+      />
     </button>
   );
 }
