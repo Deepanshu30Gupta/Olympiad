@@ -3,7 +3,6 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getActiveSession } from "@/services/session-service";
 import { getTopicBreakdown, getAllSessionsWithStats, getRatingHistory } from "@/services/dashboard-service";
-import { ratingToStars } from "@/lib/rating-display";
 import { TopicCard } from "@/features/dashboard/TopicCard";
 import { SessionCard } from "@/features/dashboard/SessionCard";
 import { RatingChart } from "@/features/dashboard/RatingChart";
@@ -44,7 +43,7 @@ export default async function DashboardPage() {
     sessionInsight = `${examLabel}${topicLabel} · ${qCount} question${qCount !== 1 ? "s" : ""} so far`;
   }
 
-  const stars = ratingToStars(dbUser.overallRating);
+  const stars = dbUser.learnerScore;
   const streakGoal = dbUser.currentStreak + 1;
 
   return (
