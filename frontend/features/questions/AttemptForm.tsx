@@ -143,7 +143,7 @@ export function AttemptForm({
     return (
       <div className="mt-6">
         <div className="rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm font-medium text-red-300">
-          Not quite.
+          Oops!! Wrong answer.
         </div>
 
         {revealedHintLevel > 0 && (
@@ -182,8 +182,13 @@ export function AttemptForm({
   }
 
   if (result) {
+    // Compare the DISPLAYED (already-rounded) star values only — this is
+    // what fixes the "-0.1 shown when the rating looks the same" bug.
+    // Two attempts whose raw ratings both round to the same star value
+    // should show no delta at all, not a rounding-noise artifact.
     const beforeStars = ratingToStars(result.previousRating);
     const afterStars = ratingToStars(result.newRating);
+    const showDelta = beforeStars !== afterStars;
     const delta = Math.round((afterStars - beforeStars) * 10) / 10;
 
     return (
@@ -196,7 +201,7 @@ export function AttemptForm({
                 : "border-red-900 bg-red-950 text-red-300"
             }`}
           >
-            {result.isCorrect ? "Correct." : "Here's the answer:"}
+            {result.isCorrect ? "Yeahhh!! Correct answer!" : "Here's the answer:"}
           </div>
         )}
         {(!("isCorrect" in result) || result.isCorrect === undefined) && (
@@ -253,7 +258,7 @@ export function AttemptForm({
             <span className="font-bold text-neutral-100" style={{ fontFamily: "var(--font-fredoka, inherit)" }}>
               ★ {afterStars}
             </span>
-            {delta !== 0 && (
+            {showDelta && (
               <span
                 className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${
                   delta > 0 ? "bg-emerald-950 text-emerald-400" : "bg-red-950 text-red-400"

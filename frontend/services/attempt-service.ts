@@ -14,7 +14,8 @@
  */
 
 import { prisma } from "@/lib/prisma";
-import { expectedScore, performanceScore, kFactor } from "@/lib/rating";
+import { expectedScore, performanceScore, kFactor, dynamicStudentKFactor } from "@/lib/rating";
+import { computeScoreDelta } from "@/lib/learner-score";
 import type { AttemptStatus } from "@prisma/client";
 
 interface SubmitAttemptParams {
@@ -57,7 +58,8 @@ export async function submitAttempt(params: SubmitAttemptParams) {
 
     const e = expectedScore(ratingBefore, question.currentRating);
     const s = performanceScore(solved, params.hintLevelUsed ?? 0);
-    const k = kFactor(attemptsCount);
+    const baseK = kFactor(attemptsCount);
+    const k = dynamicStudentKFactor(baseK, ratingBefore, e, s);
     const ratingAfter = Math.round(ratingBefore + k * (s - e));
 
     await prisma.studentTopicRating.upsert({
@@ -111,10 +113,18 @@ export async function submitAttempt(params: SubmitAttemptParams) {
     },
   });
 
-  // --- Update User-level aggregates ---
-  await updateUserAggregates(params.userId, solved);
+  // --- Update User-level aggregates (now also returns the learner score
+  // before/after so the UI can show a delta) ---
+  const { previousScore, newScore } = await updateUserAggregates(params.userId, solved);
 
-  return { attempt, questionRatingAfter, primaryStudentRatingAfter, primaryStudentRatingBefore };
+  return {
+    attempt,
+    questionRatingAfter,
+    primaryStudentRatingAfter,
+    primaryStudentRatingBefore,
+    previousScore,
+    newScore,
+  };
 }
 
 async function updateUserAggregates(userId: string, solved: boolean) {
@@ -160,17 +170,28 @@ async function updateUserAggregates(userId: string, solved: boolean) {
       ? Math.round(allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length)
       : DEFAULT_RATING;
 
+  // The new learner score — separate from overallRating above, which
+  // stays as an internal Elo-style average (still used for the topic
+  // charts). This is the intuitive, 0-starting, asymmetric number shown
+  // directly to the student.
+  const previousScore = user.learnerScore;
+  const delta = computeScoreDelta(previousScore, solved);
+  const newScore = Math.round((previousScore + delta) * 10) / 10;
+
   await prisma.user.update({
     where: { id: userId },
     data: {
       totalAttempted: user.totalAttempted + 1,
       totalSolved: user.totalSolved + (solved ? 1 : 0),
       overallRating,
+      learnerScore: newScore,
       currentStreak: newStreak,
       longestStreak: newLongestStreak,
       lastActiveDate: now,
     },
   });
+
+  return { previousScore, newScore };
 }
 
 function startOfDay(d: Date): Date {

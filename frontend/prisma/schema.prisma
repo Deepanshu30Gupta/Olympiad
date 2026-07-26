@@ -52,6 +52,16 @@ model User {
   practiceSessions PracticeSession[]
 }
 
+model Report {
+  id                 String   @id @default(cuid())
+  name               String
+  email              String
+  phone              String?
+  questionId         String?
+  questionExternalId String?
+  comment            String
+  createdAt          DateTime @default(now())
+}
 model PracticeSession {
   id                 String        @id @default(cuid())
   userId             String

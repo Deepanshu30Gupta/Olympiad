@@ -36,9 +36,50 @@ export function performanceScore(solved: boolean, highestHintLevelUsed: number):
 }
 
 /** K-factor tiers: new students/questions (few attempts) should move
- * fast, established ones should stabilize. */
+ * fast, established ones should stabilize. This remains the QUESTION
+ * side's k-factor (a question's own difficulty calibration) unchanged —
+ * see dynamicStudentKFactor below for the student-side, which needs
+ * different, position-aware behavior. */
 export function kFactor(attemptsCount: number): number {
   return attemptsCount < 10 ? 40 : 20;
+}
+
+const RATING_CENTER = 1200; // matches CENTER_RATING in lib/rating-display.ts
+
+/** Position-and-direction-aware K-factor for STUDENT rating updates.
+ * Same base K-factor tiering as kFactor() above, but scaled by a
+ * multiplier depending on where the student currently sits and which
+ * way this specific update is pushing them:
+ *
+ *   - Below center, moving DOWN further: SLOW (cushion — a struggling
+ *     student shouldn't be punished with a steep further fall).
+ *   - Below center, moving UP:           FAST (reward climbing out).
+ *   - Above center, moving UP further:   SLOW (harder to gain at the
+ *     top — realistic diminishing returns, same intuition as most
+ *     rating systems getting "stiffer" near the ceiling).
+ *   - Above center, moving DOWN:         FAST (a strong student who
+ *     slips should be corrected quickly, not linger on a stale high
+ *     rating that no longer reflects real performance).
+ *
+ * `expected` and `actual` are the same E and S values already computed
+ * for the Elo update — direction is simply the sign of (actual - expected).
+ */
+export function dynamicStudentKFactor(
+  baseK: number,
+  currentRating: number,
+  expected: number,
+  actual: number
+): number {
+  const isBelowCenter = currentRating < RATING_CENTER;
+  const isImproving = actual > expected;
+
+  const FAST = 1.6;
+  const SLOW = 0.5;
+
+  if (isBelowCenter && isImproving) return baseK * FAST;
+  if (isBelowCenter && !isImproving) return baseK * SLOW;
+  if (!isBelowCenter && isImproving) return baseK * SLOW;
+  return baseK * FAST; // above center, declining
 }
 
 /** Given a student's rating, the question-rating window that yields an

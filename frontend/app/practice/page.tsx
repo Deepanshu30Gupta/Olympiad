@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { getOrPickCurrentQuestion } from "@/services/session-service";
 import { renderMathText } from "@/lib/render-math";
 import { AttemptForm } from "@/features/questions/AttemptForm";
+import { ReportWidget } from "@/components/ReportWidget";
 
 export default async function PracticePage({
   searchParams,
@@ -144,6 +145,10 @@ export default async function PracticePage({
           hints={q.hints}
           surrenderLockSeconds={dbUser.surrenderLockSeconds}
         />
+
+        <div className="mt-8 border-t border-neutral-800 pt-4">
+          <ReportWidget questionId={q.id} questionExternalId={q.externalId} />
+        </div>
       </div>
     </div>
   );
