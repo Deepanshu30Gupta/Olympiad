@@ -14,6 +14,8 @@ interface SessionForClient {
   wrong: number;
   surrendered: number;
   totalTimeSeconds: number;
+  accuracyPct: number;
+  netRatingChange: number | null;
 }
 
 function groupByPeriod(sessions: SessionForClient[]) {
