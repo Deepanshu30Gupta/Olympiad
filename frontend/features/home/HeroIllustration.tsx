@@ -62,7 +62,6 @@ export function HeroIllustration() {
       <circle cx="30" cy="205" r="4" fill="#6FCF52" />
       <circle cx="465" cy="60" r="3.5" fill="#4C3AA0" />
       <circle cx="15" cy="140" r="3" fill="#FF6B4A" />
-      <circle cx="8" cy="35" r="7" stroke="#4C3AA0" strokeWidth="2" fill="none" />
       <circle cx="480" cy="290" r="6" stroke="#FF6B4A" strokeWidth="2" fill="none" />
       <path d="M 130 250 Q 138 240 146 250" stroke="#4C3AA0" strokeWidth="2.5" strokeLinecap="round" fill="none" />
       <path d="M 385 90 Q 393 80 401 90" stroke="#FF6B4A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
