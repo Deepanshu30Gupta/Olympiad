@@ -47,32 +47,33 @@ export default async function ProgressPage() {
             <CategoryBarChart data={topicBreakdown.map((t) => ({ categoryName: t.categoryName, rating: t.rating }))} />
           </Card>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <div className="mt-5 grid gap-5 lg:grid-cols-[7fr_3fr]">
             <Card title="Weekly Activity">
-              <div className="overflow-x-auto">
+              <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Your practice habits at a glance</p>
+              <div className="mt-4 overflow-x-auto">
                 <WeeklyHeatmap days={heatmap.days} />
               </div>
-              <p className="mt-4 text-xs text-[#6B5D4F] dark:text-neutral-500">
-                Practiced {heatmap.activeDaysLast7} of last 7 days
+              <p className="mt-5 border-t border-[#F0E6D6] pt-4 text-sm text-[#2B2118] dark:border-neutral-800 dark:text-neutral-300">
+                Practiced <span className="font-bold">{heatmap.activeDaysLast7}</span> of the last 7 days
               </p>
             </Card>
 
-            <Card title="Solved vs Attempted">
-              <div className="flex items-center gap-6">
-                <div>
-                  <div className="text-3xl font-extrabold text-[#2E6B1B]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+            <Card title="Performance Summary">
+              <div className="flex flex-col divide-y divide-[#F0E6D6] dark:divide-neutral-800">
+                <div className="pb-4">
+                  <div className="text-2xl font-extrabold text-[#2E6B1B]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
                     {dbUser.totalSolved}
                   </div>
                   <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Solved</div>
                 </div>
-                <div>
-                  <div className="text-3xl font-extrabold text-[#3B7DD8]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                <div className="py-4">
+                  <div className="text-2xl font-extrabold text-[#3B7DD8]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
                     {dbUser.totalAttempted}
                   </div>
                   <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Attempted</div>
                 </div>
-                <div>
-                  <div className="text-3xl font-extrabold text-[#FF6B4A]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                <div className="pt-4">
+                  <div className="text-2xl font-extrabold text-[#FF6B4A]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
                     {accuracy}%
                   </div>
                   <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Accuracy</div>

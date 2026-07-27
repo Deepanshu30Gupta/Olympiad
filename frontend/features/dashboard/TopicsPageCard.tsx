@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import { formatRelativeTime } from "@/lib/format-relative-time";
 
 interface Mistake {
   externalId: string;
@@ -32,9 +33,7 @@ export function TopicsPageCard({
   const accuracy = solved + wrong > 0 ? Math.round((solved / (solved + wrong)) * 100) : 0;
   const progressPct = totalQuestions > 0 ? Math.min(100, Math.round((completed / totalQuestions) * 100)) : 0;
   const remaining = Math.max(0, totalQuestions - completed);
-  const lastPracticedLabel = lastPracticed
-    ? new Date(lastPracticed).toLocaleDateString(undefined, { month: "short", day: "numeric" })
-    : null;
+  const lastPracticedLabel = lastPracticed ? formatRelativeTime(lastPracticed) : null;
 
   return (
     <div className="rounded-2xl border border-[#F0E6D6] bg-white p-5 transition-all duration-200 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">

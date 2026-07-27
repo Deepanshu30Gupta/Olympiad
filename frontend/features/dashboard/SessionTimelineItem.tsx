@@ -1,5 +1,6 @@
 "use client";
 
+import { formatRelativeTime } from "@/lib/format-relative-time";
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
@@ -30,7 +31,6 @@ export function SessionTimelineItem({
   netRatingChange: number | null;
 }) {
   const [open, setOpen] = useState(false);
-  const dateLabel = new Date(startedAt).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
   const minutes = Math.floor(totalTimeSeconds / 60);
   const seconds = totalTimeSeconds % 60;
   const durationLabel = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
@@ -49,7 +49,7 @@ export function SessionTimelineItem({
               </span>
             )}
           </div>
-          <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">{dateLabel}</span>
+          <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">{formatRelativeTime(startedAt)}</span>
         </div>
 
         <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#6B5D4F] dark:text-neutral-500">

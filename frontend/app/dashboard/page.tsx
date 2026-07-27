@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { Star, CheckCircle2, Target as TargetIcon, ListChecks, ArrowRight } from "lucide-react";
+import { Star, CheckCircle2, ListChecks, Target as TargetIcon, ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { getActiveSession } from "@/services/session-service";
 import {
@@ -44,21 +44,16 @@ export default async function DashboardPage() {
     getRatingHistory(dbUser.id),
   ]);
 
-  const accuracy = dbUser.totalAttempted > 0 ? Math.round((dbUser.totalSolved / dbUser.totalAttempted) * 100) : 0;
   const motivationalMessage = getMotivationalMessage(dbUser.currentStreak, todaysGoal.solvedToday, todaysGoal.dailyGoal);
   const milestone = getNextMilestone(dbUser.learnerScore);
   const weeklyInsight = getWeeklyInsight(weeklyTrends.ratingChangeThisWeek);
-
   const sparklinePoints = ratingHistory.slice(-7).map((p) => ratingToStars(p.rating));
+  const todaysGoalRemaining = Math.max(0, todaysGoal.dailyGoal - todaysGoal.solvedToday);
 
   let sessionTopicLabel = "a mix of everything";
-  let startedMinutesAgo = 0;
-  if (activeSession) {
-    if (activeSession.topicFocus.length > 0) {
-      const topics = await prisma.topic.findMany({ where: { slug: { in: activeSession.topicFocus } }, select: { name: true } });
-      if (topics.length > 0) sessionTopicLabel = topics.map((t) => t.name).join(", ");
-    }
-    startedMinutesAgo = Math.max(0, Math.round((Date.now() - activeSession.startedAt.getTime()) / 60000));
+  if (activeSession && activeSession.topicFocus.length > 0) {
+    const topics = await prisma.topic.findMany({ where: { slug: { in: activeSession.topicFocus } }, select: { name: true } });
+    if (topics.length > 0) sessionTopicLabel = topics.map((t) => t.name).join(", ");
   }
 
   const continuePracticeHref = activeSession ? `/practice?sessionId=${activeSession.id}` : "/onboarding";
@@ -70,40 +65,34 @@ export default async function DashboardPage() {
 
       <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
         <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col items-center gap-6 rounded-3xl border border-[#F0E6D6] bg-gradient-to-br from-white to-[#FFF6ED] p-8 dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-900 sm:flex-row">
+          <div className="animate-fade-in-up flex flex-col items-center gap-8 rounded-3xl bg-gradient-to-br from-[#FFF3E0] via-white to-[#FFEDE3] p-10 shadow-sm dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 sm:flex-row">
             <HeroStreak streak={dbUser.currentStreak} />
             <div className="flex-1 text-center sm:text-left">
-              <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+              <h1
+                className="text-3xl font-extrabold leading-tight text-[#2B2118] dark:text-neutral-100 sm:text-4xl"
+                style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
+              >
                 👋 Welcome back{dbUser.name ? `, ${dbUser.name}` : ""}!
               </h1>
-              <p className="mt-1 flex flex-wrap items-center justify-center gap-2 text-sm text-[#6B5D4F] dark:text-neutral-400 sm:justify-start">
-                <span className="inline-flex items-center gap-1 font-bold text-[#4C3AA0] dark:text-indigo-400">
-                  <Star size={14} fill="currentColor" /> {dbUser.learnerScore}
+              <p className="mt-2 flex flex-wrap items-center justify-center gap-2 text-base text-[#6B5D4F] dark:text-neutral-400 sm:justify-start">
+                <span className="inline-flex items-center gap-1 text-lg font-bold text-[#4C3AA0] dark:text-indigo-400">
+                  <Star size={16} fill="currentColor" /> {dbUser.learnerScore}
                 </span>
                 current rating
               </p>
-              <p className="mt-3 text-base font-semibold text-[#FF6B4A]">{motivationalMessage}</p>
+              <p className="mt-4 text-base font-semibold text-[#FF6B4A]">{motivationalMessage}</p>
             </div>
           </div>
 
-          <div className="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <QuickProgressCard
-              icon={<Star size={18} className="text-white" />}
-              iconBg="#4C3AA0"
-              label="Current Rating"
-              value={dbUser.learnerScore}
-              decimals={1}
-              trend={weeklyTrends.ratingChangeThisWeek !== null ? { value: weeklyTrends.ratingChangeThisWeek, label: "this week" } : null}
-            />
-            <QuickProgressCard icon={<CheckCircle2 size={18} className="text-white" />} iconBg="#2E6B1B" label="Questions Solved" value={dbUser.totalSolved} trend={{ value: weeklyTrends.solvedThisWeek, label: "this week" }} />
-            <QuickProgressCard icon={<ListChecks size={18} className="text-white" />} iconBg="#3B7DD8" label="Questions Attempted" value={dbUser.totalAttempted} trend={{ value: weeklyTrends.attemptsThisWeek, label: "this week" }} />
-            <QuickProgressCard icon={<TargetIcon size={18} className="text-white" />} iconBg="#FF6B4A" label="Accuracy" value={accuracy} suffix="%" trend={null} />
-          </div>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
             <div className="md:col-span-2">
               {activeSession ? (
-                <ResumeSessionCard href={`/practice?sessionId=${activeSession.id}`} topicLabel={sessionTopicLabel} questionsCompleted={activeSession.questionsCompleted} startedMinutesAgo={startedMinutesAgo} />
+                <ResumeSessionCard
+                  href={`/practice?sessionId=${activeSession.id}`}
+                  topicLabel={sessionTopicLabel}
+                  questionsCompleted={activeSession.questionsCompleted}
+                  startedAt={activeSession.startedAt.toISOString()}
+                />
               ) : (
                 <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
               )}
@@ -118,7 +107,36 @@ export default async function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-5">
+          <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <QuickProgressCard
+              icon={<Star size={18} className="text-white" />}
+              iconBg="#4C3AA0"
+              label="Current Rating"
+              value={dbUser.learnerScore}
+              decimals={1}
+              trend={weeklyTrends.ratingChangeThisWeek !== null ? { value: weeklyTrends.ratingChangeThisWeek, label: "this week" } : null}
+            />
+            <QuickProgressCard icon={<CheckCircle2 size={18} className="text-white" />} iconBg="#2E6B1B" label="Questions Solved" value={dbUser.totalSolved} trend={{ value: weeklyTrends.solvedThisWeek, label: "this week" }} />
+            <QuickProgressCard icon={<ListChecks size={18} className="text-white" />} iconBg="#3B7DD8" label="Questions Attempted" value={dbUser.totalAttempted} trend={{ value: weeklyTrends.attemptsThisWeek, label: "this week" }} />
+
+            <div className="rounded-2xl border border-[#F0E6D6] bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#6FCF52]">
+                <TargetIcon size={18} className="text-white" />
+              </div>
+              <div className="mt-3 text-xs text-[#6B5D4F] dark:text-neutral-500">Today&rsquo;s Goal</div>
+              <div className="text-xl font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                {todaysGoal.solvedToday} / {todaysGoal.dailyGoal}
+              </div>
+              <div className="mt-1.5 h-1.5 rounded-full bg-[#F0E6D6] dark:bg-neutral-800">
+                <div className="h-1.5 rounded-full bg-[#6FCF52] transition-all duration-500" style={{ width: `${todaysGoal.pct}%` }} />
+              </div>
+              <div className="mt-1 text-[11px] text-[#6B5D4F] dark:text-neutral-500">
+                {todaysGoalRemaining > 0 ? `${todaysGoalRemaining} more to go` : "Goal complete! 🎉"}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6">
             <NextMilestoneCard
               target={milestone.target}
               pct={milestone.pct}
@@ -128,7 +146,7 @@ export default async function DashboardPage() {
             />
           </div>
 
-          <div className="mt-5 rounded-3xl border border-[#F0E6D6] bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="mt-6 rounded-3xl border border-[#F0E6D6]/70 bg-[#FFFBF2]/60 p-6 dark:border-neutral-800/70 dark:bg-neutral-900/40">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
