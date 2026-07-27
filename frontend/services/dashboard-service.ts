@@ -176,3 +176,79 @@ export async function getRatingHistory(userId: string): Promise<RatingPoint[]> {
     rating: a.studentRatingAfter,
   }));
 }
+
+/** How many problems solved today, against the user's own dailyGoal —
+ * a real progress bar, not a placeholder. */
+export async function getTodaysGoalProgress(userId: string, dailyGoal: number) {
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+
+  const solvedToday = await prisma.attempt.count({
+    where: { userId, status: "SOLVED", submittedAt: { gte: startOfToday } },
+  });
+
+  return { solvedToday, dailyGoal, pct: Math.min(100, Math.round((solvedToday / dailyGoal) * 100)) };
+}
+
+/** Real weekly activity heatmap — counts actual attempts per day over
+ * the last several weeks, laid out Mon-Sun rows matching the mockup's
+ * GitHub-style grid. Color intensity buckets are based on attempt count. */
+export async function getActivityHeatmap(userId: string, weeks: number = 6) {
+  const daysBack = weeks * 7;
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+  start.setDate(start.getDate() - daysBack + 1);
+
+  const attempts = await prisma.attempt.findMany({
+    where: { userId, submittedAt: { gte: start } },
+    select: { submittedAt: true },
+  });
+
+  const countByDay = new Map<string, number>();
+  for (const a of attempts) {
+    if (!a.submittedAt) continue;
+    const key = a.submittedAt.toISOString().slice(0, 10);
+    countByDay.set(key, (countByDay.get(key) ?? 0) + 1);
+  }
+
+  const days: { date: string; count: number }[] = [];
+  for (let i = 0; i < daysBack; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    const key = d.toISOString().slice(0, 10);
+    days.push({ date: key, count: countByDay.get(key) ?? 0 });
+  }
+
+  const activeDaysLast7 = days.slice(-7).filter((d) => d.count > 0).length;
+
+  return { days, activeDaysLast7 };
+}
+
+/** "Current Focus" — the topic with the lowest rating the student has
+ * actually attempted, i.e. the topic most worth practicing next. */
+export async function getCurrentFocusTopic(userId: string) {
+  const ratings = await prisma.studentTopicRating.findMany({
+    where: { userId },
+    include: { topic: true },
+    orderBy: { rating: "asc" },
+  });
+  if (ratings.length === 0) return null;
+  const weakest = ratings[0];
+  return { topicName: weakest.topic.name, topicSlug: weakest.topic.slug };
+}
+
+/** Next milestone: the next whole star above the student's current
+ * learnerScore. The "questions remaining" figure is a rough estimate,
+ * not a guarantee — explicitly labeled as such wherever it's shown. */
+export function getNextMilestone(learnerScore: number) {
+  const nextWhole = Math.floor(learnerScore) + 1;
+  const prevWhole = Math.floor(learnerScore);
+  const pct = Math.round(((learnerScore - prevWhole) / (nextWhole - prevWhole)) * 100);
+  const remainingGap = nextWhole - learnerScore;
+  // Rough heuristic: assumes a typical solved question moves the score
+  // by roughly 0.05-0.1 — this is an approximation for motivational
+  // display, not a precise prediction.
+  const estimatedQuestions = Math.max(1, Math.round(remainingGap / 0.07));
+
+  return { target: nextWhole, pct, estimatedQuestions };
+}
