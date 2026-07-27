@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { ratingToStars } from "@/lib/rating-display";
 
 const DEFAULT_RATING = 1200;
 
@@ -119,16 +120,20 @@ export interface SessionSummary {
   wrong: number;
   surrendered: number;
   totalTimeSeconds: number;
+  accuracyPct: number;
+  netRatingChange: number | null;
 }
 
 /** Every session the user has ever had, newest first, each with its own
- * solved/wrong/surrendered breakdown computed from Attempts linked to it
- * via sessionId. */
+ * solved/wrong/surrendered breakdown, accuracy, duration, and net rating
+ * change — all computed here ONCE, so every place that shows a session
+ * summary (card, expanded detail) reads from this same source instead
+ * of recomputing independently and risking numbers that don't match. */
 export async function getAllSessionsWithStats(userId: string): Promise<SessionSummary[]> {
   const sessions = await prisma.practiceSession.findMany({
     where: { userId },
     orderBy: { startedAt: "desc" },
-    include: { attempts: true },
+    include: { attempts: { orderBy: { createdAt: "asc" } } },
   });
 
   return sessions.map((s, index) => {
@@ -136,12 +141,25 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     const wrong = s.attempts.filter((a) => a.status === "WRONG").length;
     const surrendered = s.attempts.filter((a) => a.status === "SURRENDERED").length;
     const totalTimeSeconds = s.attempts.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
+    const totalAttempted = s.attempts.length;
+    const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
+
+    // Net rating change: first attempt's "before" star value vs last
+    // attempt's "after" star value. Uses the primary-topic Elo snapshot
+    // already stored per attempt — same simplification used elsewhere
+    // in the app (a session can span multiple topics; this is a
+    // reasonable approximation, not a precise multi-topic breakdown).
+    let netRatingChange: number | null = null;
+    if (s.attempts.length > 0) {
+      const first = s.attempts[0];
+      const last = s.attempts[s.attempts.length - 1];
+      const beforeStars = ratingToStars(first.studentRatingBefore);
+      const afterStars = ratingToStars(last.studentRatingAfter);
+      netRatingChange = Math.round((afterStars - beforeStars) * 10) / 10;
+    }
 
     return {
       id: s.id,
-      // Fall back to a computed label for sessions that predate the name
-      // field — sessions are ordered newest-first here, so we reverse the
-      // index to number them in creation order (Session 1 = oldest).
       name: s.name ?? `Session ${sessions.length - index}`,
       status: s.status,
       startedAt: s.startedAt,
@@ -150,6 +168,8 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
       wrong,
       surrendered,
       totalTimeSeconds,
+      accuracyPct,
+      netRatingChange,
     };
   });
 }

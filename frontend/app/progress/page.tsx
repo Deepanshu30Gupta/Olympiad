@@ -5,7 +5,6 @@ import {
   getRatingHistory,
   getTodaysGoalProgress,
   getActivityHeatmap,
-  getNextMilestone,
 } from "@/services/dashboard-service";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
 import { RatingChart } from "@/features/dashboard/RatingChart";
@@ -26,7 +25,6 @@ export default async function ProgressPage() {
     getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
   ]);
 
-  const milestone = getNextMilestone(dbUser.learnerScore);
   const accuracy = dbUser.totalAttempted > 0 ? Math.round((dbUser.totalSolved / dbUser.totalAttempted) * 100) : 0;
 
   return (
@@ -82,17 +80,6 @@ export default async function ProgressPage() {
               </div>
             </Card>
           </div>
-
-          <Card title="⭐ Next Milestone" className="mt-5">
-            <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Reach Rating ★ {milestone.target}.0</p>
-            <div className="mt-3 h-2.5 rounded-full bg-[#F0E6D6] dark:bg-neutral-800">
-              <div className="h-2.5 rounded-full bg-[#FF6B4A]" style={{ width: `${milestone.pct}%` }} />
-            </div>
-            <p className="mt-1.5 text-right text-xs font-semibold text-[#2B2118] dark:text-neutral-300">{milestone.pct}%</p>
-            <p className="mt-3 rounded-xl bg-[#FFF3E0] p-3 text-xs text-[#6B5D4F] dark:bg-neutral-800 dark:text-neutral-400">
-              💡 Estimated: ~{milestone.estimatedQuestions} more well-solved questions (rough estimate, not a guarantee)
-            </p>
-          </Card>
         </div>
       </div>
     </div>

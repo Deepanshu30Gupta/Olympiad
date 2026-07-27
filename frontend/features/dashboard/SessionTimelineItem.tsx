@@ -14,6 +14,8 @@ export function SessionTimelineItem({
   wrong,
   surrendered,
   totalTimeSeconds,
+  accuracyPct,
+  netRatingChange,
 }: {
   id: string;
   name: string;
@@ -24,10 +26,14 @@ export function SessionTimelineItem({
   wrong: number;
   surrendered: number;
   totalTimeSeconds: number;
+  accuracyPct: number;
+  netRatingChange: number | null;
 }) {
   const [open, setOpen] = useState(false);
   const dateLabel = new Date(startedAt).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
   const minutes = Math.floor(totalTimeSeconds / 60);
+  const seconds = totalTimeSeconds % 60;
+  const durationLabel = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
 
   return (
     <div className="relative mb-6 last:mb-0">
@@ -46,11 +52,24 @@ export function SessionTimelineItem({
           <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">{dateLabel}</span>
         </div>
 
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#6B5D4F] dark:text-neutral-500">
+          <span>
+            <span className="font-semibold text-[#2B2118] dark:text-neutral-200">{accuracyPct}%</span> accuracy
+          </span>
+          <span>
+            <span className="font-semibold text-[#2B2118] dark:text-neutral-200">{durationLabel}</span> duration
+          </span>
+          {netRatingChange !== null && (
+            <span className={netRatingChange >= 0 ? "text-[#2E6B1B] dark:text-emerald-400" : "text-[#D9502F] dark:text-red-400"}>
+              {netRatingChange >= 0 ? "▲" : "▼"} {Math.abs(netRatingChange)} rating
+            </span>
+          )}
+        </div>
+
         <div className="mt-2 flex flex-wrap gap-3 text-xs text-[#6B5D4F] dark:text-neutral-500">
           <span className="text-[#2E6B1B] dark:text-emerald-400">{solved} solved</span>
           <span className="text-[#D9502F] dark:text-red-400">{wrong} wrong</span>
           <span>{surrendered} gave up</span>
-          <span>{minutes} min</span>
         </div>
 
         <div className="mt-2 flex items-center justify-between">
@@ -65,9 +84,27 @@ export function SessionTimelineItem({
         </div>
 
         {open && (
-          <p className="mt-2 border-t border-[#F0E6D6] pt-2 text-xs text-[#6B5D4F] dark:border-neutral-800 dark:text-neutral-400">
-            {questionsCompleted} question{questionsCompleted !== 1 ? "s" : ""} completed in this session.
-          </p>
+          <div className="mt-2 border-t border-[#F0E6D6] pt-2 text-xs text-[#6B5D4F] dark:border-neutral-800 dark:text-neutral-400">
+            <p>
+              {questionsCompleted} question{questionsCompleted !== 1 ? "s" : ""} completed in this session.
+            </p>
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              <div className="rounded-lg bg-[#FFFBF2] px-2 py-1.5 text-center dark:bg-neutral-800">
+                <div className="font-bold text-[#2B2118] dark:text-neutral-100">{accuracyPct}%</div>
+                <div className="text-[10px]">Accuracy</div>
+              </div>
+              <div className="rounded-lg bg-[#FFFBF2] px-2 py-1.5 text-center dark:bg-neutral-800">
+                <div className="font-bold text-[#2B2118] dark:text-neutral-100">{durationLabel}</div>
+                <div className="text-[10px]">Duration</div>
+              </div>
+              <div className="rounded-lg bg-[#FFFBF2] px-2 py-1.5 text-center dark:bg-neutral-800">
+                <div className={`font-bold ${netRatingChange !== null && netRatingChange >= 0 ? "text-[#2E6B1B]" : "text-[#D9502F]"}`}>
+                  {netRatingChange !== null ? `${netRatingChange >= 0 ? "+" : ""}${netRatingChange}` : "—"}
+                </div>
+                <div className="text-[10px]">Rating Change</div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

@@ -1,19 +1,32 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { Star, CheckCircle2, Target as TargetIcon, ListChecks } from "lucide-react";
+import Link from "next/link";
+import { Star, CheckCircle2, Target as TargetIcon, ListChecks, ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { getActiveSession } from "@/services/session-service";
 import {
-  getRatingHistory,
   getTodaysGoalProgress,
   getCurrentFocusTopic,
   getWeeklyTrends,
+  getUserRank,
+  getRatingHistory,
+  getNextMilestone,
 } from "@/services/dashboard-service";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
 import { HeroStreak } from "@/features/dashboard/HeroStreak";
 import { getMotivationalMessage } from "@/lib/motivational-message";
 import { QuickProgressCard } from "@/features/dashboard/QuickProgressCard";
 import { ResumeSessionCard, StartNewPracticeCard } from "@/features/dashboard/ActionCards";
-import { RatingChart } from "@/features/dashboard/RatingChart";
+import { LeaderboardPreviewCard } from "@/features/dashboard/LeaderboardPreviewCard";
+import { NextMilestoneCard } from "@/features/dashboard/NextMilestoneCard";
+import { Sparkline } from "@/features/dashboard/Sparkline";
+import { ratingToStars } from "@/lib/rating-display";
+
+function getWeeklyInsight(ratingChange: number | null): string {
+  if (ratingChange === null) return "Keep practicing to start seeing weekly trends.";
+  if (ratingChange > 0) return "Your rating has improved over the last 7 days.";
+  if (ratingChange < 0) return "Your rating dipped slightly this week — a great time for extra practice.";
+  return "Your rating held steady this week.";
+}
 
 export default async function DashboardPage() {
   const clerkUser = await currentUser();
@@ -22,43 +35,45 @@ export default async function DashboardPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [activeSession, ratingHistory, todaysGoal, currentFocus, weeklyTrends] = await Promise.all([
+  const [activeSession, todaysGoal, currentFocus, weeklyTrends, rank, ratingHistory] = await Promise.all([
     getActiveSession(dbUser.id),
-    getRatingHistory(dbUser.id),
     getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
     getCurrentFocusTopic(dbUser.id),
     getWeeklyTrends(dbUser.id, dbUser.learnerScore),
+    getUserRank(dbUser.id, dbUser.learnerScore),
+    getRatingHistory(dbUser.id),
   ]);
 
   const accuracy = dbUser.totalAttempted > 0 ? Math.round((dbUser.totalSolved / dbUser.totalAttempted) * 100) : 0;
   const motivationalMessage = getMotivationalMessage(dbUser.currentStreak, todaysGoal.solvedToday, todaysGoal.dailyGoal);
+  const milestone = getNextMilestone(dbUser.learnerScore);
+  const weeklyInsight = getWeeklyInsight(weeklyTrends.ratingChangeThisWeek);
+
+  const sparklinePoints = ratingHistory.slice(-7).map((p) => ratingToStars(p.rating));
 
   let sessionTopicLabel = "a mix of everything";
   let startedMinutesAgo = 0;
   if (activeSession) {
     if (activeSession.topicFocus.length > 0) {
-      const topics = await prisma.topic.findMany({
-        where: { slug: { in: activeSession.topicFocus } },
-        select: { name: true },
-      });
+      const topics = await prisma.topic.findMany({ where: { slug: { in: activeSession.topicFocus } }, select: { name: true } });
       if (topics.length > 0) sessionTopicLabel = topics.map((t) => t.name).join(", ");
     }
     startedMinutesAgo = Math.max(0, Math.round((Date.now() - activeSession.startedAt.getTime()) / 60000));
   }
 
+  const continuePracticeHref = activeSession ? `/practice?sessionId=${activeSession.id}` : "/onboarding";
+  const continuePracticeLabel = activeSession ? "Continue Practice" : "Start Practicing";
+
   return (
     <div className="flex min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
-      <DashboardSidebar />
+      <DashboardSidebar todaysGoal={todaysGoal} />
 
       <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
         <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col items-center gap-6 rounded-3xl border border-[#F0E6D6] bg-white p-7 dark:border-neutral-800 dark:bg-neutral-900 sm:flex-row">
+          <div className="flex flex-col items-center gap-6 rounded-3xl border border-[#F0E6D6] bg-gradient-to-br from-white to-[#FFF6ED] p-8 dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-900 sm:flex-row">
             <HeroStreak streak={dbUser.currentStreak} />
             <div className="flex-1 text-center sm:text-left">
-              <h1
-                className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100"
-                style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
-              >
+              <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
                 👋 Welcome back{dbUser.name ? `, ${dbUser.name}` : ""}!
               </h1>
               <p className="mt-1 flex flex-wrap items-center justify-center gap-2 text-sm text-[#6B5D4F] dark:text-neutral-400 sm:justify-start">
@@ -67,7 +82,7 @@ export default async function DashboardPage() {
                 </span>
                 current rating
               </p>
-              <p className="mt-3 text-sm font-medium text-[#FF6B4A]">{motivationalMessage}</p>
+              <p className="mt-3 text-base font-semibold text-[#FF6B4A]">{motivationalMessage}</p>
             </div>
           </div>
 
@@ -80,53 +95,73 @@ export default async function DashboardPage() {
               decimals={1}
               trend={weeklyTrends.ratingChangeThisWeek !== null ? { value: weeklyTrends.ratingChangeThisWeek, label: "this week" } : null}
             />
-            <QuickProgressCard
-              icon={<CheckCircle2 size={18} className="text-white" />}
-              iconBg="#2E6B1B"
-              label="Questions Solved"
-              value={dbUser.totalSolved}
-              trend={{ value: weeklyTrends.solvedThisWeek, label: "this week" }}
-            />
-            <QuickProgressCard
-              icon={<ListChecks size={18} className="text-white" />}
-              iconBg="#3B7DD8"
-              label="Questions Attempted"
-              value={dbUser.totalAttempted}
-              trend={{ value: weeklyTrends.attemptsThisWeek, label: "this week" }}
-            />
-            <QuickProgressCard
-              icon={<TargetIcon size={18} className="text-white" />}
-              iconBg="#FF6B4A"
-              label="Accuracy"
-              value={accuracy}
-              suffix="%"
-              trend={null}
-            />
+            <QuickProgressCard icon={<CheckCircle2 size={18} className="text-white" />} iconBg="#2E6B1B" label="Questions Solved" value={dbUser.totalSolved} trend={{ value: weeklyTrends.solvedThisWeek, label: "this week" }} />
+            <QuickProgressCard icon={<ListChecks size={18} className="text-white" />} iconBg="#3B7DD8" label="Questions Attempted" value={dbUser.totalAttempted} trend={{ value: weeklyTrends.attemptsThisWeek, label: "this week" }} />
+            <QuickProgressCard icon={<TargetIcon size={18} className="text-white" />} iconBg="#FF6B4A" label="Accuracy" value={accuracy} suffix="%" trend={null} />
           </div>
 
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {activeSession ? (
-              <ResumeSessionCard
-                href={`/practice?sessionId=${activeSession.id}`}
-                topicLabel={sessionTopicLabel}
-                questionsCompleted={activeSession.questionsCompleted}
-                startedMinutesAgo={startedMinutesAgo}
-              />
-            ) : (
-              <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
-            )}
-            <StartNewPracticeCard suggestedTopic={activeSession ? currentFocus?.topicName ?? null : null} />
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="md:col-span-2">
+              {activeSession ? (
+                <ResumeSessionCard href={`/practice?sessionId=${activeSession.id}`} topicLabel={sessionTopicLabel} questionsCompleted={activeSession.questionsCompleted} startedMinutesAgo={startedMinutesAgo} />
+              ) : (
+                <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
+              )}
+            </div>
+            <div className="flex flex-col gap-4">
+              {activeSession && (
+                <div className="scale-[0.96] opacity-90">
+                  <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
+                </div>
+              )}
+              <LeaderboardPreviewCard rank={rank} />
+            </div>
+          </div>
+
+          <div className="mt-5">
+            <NextMilestoneCard
+              target={milestone.target}
+              pct={milestone.pct}
+              estimatedQuestions={milestone.estimatedQuestions}
+              ctaHref={continuePracticeHref}
+              ctaLabel={continuePracticeLabel}
+            />
           </div>
 
           <div className="mt-5 rounded-3xl border border-[#F0E6D6] bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
-            <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-              Rating Over Time
-            </h2>
-            <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">
-              For deeper analytics — accuracy trends, weekly activity, monthly growth — visit the Progress page.
-            </p>
-            <div className="mt-4">
-              <RatingChart points={ratingHistory} />
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                  Performance Snapshot
+                </h2>
+                <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Last 7 days</p>
+              </div>
+              <Link href="/progress" className="flex shrink-0 items-center gap-1 text-sm font-semibold text-[#4C3AA0] dark:text-indigo-400">
+                View Full Progress <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            <div className="mt-4 grid gap-5 sm:grid-cols-[140px_1fr]">
+              <Sparkline points={sparklinePoints} color={(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "#2E6B1B" : "#D9502F"} />
+              <div>
+                <p className="text-sm text-[#2B2118] dark:text-neutral-300">{weeklyInsight}</p>
+                <div className="mt-3 grid grid-cols-3 gap-4 text-center sm:text-left">
+                  <div>
+                    <div className="text-lg font-extrabold text-[#2E6B1B]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>{weeklyTrends.solvedThisWeek}</div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Solved</div>
+                  </div>
+                  <div>
+                    <div className={`text-lg font-extrabold ${(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "text-[#4C3AA0]" : "text-[#D9502F]"}`} style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                      {weeklyTrends.ratingChangeThisWeek !== null ? `${weeklyTrends.ratingChangeThisWeek >= 0 ? "+" : ""}${weeklyTrends.ratingChangeThisWeek}` : "—"}
+                    </div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">This Week</div>
+                  </div>
+                  <div>
+                    <div className="text-lg font-extrabold text-[#FF6B4A]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>{weeklyTrends.attemptsThisWeek}</div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Attempted</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
