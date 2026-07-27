@@ -318,3 +318,25 @@ export async function getUserRank(userId: string, learnerScore: number): Promise
   });
   return higherRated + 1;
 }
+
+/** All questions the student has genuinely bookmarked, with enough
+ * question data to display and link back into practice. */
+export async function getBookmarkedQuestions(userId: string) {
+  const saved = await prisma.savedQuestion.findMany({
+    where: { userId, type: "BOOKMARK" },
+    orderBy: { createdAt: "desc" },
+    include: {
+      question: {
+        select: {
+          id: true,
+          externalId: true,
+          statement: true,
+          difficultyLabel: true,
+          examType: true,
+          topics: { include: { topic: true }, take: 1 },
+        },
+      },
+    },
+  });
+  return saved;
+}

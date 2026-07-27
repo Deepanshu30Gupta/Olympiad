@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
 import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
 import { Spinner } from "@/components/ui/Spinner";
-import { MathSymbolToolbar } from "@/features/questions/MathSymbolToolbar";
 import { Eye } from "lucide-react";
 
 interface Hint {
@@ -164,15 +163,20 @@ export function AttemptForm({
         )}
 
         <p className="mt-4 text-sm text-[#6B5D4F] dark:text-neutral-400">
-          {nextHint ? "Want a hint before we show the answer?" : "Ready to see the answer?"}
+          {nextHint ? "Want a hint before trying again?" : "Ready to see the answer?"}
         </p>
         <div className="mt-3 flex gap-3">
           {nextHint && (
             <button
-              onClick={() => setRevealedHintLevel(nextHint.level)}
+              onClick={() => {
+                setRevealedHintLevel(nextHint.level);
+                setPendingWrongResult(null);
+                setAnswer("");
+                setSubmittedAnswer(null);
+              }}
               className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-800 transition-colors hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/60 dark:text-amber-200 dark:hover:bg-amber-900/60"
             >
-              Get a hint
+              Get a hint &amp; try again
             </button>
           )}
           <button
@@ -315,18 +319,15 @@ export function AttemptForm({
       )}
 
       {answerType === "NUMERIC" && (
-        <div>
-          <input
-            ref={numericInputRef}
-            type="text"
-            inputMode="numeric"
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            placeholder="Your answer"
-            className="w-full rounded-lg border border-[#F0E6D6] bg-white px-4 py-3 text-sm text-[#2B2118] outline-none focus:border-[#5B8DEF] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100"
-          />
-          <MathSymbolToolbar inputRef={numericInputRef} onInsert={setAnswer} />
-        </div>
+        <input
+          ref={numericInputRef}
+          type="text"
+          inputMode="numeric"
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          placeholder="Your answer"
+          className="w-full rounded-lg border border-[#F0E6D6] bg-white px-4 py-3 text-sm text-[#2B2118] outline-none focus:border-[#5B8DEF] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100"
+        />
       )}
 
       {answerType === "MCQ" && options && (
@@ -407,26 +408,14 @@ export function AttemptForm({
           {loadingAction === "submit" && <Spinner />}
           {loadingAction === "submit" ? "Submitting..." : "Submit"}
         </button>
-        {/* "Give up" and "Show Solution" are two labels on the SAME real
-            action — revealing the solution means surrendering the
-            attempt in this system, so both genuinely trigger
-            handleSurrender rather than one being a fake shortcut. */}
-        <button
-          onClick={handleSurrender}
-          disabled={!canSurrender || loadingAction !== null}
-          title={!canSurrender ? `Available after ${surrenderLockSeconds}s` : undefined}
-          className="flex items-center gap-2 rounded-lg border border-[#F0E6D6] px-4 py-2 text-sm font-medium text-[#6B5D4F] hover:border-[#D8CBB5] disabled:opacity-30 dark:border-neutral-800 dark:text-neutral-400"
-        >
-          {loadingAction === "surrender" && <Spinner />}
-          {canSurrender ? "Give Up" : `Give up (${surrenderLockSeconds - elapsedSeconds}s)`}
-        </button>
         <button
           onClick={handleSurrender}
           disabled={!canSurrender || loadingAction !== null}
           title={!canSurrender ? `Available after ${surrenderLockSeconds}s` : undefined}
           className="flex items-center gap-1.5 text-sm text-[#6B5D4F] hover:text-[#2B2118] disabled:opacity-30 dark:text-neutral-500 dark:hover:text-neutral-300"
         >
-          <Eye size={15} /> Show Solution
+          {loadingAction === "surrender" && <Spinner />}
+          <Eye size={15} /> {canSurrender ? "Show Solution" : `Show Solution (${surrenderLockSeconds - elapsedSeconds}s)`}
         </button>
       </div>
     </div>

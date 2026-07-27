@@ -25,6 +25,7 @@ import type { AttemptStatus } from "@prisma/client";
 interface SubmitAttemptParams {
   userId: string;
   questionId: string;
+  sessionId: string | null;
   status: AttemptStatus;
   startedAt: Date;
   hintLevelUsed: number | null;
@@ -97,6 +98,7 @@ export async function submitAttempt(params: SubmitAttemptParams) {
     data: {
       userId: params.userId,
       questionId: params.questionId,
+      sessionId: params.sessionId,
       status: params.status,
       startedAt: params.startedAt,
       submittedAt: new Date(),

@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, TrendingUp, BookMarked, ListChecks, Settings, Target } from "lucide-react";
+import { Home, TrendingUp, BookMarked, ListChecks, Settings, Target, Bookmark } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: Home, href: "/dashboard" },
   { label: "Progress", icon: TrendingUp, href: "/progress" },
   { label: "Topics", icon: BookMarked, href: "/topics" },
   { label: "Sessions", icon: ListChecks, href: "/sessions" },
+  { label: "Bookmarks", icon: Bookmark, href: "/bookmarks" },
   { label: "Settings", icon: Settings, href: "#" },
 ];
 

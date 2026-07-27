@@ -158,13 +158,14 @@ export async function getSessionAttemptById(sessionId: string, attemptId: string
 export async function getSessionProgress(sessionId: string) {
   const attempts = await prisma.attempt.findMany({
     where: { sessionId },
-    select: { status: true },
+    select: { status: true, activeSolvingSeconds: true },
   });
   const solved = attempts.filter((a) => a.status === "SOLVED").length;
   const wrong = attempts.filter((a) => a.status === "WRONG").length;
   const surrendered = attempts.filter((a) => a.status === "SURRENDERED").length;
   const totalAttempted = attempts.length;
   const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
+  const totalTimeSeconds = attempts.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
 
-  return { solved, wrong, surrendered, totalAttempted, accuracyPct };
+  return { solved, wrong, surrendered, totalAttempted, accuracyPct, totalTimeSeconds };
 }

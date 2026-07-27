@@ -50,7 +50,7 @@ export default async function PracticePage({
     const reviewAttempt = await getSessionAttemptById(params.sessionId, params.reviewAttemptId);
     if (!reviewAttempt) {
       return (
-        <Shell>
+        <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
           <MainCol>
             <p className="text-sm text-[#6B5D4F] dark:text-neutral-400">That attempt couldn&rsquo;t be found in this session.</p>
           </MainCol>
@@ -62,7 +62,7 @@ export default async function PracticePage({
       );
     }
     return (
-      <Shell>
+      <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
         <MainCol>
           <AttemptReviewView
             attempt={{
@@ -88,7 +88,7 @@ export default async function PracticePage({
   if (!result.question) {
     if ("offerRetry" in result && result.offerRetry) {
       return (
-        <Shell>
+        <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
           <MainCol>
             <div className="w-fit rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-950/50 dark:text-amber-300">
               All fresh questions done
@@ -116,7 +116,7 @@ export default async function PracticePage({
     }
 
     return (
-      <Shell>
+      <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
         <MainCol>
           <div className="w-fit rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
             Session complete
@@ -144,7 +144,7 @@ export default async function PracticePage({
   const bookmarked = await isQuestionBookmarked(dbUser.id, q.id);
 
   return (
-    <Shell>
+    <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
       <MainCol>
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-wrap gap-2 font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
@@ -182,13 +182,25 @@ export default async function PracticePage({
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Shell({ children, totalTimeSeconds }: { children: React.ReactNode; totalTimeSeconds?: number }) {
+  const timeLabel =
+    totalTimeSeconds !== undefined
+      ? `${Math.floor(totalTimeSeconds / 60)}:${String(totalTimeSeconds % 60).padStart(2, "0")}`
+      : null;
+
   return (
     <div className="min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
       <div className="mx-auto max-w-6xl px-6 py-8">
-        <Link href="/dashboard" className="mb-6 inline-flex items-center gap-1 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-300">
-          ← Dashboard
-        </Link>
+        <div className="mb-6 flex items-center justify-between">
+          <Link href="/dashboard" className="inline-flex items-center gap-1 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-300">
+            ← Dashboard
+          </Link>
+          {timeLabel && (
+            <span className="rounded-full border border-[#F0E6D6] bg-white px-3 py-1 text-xs font-semibold text-[#6B5D4F] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
+              ⏱ Session time: {timeLabel}
+            </span>
+          )}
+        </div>
         <div className="grid gap-6 lg:grid-cols-[1fr_300px]">{children}</div>
       </div>
     </div>

@@ -76,6 +76,7 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
     const result = await submitAttempt({
       userId: dbUser.id,
       questionId: input.questionId,
+      sessionId: input.sessionId,
       status: isCorrect ? "SOLVED" : "WRONG",
       startedAt: new Date(input.startedAtMs),
       hintLevelUsed: input.hintLevelUsed,
@@ -131,6 +132,7 @@ export async function surrenderAction(input: SurrenderInput): Promise<SurrenderR
     const result = await submitAttempt({
       userId: dbUser.id,
       questionId: input.questionId,
+      sessionId: input.sessionId,
       status: "SURRENDERED",
       startedAt: new Date(input.startedAtMs),
       hintLevelUsed: input.hintLevelUsed,
