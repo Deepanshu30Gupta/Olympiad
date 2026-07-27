@@ -3,18 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, TrendingUp, BookMarked, ListChecks, Trophy, Settings, Star } from "lucide-react";
+import { Home, TrendingUp, BookMarked, ListChecks, Settings, Target } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: Home, href: "/dashboard" },
   { label: "Progress", icon: TrendingUp, href: "/progress" },
   { label: "Topics", icon: BookMarked, href: "/topics" },
   { label: "Sessions", icon: ListChecks, href: "/sessions" },
-  { label: "Leaderboard", icon: Trophy, href: "/leaderboard" },
   { label: "Settings", icon: Settings, href: "#" },
 ];
 
-export function DashboardSidebar() {
+export function DashboardSidebar({
+  todaysGoal,
+}: {
+  todaysGoal?: { solvedToday: number; dailyGoal: number; pct: number };
+}) {
   const pathname = usePathname();
 
   return (
@@ -23,7 +26,7 @@ export function DashboardSidebar() {
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href;
           return (
-            <Link key={item.label} href={item.href} className="relative">
+            <Link key={item.label} href={item.href} className="group relative">
               {active && (
                 <motion.div
                   layoutId="sidebar-active"
@@ -38,7 +41,7 @@ export function DashboardSidebar() {
                     : "text-[#6B5D4F] hover:bg-[#FFFBF2] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
                 }`}
               >
-                <item.icon size={18} />
+                <item.icon size={18} className="transition-transform duration-200 group-hover:scale-110" />
                 {item.label}
               </div>
             </Link>
@@ -46,21 +49,22 @@ export function DashboardSidebar() {
         })}
       </nav>
 
-      <div className="rounded-2xl bg-[#ECE8FA] p-5 text-center dark:bg-indigo-950/30">
-        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#4C3AA0]">
-          <Star size={18} className="text-white" />
+      {todaysGoal && (
+        <div className="rounded-2xl border border-[#F0E6D6] bg-[#FFFBF2] p-5 dark:border-neutral-800 dark:bg-neutral-800/40">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#6FCF52]">
+              <Target size={16} className="text-white" />
+            </div>
+            <h3 className="text-sm font-bold text-[#2B2118] dark:text-neutral-100">Today&rsquo;s Goal</h3>
+          </div>
+          <p className="mt-2 text-xs text-[#6B5D4F] dark:text-neutral-400">
+            {todaysGoal.solvedToday} of {todaysGoal.dailyGoal} solved
+          </p>
+          <div className="mt-2 h-1.5 rounded-full bg-[#F0E6D6] dark:bg-neutral-700">
+            <div className="h-1.5 rounded-full bg-[#6FCF52] transition-all duration-500" style={{ width: `${todaysGoal.pct}%` }} />
+          </div>
         </div>
-        <h3 className="mt-3 text-sm font-bold text-[#2B2118] dark:text-neutral-100">Qublem Pro</h3>
-        <p className="mt-1.5 text-xs text-[#6B5D4F] dark:text-neutral-400">
-          Unlock full analytics, advanced filters and personalized insights.
-        </p>
-        <Link
-          href="/contact"
-          className="mt-4 block rounded-lg bg-[#4C3AA0] px-3 py-2 text-xs font-semibold text-white hover:bg-[#3D2F82]"
-        >
-          Get Notified
-        </Link>
-      </div>
+      )}
     </aside>
   );
 }

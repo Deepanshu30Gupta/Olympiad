@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
 import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
 import { Spinner } from "@/components/ui/Spinner";
+import { MathSymbolToolbar } from "@/features/questions/MathSymbolToolbar";
+import { Eye } from "lucide-react";
 
 interface Hint {
   level: number;
@@ -46,6 +48,7 @@ export function AttemptForm({
   const [pendingWrongResult, setPendingWrongResult] = useState<SubmitResult | null>(null);
   const [loadingAction, setLoadingAction] = useState<"submit" | "surrender" | "next" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const numericInputRef = useRef<HTMLInputElement>(null);
 
   const done = result !== null;
 
@@ -312,14 +315,18 @@ export function AttemptForm({
       )}
 
       {answerType === "NUMERIC" && (
-        <input
-          type="text"
-          inputMode="numeric"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          placeholder="Your answer"
-          className="w-full rounded-lg border border-[#F0E6D6] bg-white px-4 py-3 text-sm text-[#2B2118] outline-none focus:border-[#5B8DEF] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100"
-        />
+        <div>
+          <input
+            ref={numericInputRef}
+            type="text"
+            inputMode="numeric"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            placeholder="Your answer"
+            className="w-full rounded-lg border border-[#F0E6D6] bg-white px-4 py-3 text-sm text-[#2B2118] outline-none focus:border-[#5B8DEF] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100"
+          />
+          <MathSymbolToolbar inputRef={numericInputRef} onInsert={setAnswer} />
+        </div>
       )}
 
       {answerType === "MCQ" && options && (
@@ -400,14 +407,26 @@ export function AttemptForm({
           {loadingAction === "submit" && <Spinner />}
           {loadingAction === "submit" ? "Submitting..." : "Submit"}
         </button>
+        {/* "Give up" and "Show Solution" are two labels on the SAME real
+            action — revealing the solution means surrendering the
+            attempt in this system, so both genuinely trigger
+            handleSurrender rather than one being a fake shortcut. */}
         <button
           onClick={handleSurrender}
           disabled={!canSurrender || loadingAction !== null}
           title={!canSurrender ? `Available after ${surrenderLockSeconds}s` : undefined}
-          className="flex items-center gap-2 text-sm text-[#6B5D4F] hover:text-[#2B2118] disabled:opacity-30 dark:text-neutral-500 dark:hover:text-neutral-300"
+          className="flex items-center gap-2 rounded-lg border border-[#F0E6D6] px-4 py-2 text-sm font-medium text-[#6B5D4F] hover:border-[#D8CBB5] disabled:opacity-30 dark:border-neutral-800 dark:text-neutral-400"
         >
           {loadingAction === "surrender" && <Spinner />}
-          {canSurrender ? "Give up, show solution" : `Give up (available in ${surrenderLockSeconds - elapsedSeconds}s)`}
+          {canSurrender ? "Give Up" : `Give up (${surrenderLockSeconds - elapsedSeconds}s)`}
+        </button>
+        <button
+          onClick={handleSurrender}
+          disabled={!canSurrender || loadingAction !== null}
+          title={!canSurrender ? `Available after ${surrenderLockSeconds}s` : undefined}
+          className="flex items-center gap-1.5 text-sm text-[#6B5D4F] hover:text-[#2B2118] disabled:opacity-30 dark:text-neutral-500 dark:hover:text-neutral-300"
+        >
+          <Eye size={15} /> Show Solution
         </button>
       </div>
     </div>

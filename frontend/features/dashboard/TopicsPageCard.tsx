@@ -17,6 +17,7 @@ export function TopicsPageCard({
   totalQuestions,
   completed,
   mistakes,
+  lastPracticed,
 }: {
   categoryName: string;
   stars: number;
@@ -25,10 +26,15 @@ export function TopicsPageCard({
   totalQuestions: number;
   completed: number;
   mistakes: Mistake[];
+  lastPracticed: Date | null;
 }) {
   const [open, setOpen] = useState(false);
   const accuracy = solved + wrong > 0 ? Math.round((solved / (solved + wrong)) * 100) : 0;
   const progressPct = totalQuestions > 0 ? Math.min(100, Math.round((completed / totalQuestions) * 100)) : 0;
+  const remaining = Math.max(0, totalQuestions - completed);
+  const lastPracticedLabel = lastPracticed
+    ? new Date(lastPracticed).toLocaleDateString(undefined, { month: "short", day: "numeric" })
+    : null;
 
   return (
     <div className="rounded-2xl border border-[#F0E6D6] bg-white p-5 transition-all duration-200 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
@@ -40,9 +46,13 @@ export function TopicsPageCard({
       <div className="mt-3 h-1.5 rounded-full bg-[#F0E6D6] dark:bg-neutral-800">
         <div className="h-1.5 rounded-full bg-[#FF6B4A]" style={{ width: `${progressPct}%` }} />
       </div>
-      <div className="mt-1.5 flex justify-between text-xs text-[#6B5D4F] dark:text-neutral-500">
+      <div className="mt-1.5 flex flex-wrap justify-between gap-x-3 text-xs text-[#6B5D4F] dark:text-neutral-500">
         <span>{completed} of {totalQuestions || "?"} questions</span>
         <span>{accuracy}% accuracy</span>
+      </div>
+      <div className="mt-1 flex flex-wrap justify-between gap-x-3 text-[11px] text-[#8A7C6C] dark:text-neutral-600">
+        <span>{remaining} remaining</span>
+        {lastPracticedLabel && <span>Last practiced {lastPracticedLabel}</span>}
       </div>
 
       <button

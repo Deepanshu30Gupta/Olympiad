@@ -101,3 +101,70 @@ export async function completeSession(sessionId: string) {
     data: { status: "COMPLETED" },
   });
 }
+
+/** Real, session-scoped attempt history — every question genuinely
+ * attempted in this session, in order. Powers both the progress ring
+ * (real solved/wrong/surrendered counts, no fake "total") and the
+ * question navigator (only questions that actually exist to review). */
+export async function getSessionAttempts(sessionId: string) {
+  const attempts = await prisma.attempt.findMany({
+    where: { sessionId },
+    orderBy: { submittedAt: "asc" },
+    include: {
+      question: {
+        select: {
+          id: true,
+          externalId: true,
+          statement: true,
+          answerType: true,
+          options: true,
+          correctAnswer: true,
+          solutionMarkdown: true,
+          diagramSvg: true,
+          difficultyLabel: true,
+        },
+      },
+    },
+  });
+  return attempts;
+}
+
+/** A single past attempt in this session, for the review view. Scoped
+ * to the session so a user can't review someone else's attempt by
+ * guessing an ID. */
+export async function getSessionAttemptById(sessionId: string, attemptId: string) {
+  return prisma.attempt.findFirst({
+    where: { id: attemptId, sessionId },
+    include: {
+      question: {
+        select: {
+          id: true,
+          externalId: true,
+          statement: true,
+          answerType: true,
+          options: true,
+          correctAnswer: true,
+          solutionMarkdown: true,
+          diagramSvg: true,
+          difficultyLabel: true,
+        },
+      },
+    },
+  });
+}
+
+/** Real progress counts for the session — no fabricated "total" or
+ * "remaining", since sessions are open-ended by design. */
+export async function getSessionProgress(sessionId: string) {
+  const attempts = await prisma.attempt.findMany({
+    where: { sessionId },
+    select: { status: true },
+  });
+  const solved = attempts.filter((a) => a.status === "SOLVED").length;
+  const wrong = attempts.filter((a) => a.status === "WRONG").length;
+  const surrendered = attempts.filter((a) => a.status === "SURRENDERED").length;
+  const totalAttempted = attempts.length;
+  const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
+
+  return { solved, wrong, surrendered, totalAttempted, accuracyPct };
+}

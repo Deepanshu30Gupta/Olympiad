@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
-import { getTopicBreakdown, getCategoryQuestionCounts, getMasteryLevel } from "@/services/dashboard-service";
+import { getTopicBreakdown, getCategoryQuestionCounts, getMasteryLevel, getTodaysGoalProgress } from "@/services/dashboard-service";
 import { ratingToStars } from "@/lib/rating-display";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
 import { TopicsPageCard } from "@/features/dashboard/TopicsPageCard";
@@ -14,9 +14,10 @@ export default async function TopicsPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [topicBreakdown, questionCounts] = await Promise.all([
+  const [topicBreakdown, questionCounts, todaysGoal] = await Promise.all([
     getTopicBreakdown(dbUser.id),
     getCategoryQuestionCounts(),
+    getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
   ]);
 
   const startedTopics = topicBreakdown.filter((t) => t.solved + t.wrong + t.surrendered > 0);
@@ -28,7 +29,7 @@ export default async function TopicsPage() {
 
   return (
     <div className="flex min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
-      <DashboardSidebar />
+      <DashboardSidebar todaysGoal={todaysGoal} />
       <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
         <div className="mx-auto max-w-5xl">
           <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
@@ -61,6 +62,15 @@ export default async function TopicsPage() {
                       totalQuestions={questionCounts.get(t.categoryId) ?? 0}
                       completed={t.solved + t.wrong + t.surrendered}
                       mistakes={t.attempts.filter((a) => a.status === "WRONG").slice(0, 3)}
+                      lastPracticed={
+                        t.attempts.length > 0
+                          ? t.attempts.reduce<Date | null>((latest, a) => {
+                              if (!a.submittedAt) return latest;
+                              const d = new Date(a.submittedAt);
+                              return !latest || d > latest ? d : latest;
+                            }, null)
+                          : null
+                      }
                     />
                   ))}
                 </div>

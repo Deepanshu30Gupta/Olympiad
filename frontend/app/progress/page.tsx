@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import {
   getTopicBreakdown,
   getRatingHistory,
+  getTodaysGoalProgress,
   getActivityHeatmap,
   getNextMilestone,
 } from "@/services/dashboard-service";
@@ -18,10 +19,11 @@ export default async function ProgressPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [topicBreakdown, ratingHistory, heatmap] = await Promise.all([
+  const [topicBreakdown, ratingHistory, heatmap, todaysGoal] = await Promise.all([
     getTopicBreakdown(dbUser.id),
     getRatingHistory(dbUser.id),
     getActivityHeatmap(dbUser.id, 8),
+    getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
   ]);
 
   const milestone = getNextMilestone(dbUser.learnerScore);
@@ -29,7 +31,7 @@ export default async function ProgressPage() {
 
   return (
     <div className="flex min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
-      <DashboardSidebar />
+      <DashboardSidebar todaysGoal={todaysGoal} />
       <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
         <div className="mx-auto max-w-5xl">
           <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>

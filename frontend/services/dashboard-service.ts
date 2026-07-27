@@ -309,3 +309,12 @@ export async function getCategoryQuestionCounts(): Promise<Map<string, number>> 
   }
   return counts;
 }
+
+/** Real leaderboard rank by learnerScore — for the compact preview card
+ * on the dashboard, not a fabricated number. */
+export async function getUserRank(userId: string, learnerScore: number): Promise<number> {
+  const higherRated = await prisma.user.count({
+    where: { learnerScore: { gt: learnerScore } },
+  });
+  return higherRated + 1;
+}
