@@ -64,7 +64,15 @@ export default async function PracticePage({
     return (
       <Shell>
         <MainCol>
-          <AttemptReviewView attempt={reviewAttempt} />
+          <AttemptReviewView
+            attempt={{
+              ...reviewAttempt,
+              question: {
+                ...reviewAttempt.question,
+                options: reviewAttempt.question.options as Record<string, string> | null,
+              },
+            }}
+          />
         </MainCol>
         <SideCol>
           <SessionProgressRing {...sessionProgress} />
