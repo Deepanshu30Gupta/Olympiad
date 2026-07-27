@@ -56,12 +56,13 @@ export default async function TopicsPage() {
                     <TopicsPageCard
                       key={t.categoryId}
                       categoryName={t.categoryName}
+                      categorySlug={t.categorySlug}
                       stars={ratingToStars(t.rating)}
                       solved={t.solved}
                       wrong={t.wrong}
                       totalQuestions={questionCounts.get(t.categoryId) ?? 0}
                       completed={t.solved + t.wrong + t.surrendered}
-                      mistakes={t.attempts.filter((a) => a.status === "WRONG").slice(0, 3)}
+                      attempts={t.attempts}
                       lastPracticed={
                         t.attempts.length > 0
                           ? t.attempts.reduce<Date | null>((latest, a) => {

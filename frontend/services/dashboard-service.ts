@@ -12,6 +12,7 @@ function resolveMajorCategoryId(topic: { id: string; parentId: string | null }):
 
 export interface TopicBreakdownEntry {
   categoryId: string;
+  categorySlug: string;
   categoryName: string;
   rating: number;
   solved: number;
@@ -58,6 +59,7 @@ export async function getTopicBreakdown(userId: string): Promise<TopicBreakdownE
   for (const cat of majorCategories) {
     breakdown[cat.id] = {
       categoryId: cat.id,
+      categorySlug: cat.slug,
       categoryName: cat.name,
       rating: DEFAULT_RATING,
       solved: 0,
@@ -359,4 +361,13 @@ export async function getBookmarkedQuestions(userId: string) {
     },
   });
   return saved;
+}
+
+/** Real average time spent per attempted question, all-time. */
+export async function getAverageTimePerQuestion(userId: string): Promise<number> {
+  const result = await prisma.attempt.aggregate({
+    where: { userId },
+    _avg: { activeSolvingSeconds: true },
+  });
+  return Math.round(result._avg.activeSolvingSeconds ?? 0);
 }

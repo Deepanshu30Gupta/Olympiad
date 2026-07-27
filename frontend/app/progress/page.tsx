@@ -5,6 +5,8 @@ import {
   getRatingHistory,
   getTodaysGoalProgress,
   getActivityHeatmap,
+  getAverageTimePerQuestion,
+  getWeeklyTrends,
 } from "@/services/dashboard-service";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
 import { RatingChart } from "@/features/dashboard/RatingChart";
@@ -18,12 +20,18 @@ export default async function ProgressPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [topicBreakdown, ratingHistory, heatmap, todaysGoal] = await Promise.all([
+  const [topicBreakdown, ratingHistory, heatmap, todaysGoal, avgTimeSeconds, weeklyTrends] = await Promise.all([
     getTopicBreakdown(dbUser.id),
     getRatingHistory(dbUser.id),
     getActivityHeatmap(dbUser.id, 8),
     getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
+    getAverageTimePerQuestion(dbUser.id),
+    getWeeklyTrends(dbUser.id, dbUser.learnerScore),
   ]);
+
+  const avgMinutes = Math.floor(avgTimeSeconds / 60);
+  const avgSeconds = avgTimeSeconds % 60;
+  const avgTimeLabel = avgMinutes > 0 ? `${avgMinutes}m ${avgSeconds}s` : `${avgSeconds}s`;
 
   const accuracy = dbUser.totalAttempted > 0 ? Math.round((dbUser.totalSolved / dbUser.totalAttempted) * 100) : 0;
 
@@ -77,6 +85,23 @@ export default async function ProgressPage() {
                     {accuracy}%
                   </div>
                   <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Accuracy</div>
+                </div>
+                <div className="pt-4">
+                  <div className="text-2xl font-extrabold text-[#4C3AA0]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                    {avgTimeLabel}
+                  </div>
+                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Average Time</div>
+                </div>
+                <div className="pt-4">
+                  <div
+                    className={`text-2xl font-extrabold ${(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "text-[#2E6B1B]" : "text-[#D9502F]"}`}
+                    style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
+                  >
+                    {weeklyTrends.ratingChangeThisWeek !== null
+                      ? `${weeklyTrends.ratingChangeThisWeek >= 0 ? "+" : ""}${weeklyTrends.ratingChangeThisWeek}`
+                      : "—"}
+                  </div>
+                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Rating Change (7d)</div>
                 </div>
               </div>
             </Card>

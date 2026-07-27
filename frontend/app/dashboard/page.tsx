@@ -7,7 +7,6 @@ import {
   getTodaysGoalProgress,
   getCurrentFocusTopic,
   getWeeklyTrends,
-  getUserRank,
   getRatingHistory,
   getNextMilestone,
 } from "@/services/dashboard-service";
@@ -16,7 +15,6 @@ import { HeroStreak } from "@/features/dashboard/HeroStreak";
 import { getMotivationalMessage } from "@/lib/motivational-message";
 import { QuickProgressCard } from "@/features/dashboard/QuickProgressCard";
 import { ResumeSessionCard, StartNewPracticeCard } from "@/features/dashboard/ActionCards";
-import { LeaderboardPreviewCard } from "@/features/dashboard/LeaderboardPreviewCard";
 import { NextMilestoneCard } from "@/features/dashboard/NextMilestoneCard";
 import { Sparkline } from "@/features/dashboard/Sparkline";
 import { ratingToStars } from "@/lib/rating-display";
@@ -35,12 +33,11 @@ export default async function DashboardPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [activeSession, todaysGoal, currentFocus, weeklyTrends, rank, ratingHistory] = await Promise.all([
+  const [activeSession, todaysGoal, currentFocus, weeklyTrends, ratingHistory] = await Promise.all([
     getActiveSession(dbUser.id),
     getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
     getCurrentFocusTopic(dbUser.id),
     getWeeklyTrends(dbUser.id, dbUser.learnerScore),
-    getUserRank(dbUser.id, dbUser.learnerScore),
     getRatingHistory(dbUser.id),
   ]);
 
@@ -48,7 +45,6 @@ export default async function DashboardPage() {
   const milestone = getNextMilestone(dbUser.learnerScore);
   const weeklyInsight = getWeeklyInsight(weeklyTrends.ratingChangeThisWeek);
   const sparklinePoints = ratingHistory.slice(-7).map((p) => ratingToStars(p.rating));
-  const todaysGoalRemaining = Math.max(0, todaysGoal.dailyGoal - todaysGoal.solvedToday);
 
   let sessionTopicLabel = "a mix of everything";
   if (activeSession && activeSession.topicFocus.length > 0) {
@@ -84,29 +80,6 @@ export default async function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="md:col-span-2">
-              {activeSession ? (
-                <ResumeSessionCard
-                  href={`/practice?sessionId=${activeSession.id}`}
-                  topicLabel={sessionTopicLabel}
-                  questionsCompleted={activeSession.questionsCompleted}
-                  startedAt={activeSession.startedAt.toISOString()}
-                />
-              ) : (
-                <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
-              )}
-            </div>
-            <div className="flex flex-col gap-4">
-              {activeSession && (
-                <div className="scale-[0.96] opacity-90">
-                  <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
-                </div>
-              )}
-              <LeaderboardPreviewCard rank={rank} />
-            </div>
-          </div>
-
           <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
             <QuickProgressCard
               icon={<Star size={18} className="text-white" />}
@@ -131,9 +104,23 @@ export default async function DashboardPage() {
                 <div className="h-1.5 rounded-full bg-[#6FCF52] transition-all duration-500" style={{ width: `${todaysGoal.pct}%` }} />
               </div>
               <div className="mt-1 text-[11px] text-[#6B5D4F] dark:text-neutral-500">
-                {todaysGoalRemaining > 0 ? `${todaysGoalRemaining} more to go` : "Goal complete! 🎉"}
+                {todaysGoal.dailyGoal - todaysGoal.solvedToday > 0 ? `${todaysGoal.dailyGoal - todaysGoal.solvedToday} more to go` : "Goal complete! 🎉"}
               </div>
             </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {activeSession ? (
+              <ResumeSessionCard
+                href={`/practice?sessionId=${activeSession.id}`}
+                topicLabel={sessionTopicLabel}
+                questionsCompleted={activeSession.questionsCompleted}
+                startedAt={activeSession.startedAt.toISOString()}
+              />
+            ) : (
+              <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
+            )}
+            <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
           </div>
 
           <div className="mt-6">

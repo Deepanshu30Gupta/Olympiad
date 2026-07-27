@@ -10,7 +10,6 @@ export function SessionTimelineItem({
   name,
   status,
   startedAt,
-  questionsCompleted,
   solved,
   wrong,
   surrendered,
@@ -22,7 +21,6 @@ export function SessionTimelineItem({
   name: string;
   status: string;
   startedAt: string;
-  questionsCompleted: number;
   solved: number;
   wrong: number;
   surrendered: number;
@@ -86,7 +84,7 @@ export function SessionTimelineItem({
         {open && (
           <div className="mt-2 border-t border-[#F0E6D6] pt-2 text-xs text-[#6B5D4F] dark:border-neutral-800 dark:text-neutral-400">
             <p>
-              {questionsCompleted} question{questionsCompleted !== 1 ? "s" : ""} completed in this session.
+              {solved + wrong + surrendered} question{solved + wrong + surrendered !== 1 ? "s" : ""} completed in this session.
             </p>
             <div className="mt-2 grid grid-cols-3 gap-2">
               <div className="rounded-lg bg-[#FFFBF2] px-2 py-1.5 text-center dark:bg-neutral-800">
