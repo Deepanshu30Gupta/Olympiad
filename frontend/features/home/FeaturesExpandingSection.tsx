@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ReactElement } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Target, Lightbulb, TrendingUp, Flame, History, BookOpen, ArrowRight } from "lucide-react";
 
@@ -11,7 +11,7 @@ interface FeatureDef {
   description: string;
   color: string;
   bg: string;
-  Illustration: () => JSX.Element;
+  Illustration: () => ReactElement;
 }
 
 function AdaptiveIllustration() {
