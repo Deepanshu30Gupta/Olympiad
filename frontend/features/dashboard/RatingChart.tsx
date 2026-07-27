@@ -18,10 +18,10 @@ export function RatingChart({ points }: RatingChartProps) {
   return (
     <>
       <div className="dark:hidden">
-        <ChartSvg points={starPoints} lineColor="#4C3AA0" areaColor="#ECE8FA" textColor="#6B5D4F" />
+        <ChartSvg points={starPoints} lineColor="#4C3AA0" areaColor="#ECE8FA" textColor="#6B5D4F" zeroLineColor="#D8CBB5" />
       </div>
       <div className="hidden dark:block">
-        <ChartSvg points={starPoints} lineColor="#A5A0E8" areaColor="#2A2550" textColor="#A3A3A3" />
+        <ChartSvg points={starPoints} lineColor="#A5A0E8" areaColor="#2A2550" textColor="#A3A3A3" zeroLineColor="#404040" />
       </div>
     </>
   );
@@ -32,39 +32,56 @@ function ChartSvg({
   lineColor,
   areaColor,
   textColor,
+  zeroLineColor,
 }: {
   points: { date: string; stars: number }[];
   lineColor: string;
   areaColor: string;
   textColor: string;
+  zeroLineColor: string;
 }) {
   const width = 640;
-  const height = 180;
+  const height = 200;
   const padding = 24;
 
-  const min = 0;
+  const actualMin = Math.min(...points.map((p) => p.stars));
   const max = 5;
+  const min = actualMin < 0 ? Math.floor(actualMin) - 1 : 0;
   const range = max - min;
 
-  const coords = points.map((p, i) => {
-    const x = padding + (i / (points.length - 1)) * (width - padding * 2);
-    const y = height - padding - ((p.stars - min) / range) * (height - padding * 2);
-    return { x, y };
-  });
+  const yFor = (stars: number) => height - padding - ((stars - min) / range) * (height - padding * 2);
+
+  const coords = points.map((p, i) => ({
+    x: padding + (i / (points.length - 1)) * (width - padding * 2),
+    y: yFor(p.stars),
+  }));
 
   const pathD = coords.map((c, i) => `${i === 0 ? "M" : "L"} ${c.x.toFixed(1)} ${c.y.toFixed(1)}`).join(" ");
-  const areaD = `${pathD} L ${coords[coords.length - 1].x.toFixed(1)} ${height - padding} L ${coords[0].x.toFixed(1)} ${height - padding} Z`;
+  const zeroY = yFor(0);
+  const baselineY = height - padding;
+  const areaD = `${pathD} L ${coords[coords.length - 1].x.toFixed(1)} ${baselineY} L ${coords[0].x.toFixed(1)} ${baselineY} Z`;
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }}>
       <path d={areaD} fill={areaColor} />
+
+      {min < 0 && (
+        <>
+          <line x1={padding} y1={zeroY} x2={width - padding} y2={zeroY} stroke={zeroLineColor} strokeWidth="1.5" strokeDasharray="4 4" />
+          <text x={width - padding} y={zeroY - 4} fontSize="11" fill={textColor} textAnchor="end">
+            ★ 0
+          </text>
+        </>
+      )}
+
       <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
       {coords.length <= 40 && coords.map((c, i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill={lineColor} />)}
+
       <text x={padding} y={16} fontSize="12" fill={textColor}>
-        ★ 5
+        ★ {max}
       </text>
       <text x={padding} y={height - padding + 4} fontSize="12" fill={textColor}>
-        ★ 0
+        ★ {min}
       </text>
     </svg>
   );

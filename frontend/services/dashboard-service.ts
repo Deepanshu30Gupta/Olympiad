@@ -20,6 +20,8 @@ export interface TopicBreakdownEntry {
   surrendered: number;
   totalTimeSeconds: number;
   attempts: {
+    id: string;
+    sessionId: string | null;
     externalId: string;
     statement: string;
     status: string;
@@ -100,6 +102,8 @@ export async function getTopicBreakdown(userId: string): Promise<TopicBreakdownE
       entry.totalTimeSeconds += attempt.activeSolvingSeconds ?? 0;
 
       entry.attempts.push({
+        id: attempt.id,
+        sessionId: attempt.sessionId,
         externalId: attempt.question.externalId,
         statement: attempt.question.statement.slice(0, 80),
         status: attempt.status,

@@ -55,56 +55,58 @@ export default async function ProgressPage() {
             <CategoryBarChart data={topicBreakdown.map((t) => ({ categoryName: t.categoryName, rating: t.rating }))} />
           </Card>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-[7fr_3fr]">
-            <Card title="Weekly Activity">
-              <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Your practice habits at a glance</p>
-              <div className="mt-4 overflow-x-auto">
-                <WeeklyHeatmap days={heatmap.days} />
+          <div className="mt-5 rounded-3xl border border-[#F0E6D6] bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="grid gap-6 lg:grid-cols-[7fr_3fr] lg:divide-x lg:divide-[#F0E6D6] dark:lg:divide-neutral-800">
+              <div className="lg:pr-6">
+                <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                  Weekly Activity
+                </h2>
+                <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Your practice habits at a glance</p>
+                <div className="mt-4 overflow-x-auto">
+                  <WeeklyHeatmap days={heatmap.days} />
+                </div>
+                <p className="mt-5 border-t border-[#F0E6D6] pt-4 text-sm text-[#2B2118] dark:border-neutral-800 dark:text-neutral-300">
+                  Practiced <span className="font-bold">{heatmap.activeDaysLast7}</span> of the last 7 days
+                </p>
               </div>
-              <p className="mt-5 border-t border-[#F0E6D6] pt-4 text-sm text-[#2B2118] dark:border-neutral-800 dark:text-neutral-300">
-                Practiced <span className="font-bold">{heatmap.activeDaysLast7}</span> of the last 7 days
-              </p>
-            </Card>
 
-            <Card title="Performance Summary">
-              <div className="flex flex-col divide-y divide-[#F0E6D6] dark:divide-neutral-800">
-                <div className="pb-4">
-                  <div className="text-2xl font-extrabold text-[#2E6B1B]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                    {dbUser.totalSolved}
+              <div className="lg:pl-6">
+                <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                  Performance Summary
+                </h2>
+                <div className="mt-4 flex flex-col divide-y divide-[#F0E6D6] dark:divide-neutral-800">
+                  <div className="py-3 first:pt-0">
+                    <div className="text-2xl font-extrabold text-[#2E6B1B]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                      {dbUser.totalSolved}
+                    </div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Solved</div>
                   </div>
-                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Solved</div>
-                </div>
-                <div className="py-4">
-                  <div className="text-2xl font-extrabold text-[#3B7DD8]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                    {dbUser.totalAttempted}
+                  <div className="py-3">
+                    <div className="text-2xl font-extrabold text-[#FF6B4A]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                      {accuracy}%
+                    </div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Accuracy</div>
                   </div>
-                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Attempted</div>
-                </div>
-                <div className="pt-4">
-                  <div className="text-2xl font-extrabold text-[#FF6B4A]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                    {accuracy}%
+                  <div className="py-3">
+                    <div className="text-2xl font-extrabold text-[#4C3AA0]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                      {avgTimeLabel}
+                    </div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Average Time</div>
                   </div>
-                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Accuracy</div>
-                </div>
-                <div className="pt-4">
-                  <div className="text-2xl font-extrabold text-[#4C3AA0]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                    {avgTimeLabel}
+                  <div className="py-3 last:pb-0">
+                    <div
+                      className={`text-2xl font-extrabold ${(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "text-[#2E6B1B]" : "text-[#D9502F]"}`}
+                      style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
+                    >
+                      {weeklyTrends.ratingChangeThisWeek !== null
+                        ? `${weeklyTrends.ratingChangeThisWeek >= 0 ? "+" : ""}${weeklyTrends.ratingChangeThisWeek}`
+                        : "—"}
+                    </div>
+                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Rating Change (7d)</div>
                   </div>
-                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Average Time</div>
-                </div>
-                <div className="pt-4">
-                  <div
-                    className={`text-2xl font-extrabold ${(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "text-[#2E6B1B]" : "text-[#D9502F]"}`}
-                    style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
-                  >
-                    {weeklyTrends.ratingChangeThisWeek !== null
-                      ? `${weeklyTrends.ratingChangeThisWeek >= 0 ? "+" : ""}${weeklyTrends.ratingChangeThisWeek}`
-                      : "—"}
-                  </div>
-                  <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Rating Change (7d)</div>
                 </div>
               </div>
-            </Card>
+            </div>
           </div>
         </div>
       </div>

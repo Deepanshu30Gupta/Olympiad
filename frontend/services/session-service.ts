@@ -102,6 +102,26 @@ export async function completeSession(sessionId: string) {
   });
 }
 
+/** Resume any past session (not just the currently active one) — a
+ * user can only have one ACTIVE session at a time, so this completes
+ * whatever else is currently active first, then reactivates the target.
+ * getOrPickCurrentQuestion already handles "resume from currentQuestionId
+ * if set, else pick next" correctly once a session is ACTIVE again. */
+export async function resumeSession(sessionId: string, userId: string) {
+  const target = await prisma.practiceSession.findFirst({ where: { id: sessionId, userId } });
+  if (!target) throw new Error("Session not found.");
+
+  if (target.status !== "ACTIVE") {
+    const currentlyActive = await prisma.practiceSession.findFirst({
+      where: { userId, status: "ACTIVE", id: { not: sessionId } },
+    });
+    if (currentlyActive) {
+      await prisma.practiceSession.update({ where: { id: currentlyActive.id }, data: { status: "COMPLETED" } });
+    }
+    await prisma.practiceSession.update({ where: { id: sessionId }, data: { status: "ACTIVE" } });
+  }
+}
+
 /** Real, session-scoped attempt history — every question genuinely
  * attempted in this session, in order. Powers both the progress ring
  * (real solved/wrong/surrendered counts, no fake "total") and the

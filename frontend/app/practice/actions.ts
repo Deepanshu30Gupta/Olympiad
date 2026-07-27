@@ -3,7 +3,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { submitAttempt } from "@/services/attempt-service";
-import { createSession, updateSessionFocus, advanceSession, renameSession } from "@/services/session-service";
+import { createSession, updateSessionFocus, advanceSession, renameSession, resumeSession } from "@/services/session-service";
 
 async function requireDbUser() {
   const clerkUser = await currentUser();
@@ -169,5 +169,16 @@ export async function renameSessionAction(sessionId: string, name: string) {
   } catch (err) {
     console.error("renameSessionAction failed:", err);
     return { error: "Couldn't rename the session." };
+  }
+}
+
+export async function resumeSessionAction(sessionId: string) {
+  try {
+    const dbUser = await requireDbUser();
+    await resumeSession(sessionId, dbUser.id);
+    return { error: null };
+  } catch (err) {
+    console.error("resumeSessionAction failed:", err);
+    return { error: "Couldn't resume that session. Please try again." };
   }
 }

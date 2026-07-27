@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronDown, Play } from "lucide-react";
 import { formatRelativeTime } from "@/lib/format-relative-time";
@@ -8,6 +9,8 @@ import { createSessionAction } from "@/app/practice/actions";
 import { Spinner } from "@/components/ui/Spinner";
 
 interface AttemptEntry {
+  id: string;
+  sessionId: string | null;
   externalId: string;
   statement: string;
   status: string;
@@ -102,8 +105,8 @@ export function TopicsPageCard({
           </p>
           {attempts.length > 0 ? (
             <ul className="mt-1.5 flex max-h-48 flex-col gap-1 overflow-y-auto">
-              {attempts.map((a, i) => (
-                <li key={`${a.externalId}-${i}`} className="flex items-center gap-2 text-xs">
+              {attempts.map((a, i) => {
+                const badge = (
                   <span
                     className={`shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
                       a.status === "SOLVED"
@@ -115,9 +118,23 @@ export function TopicsPageCard({
                   >
                     {a.status === "SOLVED" ? "✓" : a.status === "WRONG" ? "✗" : "—"}
                   </span>
-                  <span className="truncate text-[#8A7C6C] dark:text-neutral-500">{a.externalId}</span>
-                </li>
-              ))}
+                );
+                return a.sessionId ? (
+                  <Link
+                    key={a.id}
+                    href={`/practice?sessionId=${a.sessionId}&reviewAttemptId=${a.id}`}
+                    className="flex items-center gap-2 rounded-lg px-1.5 py-1 text-xs transition-colors hover:bg-[#FFFBF2] dark:hover:bg-neutral-800"
+                  >
+                    {badge}
+                    <span className="truncate text-[#8A7C6C] dark:text-neutral-500">{a.externalId}</span>
+                  </Link>
+                ) : (
+                  <li key={a.id} className="flex items-center gap-2 px-1.5 py-1 text-xs" title="This attempt predates session tracking and can't be reviewed">
+                    {badge}
+                    <span className="truncate text-[#8A7C6C] dark:text-neutral-500">{a.externalId}</span>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p className="mt-1.5 text-xs text-[#8A7C6C] dark:text-neutral-500">No attempts yet.</p>

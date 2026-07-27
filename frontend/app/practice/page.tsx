@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
+import { SessionTimer } from "@/features/questions/SessionTimer";
 import { getOrPickCurrentQuestion, getSessionAttempts, getSessionAttemptById, getSessionProgress } from "@/services/session-service";
 import { renderMathText } from "@/lib/render-math";
 import { AttemptForm } from "@/features/questions/AttemptForm";
@@ -183,11 +184,6 @@ export default async function PracticePage({
 }
 
 function Shell({ children, totalTimeSeconds }: { children: React.ReactNode; totalTimeSeconds?: number }) {
-  const timeLabel =
-    totalTimeSeconds !== undefined
-      ? `${Math.floor(totalTimeSeconds / 60)}:${String(totalTimeSeconds % 60).padStart(2, "0")}`
-      : null;
-
   return (
     <div className="min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
       <div className="mx-auto max-w-6xl px-6 py-8">
@@ -195,11 +191,7 @@ function Shell({ children, totalTimeSeconds }: { children: React.ReactNode; tota
           <Link href="/dashboard" className="inline-flex items-center gap-1 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-300">
             ← Dashboard
           </Link>
-          {timeLabel && (
-            <span className="rounded-full border border-[#F0E6D6] bg-white px-3 py-1 text-xs font-semibold text-[#6B5D4F] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
-              ⏱ Session time: {timeLabel}
-            </span>
-          )}
+          {totalTimeSeconds !== undefined && <SessionTimer baseSeconds={totalTimeSeconds} />}
         </div>
         <div className="grid gap-6 lg:grid-cols-[1fr_300px]">{children}</div>
       </div>

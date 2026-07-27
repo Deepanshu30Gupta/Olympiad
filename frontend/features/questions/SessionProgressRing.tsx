@@ -26,21 +26,21 @@ export function SessionProgressRing({
             <div className="text-[9px] text-[#6B5D4F] dark:text-neutral-500">Accuracy</div>
           </div>
         </div>
-        <div className="flex flex-col gap-1.5 text-xs">
+        <div className="flex flex-col gap-2 text-sm">
           <LegendRow color="#6FCF52" label={`${solved} Solved`} />
-          <LegendRow color="#D9502F" label={`${wrong} Wrong`} />
-          <LegendRow color="#9C9184" label={`${surrendered} Gave up`} />
+          <LegendRow color="#D9502F" label={`${wrong} Wrong`} bold />
+          <LegendRow color="#9C9184" label={`${surrendered} Not answered`} />
         </div>
       </div>
     </div>
   );
 }
 
-function LegendRow({ color, label }: { color: string; label: string }) {
+function LegendRow({ color, label, bold = false }: { color: string; label: string; bold?: boolean }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-[#6B5D4F] dark:text-neutral-400">{label}</span>
+      <span className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
+      <span className={`text-[#2B2118] dark:text-neutral-300 ${bold ? "font-semibold" : ""}`}>{label}</span>
     </div>
   );
 }

@@ -196,40 +196,28 @@ export function AttemptForm({
 
     return (
       <div className="mt-6">
-        {"isCorrect" in result && result.isCorrect !== undefined && (
-          <div
-            className={`rounded-lg border px-4 py-3 text-sm font-medium ${
-              result.isCorrect
-                ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300"
-                : "border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300"
-            }`}
-          >
-            {result.isCorrect ? "Yeahhh!! Correct answer!" : "Here's the answer:"}
+        {"isCorrect" in result && result.isCorrect === true && (
+          <div className="rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+            Yeahhh!! Correct answer!
           </div>
         )}
+
         {(!("isCorrect" in result) || result.isCorrect === undefined) && (
           <div className="rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
             Correct answer: {result.correctAnswer}
           </div>
         )}
 
-        {submittedAnswer && (
-          <div
-            className={`mt-2 rounded-lg border px-4 py-3 text-sm ${
-              result.isCorrect
-                ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300"
-                : "border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300"
-            }`}
-          >
-            Your answer: {submittedAnswer}
-            {!result.isCorrect && result.isCorrect !== undefined && (
-              <span className="ml-2 text-[#6B5D4F] dark:text-neutral-400">
-                — Correct answer:{" "}
-                <span className="font-semibold text-emerald-700 dark:text-emerald-400">
-                  {result.correctAnswer}
-                </span>
-              </span>
+        {"isCorrect" in result && result.isCorrect === false && (
+          <div className="flex flex-col gap-2">
+            {submittedAnswer && (
+              <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+                Your answer: {submittedAnswer}
+              </div>
             )}
+            <div className="rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+              Correct answer: {result.correctAnswer}
+            </div>
           </div>
         )}
 

@@ -1,9 +1,11 @@
 "use client";
 
-import { formatRelativeTime } from "@/lib/format-relative-time";
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChevronDown } from "lucide-react";
+import { formatRelativeTime } from "@/lib/format-relative-time";
+import { resumeSessionAction } from "@/app/practice/actions";
+import { Spinner } from "@/components/ui/Spinner";
 
 export function SessionTimelineItem({
   id,
@@ -28,10 +30,31 @@ export function SessionTimelineItem({
   accuracyPct: number;
   netRatingChange: number | null;
 }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [resuming, setResuming] = useState(false);
   const minutes = Math.floor(totalTimeSeconds / 60);
   const seconds = totalTimeSeconds % 60;
   const durationLabel = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
+
+  async function handleResume() {
+    if (resuming) return;
+    if (status === "ACTIVE") {
+      router.push(`/practice?sessionId=${id}`);
+      return;
+    }
+    setResuming(true);
+    try {
+      const res = await resumeSessionAction(id);
+      if (!res.error) {
+        router.push(`/practice?sessionId=${id}`);
+      } else {
+        setResuming(false);
+      }
+    } catch {
+      setResuming(false);
+    }
+  }
 
   return (
     <div className="relative mb-6 last:mb-0">
@@ -66,19 +89,22 @@ export function SessionTimelineItem({
 
         <div className="mt-2 flex flex-wrap gap-3 text-xs text-[#6B5D4F] dark:text-neutral-500">
           <span className="text-[#2E6B1B] dark:text-emerald-400">{solved} solved</span>
-          <span className="text-[#D9502F] dark:text-red-400">{wrong} wrong</span>
-          <span>{surrendered} gave up</span>
+          <span className="font-semibold text-[#B23A1F] dark:text-red-300">{wrong} wrong</span>
+          <span>{surrendered} not answered</span>
         </div>
 
         <div className="mt-2 flex items-center justify-between">
           <button onClick={() => setOpen(!open)} className="flex items-center gap-1 text-xs font-semibold text-[#4C3AA0] dark:text-indigo-400">
             Details <ChevronDown size={14} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
           </button>
-          {status === "ACTIVE" && (
-            <Link href={`/practice?sessionId=${id}`} className="rounded-full bg-[#FF6B4A] px-3 py-1 text-xs font-semibold text-white hover:bg-[#D9502F]">
-              Resume →
-            </Link>
-          )}
+          <button
+            onClick={handleResume}
+            disabled={resuming}
+            className="flex items-center gap-1.5 rounded-full bg-[#FF6B4A] px-3 py-1 text-xs font-semibold text-white transition-all hover:bg-[#D9502F] disabled:opacity-60"
+          >
+            {resuming && <Spinner />}
+            {resuming ? "Resuming..." : "Resume →"}
+          </button>
         </div>
 
         {open && (

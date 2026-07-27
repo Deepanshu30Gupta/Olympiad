@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 
 interface AttemptSummary {
   id: string;
@@ -31,12 +31,17 @@ export function QuestionNavigator({
       <div className="mt-3 grid grid-cols-5 gap-2">
         {attempts.map((a, i) => {
           const color =
-            a.status === "SOLVED" ? "bg-[#E6F7E0] text-[#2E6B1B]" : a.status === "WRONG" ? "bg-[#FFE8E0] text-[#D9502F]" : "bg-[#F0E6D6] text-[#6B5D4F]";
+            a.status === "SOLVED"
+              ? "bg-[#E6F7E0] text-[#2E6B1B]"
+              : a.status === "WRONG"
+                ? "bg-[#D9502F] text-white"
+                : "bg-[#D8CBB5] text-[#4A3F33]";
           const isActive = a.id === currentReviewId;
           return (
             <Link
               key={a.id}
               href={`/practice?sessionId=${sessionId}&reviewAttemptId=${a.id}`}
+              title={a.status === "SOLVED" ? "Solved" : a.status === "WRONG" ? "Wrong" : "Not answered"}
               className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold transition-all ${color} ${
                 isActive ? "ring-2 ring-[#4C3AA0] ring-offset-2 dark:ring-offset-neutral-900" : ""
               }`}
@@ -47,26 +52,31 @@ export function QuestionNavigator({
         })}
       </div>
 
-      <div className="mt-4 flex items-center justify-between border-t border-[#F0E6D6] pt-3 text-xs dark:border-neutral-800">
-        {prevAttempt ? (
-          <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${prevAttempt.id}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
-            <ChevronLeft size={14} /> Previous
-          </Link>
-        ) : (
-          <span />
-        )}
+      <div className="mt-4 flex flex-col gap-2 border-t border-[#F0E6D6] pt-3 text-xs dark:border-neutral-800">
         {currentReviewId && (
-          <Link href={`/practice?sessionId=${sessionId}`} className="font-semibold text-[#FF6B4A]">
-            Back to current question
+          <Link
+            href={`/practice?sessionId=${sessionId}`}
+            className="flex items-center justify-center gap-1.5 rounded-lg bg-[#FF6B4A] px-3 py-2 font-semibold text-white transition-colors hover:bg-[#D9502F]"
+          >
+            <RotateCcw size={13} /> Back to Current Question
           </Link>
         )}
-        {nextAttempt ? (
-          <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${nextAttempt.id}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
-            Next <ChevronRight size={14} />
-          </Link>
-        ) : (
-          <span />
-        )}
+        <div className="flex items-center justify-between pt-1">
+          {prevAttempt ? (
+            <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${prevAttempt.id}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
+              <ChevronLeft size={14} /> Prev Question
+            </Link>
+          ) : (
+            <span />
+          )}
+          {nextAttempt ? (
+            <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${nextAttempt.id}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
+              Next Question <ChevronRight size={14} />
+            </Link>
+          ) : (
+            <span />
+          )}
+        </div>
       </div>
     </div>
   );
