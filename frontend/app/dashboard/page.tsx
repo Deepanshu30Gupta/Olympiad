@@ -9,7 +9,8 @@ import {
   getWeeklyTrends,
 } from "@/services/dashboard-service";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
-import { HeroStreak, getMotivationalMessage } from "@/features/dashboard/HeroStreak";
+import { HeroStreak } from "@/features/dashboard/HeroStreak";
+import { getMotivationalMessage } from "@/lib/motivational-message";
 import { QuickProgressCard } from "@/features/dashboard/QuickProgressCard";
 import { ResumeSessionCard, StartNewPracticeCard } from "@/features/dashboard/ActionCards";
 import { RatingChart } from "@/features/dashboard/RatingChart";
