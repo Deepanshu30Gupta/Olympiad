@@ -19,6 +19,9 @@ export function Footer() {
         </div>
         <span>© 2026 Qublem</span>
       </div>
+      <p className="mt-4 text-center text-xs text-[#B8A990] dark:text-neutral-600">
+        Made with ❤️ in India.
+      </p>
     </footer>
   );
 }

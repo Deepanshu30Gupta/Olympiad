@@ -14,7 +14,7 @@ export function ExamMarquee() {
         {items.map((exam, i) => (
           <span
             key={`${exam}-${i}`}
-            className="whitespace-nowrap rounded-full bg-[#ECE8FA] px-4 py-2 text-sm font-bold text-[#4C3AA0] dark:bg-indigo-950/40 dark:text-indigo-300"
+            className="inline-block whitespace-nowrap rounded-full bg-[#ECE8FA] px-4 py-2 text-sm font-bold text-[#4C3AA0] transition-all duration-200 ease-out hover:-translate-y-1.5 hover:shadow-md dark:bg-indigo-950/40 dark:text-indigo-300"
           >
             {exam}
           </span>
@@ -27,7 +27,7 @@ export function ExamMarquee() {
           to { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 22s linear infinite;
+          animation: marquee 32s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;

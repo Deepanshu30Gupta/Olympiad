@@ -31,7 +31,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-12 md:flex">
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href;
             return (
@@ -65,11 +65,13 @@ export function Header() {
             {/* Notification bell — visual only, no notifications system exists yet */}
             <button
               aria-label="Notifications"
-              className="relative text-[#6B5D4F] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:text-neutral-200"
+              className="group relative flex h-9 w-9 items-center justify-center rounded-full text-[#6B5D4F] transition-all duration-200 hover:scale-110 hover:bg-[#F0E6D6] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
             >
-              <Bell size={20} />
+              <Bell size={23} strokeWidth={2.3} />
             </button>
-            <UserButton />
+            <div className="cursor-pointer rounded-full transition-all duration-200 hover:scale-105 hover:shadow-[0_2px_10px_rgba(76,58,160,0.25)]">
+              <UserButton />
+            </div>
           </div>
         </Show>
         <Show when="signed-out">

@@ -34,9 +34,11 @@ export function FounderSection() {
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[#6B5D4F] dark:text-neutral-400">
             As someone who has been preparing for math olympiads myself, I know how hard it is
-            to find the right questions at the right level. Qublem is my attempt to make
-            olympiad preparation simpler, smarter and more effective — for everyone who loves
-            mathematics, just like I do.
+            to find the right questions at the right level.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-[#6B5D4F] dark:text-neutral-400">
+            Qublem is my attempt to make olympiad preparation simpler, smarter and more
+            effective — for everyone who loves mathematics, just like I do.
           </p>
           <p className="mt-4 text-sm">
             <span className="font-semibold italic text-[#2B2118] dark:text-neutral-200">

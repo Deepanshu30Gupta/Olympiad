@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const FAQS = [
   {
@@ -40,7 +40,7 @@ export function FAQSection() {
         return (
           <div
             key={faq.q}
-            className="rounded-2xl border border-[#F0E6D6] bg-white px-5 py-4 transition-all hover:border-[#4C3AA0]/30 hover:shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+            className="rounded-2xl border border-[#F0E6D6] bg-white px-5 py-4 transition-all duration-[250ms] ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:border-transparent hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}
@@ -56,11 +56,12 @@ export function FAQSection() {
               >
                 {faq.q}
               </span>
-              {isOpen ? (
-                <ChevronUp size={18} className="text-[#6B5D4F] dark:text-neutral-400" />
-              ) : (
-                <ChevronDown size={18} className="text-[#6B5D4F] dark:text-neutral-400" />
-              )}
+              <ChevronDown
+                size={18}
+                className={`text-[#6B5D4F] transition-transform duration-[250ms] ease-in-out dark:text-neutral-400 ${
+                  isOpen ? "rotate-180" : "rotate-0"
+                }`}
+              />
             </button>
             {isOpen && (
               <p className="ml-10 mt-2 text-sm text-[#6B5D4F] dark:text-neutral-400">{faq.a}</p>
