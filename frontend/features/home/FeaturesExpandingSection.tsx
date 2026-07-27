@@ -112,11 +112,11 @@ export function FeaturesExpandingSection() {
           className="text-3xl font-extrabold text-[#2B2118] dark:text-neutral-100 md:text-4xl"
           style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
         >
-          Master Math Olympiads with Smarter Practice
+          Master Math Olympiads Through Smarter Practice
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm text-[#6B5D4F] dark:text-neutral-400">
-          Every question adapts to your progress, helping you practice efficiently, understand
-          concepts deeply, and improve consistently.
+          Every question adapts to your learning journey, helping you improve step by step with
+          personalized practice and detailed insights.
         </p>
 
         <div className="mt-14 hidden md:flex md:h-[380px] md:gap-4">
@@ -128,8 +128,15 @@ export function FeaturesExpandingSection() {
                 layout
                 onMouseEnter={() => setExpanded(i)}
                 onMouseLeave={() => setExpanded(null)}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
                 animate={{ flexGrow: isExpanded ? 3.2 : 1 }}
+                transition={{
+                  flexGrow: { duration: 0.35, ease: "easeOut" },
+                  opacity: { duration: 0.5, ease: "easeOut", delay: i * 0.08 },
+                  y: { duration: 0.5, ease: "easeOut", delay: i * 0.08 },
+                }}
                 className="relative flex min-w-0 flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[20px] border border-[#F0E6D6] p-6 text-left shadow-sm dark:border-neutral-800"
                 style={{ background: isExpanded ? `linear-gradient(160deg, ${f.bg}, white)` : "white" }}
               >
@@ -196,6 +203,10 @@ export function FeaturesExpandingSection() {
                 key={f.id}
                 layout
                 onClick={() => setExpanded(isExpanded ? null : i)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.07 }}
                 className="w-full rounded-[20px] border border-[#F0E6D6] p-5 text-left dark:border-neutral-800 dark:bg-neutral-900"
                 style={{ background: isExpanded ? `linear-gradient(160deg, ${f.bg}, white)` : "white" }}
               >
