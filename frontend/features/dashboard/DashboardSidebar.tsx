@@ -2,27 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  TrendingUp,
-  PieChart,
-  BookMarked,
-  History,
-  Bookmark,
-  Trophy,
-  FileText,
-  Star,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Home, TrendingUp, BookMarked, ListChecks, Trophy, Settings, Star } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Overview", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Performance", icon: TrendingUp, href: "#" },
-  { label: "Analytics", icon: PieChart, href: "#" },
-  { label: "Topics", icon: BookMarked, href: "#" },
-  { label: "Question History", icon: History, href: "#" },
-  { label: "Bookmarks", icon: Bookmark, href: "#" },
-  { label: "Achievements", icon: Trophy, href: "#" },
-  { label: "Exams", icon: FileText, href: "/onboarding" },
+  { label: "Dashboard", icon: Home, href: "/dashboard" },
+  { label: "Progress", icon: TrendingUp, href: "/progress" },
+  { label: "Topics", icon: BookMarked, href: "/topics" },
+  { label: "Sessions", icon: ListChecks, href: "/sessions" },
+  { label: "Leaderboard", icon: Trophy, href: "/leaderboard" },
+  { label: "Settings", icon: Settings, href: "#" },
 ];
 
 export function DashboardSidebar() {
@@ -34,17 +23,24 @@ export function DashboardSidebar() {
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href;
           return (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
-                active
-                  ? "bg-[#FFE8E0] text-[#FF6B4A] dark:bg-[#FF6B4A]/15"
-                  : "text-[#6B5D4F] hover:bg-[#FFFBF2] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
-              }`}
-            >
-              <item.icon size={18} />
-              {item.label}
+            <Link key={item.label} href={item.href} className="relative">
+              {active && (
+                <motion.div
+                  layoutId="sidebar-active"
+                  className="absolute inset-0 rounded-xl bg-[#FFE8E0] dark:bg-[#FF6B4A]/15"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <div
+                className={`relative z-10 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                  active
+                    ? "text-[#FF6B4A]"
+                    : "text-[#6B5D4F] hover:bg-[#FFFBF2] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+                }`}
+              >
+                <item.icon size={18} />
+                {item.label}
+              </div>
             </Link>
           );
         })}

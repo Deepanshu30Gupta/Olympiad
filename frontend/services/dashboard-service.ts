@@ -252,3 +252,60 @@ export function getNextMilestone(learnerScore: number) {
 
   return { target: nextWhole, pct, estimatedQuestions };
 }
+
+/** Real "this week" trends — rating change and solved count compared to
+ * 7 days ago, computed from actual attempt history, not fabricated. */
+export async function getWeeklyTrends(userId: string, currentLearnerScore: number) {
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  const [solvedThisWeek, attemptsThisWeek, oldestRecentAttempt] = await Promise.all([
+    prisma.attempt.count({ where: { userId, status: "SOLVED", submittedAt: { gte: sevenDaysAgo } } }),
+    prisma.attempt.count({ where: { userId, submittedAt: { gte: sevenDaysAgo } } }),
+    prisma.attempt.findFirst({
+      where: { userId, submittedAt: { gte: sevenDaysAgo } },
+      orderBy: { submittedAt: "asc" },
+      select: { studentRatingBefore: true },
+    }),
+  ]);
+
+  let ratingChangeThisWeek: number | null = null;
+  if (oldestRecentAttempt) {
+    const before = (oldestRecentAttempt.studentRatingBefore - 1200) / 100;
+    ratingChangeThisWeek = Math.round((currentLearnerScore - before) * 10) / 10;
+  }
+
+  return { solvedThisWeek, attemptsThisWeek, ratingChangeThisWeek };
+}
+
+export type MasteryLevel = "Beginner" | "Intermediate" | "Advanced" | "Mastered";
+
+/** Simple, clearly-stated heuristic mapping a topic's star rating to a
+ * mastery label — not a scientific classification, just a motivating
+ * way to group topics on the Topics page. */
+export function getMasteryLevel(stars: number): MasteryLevel {
+  if (stars < 1) return "Beginner";
+  if (stars < 2.5) return "Intermediate";
+  if (stars < 4) return "Advanced";
+  return "Mastered";
+}
+
+/** Total question count per major category (including all subtopics) —
+ * used to show a genuine "X of Y questions" progress bar on the Topics
+ * page, not a fabricated total. */
+export async function getCategoryQuestionCounts(): Promise<Map<string, number>> {
+  const majorCategories = await prisma.topic.findMany({
+    where: { parentId: null },
+    include: { children: { select: { id: true } } },
+  });
+
+  const counts = new Map<string, number>();
+  for (const cat of majorCategories) {
+    const topicIds = [cat.id, ...cat.children.map((c) => c.id)];
+    const count = await prisma.question.count({
+      where: { topics: { some: { topicId: { in: topicIds } } } },
+    });
+    counts.set(cat.id, count);
+  }
+  return counts;
+}
