@@ -43,23 +43,16 @@ interface SubmitAnswerInput {
   startedAtMs: number;
   hintLevelUsed: number | null;
   confidenceRating: number | null;
+  previousAttemptId?: string | null;
 }
 
-// Explicit return type — see prior note: without this, TypeScript infers
-// an unnamed union from the two differently-shaped return statements,
-// and chaining `??` across it can break control-flow narrowing.
 interface SubmitAnswerResult {
   isCorrect: boolean | null;
   correctAnswer: string | null;
   solutionMarkdown: string | null;
-  // Renamed from newRating/previousRating: these now carry the
-  // learnerScore values (0-starting, asymmetric, capped at +5) — the
-  // OLD field names were left over from before that field existed, and
-  // kept pointing at internal Elo values even after learnerScore was
-  // added, which is exactly what caused the display to silently show
-  // the wrong number. New names match what's actually inside them.
   newScore: number | null;
   previousScore: number | null;
+  attemptId: string | null;
   error: string | null;
 }
 
@@ -82,9 +75,15 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
       hintLevelUsed: input.hintLevelUsed,
       solutionViewed: false,
       confidenceRating: input.confidenceRating,
+      previousAttemptId: input.previousAttemptId,
     });
 
-    await advanceSession(input.sessionId);
+    // Only advance the session (mark a question genuinely "completed"
+    // and pick a new one) on a fresh submission — a retry is still the
+    // same logical question, so the session shouldn't move forward yet.
+    if (!input.previousAttemptId) {
+      await advanceSession(input.sessionId);
+    }
 
     return {
       isCorrect,
@@ -92,6 +91,7 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
       solutionMarkdown: question.solutionMarkdown,
       newScore: result.newScore,
       previousScore: result.previousScore,
+      attemptId: result.attempt.id,
       error: null,
     };
   } catch (err) {
@@ -102,6 +102,7 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
       solutionMarkdown: null,
       newScore: null,
       previousScore: null,
+      attemptId: null,
       error: "Couldn't submit your answer. Please try again.",
     };
   }
@@ -112,6 +113,7 @@ interface SurrenderInput {
   questionId: string;
   startedAtMs: number;
   hintLevelUsed: number | null;
+  previousAttemptId?: string | null;
 }
 
 interface SurrenderResult {
@@ -138,9 +140,12 @@ export async function surrenderAction(input: SurrenderInput): Promise<SurrenderR
       hintLevelUsed: input.hintLevelUsed,
       solutionViewed: true,
       confidenceRating: null,
+      previousAttemptId: input.previousAttemptId,
     });
 
-    await advanceSession(input.sessionId);
+    if (!input.previousAttemptId) {
+      await advanceSession(input.sessionId);
+    }
 
     return {
       correctAnswer: question.correctAnswer,
@@ -180,5 +185,29 @@ export async function resumeSessionAction(sessionId: string) {
   } catch (err) {
     console.error("resumeSessionAction failed:", err);
     return { error: "Couldn't resume that session. Please try again." };
+  }
+}
+
+/** Starts practicing a SPECIFIC bookmarked question directly — no
+ * onboarding/setup screen shown to the user. A session is created
+ * silently behind the scenes (attempts need one to belong to) and its
+ * currentQuestionId is set directly to the bookmarked question, which
+ * getOrPickCurrentQuestion already honors as a forced override ahead
+ * of the adaptive picker. */
+export async function startBookmarkedQuestionAction(questionId: string) {
+  try {
+    const dbUser = await requireDbUser();
+    const existingActive = await prisma.practiceSession.findFirst({
+      where: { userId: dbUser.id, status: "ACTIVE" },
+    });
+    const session = existingActive ?? (await createSession(dbUser.id, [], []));
+    await prisma.practiceSession.update({
+      where: { id: session.id },
+      data: { currentQuestionId: questionId },
+    });
+    return { sessionId: session.id, error: null };
+  } catch (err) {
+    console.error("startBookmarkedQuestionAction failed:", err);
+    return { sessionId: null, error: "Couldn't open that question. Please try again." };
   }
 }

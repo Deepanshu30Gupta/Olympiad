@@ -47,6 +47,7 @@ export function AttemptForm({
   const [pendingWrongResult, setPendingWrongResult] = useState<SubmitResult | null>(null);
   const [loadingAction, setLoadingAction] = useState<"submit" | "surrender" | "next" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [attemptId, setAttemptId] = useState<string | null>(null);
   const numericInputRef = useRef<HTMLInputElement>(null);
 
   const done = result !== null;
@@ -73,11 +74,13 @@ export function AttemptForm({
         startedAtMs: startedAtMs.current,
         hintLevelUsed: revealedHintLevel || null,
         confidenceRating: null,
+        previousAttemptId: attemptId,
       });
       if (res.error || res.correctAnswer === null) {
         setError(res.error ?? "Something went wrong.");
         return;
       }
+      if (res.attemptId) setAttemptId(res.attemptId);
       setSubmittedAnswer(answer);
       const finalResult: SubmitResult = {
         isCorrect: res.isCorrect ?? undefined,
@@ -108,6 +111,7 @@ export function AttemptForm({
         questionId,
         startedAtMs: startedAtMs.current,
         hintLevelUsed: revealedHintLevel || null,
+        previousAttemptId: attemptId,
       });
       if (res.error || res.correctAnswer === null) {
         setError(res.error ?? "Something went wrong.");

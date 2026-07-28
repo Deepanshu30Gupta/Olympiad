@@ -85,8 +85,30 @@ export async function getTopicBreakdown(userId: string): Promise<TopicBreakdownE
     breakdown[catId].rating = Math.round(list.reduce((a, b) => a + b, 0) / list.length);
   }
 
-  // Bucket every attempt into every major category its question touches.
+  // Multiple attempts on the SAME question (wrong -> hint -> retry) now
+  // count as ONE question, not several. Rule: use the most recent
+  // response's status, UNLESS the most recent was a surrender (gave
+  // up) — in that case fall back to the FIRST response's status, since
+  // giving up after already having answered isn't the meaningful
+  // signal to report. `attempts` is ordered newest-first already.
+  const attemptsByQuestion = new Map<string, typeof attempts>();
   for (const attempt of attempts) {
+    const list = attemptsByQuestion.get(attempt.questionId) ?? [];
+    list.push(attempt);
+    attemptsByQuestion.set(attempt.questionId, list);
+  }
+
+  const dedupedAttempts = Array.from(attemptsByQuestion.values()).map((list) => {
+    const mostRecent = list[0]; // newest, since attempts is DESC-ordered
+    const earliest = list[list.length - 1]; // oldest
+    const canonicalStatus = mostRecent.status === "SURRENDERED" ? earliest.status : mostRecent.status;
+    const totalTimeForQuestion = list.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
+
+    return { ...mostRecent, status: canonicalStatus, activeSolvingSeconds: totalTimeForQuestion };
+  });
+
+  // Bucket every deduped question into every major category it touches.
+  for (const attempt of dedupedAttempts) {
     const categoryIds = new Set<string>();
     for (const link of attempt.question.topics) {
       categoryIds.add(resolveMajorCategoryId(link.topic));
@@ -143,11 +165,31 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
   });
 
   return sessions.map((s, index) => {
-    const solved = s.attempts.filter((a) => a.status === "SOLVED").length;
-    const wrong = s.attempts.filter((a) => a.status === "WRONG").length;
-    const surrendered = s.attempts.filter((a) => a.status === "SURRENDERED").length;
-    const totalTimeSeconds = s.attempts.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
-    const totalAttempted = s.attempts.length;
+    // Same dedup rule as topic breakdown: a question attempted more
+    // than once in this session (wrong -> hint -> retry) counts once,
+    // using the last response's status unless it was a surrender, in
+    // which case the first response's status is used instead.
+    const byQuestion = new Map<string, typeof s.attempts>();
+    for (const a of s.attempts) {
+      const list = byQuestion.get(a.questionId) ?? [];
+      list.push(a);
+      byQuestion.set(a.questionId, list);
+    }
+    const dedupedAttempts = Array.from(byQuestion.values()).map((list) => {
+      // s.attempts is ordered createdAt ASC, so within each question's
+      // list: first = earliest, last = most recent.
+      const earliest = list[0];
+      const mostRecent = list[list.length - 1];
+      const canonicalStatus = mostRecent.status === "SURRENDERED" ? earliest.status : mostRecent.status;
+      const totalTimeForQuestion = list.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
+      return { ...mostRecent, status: canonicalStatus, activeSolvingSeconds: totalTimeForQuestion };
+    });
+
+    const solved = dedupedAttempts.filter((a) => a.status === "SOLVED").length;
+    const wrong = dedupedAttempts.filter((a) => a.status === "WRONG").length;
+    const surrendered = dedupedAttempts.filter((a) => a.status === "SURRENDERED").length;
+    const totalTimeSeconds = dedupedAttempts.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
+    const totalAttempted = dedupedAttempts.length;
     const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
 
     // Net rating change: first attempt's "before" star value vs last
@@ -155,6 +197,8 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     // already stored per attempt — same simplification used elsewhere
     // in the app (a session can span multiple topics; this is a
     // reasonable approximation, not a precise multi-topic breakdown).
+    // Uses the RAW (non-deduped) attempts here since this needs the
+    // true chronological first/last rating snapshots of the session.
     let netRatingChange: number | null = null;
     if (s.attempts.length > 0) {
       const first = s.attempts[0];
@@ -219,28 +263,50 @@ export async function getTodaysGoalProgress(userId: string, dailyGoal: number) {
 /** Real weekly activity heatmap — counts actual attempts per day over
  * the last several weeks, laid out Mon-Sun rows matching the mockup's
  * GitHub-style grid. Color intensity buckets are based on attempt count. */
+const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
+
+/** Converts a UTC Date into its IST calendar-day string (YYYY-MM-DD).
+ * The server always runs in UTC — without this, "today" on the server
+ * can be a full day behind a user's actual IST "today" during evening
+ * and night hours, which is exactly the bug this fixes. */
+function toISTDateKey(d: Date): string {
+  return new Date(d.getTime() + IST_OFFSET_MS).toISOString().slice(0, 10);
+}
+
 export async function getActivityHeatmap(userId: string, weeks: number = 6) {
   const daysBack = weeks * 7;
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
-  start.setDate(start.getDate() - daysBack + 1);
+  const nowIST = new Date(Date.now() + IST_OFFSET_MS);
+  const start = new Date(nowIST);
+  start.setUTCHours(0, 0, 0, 0);
+  start.setUTCDate(start.getUTCDate() - daysBack + 1);
+
+  // Align to the most recent Monday on or before `start` — without this,
+  // the data grid doesn't line up with the fixed Mon-Sun row labels used
+  // by the heatmap component, so a date can render under the wrong
+  // weekday label even though the date itself is correct.
+  const startDayOfWeek = start.getUTCDay(); // 0 = Sunday, 1 = Monday, ...
+  const daysToSubtractForMonday = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1;
+  start.setUTCDate(start.getUTCDate() - daysToSubtractForMonday);
+
+  const totalDays = daysBack + daysToSubtractForMonday;
+  const startUTC = new Date(start.getTime() - IST_OFFSET_MS);
 
   const attempts = await prisma.attempt.findMany({
-    where: { userId, submittedAt: { gte: start } },
+    where: { userId, submittedAt: { gte: startUTC } },
     select: { submittedAt: true },
   });
 
   const countByDay = new Map<string, number>();
   for (const a of attempts) {
     if (!a.submittedAt) continue;
-    const key = a.submittedAt.toISOString().slice(0, 10);
+    const key = toISTDateKey(a.submittedAt);
     countByDay.set(key, (countByDay.get(key) ?? 0) + 1);
   }
 
   const days: { date: string; count: number }[] = [];
-  for (let i = 0; i < daysBack; i++) {
+  for (let i = 0; i < totalDays; i++) {
     const d = new Date(start);
-    d.setDate(start.getDate() + i);
+    d.setUTCDate(start.getUTCDate() + i);
     const key = d.toISOString().slice(0, 10);
     days.push({ date: key, count: countByDay.get(key) ?? 0 });
   }

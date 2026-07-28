@@ -31,10 +31,17 @@ interface SubmitAttemptParams {
   hintLevelUsed: number | null;
   solutionViewed: boolean;
   confidenceRating: number | null;
+  /** Set when this submission is a retry (after taking a hint) of a
+   * question the student already got wrong once in this sitting. When
+   * present, the existing Attempt row is updated in place instead of a
+   * new one being created, so the same question never counts twice in
+   * totalAttempted or shows as two separate attempts. */
+  previousAttemptId?: string | null;
 }
 
 const DEFAULT_RATING = 1200;
 const MAX_LEARNER_SCORE = 5;
+const MIN_LEARNER_SCORE = -5;
 
 export async function submitAttempt(params: SubmitAttemptParams) {
   const question = await prisma.question.findUniqueOrThrow({
@@ -94,26 +101,62 @@ export async function submitAttempt(params: SubmitAttemptParams) {
     data: { currentRating: questionRatingAfter },
   });
 
-  const attempt = await prisma.attempt.create({
-    data: {
-      userId: params.userId,
-      questionId: params.questionId,
-      sessionId: params.sessionId,
-      status: params.status,
-      startedAt: params.startedAt,
-      submittedAt: new Date(),
-      activeSolvingSeconds: Math.round((Date.now() - params.startedAt.getTime()) / 1000),
-      hintLevelUsed: params.hintLevelUsed,
-      solutionViewed: params.solutionViewed,
-      confidenceRating: params.confidenceRating,
-      studentRatingBefore: primaryStudentRatingBefore,
-      studentRatingAfter: primaryStudentRatingAfter,
-      questionRatingBefore,
-      questionRatingAfter,
-    },
-  });
+  let attempt;
+  let previousStatus: AttemptStatus | null = null;
 
-  const { previousScore, newScore } = await updateUserAggregates(params.userId, solved);
+  if (params.previousAttemptId) {
+    const existingAttempt = await prisma.attempt.findFirst({
+      where: { id: params.previousAttemptId, userId: params.userId, questionId: params.questionId },
+    });
+    if (existingAttempt) {
+      previousStatus = existingAttempt.status;
+      // Per the rule: giving up on a retry doesn't overwrite a real
+      // wrong-then-gave-up question as "surrendered" — the original
+      // wrong response is what determines the outcome here.
+      const effectiveStatus = params.status === "SURRENDERED" && previousStatus === "WRONG" ? "WRONG" : params.status;
+      attempt = await prisma.attempt.update({
+        where: { id: existingAttempt.id },
+        data: {
+          status: effectiveStatus,
+          submittedAt: new Date(),
+          // Accumulate time across the retry rather than replacing it —
+          // the student spent time on both the first try and the retry.
+          activeSolvingSeconds:
+            existingAttempt.activeSolvingSeconds + Math.round((Date.now() - params.startedAt.getTime()) / 1000),
+          hintLevelUsed: params.hintLevelUsed,
+          solutionViewed: params.solutionViewed,
+          confidenceRating: params.confidenceRating ?? existingAttempt.confidenceRating,
+          // Keep the ORIGINAL before-snapshot (this is still logically
+          // the same attempt), but record the latest after-snapshot.
+          studentRatingAfter: primaryStudentRatingAfter,
+          questionRatingAfter,
+        },
+      });
+    }
+  }
+
+  if (!attempt) {
+    attempt = await prisma.attempt.create({
+      data: {
+        userId: params.userId,
+        questionId: params.questionId,
+        sessionId: params.sessionId,
+        status: params.status,
+        startedAt: params.startedAt,
+        submittedAt: new Date(),
+        activeSolvingSeconds: Math.round((Date.now() - params.startedAt.getTime()) / 1000),
+        hintLevelUsed: params.hintLevelUsed,
+        solutionViewed: params.solutionViewed,
+        confidenceRating: params.confidenceRating,
+        studentRatingBefore: primaryStudentRatingBefore,
+        studentRatingAfter: primaryStudentRatingAfter,
+        questionRatingBefore,
+        questionRatingAfter,
+      },
+    });
+  }
+
+  const { previousScore, newScore } = await updateUserAggregates(params.userId, solved, previousStatus);
 
   return {
     attempt,
@@ -125,8 +168,10 @@ export async function submitAttempt(params: SubmitAttemptParams) {
   };
 }
 
-async function updateUserAggregates(userId: string, solved: boolean) {
+async function updateUserAggregates(userId: string, solved: boolean, previousStatus: AttemptStatus | null) {
   const user = await prisma.user.findUniqueOrThrow({ where: { id: userId } });
+  const isRetry = previousStatus !== null;
+  const wasSolvedBefore = previousStatus === "SOLVED";
 
   const now = new Date();
   const today = startOfDay(now);
@@ -155,13 +200,18 @@ async function updateUserAggregates(userId: string, solved: boolean) {
   const previousScore = user.learnerScore;
   const delta = computeScoreDelta(previousScore, solved);
   const newScoreRaw = Math.round((previousScore + delta) * 10) / 10;
-  const newScore = Math.min(newScoreRaw, MAX_LEARNER_SCORE);
+  const newScore = Math.max(MIN_LEARNER_SCORE, Math.min(newScoreRaw, MAX_LEARNER_SCORE));
+
+  // On a retry, this question was already counted in totalAttempted the
+  // first time — don't count it again. Only totalSolved moves, and only
+  // if the final outcome actually changed from before.
+  const solvedDelta = isRetry ? (solved && !wasSolvedBefore ? 1 : wasSolvedBefore && !solved ? -1 : 0) : solved ? 1 : 0;
 
   await prisma.user.update({
     where: { id: userId },
     data: {
-      totalAttempted: user.totalAttempted + 1,
-      totalSolved: user.totalSolved + (solved ? 1 : 0),
+      totalAttempted: isRetry ? user.totalAttempted : user.totalAttempted + 1,
+      totalSolved: user.totalSolved + solvedDelta,
       overallRating,
       learnerScore: newScore,
       currentStreak: newStreak,

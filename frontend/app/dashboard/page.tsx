@@ -1,176 +1,443 @@
-import { currentUser } from "@clerk/nextjs/server";
-import Link from "next/link";
-import { Star, CheckCircle2, ListChecks, Target as TargetIcon, ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/prisma";
-import { getActiveSession } from "@/services/session-service";
-import {
-  getTodaysGoalProgress,
-  getCurrentFocusTopic,
-  getWeeklyTrends,
-  getRatingHistory,
-  getNextMilestone,
-} from "@/services/dashboard-service";
-import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
-import { HeroStreak } from "@/features/dashboard/HeroStreak";
-import { getMotivationalMessage } from "@/lib/motivational-message";
-import { QuickProgressCard } from "@/features/dashboard/QuickProgressCard";
-import { ResumeSessionCard, StartNewPracticeCard } from "@/features/dashboard/ActionCards";
-import { NextMilestoneCard } from "@/features/dashboard/NextMilestoneCard";
-import { Sparkline } from "@/features/dashboard/Sparkline";
 import { ratingToStars } from "@/lib/rating-display";
 
-function getWeeklyInsight(ratingChange: number | null): string {
-  if (ratingChange === null) return "Keep practicing to start seeing weekly trends.";
-  if (ratingChange > 0) return "Your rating has improved over the last 7 days.";
-  if (ratingChange < 0) return "Your rating dipped slightly this week — a great time for extra practice.";
-  return "Your rating held steady this week.";
+const DEFAULT_RATING = 1200;
+
+/** Maps every topic (parent or child) to its major-category root. A leaf
+ * subtopic's category is its parent; a topic with no parent IS a major
+ * category itself. */
+function resolveMajorCategoryId(topic: { id: string; parentId: string | null }): string {
+  return topic.parentId ?? topic.id;
 }
 
-export default async function DashboardPage() {
-  const clerkUser = await currentUser();
-  if (!clerkUser) return <div className="p-8">Not signed in.</div>;
+export interface TopicBreakdownEntry {
+  categoryId: string;
+  categorySlug: string;
+  categoryName: string;
+  rating: number;
+  solved: number;
+  wrong: number;
+  surrendered: number;
+  totalTimeSeconds: number;
+  attempts: {
+    id: string;
+    sessionId: string | null;
+    externalId: string;
+    statement: string;
+    status: string;
+    activeSolvingSeconds: number | null;
+    submittedAt: Date | null;
+  }[];
+}
 
-  const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
-  if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
+/** The core per-topic rollup: for each of the 6 major categories,
+ * aggregate rating, solve/wrong/surrender counts, total time, and the
+ * individual question-level attempt list (for the dropdown). A question
+ * tagged under multiple categories counts toward each — same philosophy
+ * as the rating update logic, consistent rather than double-counting
+ * being treated as an error. */
+export async function getTopicBreakdown(userId: string): Promise<TopicBreakdownEntry[]> {
+  const majorCategories = await prisma.topic.findMany({
+    where: { parentId: null },
+    orderBy: { displayOrder: "asc" },
+  });
 
-  const [activeSession, todaysGoal, currentFocus, weeklyTrends, ratingHistory] = await Promise.all([
-    getActiveSession(dbUser.id),
-    getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
-    getCurrentFocusTopic(dbUser.id),
-    getWeeklyTrends(dbUser.id, dbUser.learnerScore),
-    getRatingHistory(dbUser.id),
-  ]);
+  const allTopicRatings = await prisma.studentTopicRating.findMany({
+    where: { userId },
+    include: { topic: true },
+  });
 
-  const motivationalMessage = getMotivationalMessage(dbUser.currentStreak, todaysGoal.solvedToday, todaysGoal.dailyGoal);
-  const milestone = getNextMilestone(dbUser.learnerScore);
-  const weeklyInsight = getWeeklyInsight(weeklyTrends.ratingChangeThisWeek);
-  const sparklinePoints = ratingHistory.slice(-7).map((p) => ratingToStars(p.rating));
+  const attempts = await prisma.attempt.findMany({
+    where: { userId },
+    include: {
+      question: {
+        include: { topics: { include: { topic: true } } },
+      },
+    },
+    orderBy: { createdAt: "desc" },
+  });
 
-  let sessionTopicLabel = "a mix of everything";
-  if (activeSession && activeSession.topicFocus.length > 0) {
-    const topics = await prisma.topic.findMany({ where: { slug: { in: activeSession.topicFocus } }, select: { name: true } });
-    if (topics.length > 0) sessionTopicLabel = topics.map((t) => t.name).join(", ");
+  const breakdown: Record<string, TopicBreakdownEntry> = {};
+  for (const cat of majorCategories) {
+    breakdown[cat.id] = {
+      categoryId: cat.id,
+      categorySlug: cat.slug,
+      categoryName: cat.name,
+      rating: DEFAULT_RATING,
+      solved: 0,
+      wrong: 0,
+      surrendered: 0,
+      totalTimeSeconds: 0,
+      attempts: [],
+    };
   }
 
-  const continuePracticeHref = activeSession ? `/practice?sessionId=${activeSession.id}` : "/onboarding";
-  const continuePracticeLabel = activeSession ? "Continue Practice" : "Start Practicing";
+  // Average rating per category, from all StudentTopicRating rows that
+  // fall under it (the category itself + all its children).
+  const ratingsByCategoryId: Record<string, number[]> = {};
+  for (const r of allTopicRatings) {
+    const catId = resolveMajorCategoryId(r.topic);
+    if (!breakdown[catId]) continue;
+    (ratingsByCategoryId[catId] ??= []).push(r.rating);
+  }
+  for (const catId of Object.keys(ratingsByCategoryId)) {
+    const list = ratingsByCategoryId[catId];
+    breakdown[catId].rating = Math.round(list.reduce((a, b) => a + b, 0) / list.length);
+  }
 
-  return (
-    <div className="flex min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
-      <DashboardSidebar todaysGoal={todaysGoal} />
+  // Multiple attempts on the SAME question (wrong -> hint -> retry) now
+  // count as ONE question, not several. Rule: use the most recent
+  // response's status, UNLESS the most recent was a surrender (gave
+  // up) — in that case fall back to the FIRST response's status, since
+  // giving up after already having answered isn't the meaningful
+  // signal to report. `attempts` is ordered newest-first already.
+  const attemptsByQuestion = new Map<string, typeof attempts>();
+  for (const attempt of attempts) {
+    const list = attemptsByQuestion.get(attempt.questionId) ?? [];
+    list.push(attempt);
+    attemptsByQuestion.set(attempt.questionId, list);
+  }
 
-      <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
-        <div className="mx-auto max-w-5xl">
-          <div className="animate-fade-in-up flex flex-col items-center gap-8 rounded-3xl bg-gradient-to-br from-[#FFF3E0] via-white to-[#FFEDE3] p-10 shadow-sm dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 sm:flex-row">
-            <HeroStreak streak={dbUser.currentStreak} />
-            <div className="flex-1 text-center sm:text-left">
-              <h1
-                className="text-3xl font-extrabold leading-tight text-[#2B2118] dark:text-neutral-100 sm:text-4xl"
-                style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
-              >
-                👋 Welcome back{dbUser.name ? `, ${dbUser.name}` : ""}!
-              </h1>
-              <p className="mt-2 flex flex-wrap items-center justify-center gap-2 text-base text-[#6B5D4F] dark:text-neutral-400 sm:justify-start">
-                <span className="inline-flex items-center gap-1 text-lg font-bold text-[#4C3AA0] dark:text-indigo-400">
-                  <Star size={16} fill="currentColor" /> {dbUser.learnerScore}
-                </span>
-                current rating
-              </p>
-              <p className="mt-4 text-base font-semibold text-[#FF6B4A]">{motivationalMessage}</p>
-            </div>
-          </div>
+  const dedupedAttempts = Array.from(attemptsByQuestion.values()).map((list) => {
+    const mostRecent = list[0]; // newest, since attempts is DESC-ordered
+    const earliest = list[list.length - 1]; // oldest
+    const canonicalStatus = mostRecent.status === "SURRENDERED" ? earliest.status : mostRecent.status;
+    const totalTimeForQuestion = list.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
 
-          <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <QuickProgressCard
-              icon={<Star size={18} className="text-white" />}
-              iconBg="#4C3AA0"
-              label="Current Rating"
-              value={dbUser.learnerScore}
-              decimals={1}
-              trend={weeklyTrends.ratingChangeThisWeek !== null ? { value: weeklyTrends.ratingChangeThisWeek, label: "this week" } : null}
-            />
-            <QuickProgressCard icon={<CheckCircle2 size={18} className="text-white" />} iconBg="#2E6B1B" label="Questions Solved" value={dbUser.totalSolved} trend={{ value: weeklyTrends.solvedThisWeek, label: "this week" }} />
-            <QuickProgressCard icon={<ListChecks size={18} className="text-white" />} iconBg="#3B7DD8" label="Questions Attempted" value={dbUser.totalAttempted} trend={{ value: weeklyTrends.attemptsThisWeek, label: "this week" }} />
+    return { ...mostRecent, status: canonicalStatus, activeSolvingSeconds: totalTimeForQuestion };
+  });
 
-            <div className="rounded-2xl border border-[#F0E6D6] bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#6FCF52]">
-                <TargetIcon size={18} className="text-white" />
-              </div>
-              <div className="mt-3 text-xs text-[#6B5D4F] dark:text-neutral-500">Today&rsquo;s Goal</div>
-              <div className="text-xl font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                {todaysGoal.solvedToday} / {todaysGoal.dailyGoal}
-              </div>
-              <div className="mt-1.5 h-1.5 rounded-full bg-[#F0E6D6] dark:bg-neutral-800">
-                <div className="h-1.5 rounded-full bg-[#6FCF52] transition-all duration-500" style={{ width: `${todaysGoal.pct}%` }} />
-              </div>
-              <div className="mt-1 text-[11px] text-[#6B5D4F] dark:text-neutral-500">
-                {todaysGoal.dailyGoal - todaysGoal.solvedToday > 0 ? `${todaysGoal.dailyGoal - todaysGoal.solvedToday} more to go` : "Goal complete! 🎉"}
-              </div>
-            </div>
-          </div>
+  // Bucket every deduped question into every major category it touches.
+  for (const attempt of dedupedAttempts) {
+    const categoryIds = new Set<string>();
+    for (const link of attempt.question.topics) {
+      categoryIds.add(resolveMajorCategoryId(link.topic));
+    }
+    for (const catId of categoryIds) {
+      const entry = breakdown[catId];
+      if (!entry) continue;
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {activeSession ? (
-              <ResumeSessionCard
-                href={`/practice?sessionId=${activeSession.id}`}
-                topicLabel={sessionTopicLabel}
-                questionsCompleted={activeSession.questionsCompleted}
-                startedAt={activeSession.startedAt.toISOString()}
-              />
-            ) : (
-              <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
-            )}
-            <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
-          </div>
+      if (attempt.status === "SOLVED") entry.solved++;
+      else if (attempt.status === "WRONG") entry.wrong++;
+      else if (attempt.status === "SURRENDERED") entry.surrendered++;
 
-          <div className="mt-6">
-            <NextMilestoneCard
-              target={milestone.target}
-              pct={milestone.pct}
-              estimatedQuestions={milestone.estimatedQuestions}
-              ctaHref={continuePracticeHref}
-              ctaLabel={continuePracticeLabel}
-            />
-          </div>
+      entry.totalTimeSeconds += attempt.activeSolvingSeconds ?? 0;
 
-          <div className="mt-6 rounded-3xl border border-[#F0E6D6]/70 bg-[#FFFBF2]/60 p-6 dark:border-neutral-800/70 dark:bg-neutral-900/40">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                  Performance Snapshot
-                </h2>
-                <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Last 7 days</p>
-              </div>
-              <Link href="/progress" className="flex shrink-0 items-center gap-1 text-sm font-semibold text-[#4C3AA0] dark:text-indigo-400">
-                View Full Progress <ArrowRight size={14} />
-              </Link>
-            </div>
+      entry.attempts.push({
+        id: attempt.id,
+        sessionId: attempt.sessionId,
+        externalId: attempt.question.externalId,
+        statement: attempt.question.statement.slice(0, 80),
+        status: attempt.status,
+        activeSolvingSeconds: attempt.activeSolvingSeconds,
+        submittedAt: attempt.submittedAt,
+      });
+    }
+  }
 
-            <div className="mt-4 grid gap-5 sm:grid-cols-[140px_1fr]">
-              <Sparkline points={sparklinePoints} color={(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "#2E6B1B" : "#D9502F"} />
-              <div>
-                <p className="text-sm text-[#2B2118] dark:text-neutral-300">{weeklyInsight}</p>
-                <div className="mt-3 grid grid-cols-3 gap-4 text-center sm:text-left">
-                  <div>
-                    <div className="text-lg font-extrabold text-[#2E6B1B]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>{weeklyTrends.solvedThisWeek}</div>
-                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Solved</div>
-                  </div>
-                  <div>
-                    <div className={`text-lg font-extrabold ${(weeklyTrends.ratingChangeThisWeek ?? 0) >= 0 ? "text-[#4C3AA0]" : "text-[#D9502F]"}`} style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                      {weeklyTrends.ratingChangeThisWeek !== null ? `${weeklyTrends.ratingChangeThisWeek >= 0 ? "+" : ""}${weeklyTrends.ratingChangeThisWeek}` : "—"}
-                    </div>
-                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">This Week</div>
-                  </div>
-                  <div>
-                    <div className="text-lg font-extrabold text-[#FF6B4A]" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>{weeklyTrends.attemptsThisWeek}</div>
-                    <div className="text-xs text-[#6B5D4F] dark:text-neutral-500">Attempted</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return Object.values(breakdown);
+}
+
+export interface SessionSummary {
+  id: string;
+  name: string;
+  status: string;
+  startedAt: Date;
+  questionsCompleted: number;
+  solved: number;
+  wrong: number;
+  surrendered: number;
+  totalTimeSeconds: number;
+  accuracyPct: number;
+  netRatingChange: number | null;
+}
+
+/** Every session the user has ever had, newest first, each with its own
+ * solved/wrong/surrendered breakdown, accuracy, duration, and net rating
+ * change — all computed here ONCE, so every place that shows a session
+ * summary (card, expanded detail) reads from this same source instead
+ * of recomputing independently and risking numbers that don't match. */
+export async function getAllSessionsWithStats(userId: string): Promise<SessionSummary[]> {
+  const sessions = await prisma.practiceSession.findMany({
+    where: { userId },
+    orderBy: { startedAt: "desc" },
+    include: { attempts: { orderBy: { createdAt: "asc" } } },
+  });
+
+  return sessions.map((s, index) => {
+    // Same dedup rule as topic breakdown: a question attempted more
+    // than once in this session (wrong -> hint -> retry) counts once,
+    // using the last response's status unless it was a surrender, in
+    // which case the first response's status is used instead.
+    const byQuestion = new Map<string, typeof s.attempts>();
+    for (const a of s.attempts) {
+      const list = byQuestion.get(a.questionId) ?? [];
+      list.push(a);
+      byQuestion.set(a.questionId, list);
+    }
+    const dedupedAttempts = Array.from(byQuestion.values()).map((list) => {
+      // s.attempts is ordered createdAt ASC, so within each question's
+      // list: first = earliest, last = most recent.
+      const earliest = list[0];
+      const mostRecent = list[list.length - 1];
+      const canonicalStatus = mostRecent.status === "SURRENDERED" ? earliest.status : mostRecent.status;
+      const totalTimeForQuestion = list.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
+      return { ...mostRecent, status: canonicalStatus, activeSolvingSeconds: totalTimeForQuestion };
+    });
+
+    const solved = dedupedAttempts.filter((a) => a.status === "SOLVED").length;
+    const wrong = dedupedAttempts.filter((a) => a.status === "WRONG").length;
+    const surrendered = dedupedAttempts.filter((a) => a.status === "SURRENDERED").length;
+    const totalTimeSeconds = dedupedAttempts.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
+    const totalAttempted = dedupedAttempts.length;
+    const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
+
+    // Net rating change: first attempt's "before" star value vs last
+    // attempt's "after" star value. Uses the primary-topic Elo snapshot
+    // already stored per attempt — same simplification used elsewhere
+    // in the app (a session can span multiple topics; this is a
+    // reasonable approximation, not a precise multi-topic breakdown).
+    // Uses the RAW (non-deduped) attempts here since this needs the
+    // true chronological first/last rating snapshots of the session.
+    let netRatingChange: number | null = null;
+    if (s.attempts.length > 0) {
+      const first = s.attempts[0];
+      const last = s.attempts[s.attempts.length - 1];
+      const beforeStars = ratingToStars(first.studentRatingBefore);
+      const afterStars = ratingToStars(last.studentRatingAfter);
+      netRatingChange = Math.round((afterStars - beforeStars) * 10) / 10;
+    }
+
+    return {
+      id: s.id,
+      name: s.name ?? `Session ${sessions.length - index}`,
+      status: s.status,
+      startedAt: s.startedAt,
+      questionsCompleted: s.questionsCompleted,
+      solved,
+      wrong,
+      surrendered,
+      totalTimeSeconds,
+      accuracyPct,
+      netRatingChange,
+    };
+  });
+}
+
+export interface RatingPoint {
+  date: string;
+  rating: number;
+}
+
+/** Rating history for the trend chart — uses the primary
+ * studentRatingAfter snapshot from every attempt, in order. This is the
+ * same "primary topic" simplification noted in attempt-service.ts, so
+ * the chart reflects one consistent rating line rather than trying to
+ * plot every topic's rating simultaneously. */
+export async function getRatingHistory(userId: string): Promise<RatingPoint[]> {
+  const attempts = await prisma.attempt.findMany({
+    where: { userId },
+    orderBy: { createdAt: "asc" },
+    select: { createdAt: true, studentRatingAfter: true },
+  });
+
+  return attempts.map((a) => ({
+    date: a.createdAt.toISOString().slice(0, 10),
+    rating: a.studentRatingAfter,
+  }));
+}
+
+/** How many problems solved today, against the user's own dailyGoal —
+ * a real progress bar, not a placeholder. */
+export async function getTodaysGoalProgress(userId: string, dailyGoal: number) {
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+
+  const solvedToday = await prisma.attempt.count({
+    where: { userId, status: "SOLVED", submittedAt: { gte: startOfToday } },
+  });
+
+  return { solvedToday, dailyGoal, pct: Math.min(100, Math.round((solvedToday / dailyGoal) * 100)) };
+}
+
+/** Real weekly activity heatmap — counts actual attempts per day over
+ * the last several weeks, laid out Mon-Sun rows matching the mockup's
+ * GitHub-style grid. Color intensity buckets are based on attempt count. */
+const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
+
+/** Converts a UTC Date into its IST calendar-day string (YYYY-MM-DD).
+ * The server always runs in UTC — without this, "today" on the server
+ * can be a full day behind a user's actual IST "today" during evening
+ * and night hours, which is exactly the bug this fixes. */
+function toISTDateKey(d: Date): string {
+  return new Date(d.getTime() + IST_OFFSET_MS).toISOString().slice(0, 10);
+}
+
+export async function getActivityHeatmap(userId: string, weeks: number = 6) {
+  const daysBack = weeks * 7;
+  const nowIST = new Date(Date.now() + IST_OFFSET_MS);
+  const start = new Date(nowIST);
+  start.setUTCHours(0, 0, 0, 0);
+  start.setUTCDate(start.getUTCDate() - daysBack + 1);
+
+  // Align to the most recent Monday on or before `start` — without this,
+  // the data grid doesn't line up with the fixed Mon-Sun row labels used
+  // by the heatmap component, so a date can render under the wrong
+  // weekday label even though the date itself is correct.
+  const startDayOfWeek = start.getUTCDay(); // 0 = Sunday, 1 = Monday, ...
+  const daysToSubtractForMonday = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1;
+  start.setUTCDate(start.getUTCDate() - daysToSubtractForMonday);
+
+  const totalDays = daysBack + daysToSubtractForMonday;
+  const startUTC = new Date(start.getTime() - IST_OFFSET_MS);
+
+  const attempts = await prisma.attempt.findMany({
+    where: { userId, submittedAt: { gte: startUTC } },
+    select: { submittedAt: true },
+  });
+
+  const countByDay = new Map<string, number>();
+  for (const a of attempts) {
+    if (!a.submittedAt) continue;
+    const key = toISTDateKey(a.submittedAt);
+    countByDay.set(key, (countByDay.get(key) ?? 0) + 1);
+  }
+
+  const days: { date: string; count: number }[] = [];
+  for (let i = 0; i < totalDays; i++) {
+    const d = new Date(start);
+    d.setUTCDate(start.getUTCDate() + i);
+    const key = d.toISOString().slice(0, 10);
+    days.push({ date: key, count: countByDay.get(key) ?? 0 });
+  }
+
+  const activeDaysLast7 = days.slice(-7).filter((d) => d.count > 0).length;
+
+  return { days, activeDaysLast7 };
+}
+
+/** "Current Focus" — the topic with the lowest rating the student has
+ * actually attempted, i.e. the topic most worth practicing next. */
+export async function getCurrentFocusTopic(userId: string) {
+  const ratings = await prisma.studentTopicRating.findMany({
+    where: { userId },
+    include: { topic: true },
+    orderBy: { rating: "asc" },
+  });
+  if (ratings.length === 0) return null;
+  const weakest = ratings[0];
+  return { topicName: weakest.topic.name, topicSlug: weakest.topic.slug };
+}
+
+/** Next milestone: the next whole star above the student's current
+ * learnerScore. The "questions remaining" figure is a rough estimate,
+ * not a guarantee — explicitly labeled as such wherever it's shown. */
+export function getNextMilestone(learnerScore: number) {
+  const nextWhole = Math.floor(learnerScore) + 1;
+  const prevWhole = Math.floor(learnerScore);
+  const pct = Math.round(((learnerScore - prevWhole) / (nextWhole - prevWhole)) * 100);
+  const remainingGap = nextWhole - learnerScore;
+  // Rough heuristic: assumes a typical solved question moves the score
+  // by roughly 0.05-0.1 — this is an approximation for motivational
+  // display, not a precise prediction.
+  const estimatedQuestions = Math.max(1, Math.round(remainingGap / 0.07));
+
+  return { target: nextWhole, pct, estimatedQuestions };
+}
+
+/** Real "this week" trends — rating change and solved count compared to
+ * 7 days ago, computed from actual attempt history, not fabricated. */
+export async function getWeeklyTrends(userId: string, currentLearnerScore: number) {
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  const [solvedThisWeek, attemptsThisWeek, oldestRecentAttempt] = await Promise.all([
+    prisma.attempt.count({ where: { userId, status: "SOLVED", submittedAt: { gte: sevenDaysAgo } } }),
+    prisma.attempt.count({ where: { userId, submittedAt: { gte: sevenDaysAgo } } }),
+    prisma.attempt.findFirst({
+      where: { userId, submittedAt: { gte: sevenDaysAgo } },
+      orderBy: { submittedAt: "asc" },
+      select: { studentRatingBefore: true },
+    }),
+  ]);
+
+  let ratingChangeThisWeek: number | null = null;
+  if (oldestRecentAttempt) {
+    const before = (oldestRecentAttempt.studentRatingBefore - 1200) / 100;
+    ratingChangeThisWeek = Math.round((currentLearnerScore - before) * 10) / 10;
+  }
+
+  return { solvedThisWeek, attemptsThisWeek, ratingChangeThisWeek };
+}
+
+export type MasteryLevel = "Beginner" | "Intermediate" | "Advanced" | "Mastered";
+
+/** Simple, clearly-stated heuristic mapping a topic's star rating to a
+ * mastery label — not a scientific classification, just a motivating
+ * way to group topics on the Topics page. */
+export function getMasteryLevel(stars: number): MasteryLevel {
+  if (stars < 1) return "Beginner";
+  if (stars < 2.5) return "Intermediate";
+  if (stars < 4) return "Advanced";
+  return "Mastered";
+}
+
+/** Total question count per major category (including all subtopics) —
+ * used to show a genuine "X of Y questions" progress bar on the Topics
+ * page, not a fabricated total. */
+export async function getCategoryQuestionCounts(): Promise<Map<string, number>> {
+  const majorCategories = await prisma.topic.findMany({
+    where: { parentId: null },
+    include: { children: { select: { id: true } } },
+  });
+
+  const counts = new Map<string, number>();
+  for (const cat of majorCategories) {
+    const topicIds = [cat.id, ...cat.children.map((c) => c.id)];
+    const count = await prisma.question.count({
+      where: { topics: { some: { topicId: { in: topicIds } } } },
+    });
+    counts.set(cat.id, count);
+  }
+  return counts;
+}
+
+/** Real leaderboard rank by learnerScore — for the compact preview card
+ * on the dashboard, not a fabricated number. */
+export async function getUserRank(userId: string, learnerScore: number): Promise<number> {
+  const higherRated = await prisma.user.count({
+    where: { learnerScore: { gt: learnerScore } },
+  });
+  return higherRated + 1;
+}
+
+/** All questions the student has genuinely bookmarked, with enough
+ * question data to display and link back into practice. */
+export async function getBookmarkedQuestions(userId: string) {
+  const saved = await prisma.savedQuestion.findMany({
+    where: { userId, type: "BOOKMARK" },
+    orderBy: { createdAt: "desc" },
+    include: {
+      question: {
+        select: {
+          id: true,
+          externalId: true,
+          statement: true,
+          difficultyLabel: true,
+          examType: true,
+          topics: { include: { topic: true }, take: 1 },
+        },
+      },
+    },
+  });
+  return saved;
+}
+
+/** Real average time spent per attempted question, all-time. */
+export async function getAverageTimePerQuestion(userId: string): Promise<number> {
+  const result = await prisma.attempt.aggregate({
+    where: { userId },
+    _avg: { activeSolvingSeconds: true },
+  });
+  return Math.round(result._avg.activeSolvingSeconds ?? 0);
 }

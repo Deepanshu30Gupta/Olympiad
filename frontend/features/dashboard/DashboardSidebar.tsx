@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, TrendingUp, BookMarked, ListChecks, Settings, Target, Bookmark } from "lucide-react";
+import { Home, TrendingUp, BookMarked, ListChecks, Settings, Bookmark, Trophy, Menu } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: Home, href: "/dashboard" },
@@ -11,24 +12,47 @@ const NAV_ITEMS = [
   { label: "Topics", icon: BookMarked, href: "/topics" },
   { label: "Sessions", icon: ListChecks, href: "/sessions" },
   { label: "Bookmarks", icon: Bookmark, href: "/bookmarks" },
+  { label: "Leaderboard", icon: Trophy, href: "/leaderboard" },
   { label: "Settings", icon: Settings, href: "#" },
 ];
 
-export function DashboardSidebar({
-  todaysGoal,
-}: {
-  todaysGoal?: { solvedToday: number; dailyGoal: number; pct: number };
-}) {
+export function DashboardSidebar() {
   const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const saved = localStorage.getItem("sidebar-collapsed");
+    if (saved === "true") setCollapsed(true);
+  }, []);
+
+  function toggle() {
+    const next = !collapsed;
+    setCollapsed(next);
+    localStorage.setItem("sidebar-collapsed", String(next));
+  }
 
   return (
-    <aside className="hidden w-60 shrink-0 flex-col justify-between border-r border-[#F0E6D6] bg-white px-4 py-6 dark:border-neutral-800 dark:bg-neutral-900 lg:flex">
+    <aside
+      className={`hidden shrink-0 flex-col border-r border-[#F0E6D6] bg-white py-6 transition-all duration-200 dark:border-neutral-800 dark:bg-neutral-900 lg:flex ${
+        collapsed ? "w-[72px] px-2" : "w-60 px-4"
+      }`}
+    >
+      <button
+        onClick={toggle}
+        aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg text-[#6B5D4F] transition-colors hover:bg-[#FFFBF2] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:bg-neutral-800"
+      >
+        <Menu size={20} />
+      </button>
+
       <nav className="flex flex-col gap-1">
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href;
           return (
-            <Link key={item.label} href={item.href} className="group relative">
-              {active && (
+            <Link key={item.label} href={item.href} className="group relative" title={collapsed ? item.label : undefined}>
+              {active && mounted && (
                 <motion.div
                   layoutId="sidebar-active"
                   className="absolute inset-0 rounded-xl bg-[#FFE8E0] dark:bg-[#FF6B4A]/15"
@@ -40,32 +64,15 @@ export function DashboardSidebar({
                   active
                     ? "text-[#FF6B4A]"
                     : "text-[#6B5D4F] hover:bg-[#FFFBF2] hover:text-[#2B2118] dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
-                }`}
+                } ${collapsed ? "justify-center" : ""}`}
               >
-                <item.icon size={18} className="transition-transform duration-200 group-hover:scale-110" />
-                {item.label}
+                <item.icon size={18} className="shrink-0 transition-transform duration-200 group-hover:scale-110" />
+                {!collapsed && item.label}
               </div>
             </Link>
           );
         })}
       </nav>
-
-      {todaysGoal && (
-        <div className="rounded-2xl border border-[#F0E6D6] bg-[#FFFBF2] p-5 dark:border-neutral-800 dark:bg-neutral-800/40">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#6FCF52]">
-              <Target size={16} className="text-white" />
-            </div>
-            <h3 className="text-sm font-bold text-[#2B2118] dark:text-neutral-100">Today&rsquo;s Goal</h3>
-          </div>
-          <p className="mt-2 text-xs text-[#6B5D4F] dark:text-neutral-400">
-            {todaysGoal.solvedToday} of {todaysGoal.dailyGoal} solved
-          </p>
-          <div className="mt-2 h-1.5 rounded-full bg-[#F0E6D6] dark:bg-neutral-700">
-            <div className="h-1.5 rounded-full bg-[#6FCF52] transition-all duration-500" style={{ width: `${todaysGoal.pct}%` }} />
-          </div>
-        </div>
-      )}
     </aside>
   );
 }

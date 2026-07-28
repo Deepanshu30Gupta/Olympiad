@@ -1,10 +1,10 @@
 import { currentUser } from "@clerk/nextjs/server";
-import Link from "next/link";
 import { Bookmark } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { getBookmarkedQuestions, getTodaysGoalProgress } from "@/services/dashboard-service";
 import { renderMathText } from "@/lib/render-math";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
+import { PracticeBookmarkedQuestionButton } from "@/features/dashboard/PracticeBookmarkedQuestionButton";
 
 export default async function BookmarksPage() {
   const clerkUser = await currentUser();
@@ -20,7 +20,7 @@ export default async function BookmarksPage() {
 
   return (
     <div className="flex min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
-      <DashboardSidebar todaysGoal={todaysGoal} />
+      <DashboardSidebar />
       <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
@@ -47,9 +47,7 @@ export default async function BookmarksPage() {
                     <Bookmark size={16} fill="#FF6B4A" color="#FF6B4A" />
                   </div>
                   <div className="mt-3 line-clamp-2 text-sm text-[#2B2118] dark:text-neutral-200" dangerouslySetInnerHTML={{ __html: renderMathText(b.question.statement) }} />
-                  <Link href="/onboarding" className="mt-3 inline-block text-xs font-semibold text-[#4C3AA0] dark:text-indigo-400">
-                    Practice this topic →
-                  </Link>
+                  <PracticeBookmarkedQuestionButton questionId={b.question.id} />
                 </div>
               ))}
             </div>
