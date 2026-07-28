@@ -2,7 +2,7 @@
 
 import { useState, ReactElement } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Target, Lightbulb, TrendingUp, Flame, History, BookOpen, ArrowRight } from "lucide-react";
+import { Target, Lightbulb, TrendingUp, Flame, History, BookOpen } from "lucide-react";
 
 interface FeatureDef {
   id: string;
@@ -174,9 +174,6 @@ export function FeaturesExpandingSection() {
                       >
                         <f.Illustration />
                       </motion.div>
-                      <a href="#" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold" style={{ color: f.color }}>
-                        Learn More <ArrowRight size={13} />
-                      </a>
                     </motion.div>
                   ) : (
                     <motion.h3

@@ -2,7 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
-interface ClerkUserCreatedEvent {
+interface ClerkUserEvent {
   type: string;
   data: {
     id: string;
@@ -19,8 +19,6 @@ export async function POST(req: Request) {
     return new Response("Server misconfiguration", { status: 500 });
   }
 
-  // Svix signature verification — this proves the request genuinely came
-  // from Clerk's servers, not an attacker hitting this public URL directly.
   const headerList = await headers();
   const svixId = headerList.get("svix-id");
   const svixTimestamp = headerList.get("svix-timestamp");
@@ -33,13 +31,13 @@ export async function POST(req: Request) {
   const body = await req.text();
   const wh = new Webhook(webhookSecret);
 
-  let event: ClerkUserCreatedEvent;
+  let event: ClerkUserEvent;
   try {
     event = wh.verify(body, {
       "svix-id": svixId,
       "svix-timestamp": svixTimestamp,
       "svix-signature": svixSignature,
-    }) as ClerkUserCreatedEvent;
+    }) as ClerkUserEvent;
   } catch (err) {
     console.error("Webhook signature verification failed:", err);
     return new Response("Invalid signature", { status: 400 });
@@ -56,19 +54,35 @@ export async function POST(req: Request) {
 
     const name = [first_name, last_name].filter(Boolean).join(" ") || null;
 
-    // Upsert, not create: if this webhook ever fires twice for the same
-    // user (network retries happen), we don't want a duplicate-key crash.
     await prisma.user.upsert({
       where: { clerkId: id },
       update: {},
-      create: {
-        clerkId: id,
-        email,
+      create: { clerkId: id, email, name },
+    });
+
+    console.log(`Synced new user: ${email} (${id})`);
+  }
+
+  if (event.type === "user.updated") {
+    const { id, email_addresses, first_name, last_name } = event.data;
+    const email = email_addresses[0]?.email_address;
+    const name = [first_name, last_name].filter(Boolean).join(" ") || null;
+
+    await prisma.user.updateMany({
+      where: { clerkId: id },
+      data: {
+        ...(email ? { email } : {}),
         name,
       },
     });
 
-    console.log(`Synced new user: ${email} (${id})`);
+    console.log(`Synced updated profile for user: ${id}`);
+  }
+
+  if (event.type === "user.deleted") {
+    const { id } = event.data;
+    await prisma.user.deleteMany({ where: { clerkId: id } });
+    console.log(`Removed deleted user: ${id}`);
   }
 
   return new Response("OK", { status: 200 });

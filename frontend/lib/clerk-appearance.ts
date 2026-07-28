@@ -1,3 +1,5 @@
+import { dark } from "@clerk/themes";
+
 export const clerkAppearanceLight = {
   variables: {
     colorPrimary: "#FF6B4A",
@@ -15,14 +17,14 @@ export const clerkAppearanceLight = {
 };
 
 export const clerkAppearanceDark = {
+  baseTheme: dark,
   variables: {
     colorPrimary: "#FF6B4A",
     colorBackground: "#171717",
     colorText: "#F5F5F5",
-    colorTextSecondary: "#A3A3A3",
+    colorTextSecondary: "#D4D4D4",
     colorInputBackground: "#262626",
     colorInputText: "#F5F5F5",
-    colorNeutral: "#F5F5F5",
     borderRadius: "0.75rem",
     fontFamily: "var(--font-jakarta), sans-serif",
   },

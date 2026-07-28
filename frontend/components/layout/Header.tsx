@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Show, UserButton, SignInButton } from "@clerk/nextjs";
+import { Show, UserButton } from "@clerk/nextjs";
 import { Bell } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ReportWidget } from "@/components/ReportWidget";
@@ -66,13 +66,8 @@ export function Header() {
           </div>
         </Show>
         <Show when="signed-out">
-          <SignInButton>
-            <button className="rounded-lg border border-[#F0E6D6] px-4 py-2 text-sm font-semibold text-[#2B2118] hover:border-[#FF6B4A]/50 dark:border-neutral-800 dark:text-neutral-100">
-              Sign in
-            </button>
-          </SignInButton>
           <Link href="/sign-up" className="rounded-lg bg-[#FF6B4A] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D9502F]">
-            Start solving questions
+            Start Practicing Free
           </Link>
         </Show>
       </div>
