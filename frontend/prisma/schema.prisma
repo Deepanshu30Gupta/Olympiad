@@ -53,16 +53,6 @@ model User {
   practiceSessions PracticeSession[]
 }
 
-model StudentTopicRating {
-  // ... existing fields stay exactly as they are ...
-  displayScore  Float  @default(0)   // NEW — asymmetric student-facing topic score, separate from the internal Elo used for difficulty matching
-}
-
-model PracticeSession {
-  // ... existing fields stay exactly as they are ...
-  currentQuestionStartedAt DateTime?         // NEW — when the current question was actually opened, persisted (fixes resume timing + wrong session-duration bug)
-  queuedQuestionIds        String[] @default([]) // NEW — an explicit ordered list of questions for this session (used by "Practice All Bookmarks")
-}
 model Report {
   id                 String   @id @default(cuid())
   name               String
@@ -73,6 +63,7 @@ model Report {
   comment            String
   createdAt          DateTime @default(now())
 }
+
 model PracticeSession {
   id                 String        @id @default(cuid())
   userId             String
@@ -83,6 +74,9 @@ model PracticeSession {
   questionsCompleted Int           @default(0)
   startedAt          DateTime      @default(now())
   updatedAt          DateTime      @updatedAt
+
+  currentQuestionStartedAt DateTime?
+  queuedQuestionIds        String[] @default([])
 
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   attempts Attempt[]
@@ -167,6 +161,8 @@ model StudentTopicRating {
   rating        Int      @default(1200)
   attemptsCount Int      @default(0)
   updatedAt     DateTime @updatedAt
+
+  displayScore  Float  @default(0)
 
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
