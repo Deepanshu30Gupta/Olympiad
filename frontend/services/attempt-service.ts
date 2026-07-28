@@ -122,7 +122,7 @@ export async function submitAttempt(params: SubmitAttemptParams) {
           // Accumulate time across the retry rather than replacing it —
           // the student spent time on both the first try and the retry.
           activeSolvingSeconds:
-            existingAttempt.activeSolvingSeconds + Math.round((Date.now() - params.startedAt.getTime()) / 1000),
+            (existingAttempt.activeSolvingSeconds ?? 0) + Math.round((Date.now() - params.startedAt.getTime()) / 1000),
           hintLevelUsed: params.hintLevelUsed,
           solutionViewed: params.solutionViewed,
           confidenceRating: params.confidenceRating ?? existingAttempt.confidenceRating,
