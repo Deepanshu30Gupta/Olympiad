@@ -17,6 +17,8 @@ interface SessionForClient {
   accuracyPct: number;
   netRatingChange: number | null;
   questions: { attemptId: string; externalId: string; status: string }[];
+  examTypes: string[];
+  topicFocus: string[];
 }
 
 function groupByPeriod(sessions: SessionForClient[]) {
@@ -53,10 +55,12 @@ export default async function SessionsPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [sessions, todaysGoal] = await Promise.all([
+  const [sessions, todaysGoal, allTopics] = await Promise.all([
     getAllSessionsWithStats(dbUser.id),
     getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
+    prisma.topic.findMany({ select: { slug: true, name: true } }),
   ]);
+  const topicNameBySlug = new Map(allTopics.map((t) => [t.slug, t.name]));
   const sessionsForClient = sessions.map((s) => ({ ...s, startedAt: s.startedAt.toISOString() }));
   const grouped = groupByPeriod(sessionsForClient);
 
@@ -80,7 +84,11 @@ export default async function SessionsPage() {
                 <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-[#6B5D4F] dark:text-neutral-500">{group.label}</h2>
                 <div className="relative border-l-2 border-[#F0E6D6] pl-6 dark:border-neutral-800">
                   {group.sessions.map((s) => (
-                    <SessionTimelineItem key={s.id} {...s} />
+                    <SessionTimelineItem
+                      key={s.id}
+                      {...s}
+                      topicNames={s.topicFocus.map((slug) => topicNameBySlug.get(slug) ?? slug)}
+                    />
                   ))}
                 </div>
               </div>

@@ -151,6 +151,8 @@ export interface SessionSummary {
   accuracyPct: number;
   netRatingChange: number | null;
   questions: { attemptId: string; externalId: string; status: string }[];
+  examTypes: string[];
+  topicFocus: string[];
 }
 
 /** Every session the user has ever had, newest first, each with its own
@@ -198,6 +200,14 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     const totalAttempted = dedupedAttempts.length;
     const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
 
+    // Real fallback: a session can have genuine elapsed time (opened a
+    // question, thought about it, never submitted) with zero recorded
+    // attempts — in that case, showing "0s" is misleading. Fall back to
+    // the session's own startedAt-to-updatedAt gap, which reflects real
+    // activity even without a completed Attempt row.
+    const displayTimeSeconds =
+      totalTimeSeconds > 0 ? totalTimeSeconds : Math.max(0, Math.round((s.updatedAt.getTime() - s.startedAt.getTime()) / 1000));
+
     // Net rating change: first attempt's "before" star value vs last
     // attempt's "after" star value. Uses the primary-topic Elo snapshot
     // already stored per attempt — same simplification used elsewhere
@@ -223,7 +233,7 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
       solved,
       wrong,
       surrendered,
-      totalTimeSeconds,
+      totalTimeSeconds: displayTimeSeconds,
       accuracyPct,
       netRatingChange,
       questions: s.attempts.map((a) => ({
@@ -231,6 +241,8 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
         externalId: a.question.externalId,
         status: a.status,
       })),
+      examTypes: s.examTypes,
+      topicFocus: s.topicFocus,
     };
   });
 }

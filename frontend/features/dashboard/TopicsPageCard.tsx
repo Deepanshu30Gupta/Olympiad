@@ -43,7 +43,12 @@ export function TopicsPageCard({
 
   const accuracy = solved + wrong > 0 ? Math.round((solved / (solved + wrong)) * 100) : 0;
   const progressPct = totalQuestions > 0 ? Math.min(100, Math.round((completed / totalQuestions) * 100)) : 0;
-  const remaining = Math.max(0, totalQuestions - completed);
+  // Two genuinely different numbers, per spec:
+  // - Not Attempted: questions in this topic never opened at all.
+  // - Remaining: everything still standing between here and mastery —
+  //   both the never-touched ones AND the ones gotten wrong so far.
+  const notAttempted = Math.max(0, totalQuestions - completed);
+  const remaining = notAttempted + wrong;
   const lastPracticedLabel = lastPracticed ? formatRelativeTime(lastPracticed) : null;
 
   async function handlePracticeThisTopic() {
@@ -75,8 +80,25 @@ export function TopicsPageCard({
         <span>{completed} of {totalQuestions || "?"} questions</span>
         <span>{accuracy}% accuracy</span>
       </div>
-      <div className="mt-1 flex flex-wrap justify-between gap-x-3 text-[11px] text-[#8A7C6C] dark:text-neutral-600">
-        <span>{remaining} remaining</span>
+      <div className="mt-2 grid grid-cols-4 gap-1.5 text-center">
+        <div className="rounded-lg bg-[#E6F7E0] px-1 py-1.5 dark:bg-emerald-950/40">
+          <div className="text-xs font-bold text-[#2E6B1B] dark:text-emerald-300">{solved}</div>
+          <div className="text-[9px] text-[#2E6B1B]/70 dark:text-emerald-400/70">Correct</div>
+        </div>
+        <div className="rounded-lg bg-[#FFE8E0] px-1 py-1.5 dark:bg-red-950/40">
+          <div className="text-xs font-bold text-[#D9502F] dark:text-red-300">{wrong}</div>
+          <div className="text-[9px] text-[#D9502F]/70 dark:text-red-400/70">Incorrect</div>
+        </div>
+        <div className="rounded-lg bg-[#F0E6D6] px-1 py-1.5 dark:bg-neutral-800">
+          <div className="text-xs font-bold text-[#6B5D4F] dark:text-neutral-300">{notAttempted}</div>
+          <div className="text-[9px] text-[#6B5D4F]/70 dark:text-neutral-500">Not Attempted</div>
+        </div>
+        <div className="rounded-lg bg-[#ECE8FA] px-1 py-1.5 dark:bg-indigo-950/40">
+          <div className="text-xs font-bold text-[#4C3AA0] dark:text-indigo-300">{remaining}</div>
+          <div className="text-[9px] text-[#4C3AA0]/70 dark:text-indigo-400/70">Remaining</div>
+        </div>
+      </div>
+      <div className="mt-1.5 flex flex-wrap justify-between gap-x-3 text-[11px] text-[#8A7C6C] dark:text-neutral-600">
         {lastPracticedLabel && <span>Last practiced {lastPracticedLabel}</span>}
       </div>
 

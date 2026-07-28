@@ -1,11 +1,9 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { Bookmark } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { getBookmarkedQuestions, getTodaysGoalProgress } from "@/services/dashboard-service";
-import { renderMathText } from "@/lib/render-math";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
-import { PracticeBookmarkedQuestionButton } from "@/features/dashboard/PracticeBookmarkedQuestionButton";
 import { PracticeAllBookmarksButton } from "@/features/dashboard/PracticeAllBookmarksButton";
+import { BookmarkListItem } from "@/features/dashboard/BookmarkListItem";
 
 export default async function BookmarksPage() {
   const clerkUser = await currentUser();
@@ -41,18 +39,14 @@ export default async function BookmarksPage() {
           ) : (
             <div className="mt-8 flex flex-col gap-3">
               {bookmarks.map((b) => (
-                <div key={b.id} className="rounded-2xl border border-[#F0E6D6] bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
-                  <div className="flex items-center justify-between">
-                    <div className="flex flex-wrap gap-2 font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
-                      <span className="rounded-full border border-[#F0E6D6] px-2.5 py-1 dark:border-neutral-800">{b.question.externalId}</span>
-                      {b.question.examType && <span className="rounded-full border border-[#F0E6D6] px-2.5 py-1 dark:border-neutral-800">{b.question.examType}</span>}
-                      {b.question.difficultyLabel && <span className="rounded-full border border-[#F0E6D6] px-2.5 py-1 dark:border-neutral-800">{b.question.difficultyLabel}</span>}
-                    </div>
-                    <Bookmark size={16} fill="#FF6B4A" color="#FF6B4A" />
-                  </div>
-                  <div className="mt-3 line-clamp-2 text-sm text-[#2B2118] dark:text-neutral-200" dangerouslySetInnerHTML={{ __html: renderMathText(b.question.statement) }} />
-                  <PracticeBookmarkedQuestionButton questionId={b.question.id} />
-                </div>
+                <BookmarkListItem
+                  key={b.id}
+                  questionId={b.question.id}
+                  externalId={b.question.externalId}
+                  examType={b.question.examType}
+                  difficultyLabel={b.question.difficultyLabel}
+                  statement={b.question.statement}
+                />
               ))}
             </div>
           )}

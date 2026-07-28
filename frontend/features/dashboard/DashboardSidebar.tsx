@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Home, TrendingUp, BookMarked, ListChecks, Settings, Bookmark, Trophy, Menu } from "lucide-react";
+import { Home, TrendingUp, BookMarked, ListChecks, Bookmark, Trophy, Menu } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: Home, href: "/dashboard" },
@@ -13,7 +13,6 @@ const NAV_ITEMS = [
   { label: "Sessions", icon: ListChecks, href: "/sessions" },
   { label: "Bookmarks", icon: Bookmark, href: "/bookmarks" },
   { label: "Leaderboard", icon: Trophy, href: "/leaderboard" },
-  { label: "Settings", icon: Settings, href: "#" },
 ];
 
 export function DashboardSidebar() {
