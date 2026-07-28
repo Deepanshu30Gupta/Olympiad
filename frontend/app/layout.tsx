@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fredoka, Plus_Jakarta_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ScrollRestorationFix } from "@/components/ScrollRestorationFix";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -43,10 +44,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${plusJakarta.variable} h-full antialiased`}
       >
         <head>
-          {/* Runs before hydration/paint — reads the stored theme (or
-              falls back to OS preference) and applies the .dark class
-              immediately, so there's no flash of the wrong theme while
-              React boots up. */}
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -63,10 +60,11 @@ export default function RootLayout({
           />
         </head>
         <body className="min-h-full flex flex-col">
-  <Header />
-  <main className="flex-1">{children}</main>
-  <Footer />
-</body>
+          <ScrollRestorationFix />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </body>
       </html>
     </ClerkProvider>
   );

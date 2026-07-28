@@ -3,21 +3,29 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Show, UserButton } from "@clerk/nextjs";
+import { Show, UserButton, useUser } from "@clerk/nextjs";
 import { Bell } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ReportWidget } from "@/components/ReportWidget";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Practice", href: "/onboarding" },
-  { label: "Dashboard", href: "/dashboard" },
+  { label: "Practice", href: "/onboarding", protected: true },
+  { label: "Dashboard", href: "/dashboard", protected: true },
   { label: "About", href: "/story" },
   { label: "Contact Us", href: "/contact" },
 ];
 
 export function Header() {
   const pathname = usePathname();
+  const { isSignedIn } = useUser();
+
+  function handleHomeClick(e: React.MouseEvent, href: string) {
+    if (href === "/" && pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
 
   return (
     <header className="sticky top-0 z-40 grid h-16 grid-cols-[1fr_auto_1fr] items-center border-b border-[#F0E6D6] bg-[#FFFBF2]/90 px-6 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/90">
@@ -31,10 +39,12 @@ export function Header() {
       <nav className="hidden items-center gap-10 md:flex">
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href;
+          const href = item.protected && !isSignedIn ? "/sign-up" : item.href;
           return (
             <Link
               key={item.label}
-              href={item.href}
+              href={href}
+              onClick={(e) => handleHomeClick(e, item.href)}
               className={`relative whitespace-nowrap pb-1 text-sm font-medium transition-colors ${
                 active ? "text-[#FF6B4A]" : "text-[#2B2118] hover:text-[#FF6B4A] dark:text-neutral-300 dark:hover:text-[#FF6B4A]"
               }`}
@@ -66,8 +76,8 @@ export function Header() {
           </div>
         </Show>
         <Show when="signed-out">
-          <Link href="/sign-up" className="rounded-lg bg-[#FF6B4A] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D9502F]">
-            Start Practicing Free
+          <Link href="/sign-in" className="rounded-lg bg-[#FF6B4A] px-4 py-2 text-sm font-semibold text-white hover:bg-[#D9502F]">
+            Sign in
           </Link>
         </Show>
       </div>

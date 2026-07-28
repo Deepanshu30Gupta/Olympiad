@@ -201,9 +201,16 @@ export default function HomePage() {
                   ))}
                 </div>
                 <RippleWrapper className="mt-7 rounded-xl">
-                  <Link href="/onboarding" className="flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0]">
-                    Start Practicing <ArrowRight size={16} />
-                  </Link>
+                  <Show when="signed-in">
+                    <Link href="/onboarding" className="flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0]">
+                      Start Practicing <ArrowRight size={16} />
+                    </Link>
+                  </Show>
+                  <Show when="signed-out">
+                    <Link href="/sign-up" className="flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0]">
+                      Start Practicing <ArrowRight size={16} />
+                    </Link>
+                  </Show>
                 </RippleWrapper>
               </div>
 
@@ -225,7 +232,7 @@ export default function HomePage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="relative mx-auto max-w-3xl px-6 py-16">
+        <section id="faq" className="relative mx-auto max-w-3xl px-6 py-16">
           <DotGrid color="#FF6B4A" className="pointer-events-none absolute left-0 top-4 hidden sm:block" />
           <DottedPath color="#4C3AA0" className="pointer-events-none absolute -right-4 top-0 hidden sm:block" />
           <Sparkle size={14} color="#FF6B4A" className="pointer-events-none absolute right-6 top-40 hidden sm:block" />

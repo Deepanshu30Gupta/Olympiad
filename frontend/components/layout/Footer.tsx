@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Home, Target, BarChart3, LayoutGrid, Users, Mail, Shield, HelpCircle, HelpingHand } from "lucide-react";
 
 const SUPPORT_EMAIL = "support.qublem.in@gmail.com";
@@ -18,14 +22,21 @@ const COMPANY_LINKS = [
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+
+  function handleHomeClick(e: React.MouseEvent, href: string) {
+    if (href === "/" && pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
   return (
     <footer className="mx-4 mb-4 mt-10 overflow-hidden rounded-3xl border border-[#F0E6D6] bg-[#FFFBF2] px-8 py-10 dark:border-neutral-800 dark:bg-neutral-900 sm:mx-6">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr]">
         <div>
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#D9502F]">
-              <span className="text-xl font-bold text-white">∞</span>
-            </div>
+            <Image src="/logo.svg" alt="Qublem" width={44} height={44} className="rounded-xl" />
             <span className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
               Qublem
             </span>
@@ -56,7 +67,7 @@ export function Footer() {
               <LinkedinIcon size={16} />
             </span>
             <a
-              href={`mailto:${SUPPORT_EMAIL}`}
+              href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Hello Qublem!")}`}
               aria-label="Email"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F0E6D6] text-[#D9502F] transition-colors hover:bg-[#FFE8E0] dark:border-neutral-700 dark:text-[#FF9478] dark:hover:bg-neutral-800"
             >
@@ -72,7 +83,7 @@ export function Footer() {
           <ul className="mt-4 flex flex-col gap-3">
             {PRODUCT_LINKS.map((item) => (
               <li key={item.label}>
-                <Link href={item.href} className="flex items-center gap-2 text-sm text-[#6B5D4F] transition-colors hover:text-[#FF6B4A] dark:text-neutral-400 dark:hover:text-[#FF9478]">
+                <Link href={item.href} onClick={(e) => handleHomeClick(e, item.href)} className="flex items-center gap-2 text-sm text-[#6B5D4F] transition-colors hover:text-[#FF6B4A] dark:text-neutral-400 dark:hover:text-[#FF9478]">
                   <item.icon size={15} /> {item.label}
                 </Link>
               </li>
@@ -95,7 +106,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="relative">
+        <div className="relative overflow-hidden pb-4">
           <div className="relative z-10 rounded-2xl border border-[#F0E6D6] bg-white/60 p-5 dark:border-neutral-800 dark:bg-neutral-800/40">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#FFE8E0] dark:bg-[#FF6B4A]/15">
@@ -107,22 +118,19 @@ export function Footer() {
               </div>
             </div>
             <a
-              href={`mailto:${SUPPORT_EMAIL}`}
+              href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Hello Qublem!")}`}
               className="mt-3 block rounded-xl bg-[#FFE8E0] px-3 py-2 text-center text-sm font-semibold text-[#D9502F] transition-colors hover:bg-[#FFDACB] dark:bg-[#FF6B4A]/15 dark:text-[#FF9478] dark:hover:bg-[#FF6B4A]/25"
             >
               {SUPPORT_EMAIL}
             </a>
-            <p className="mt-3 text-xs text-[#6B5D4F] dark:text-neutral-400">
-              Drop us an email anytime.
-              <br />
-              We usually reply within 24 hours.
-            </p>
           </div>
-          <MountainFlagIllustration className="pointer-events-none absolute -right-6 -bottom-8 h-32 w-32 opacity-90 md:h-40 md:w-40" />
+          {/* Constrained within this column now — no longer overlaps the
+              bottom bar below it. */}
+          <MountainFlagIllustration className="pointer-events-none absolute -right-3 -top-3 h-16 w-16 opacity-25 md:h-20 md:w-20" />
         </div>
       </div>
 
-      <div className="mx-auto mt-10 flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-[#F0E6D6] pt-6 text-xs text-[#6B5D4F] dark:border-neutral-800 dark:text-neutral-500 sm:flex-row">
+      <div className="mx-auto mt-8 flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-[#F0E6D6] pt-6 text-xs text-[#6B5D4F] dark:border-neutral-800 dark:text-neutral-500 sm:flex-row">
         <span>© 2026 Qublem. All rights reserved.</span>
         <span>Made with ❤️ in India.</span>
         <Link href="/contact" className="flex items-center gap-1 rounded-full bg-[#FFE8E0] px-3 py-1.5 font-semibold text-[#D9502F] transition-colors hover:bg-[#FFDACB] dark:bg-[#FF6B4A]/15 dark:text-[#FF9478]">
