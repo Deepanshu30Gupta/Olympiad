@@ -61,7 +61,7 @@ export default async function SessionsPage() {
 
   return (
     <div className="flex min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
-      <DashboardSidebar todaysGoal={todaysGoal} />
+      <DashboardSidebar />
       <div className="min-w-0 flex-1 px-6 py-8 md:px-10">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
