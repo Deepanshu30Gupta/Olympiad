@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, Target, BarChart3, LayoutGrid, Users, Mail, Shield, HelpCircle, Instagram, Linkedin, HelpingHand } from "lucide-react";
+import { Home, Target, BarChart3, LayoutGrid, Users, Mail, Shield, HelpCircle, HelpingHand } from "lucide-react";
 
 const SUPPORT_EMAIL = "support.qublem.in@gmail.com";
 
@@ -46,14 +46,14 @@ export function Footer() {
               aria-label="Instagram"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F0E6D6] text-[#D9502F] transition-colors hover:bg-[#FFE8E0] dark:border-neutral-700 dark:text-[#FF9478] dark:hover:bg-neutral-800"
             >
-              <Instagram size={16} />
+              <InstagramIcon size={16} />
             </a>
             <span
               aria-label="LinkedIn (not yet linked — needs a real URL)"
               title="LinkedIn URL not yet provided"
               className="flex h-9 w-9 cursor-not-allowed items-center justify-center rounded-full border border-[#F0E6D6] text-[#8A7C6C] opacity-50 dark:border-neutral-700 dark:text-neutral-600"
             >
-              <Linkedin size={16} />
+              <LinkedinIcon size={16} />
             </span>
             <a
               href={`mailto:${SUPPORT_EMAIL}`}
@@ -130,6 +130,26 @@ export function Footer() {
         </Link>
       </div>
     </footer>
+  );
+}
+
+function InstagramIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
   );
 }
 
