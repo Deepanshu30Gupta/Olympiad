@@ -15,7 +15,7 @@ import { AttemptReviewView } from "@/features/questions/AttemptReviewView";
 export default async function PracticePage({
   searchParams,
 }: {
-  searchParams: Promise<{ sessionId?: string; retry?: string; reviewAttemptId?: string }>;
+  searchParams: Promise<{ sessionId?: string; retry?: string; reviewAttemptId?: string; returnTo?: string }>;
 }) {
   const params = await searchParams;
   const clerkUser = await currentUser();
@@ -51,19 +51,19 @@ export default async function PracticePage({
     const reviewAttempt = await getSessionAttemptById(params.sessionId, params.reviewAttemptId);
     if (!reviewAttempt) {
       return (
-        <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
+        <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds} returnTo={params.returnTo}>
           <MainCol>
             <p className="text-sm text-[#6B5D4F] dark:text-neutral-400">That attempt couldn&rsquo;t be found in this session.</p>
           </MainCol>
           <SideCol>
             <SessionProgressRing {...sessionProgress} />
-            <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} />
+            <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} returnTo={params.returnTo} />
           </SideCol>
         </Shell>
       );
     }
     return (
-      <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
+      <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds} returnTo={params.returnTo}>
         <MainCol>
           <AttemptReviewView
             attempt={{
@@ -77,7 +77,7 @@ export default async function PracticePage({
         </MainCol>
         <SideCol>
           <SessionProgressRing {...sessionProgress} />
-          <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={params.reviewAttemptId} />
+          <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={params.reviewAttemptId} returnTo={params.returnTo} />
         </SideCol>
       </Shell>
     );
@@ -89,7 +89,7 @@ export default async function PracticePage({
   if (!result.question) {
     if ("offerRetry" in result && result.offerRetry) {
       return (
-        <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
+        <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds} returnTo={params.returnTo}>
           <MainCol>
             <div className="w-fit rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-950/50 dark:text-amber-300">
               All fresh questions done
@@ -110,14 +110,14 @@ export default async function PracticePage({
           </MainCol>
           <SideCol>
             <SessionProgressRing {...sessionProgress} />
-            <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} />
+            <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} returnTo={params.returnTo} />
           </SideCol>
         </Shell>
       );
     }
 
     return (
-      <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
+      <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds} returnTo={params.returnTo}>
         <MainCol>
           <div className="w-fit rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
             Session complete
@@ -135,7 +135,7 @@ export default async function PracticePage({
         </MainCol>
         <SideCol>
           <SessionProgressRing {...sessionProgress} />
-          <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} />
+          <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} returnTo={params.returnTo} />
         </SideCol>
       </Shell>
     );
@@ -145,7 +145,7 @@ export default async function PracticePage({
   const bookmarked = await isQuestionBookmarked(dbUser.id, q.id);
 
   return (
-    <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds}>
+    <Shell totalTimeSeconds={sessionProgress.totalTimeSeconds} returnTo={params.returnTo}>
       <MainCol>
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-wrap gap-2 font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
@@ -177,19 +177,22 @@ export default async function PracticePage({
       </MainCol>
       <SideCol>
         <SessionProgressRing {...sessionProgress} />
-        <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} />
+        <QuestionNavigator sessionId={params.sessionId} attempts={navigatorAttempts} currentReviewId={null} returnTo={params.returnTo} />
       </SideCol>
     </Shell>
   );
 }
 
-function Shell({ children, totalTimeSeconds }: { children: React.ReactNode; totalTimeSeconds?: number }) {
+function Shell({ children, totalTimeSeconds, returnTo }: { children: React.ReactNode; totalTimeSeconds?: number; returnTo?: string }) {
+  const backHref = returnTo && returnTo.startsWith("/") ? returnTo : "/dashboard";
+  const backLabel = returnTo === "/topics" ? "Topics" : returnTo === "/sessions" ? "Sessions" : returnTo === "/bookmarks" ? "Bookmarks" : "Dashboard";
+
   return (
     <div className="min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
       <div className="mx-auto max-w-6xl px-6 py-8">
         <div className="mb-6 flex items-center justify-between">
-          <Link href="/dashboard" className="inline-flex items-center gap-1 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-300">
-            ← Dashboard
+          <Link href={backHref} className="inline-flex items-center gap-1 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-500 dark:hover:text-neutral-300">
+            ← {backLabel}
           </Link>
           {totalTimeSeconds !== undefined && <SessionTimer baseSeconds={totalTimeSeconds} />}
         </div>

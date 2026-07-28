@@ -150,6 +150,7 @@ export interface SessionSummary {
   totalTimeSeconds: number;
   accuracyPct: number;
   netRatingChange: number | null;
+  questions: { attemptId: string; externalId: string; status: string }[];
 }
 
 /** Every session the user has ever had, newest first, each with its own
@@ -161,7 +162,12 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
   const sessions = await prisma.practiceSession.findMany({
     where: { userId },
     orderBy: { startedAt: "desc" },
-    include: { attempts: { orderBy: { createdAt: "asc" } } },
+    include: {
+      attempts: {
+        orderBy: { createdAt: "asc" },
+        include: { question: { select: { externalId: true } } },
+      },
+    },
   });
 
   return sessions.map((s, index) => {
@@ -220,12 +226,18 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
       totalTimeSeconds,
       accuracyPct,
       netRatingChange,
+      questions: s.attempts.map((a) => ({
+        attemptId: a.id,
+        externalId: a.question.externalId,
+        status: a.status,
+      })),
     };
   });
 }
 
 export interface RatingPoint {
   date: string;
+  timestamp: string;
   rating: number;
 }
 
@@ -243,6 +255,7 @@ export async function getRatingHistory(userId: string): Promise<RatingPoint[]> {
 
   return attempts.map((a) => ({
     date: a.createdAt.toISOString().slice(0, 10),
+    timestamp: a.createdAt.toISOString(),
     rating: a.studentRatingAfter,
   }));
 }
@@ -440,4 +453,39 @@ export async function getAverageTimePerQuestion(userId: string): Promise<number>
     _avg: { activeSolvingSeconds: true },
   });
   return Math.round(result._avg.activeSolvingSeconds ?? 0);
+}
+
+/** Real per-day attempt data for a specific calendar month — powers the
+ * full calendar view, fetched on demand as the student navigates
+ * between months rather than loading the student's entire history
+ * upfront. */
+export async function getCalendarMonthData(userId: string, year: number, month: number) {
+  // month is 0-indexed (0 = January), matching JS Date conventions
+  const startOfMonth = new Date(Date.UTC(year, month, 1));
+  const startOfNextMonth = new Date(Date.UTC(year, month + 1, 1));
+
+  const attempts = await prisma.attempt.findMany({
+    where: { userId, submittedAt: { gte: startOfMonth, lt: startOfNextMonth } },
+    select: { submittedAt: true, status: true },
+  });
+
+  const countByDay = new Map<string, { total: number; solved: number }>();
+  for (const a of attempts) {
+    if (!a.submittedAt) continue;
+    const key = a.submittedAt.toISOString().slice(0, 10);
+    const existing = countByDay.get(key) ?? { total: 0, solved: 0 };
+    existing.total += 1;
+    if (a.status === "SOLVED") existing.solved += 1;
+    countByDay.set(key, existing);
+  }
+
+  const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+  const days: { date: string; total: number; solved: number }[] = [];
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = new Date(Date.UTC(year, month, d)).toISOString().slice(0, 10);
+    const data = countByDay.get(key) ?? { total: 0, solved: 0 };
+    days.push({ date: key, total: data.total, solved: data.solved });
+  }
+
+  return { days, firstWeekday: startOfMonth.getUTCDay() }; // 0 = Sunday
 }

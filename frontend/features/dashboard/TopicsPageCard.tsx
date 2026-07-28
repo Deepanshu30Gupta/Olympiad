@@ -122,7 +122,7 @@ export function TopicsPageCard({
                 return a.sessionId ? (
                   <Link
                     key={a.id}
-                    href={`/practice?sessionId=${a.sessionId}&reviewAttemptId=${a.id}`}
+                    href={`/practice?sessionId=${a.sessionId}&reviewAttemptId=${a.id}&returnTo=%2Ftopics`}
                     className="flex items-center gap-2 rounded-lg px-1.5 py-1 text-xs transition-colors hover:bg-[#FFFBF2] dark:hover:bg-neutral-800"
                   >
                     {badge}

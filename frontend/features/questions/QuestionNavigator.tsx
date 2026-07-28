@@ -10,12 +10,16 @@ export function QuestionNavigator({
   sessionId,
   attempts,
   currentReviewId,
+  returnTo,
 }: {
   sessionId: string;
   attempts: AttemptSummary[];
   currentReviewId: string | null;
+  returnTo?: string;
 }) {
   if (attempts.length === 0) return null;
+
+  const returnToParam = returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : "";
 
   const currentIndex = currentReviewId ? attempts.findIndex((a) => a.id === currentReviewId) : -1;
   const prevAttempt = currentIndex > 0 ? attempts[currentIndex - 1] : currentIndex === -1 && attempts.length > 0 ? attempts[attempts.length - 1] : null;
@@ -40,7 +44,7 @@ export function QuestionNavigator({
           return (
             <Link
               key={a.id}
-              href={`/practice?sessionId=${sessionId}&reviewAttemptId=${a.id}`}
+              href={`/practice?sessionId=${sessionId}&reviewAttemptId=${a.id}${returnToParam}`}
               title={a.status === "SOLVED" ? "Solved" : a.status === "WRONG" ? "Wrong" : "Not answered"}
               className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold transition-all ${color} ${
                 isActive ? "ring-2 ring-[#4C3AA0] ring-offset-2 dark:ring-offset-neutral-900" : ""
@@ -55,7 +59,7 @@ export function QuestionNavigator({
       <div className="mt-4 flex flex-col gap-2 border-t border-[#F0E6D6] pt-3 text-xs dark:border-neutral-800">
         {currentReviewId && (
           <Link
-            href={`/practice?sessionId=${sessionId}`}
+            href={`/practice?sessionId=${sessionId}${returnToParam}`}
             className="flex items-center justify-center gap-1.5 rounded-lg bg-[#FF6B4A] px-3 py-2 font-semibold text-white transition-colors hover:bg-[#D9502F]"
           >
             <RotateCcw size={13} /> Back to Current Question
@@ -63,14 +67,14 @@ export function QuestionNavigator({
         )}
         <div className="flex items-center justify-between pt-1">
           {prevAttempt ? (
-            <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${prevAttempt.id}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
+            <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${prevAttempt.id}${returnToParam}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
               <ChevronLeft size={14} /> Prev Question
             </Link>
           ) : (
             <span />
           )}
           {nextAttempt ? (
-            <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${nextAttempt.id}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
+            <Link href={`/practice?sessionId=${sessionId}&reviewAttemptId=${nextAttempt.id}${returnToParam}`} className="flex items-center gap-1 font-semibold text-[#4C3AA0] dark:text-indigo-400">
               Next Question <ChevronRight size={14} />
             </Link>
           ) : (

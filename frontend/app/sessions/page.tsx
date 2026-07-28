@@ -16,6 +16,7 @@ interface SessionForClient {
   totalTimeSeconds: number;
   accuracyPct: number;
   netRatingChange: number | null;
+  questions: { attemptId: string; externalId: string; status: string }[];
 }
 
 function groupByPeriod(sessions: SessionForClient[]) {

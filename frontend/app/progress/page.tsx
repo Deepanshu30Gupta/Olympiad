@@ -4,14 +4,13 @@ import {
   getTopicBreakdown,
   getRatingHistory,
   getTodaysGoalProgress,
-  getActivityHeatmap,
   getAverageTimePerQuestion,
   getWeeklyTrends,
 } from "@/services/dashboard-service";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
 import { RatingChart } from "@/features/dashboard/RatingChart";
 import { CategoryBarChart } from "@/features/dashboard/CategoryBarChart";
-import { WeeklyHeatmap } from "@/features/dashboard/WeeklyHeatmap";
+import { ActivityCalendar } from "@/features/dashboard/ActivityCalendar";
 
 export default async function ProgressPage() {
   const clerkUser = await currentUser();
@@ -20,10 +19,9 @@ export default async function ProgressPage() {
   const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
   if (!dbUser) return <div className="p-8">Your account is still syncing. Try refreshing in a moment.</div>;
 
-  const [topicBreakdown, ratingHistory, heatmap, todaysGoal, avgTimeSeconds, weeklyTrends] = await Promise.all([
+  const [topicBreakdown, ratingHistory, todaysGoal, avgTimeSeconds, weeklyTrends] = await Promise.all([
     getTopicBreakdown(dbUser.id),
     getRatingHistory(dbUser.id),
-    getActivityHeatmap(dbUser.id, 8),
     getTodaysGoalProgress(dbUser.id, dbUser.dailyGoal),
     getAverageTimePerQuestion(dbUser.id),
     getWeeklyTrends(dbUser.id, dbUser.learnerScore),
@@ -52,22 +50,17 @@ export default async function ProgressPage() {
           </Card>
 
           <Card title="Rating by Topic" className="mt-5">
-            <CategoryBarChart data={topicBreakdown.map((t) => ({ categoryName: t.categoryName, rating: t.rating }))} />
+            <CategoryBarChart
+              data={topicBreakdown
+                .filter((t) => t.solved + t.wrong + t.surrendered > 0)
+                .map((t) => ({ categoryName: t.categoryName, rating: t.rating }))}
+            />
           </Card>
 
           <div className="mt-5 rounded-3xl border border-[#F0E6D6] bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
             <div className="grid gap-6 lg:grid-cols-[7fr_3fr] lg:divide-x lg:divide-[#F0E6D6] dark:lg:divide-neutral-800">
               <div className="lg:pr-6">
-                <h2 className="text-base font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-                  Weekly Activity
-                </h2>
-                <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">Your practice habits at a glance</p>
-                <div className="mt-4 overflow-x-auto">
-                  <WeeklyHeatmap days={heatmap.days} />
-                </div>
-                <p className="mt-5 border-t border-[#F0E6D6] pt-4 text-sm text-[#2B2118] dark:border-neutral-800 dark:text-neutral-300">
-                  Practiced <span className="font-bold">{heatmap.activeDaysLast7}</span> of the last 7 days
-                </p>
+                <ActivityCalendar joinDate={dbUser.createdAt.toISOString()} />
               </div>
 
               <div className="lg:pl-6">

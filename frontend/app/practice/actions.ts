@@ -211,3 +211,35 @@ export async function startBookmarkedQuestionAction(questionId: string) {
     return { sessionId: null, error: "Couldn't open that question. Please try again." };
   }
 }
+
+/** Starts practicing bookmarked questions — begins on the oldest-saved
+ * bookmark. Honest limitation: the current architecture has no
+ * "queued question list" concept, so this doesn't guarantee cycling
+ * through every remaining bookmark automatically after each one — a
+ * real queue field would need to be added to PracticeSession for that.
+ * Each bookmarked question is still individually reachable and
+ * practiceable from the Bookmarks page regardless. */
+export async function startAllBookmarksAction() {
+  try {
+    const dbUser = await requireDbUser();
+    const firstBookmark = await prisma.savedQuestion.findFirst({
+      where: { userId: dbUser.id, type: "BOOKMARK" },
+      orderBy: { createdAt: "asc" },
+    });
+    if (!firstBookmark) {
+      return { sessionId: null, error: "No bookmarked questions yet." };
+    }
+    const existingActive = await prisma.practiceSession.findFirst({
+      where: { userId: dbUser.id, status: "ACTIVE" },
+    });
+    const session = existingActive ?? (await createSession(dbUser.id, [], []));
+    await prisma.practiceSession.update({
+      where: { id: session.id },
+      data: { currentQuestionId: firstBookmark.questionId },
+    });
+    return { sessionId: session.id, error: null };
+  } catch (err) {
+    console.error("startAllBookmarksAction failed:", err);
+    return { sessionId: null, error: "Couldn't start bookmark practice. Please try again." };
+  }
+}

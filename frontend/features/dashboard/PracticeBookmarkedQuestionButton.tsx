@@ -15,7 +15,7 @@ export function PracticeBookmarkedQuestionButton({ questionId }: { questionId: s
     try {
       const res = await startBookmarkedQuestionAction(questionId);
       if (res.sessionId) {
-        router.push(`/practice?sessionId=${res.sessionId}`);
+        router.push(`/practice?sessionId=${res.sessionId}&returnTo=%2Fbookmarks`);
       } else {
         setStarting(false);
       }

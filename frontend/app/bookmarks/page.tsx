@@ -5,6 +5,7 @@ import { getBookmarkedQuestions, getTodaysGoalProgress } from "@/services/dashbo
 import { renderMathText } from "@/lib/render-math";
 import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
 import { PracticeBookmarkedQuestionButton } from "@/features/dashboard/PracticeBookmarkedQuestionButton";
+import { PracticeAllBookmarksButton } from "@/features/dashboard/PracticeAllBookmarksButton";
 
 export default async function BookmarksPage() {
   const clerkUser = await currentUser();
@@ -26,7 +27,10 @@ export default async function BookmarksPage() {
           <h1 className="text-2xl font-extrabold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
             🔖 Bookmarks
           </h1>
-          <p className="mt-1 text-sm text-[#6B5D4F] dark:text-neutral-400">Questions you&rsquo;ve saved for later.</p>
+          <div className="mt-1 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm text-[#6B5D4F] dark:text-neutral-400">Questions you&rsquo;ve saved for later.</p>
+            {bookmarks.length > 0 && <PracticeAllBookmarksButton />}
+          </div>
 
           {bookmarks.length === 0 ? (
             <div className="mt-8 rounded-3xl border border-[#F0E6D6] bg-white p-8 text-center dark:border-neutral-800 dark:bg-neutral-900">
