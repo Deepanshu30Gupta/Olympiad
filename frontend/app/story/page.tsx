@@ -9,16 +9,25 @@ const VALUES = [
   { icon: Users, label: "Together", color: "#6FCF52" },
 ];
 
-export default function FounderStoryPage() {
+export default async function FounderStoryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const params = await searchParams;
+  const cameFromHome = params.from === "home";
+
   return (
     <div className="min-h-screen bg-[#FFFBF2] dark:bg-neutral-950">
       <div className="mx-auto max-w-3xl px-6 py-12">
-        <Link
-          href="/#founder"
-          className="mb-8 flex items-center gap-1.5 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-400 dark:hover:text-neutral-200"
-        >
-          <ArrowLeft size={16} /> Back to home
-        </Link>
+        {cameFromHome && (
+          <Link
+            href="/#founder"
+            className="mb-8 flex items-center gap-1.5 text-sm text-[#6B5D4F] transition-colors hover:text-[#2B2118] dark:text-neutral-400 dark:hover:text-neutral-200"
+          >
+            <ArrowLeft size={16} /> Back to home
+          </Link>
+        )}
 
         <h1
           className="relative inline-block text-4xl font-extrabold text-[#2B2118] dark:text-neutral-100"

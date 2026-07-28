@@ -7,14 +7,11 @@ import {
   Target,
   Puzzle,
   TrendingUp,
-  Lightbulb,
-  Flame,
-  History,
-  BookOpen,
   CheckCircle2,
 } from "lucide-react";
 import { HeroParallax } from "@/features/home/HeroParallax";
 import { ExamMarquee } from "@/features/home/ExamMarquee";
+import { FeaturesExpandingSection } from "@/features/home/FeaturesExpandingSection";
 import { RatingWidgetIllustration } from "@/features/home/RatingWidgetIllustration";
 import { MascotIllustration } from "@/features/home/MascotIllustration";
 import { ChessKnight } from "@/features/home/ChessKnight";
@@ -29,15 +26,6 @@ const STEPS = [
   { icon: Target, num: 2, color: "#4C3AA0", bg: "#ECE8FA", title: "Pick your focus", body: "Choose an exam and topics, or skip and practice a mix of everything." },
   { icon: Puzzle, num: 3, color: "#FF6B4A", bg: "#FFE8E0", title: "Solve, adapt, repeat", body: "Each question is chosen to match your current level — not too easy, not too hard." },
   { icon: TrendingUp, num: 4, color: "#4C3AA0", bg: "#ECE8FA", title: "Watch your rating climb", body: "Every attempt updates your rating, per topic, so you always know where you stand." },
-];
-
-const FEATURES = [
-  { icon: Target, bg: "#FFE8E0", fg: "#D9502F", title: "Adaptive difficulty", body: "A rating system, per topic, always matches you to a question in your zone." },
-  { icon: Lightbulb, bg: "#ECE8FA", fg: "#4C3AA0", title: "Progressive hints", body: "Stuck? Reveal hints one level at a time instead of jumping straight to the answer." },
-  { icon: TrendingUp, bg: "#E6F7E0", fg: "#2E6B1B", title: "Topic-level tracking", body: "See exactly where you're strong and where you need more reps, broken down by topic." },
-  { icon: Flame, bg: "#FFE8E0", fg: "#D9502F", title: "Daily streaks", body: "Build a consistent practice habit, one session at a time." },
-  { icon: History, bg: "#ECE8FA", fg: "#4C3AA0", title: "Resume anytime", body: "Close the tab mid-question, pick up exactly where you left off — including which session you were on." },
-  { icon: BookOpen, bg: "#E6F7E0", fg: "#2E6B1B", title: "Real worked solutions", body: "Every question comes with a full explanation, not just an answer key." },
 ];
 
 const RATING_BULLETS = [
@@ -173,43 +161,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="relative mx-auto max-w-6xl px-6 py-16">
-          <ScrollReveal className="text-center">
-            <h2 className="inline-block text-3xl font-bold text-[#2B2118] dark:text-neutral-100" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
-              <span className="relative">
-                Everything you need to train
-                <Squiggle color="#4C3AA0" width={100} className="absolute -bottom-2 left-1/2 -translate-x-1/2" />
-              </span>
-            </h2>
-            <p className="mt-3 text-sm text-[#6B5D4F] dark:text-neutral-400">
-              Built around one idea: the best question for you right now is rarely the same as the
-              best question for anyone else.
-            </p>
-          </ScrollReveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {FEATURES.map((f, i) => (
-              <ScrollReveal key={f.title} delay={i * 70}>
-                <div className={`group relative overflow-hidden rounded-2xl border border-[#F0E6D6] bg-white p-7 hover:border-transparent dark:border-neutral-800 dark:bg-neutral-900 ${cardHover}`}>
-                  <div className="absolute inset-x-0 top-0 h-1.5" style={{ backgroundColor: f.fg }} />
-                  <div
-                    className="relative flex h-14 w-14 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
-                    style={{ backgroundColor: f.bg }}
-                  >
-                    <f.icon size={26} color={f.fg} strokeWidth={2.2} />
-                  </div>
-                  <h3
-                    className="mt-5 text-lg font-bold text-[#2B2118] dark:text-neutral-100"
-                    style={{ fontFamily: "var(--font-fredoka), sans-serif" }}
-                  >
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5A4E42] dark:text-neutral-400">{f.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
       </section>
+
+      <FeaturesExpandingSection />
 
       <ScrollReveal>
         <section className="relative mx-auto max-w-6xl px-6 py-8">
@@ -247,9 +201,9 @@ export default function HomePage() {
                   ))}
                 </div>
                 <RippleWrapper className="mt-7 rounded-xl">
-                  <a href="#how-it-works" className="flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0]">
-                    Learn how it works <ArrowRight size={16} />
-                  </a>
+                  <Link href="/onboarding" className="flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#4C3AA0]">
+                    Start Practicing <ArrowRight size={16} />
+                  </Link>
                 </RippleWrapper>
               </div>
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SignUp } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import { getClerkAppearance } from "@/lib/clerk-appearance";
 
 export default function SignUpPage() {
   const [isDark, setIsDark] = useState(false);
@@ -35,12 +36,7 @@ export default function SignUpPage() {
       <SignUp
         forceRedirectUrl="/dashboard"
         appearance={{
-          variables: {
-            colorPrimary: "#FF6B4A",
-            colorBackground: isDark ? "#171717" : "#FFFFFF",
-            borderRadius: "12px",
-            fontFamily: "var(--font-jakarta), sans-serif",
-          },
+          ...getClerkAppearance(isDark),
           elements: {
             card: {
               boxShadow: "none",

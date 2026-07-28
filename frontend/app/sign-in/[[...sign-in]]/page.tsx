@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import { getClerkAppearance } from "@/lib/clerk-appearance";
 
 export default function SignInPage() {
   const [isDark, setIsDark] = useState(false);
@@ -12,9 +13,6 @@ export default function SignInPage() {
     const html = document.documentElement;
     setIsDark(html.classList.contains("dark"));
 
-    // Clerk's `appearance` prop is static — it won't react to the toggle
-    // on its own. Watching the .dark class directly is what makes the
-    // Clerk form itself actually re-theme when the switch is flipped.
     const observer = new MutationObserver(() => {
       setIsDark(html.classList.contains("dark"));
     });
@@ -38,12 +36,7 @@ export default function SignInPage() {
       <SignIn
         forceRedirectUrl="/dashboard"
         appearance={{
-          variables: {
-            colorPrimary: "#FF6B4A",
-            colorBackground: isDark ? "#171717" : "#FFFFFF",
-            borderRadius: "12px",
-            fontFamily: "var(--font-jakarta), sans-serif",
-          },
+          ...getClerkAppearance(isDark),
           elements: {
             card: {
               boxShadow: "none",

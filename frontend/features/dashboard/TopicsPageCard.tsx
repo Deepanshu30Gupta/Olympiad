@@ -47,8 +47,12 @@ export function TopicsPageCard({
   // - Not Attempted: questions in this topic never opened at all.
   // - Remaining: everything still standing between here and mastery —
   //   both the never-touched ones AND the ones gotten wrong so far.
-  const notAttempted = Math.max(0, totalQuestions - completed);
-  const remaining = notAttempted + wrong;
+  // Per spec: a question the student gave up on counts toward "Not
+  // Attempted" (they never actually solved it), not as a separate
+  // completed bucket. "Remaining" then correctly means "everything
+  // except questions actually solved correctly."
+  const notAttempted = Math.max(0, totalQuestions - solved - wrong);
+  const remaining = Math.max(0, totalQuestions - solved);
   const lastPracticedLabel = lastPracticed ? formatRelativeTime(lastPracticed) : null;
 
   async function handlePracticeThisTopic() {

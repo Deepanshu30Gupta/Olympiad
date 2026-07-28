@@ -111,16 +111,20 @@ export default async function DashboardPage() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {activeSession ? (
-              <ResumeSessionCard
-                href={`/practice?sessionId=${activeSession.id}`}
-                topicLabel={sessionTopicLabel}
-                questionsCompleted={activeSession.questionsCompleted}
-                startedAt={activeSession.startedAt.toISOString()}
-              />
+              <>
+                <ResumeSessionCard
+                  href={`/practice?sessionId=${activeSession.id}`}
+                  topicLabel={sessionTopicLabel}
+                  questionsCompleted={activeSession.questionsCompleted}
+                  startedAt={activeSession.startedAt.toISOString()}
+                />
+                <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
+              </>
             ) : (
-              <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
+              <div className="md:col-span-2">
+                <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
+              </div>
             )}
-            <StartNewPracticeCard suggestedTopic={currentFocus?.topicName ?? null} />
           </div>
 
           <div className="mt-6">

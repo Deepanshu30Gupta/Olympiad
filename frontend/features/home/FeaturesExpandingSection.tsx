@@ -164,7 +164,7 @@ export function FeaturesExpandingSection() {
                       transition={{ duration: 0.25, delay: 0.05 }}
                       className="relative z-10 mt-4 w-full"
                     >
-                      <h3 className="text-lg font-bold text-[#2B2118] dark:text-neutral-900">{f.title}</h3>
+                      <h3 className="text-lg font-semibold text-[#2B2118] dark:text-neutral-900">{f.title}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-[#5A4E42]">{f.description}</p>
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
@@ -184,7 +184,7 @@ export function FeaturesExpandingSection() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="relative z-10 mt-4 text-center text-sm font-semibold text-[#2B2118] dark:text-neutral-900"
+                      className="relative z-10 mt-4 w-full text-center text-sm font-semibold text-[#2B2118] dark:text-neutral-900"
                     >
                       {f.title}
                     </motion.h3>
@@ -214,7 +214,7 @@ export function FeaturesExpandingSection() {
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl" style={{ backgroundColor: f.bg }}>
                     <f.icon size={22} color={f.color} />
                   </div>
-                  <h3 className="text-sm font-bold text-[#2B2118]">{f.title}</h3>
+                  <h3 className="text-sm font-semibold text-[#2B2118]">{f.title}</h3>
                 </div>
                 <AnimatePresence>
                   {isExpanded && (

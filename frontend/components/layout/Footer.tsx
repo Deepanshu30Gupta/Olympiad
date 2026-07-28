@@ -10,12 +10,16 @@ export function Footer() {
         >
           Qublem
         </span>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           <Link href="/story">About</Link>
           <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
           <Link href="/privacy">Privacy</Link>
           <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
           <Link href="/contact">Contact</Link>
+          <span className="h-1 w-1 rounded-full bg-[#D8CBB5]" />
+          <a href="mailto:support.qublem.in@gmail.com" className="hover:text-[#2B2118] dark:hover:text-neutral-300">
+            support.qublem.in@gmail.com
+          </a>
         </div>
         <span>© 2026 Qublem</span>
       </div>
