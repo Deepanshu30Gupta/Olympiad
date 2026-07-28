@@ -36,7 +36,7 @@ export function QuestionNavigator({
         {attempts.map((a, i) => {
           const color =
             a.status === "SOLVED"
-              ? "bg-[#E6F7E0] text-[#2E6B1B]"
+              ? "bg-[#2E6B1B] text-white"
               : a.status === "WRONG"
                 ? "bg-[#D9502F] text-white"
                 : "bg-[#D8CBB5] text-[#4A3F33]";

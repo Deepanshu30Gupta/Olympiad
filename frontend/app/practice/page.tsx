@@ -173,6 +173,7 @@ export default async function PracticePage({
           options={q.options as Record<string, string> | null}
           hints={q.hints}
           surrenderLockSeconds={dbUser.surrenderLockSeconds}
+          startedAtMs={result.startedAt ? result.startedAt.getTime() : Date.now()}
         />
       </MainCol>
       <SideCol>

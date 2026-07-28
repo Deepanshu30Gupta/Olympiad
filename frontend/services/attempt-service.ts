@@ -67,16 +67,27 @@ export async function submitAttempt(params: SubmitAttemptParams) {
 
     const ratingBefore = existing?.rating ?? DEFAULT_RATING;
     const attemptsCount = existing?.attemptsCount ?? 0;
+    const displayScoreBefore = existing?.displayScore ?? 0;
 
     const e = expectedScore(ratingBefore, question.currentRating);
     const s = performanceScore(solved, params.hintLevelUsed ?? 0);
     const k = kFactor(attemptsCount);
     const ratingAfter = Math.round(ratingBefore + k * (s - e));
 
+    // Real fix for "topic ratings barely move" — the plain Elo above
+    // stays untouched (it drives difficulty matching and must remain
+    // stable/well-calibrated). This is a SEPARATE, student-facing
+    // number using the same asymmetric formula as the overall
+    // learnerScore, so a topic's displayed star rating now moves with
+    // comparable speed/feel to the overall rating.
+    const displayDelta = computeScoreDelta(displayScoreBefore, solved);
+    const displayScoreRaw = Math.round((displayScoreBefore + displayDelta) * 10) / 10;
+    const displayScoreAfter = Math.max(MIN_LEARNER_SCORE, Math.min(displayScoreRaw, MAX_LEARNER_SCORE));
+
     await prisma.studentTopicRating.upsert({
       where: { userId_topicId: { userId: params.userId, topicId } },
-      update: { rating: ratingAfter, attemptsCount: attemptsCount + 1 },
-      create: { userId: params.userId, topicId, rating: ratingAfter, attemptsCount: 1 },
+      update: { rating: ratingAfter, attemptsCount: attemptsCount + 1, displayScore: displayScoreAfter },
+      create: { userId: params.userId, topicId, rating: ratingAfter, attemptsCount: 1, displayScore: displayScoreAfter },
     });
 
     if (index === 0) {

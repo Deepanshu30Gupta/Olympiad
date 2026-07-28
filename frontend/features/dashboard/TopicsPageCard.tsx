@@ -81,9 +81,9 @@ export function TopicsPageCard({
         <span>{accuracy}% accuracy</span>
       </div>
       <div className="mt-2 grid grid-cols-4 gap-1.5 text-center">
-        <div className="rounded-lg bg-[#E6F7E0] px-1 py-1.5 dark:bg-emerald-950/40">
-          <div className="text-xs font-bold text-[#2E6B1B] dark:text-emerald-300">{solved}</div>
-          <div className="text-[9px] text-[#2E6B1B]/70 dark:text-emerald-400/70">Correct</div>
+        <div className="rounded-lg bg-[#2E6B1B]/15 px-1 py-1.5 dark:bg-emerald-950/40">
+          <div className="text-xs font-bold text-[#1E4A11] dark:text-emerald-300">{solved}</div>
+          <div className="text-[9px] text-[#1E4A11]/70 dark:text-emerald-400/70">Correct</div>
         </div>
         <div className="rounded-lg bg-[#FFE8E0] px-1 py-1.5 dark:bg-red-950/40">
           <div className="text-xs font-bold text-[#D9502F] dark:text-red-300">{wrong}</div>
@@ -132,7 +132,7 @@ export function TopicsPageCard({
                   <span
                     className={`shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
                       a.status === "SOLVED"
-                        ? "bg-[#E6F7E0] text-[#2E6B1B] dark:bg-emerald-950 dark:text-emerald-300"
+                        ? "bg-[#2E6B1B] text-white dark:bg-emerald-700"
                         : a.status === "WRONG"
                           ? "bg-[#FFE8E0] text-[#D9502F] dark:bg-red-950 dark:text-red-300"
                           : "bg-[#F0E6D6] text-[#6B5D4F] dark:bg-neutral-800 dark:text-neutral-400"

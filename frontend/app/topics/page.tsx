@@ -24,7 +24,7 @@ export default async function TopicsPage() {
 
   const grouped = MASTERY_ORDER.map((level) => ({
     level,
-    topics: startedTopics.filter((t) => getMasteryLevel(ratingToStars(t.rating)) === level),
+    topics: startedTopics.filter((t) => getMasteryLevel(t.displayScore) === level),
   })).filter((g) => g.topics.length > 0);
 
   return (
@@ -57,7 +57,7 @@ export default async function TopicsPage() {
                       key={t.categoryId}
                       categoryName={t.categoryName}
                       categorySlug={t.categorySlug}
-                      stars={ratingToStars(t.rating)}
+                      stars={t.displayScore}
                       solved={t.solved}
                       wrong={t.wrong}
                       totalQuestions={questionCounts.get(t.categoryId) ?? 0}

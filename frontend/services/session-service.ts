@@ -68,8 +68,39 @@ export async function getOrPickCurrentQuestion(
       include: { hints: { orderBy: { level: "asc" } } },
     });
     if (question) {
-      return { question, reason: "Resumed — this question was already in progress." };
+      const startedAt = session.currentQuestionStartedAt ?? (await stampQuestionStart(sessionId));
+      return { question, reason: "Resumed — this question was already in progress.", startedAt };
     }
+  }
+
+  // A queued session (e.g. "Practice All Bookmarks") serves questions
+  // from its explicit list, in order, instead of the adaptive engine —
+  // this is what makes that feature genuinely self-contained rather
+  // than falling back to normal recommendations after the first one.
+  if (session.queuedQuestionIds.length > 0) {
+    const nextQueuedId = session.queuedQuestionIds[0];
+    const question = await prisma.question.findUnique({
+      where: { id: nextQueuedId },
+      include: { hints: { orderBy: { level: "asc" } } },
+    });
+    if (question) {
+      const startedAt = new Date();
+      await prisma.practiceSession.update({
+        where: { id: sessionId },
+        data: {
+          currentQuestionId: question.id,
+          currentQuestionStartedAt: startedAt,
+          queuedQuestionIds: session.queuedQuestionIds.slice(1),
+        },
+      });
+      return { question, reason: "Next bookmarked question.", startedAt };
+    }
+    // Queued question no longer exists (e.g. deleted) — drop it and
+    // fall through to try the rest of the queue / adaptive engine.
+    await prisma.practiceSession.update({
+      where: { id: sessionId },
+      data: { queuedQuestionIds: session.queuedQuestionIds.slice(1) },
+    });
   }
 
   const result = await getNextQuestion(userId, {
@@ -79,19 +110,27 @@ export async function getOrPickCurrentQuestion(
   });
 
   if (result.question) {
+    const startedAt = new Date();
     await prisma.practiceSession.update({
       where: { id: sessionId },
-      data: { currentQuestionId: result.question.id },
+      data: { currentQuestionId: result.question.id, currentQuestionStartedAt: startedAt },
     });
+    return { ...result, startedAt };
   }
 
-  return result;
+  return { ...result, startedAt: null };
+}
+
+async function stampQuestionStart(sessionId: string): Promise<Date> {
+  const now = new Date();
+  await prisma.practiceSession.update({ where: { id: sessionId }, data: { currentQuestionStartedAt: now } });
+  return now;
 }
 
 export async function advanceSession(sessionId: string) {
   await prisma.practiceSession.update({
     where: { id: sessionId },
-    data: { currentQuestionId: null, questionsCompleted: { increment: 1 } },
+    data: { currentQuestionId: null, currentQuestionStartedAt: null, questionsCompleted: { increment: 1 } },
   });
 }
 

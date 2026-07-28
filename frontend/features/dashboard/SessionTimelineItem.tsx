@@ -208,7 +208,7 @@ export function SessionTimelineItem({
                   {questions.map((q) => {
                     const badgeColor =
                       q.status === "SOLVED"
-                        ? "bg-[#E6F7E0] text-[#2E6B1B] dark:bg-emerald-950 dark:text-emerald-300"
+                        ? "bg-[#2E6B1B] text-white dark:bg-emerald-700"
                         : q.status === "WRONG"
                           ? "bg-[#D9502F] text-white"
                           : "bg-[#D8CBB5] text-[#4A3F33]";

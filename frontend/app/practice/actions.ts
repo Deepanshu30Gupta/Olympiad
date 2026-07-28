@@ -222,20 +222,23 @@ export async function startBookmarkedQuestionAction(questionId: string) {
 export async function startAllBookmarksAction() {
   try {
     const dbUser = await requireDbUser();
-    const firstBookmark = await prisma.savedQuestion.findFirst({
+    const bookmarks = await prisma.savedQuestion.findMany({
       where: { userId: dbUser.id, type: "BOOKMARK" },
       orderBy: { createdAt: "asc" },
     });
-    if (!firstBookmark) {
+    if (bookmarks.length === 0) {
       return { sessionId: null, error: "No bookmarked questions yet." };
     }
-    const existingActive = await prisma.practiceSession.findFirst({
-      where: { userId: dbUser.id, status: "ACTIVE" },
-    });
-    const session = existingActive ?? (await createSession(dbUser.id, [], []));
+
+    // A genuinely new, isolated session — not reusing whatever else was
+    // active — containing ONLY the bookmarked questions, in order.
+    const session = await createSession(dbUser.id, [], []);
     await prisma.practiceSession.update({
       where: { id: session.id },
-      data: { currentQuestionId: firstBookmark.questionId },
+      data: {
+        name: "Bookmark Practice",
+        queuedQuestionIds: bookmarks.map((b) => b.questionId),
+      },
     });
     return { sessionId: session.id, error: null };
   } catch (err) {

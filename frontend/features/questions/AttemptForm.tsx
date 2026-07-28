@@ -19,6 +19,7 @@ interface AttemptFormProps {
   options: Record<string, string> | null;
   hints: Hint[];
   surrenderLockSeconds: number;
+  startedAtMs: number;
 }
 
 type SubmitResult = {
@@ -36,10 +37,11 @@ export function AttemptForm({
   options,
   hints,
   surrenderLockSeconds,
+  startedAtMs: startedAtMsProp,
 }: AttemptFormProps) {
-  const startedAtMs = useRef(Date.now());
+  const startedAtMs = useRef(startedAtMsProp);
   const router = useRouter();
-  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [elapsedSeconds, setElapsedSeconds] = useState(Math.max(0, Math.round((Date.now() - startedAtMsProp) / 1000)));
   const [revealedHintLevel, setRevealedHintLevel] = useState(0);
   const [answer, setAnswer] = useState("");
   const [submittedAnswer, setSubmittedAnswer] = useState<string | null>(null);

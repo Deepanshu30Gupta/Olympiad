@@ -53,6 +53,16 @@ model User {
   practiceSessions PracticeSession[]
 }
 
+model StudentTopicRating {
+  // ... existing fields stay exactly as they are ...
+  displayScore  Float  @default(0)   // NEW — asymmetric student-facing topic score, separate from the internal Elo used for difficulty matching
+}
+
+model PracticeSession {
+  // ... existing fields stay exactly as they are ...
+  currentQuestionStartedAt DateTime?         // NEW — when the current question was actually opened, persisted (fixes resume timing + wrong session-duration bug)
+  queuedQuestionIds        String[] @default([]) // NEW — an explicit ordered list of questions for this session (used by "Practice All Bookmarks")
+}
 model Report {
   id                 String   @id @default(cuid())
   name               String

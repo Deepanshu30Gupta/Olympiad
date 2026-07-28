@@ -53,7 +53,7 @@ export default async function ProgressPage() {
             <CategoryBarChart
               data={topicBreakdown
                 .filter((t) => t.solved + t.wrong + t.surrendered > 0)
-                .map((t) => ({ categoryName: t.categoryName, rating: t.rating }))}
+                .map((t) => ({ categoryName: t.categoryName, stars: t.displayScore }))}
             />
           </Card>
 

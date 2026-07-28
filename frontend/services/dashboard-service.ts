@@ -15,6 +15,7 @@ export interface TopicBreakdownEntry {
   categorySlug: string;
   categoryName: string;
   rating: number;
+  displayScore: number;
   solved: number;
   wrong: number;
   surrendered: number;
@@ -64,6 +65,7 @@ export async function getTopicBreakdown(userId: string): Promise<TopicBreakdownE
       categorySlug: cat.slug,
       categoryName: cat.name,
       rating: DEFAULT_RATING,
+      displayScore: 0,
       solved: 0,
       wrong: 0,
       surrendered: 0,
@@ -75,14 +77,20 @@ export async function getTopicBreakdown(userId: string): Promise<TopicBreakdownE
   // Average rating per category, from all StudentTopicRating rows that
   // fall under it (the category itself + all its children).
   const ratingsByCategoryId: Record<string, number[]> = {};
+  const displayScoresByCategoryId: Record<string, number[]> = {};
   for (const r of allTopicRatings) {
     const catId = resolveMajorCategoryId(r.topic);
     if (!breakdown[catId]) continue;
     (ratingsByCategoryId[catId] ??= []).push(r.rating);
+    (displayScoresByCategoryId[catId] ??= []).push(r.displayScore);
   }
   for (const catId of Object.keys(ratingsByCategoryId)) {
     const list = ratingsByCategoryId[catId];
     breakdown[catId].rating = Math.round(list.reduce((a, b) => a + b, 0) / list.length);
+  }
+  for (const catId of Object.keys(displayScoresByCategoryId)) {
+    const list = displayScoresByCategoryId[catId];
+    breakdown[catId].displayScore = Math.round((list.reduce((a, b) => a + b, 0) / list.length) * 10) / 10;
   }
 
   // Multiple attempts on the SAME question (wrong -> hint -> retry) now
@@ -200,13 +208,21 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     const totalAttempted = dedupedAttempts.length;
     const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
 
-    // Real fallback: a session can have genuine elapsed time (opened a
-    // question, thought about it, never submitted) with zero recorded
-    // attempts — in that case, showing "0s" is misleading. Fall back to
-    // the session's own startedAt-to-updatedAt gap, which reflects real
-    // activity even without a completed Attempt row.
-    const displayTimeSeconds =
-      totalTimeSeconds > 0 ? totalTimeSeconds : Math.max(0, Math.round((s.updatedAt.getTime() - s.startedAt.getTime()) / 1000));
+    // Real fix for the previous 'wrong time' bug — that used
+    // session.updatedAt as a proxy, which isn't reliable (it can shift
+    // for reasons unrelated to actual solving time). This now uses the
+    // precise currentQuestionStartedAt timestamp, which is ONLY set
+    // when a question is genuinely opened and cleared the moment it's
+    // submitted or the session stops being active — so it can't drift.
+    let liveTimeSeconds = 0;
+    if (s.status === "ACTIVE" && s.currentQuestionId && s.currentQuestionStartedAt) {
+      const elapsed = Math.round((Date.now() - s.currentQuestionStartedAt.getTime()) / 1000);
+      // Sanity cap: if a question has been sitting open for an
+      // implausibly long time (e.g., left open overnight), don't show
+      // a misleading multi-hour number — cap at 2 hours.
+      liveTimeSeconds = Math.min(Math.max(0, elapsed), 7200);
+    }
+    const displayTimeSeconds = totalTimeSeconds + liveTimeSeconds;
 
     // Net rating change: first attempt's "before" star value vs last
     // attempt's "after" star value. Uses the primary-topic Elo snapshot

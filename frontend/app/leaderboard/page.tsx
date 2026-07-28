@@ -47,6 +47,23 @@ export default async function LeaderboardPage() {
             See who's training the hardest and climbing the fastest.
           </p>
 
+          {dbUser && (
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="rounded-2xl bg-gradient-to-br from-[#FF6B4A] to-[#D9502F] p-4 text-white">
+                <div className="text-xs opacity-90">Your Streak Rank</div>
+                <div className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                  {myStreakRank > 0 ? `#${myStreakRank}` : "Unranked"}
+                </div>
+              </div>
+              <div className="rounded-2xl bg-gradient-to-br from-[#4C3AA0] to-[#3D2F82] p-4 text-white">
+                <div className="text-xs opacity-90">Your Rating Rank</div>
+                <div className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-fredoka), sans-serif" }}>
+                  {myRatingRank > 0 ? `#${myRatingRank}` : "Unranked"}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <LeaderboardSection
               title="Top Streaks"

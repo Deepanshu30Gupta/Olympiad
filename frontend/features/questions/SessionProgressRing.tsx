@@ -19,7 +19,7 @@ export function SessionProgressRing({
         <div className="relative flex h-24 w-24 shrink-0 items-center justify-center">
           <svg viewBox="0 0 100 100" className="absolute h-full w-full -rotate-90">
             <circle cx="50" cy="50" r="40" fill="none" stroke="#F0E6D6" strokeWidth="9" />
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#6FCF52" strokeWidth="9" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} />
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#2E6B1B" strokeWidth="9" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} />
           </svg>
           <div className="text-center">
             <div className="text-xl font-extrabold text-[#2B2118] dark:text-neutral-100">{accuracyPct}%</div>
@@ -27,9 +27,9 @@ export function SessionProgressRing({
           </div>
         </div>
         <div className="flex flex-col gap-2 text-sm">
-          <LegendRow color="#6FCF52" label={`${solved} Solved`} />
+          <LegendRow color="#2E6B1B" label={`${solved} Solved`} bold />
           <LegendRow color="#D9502F" label={`${wrong} Wrong`} bold />
-          <LegendRow color="#9C9184" label={`${surrendered} Not answered`} />
+          <LegendRow color="#9C9184" label={`${surrendered} Not answered`} bold />
         </div>
       </div>
     </div>
