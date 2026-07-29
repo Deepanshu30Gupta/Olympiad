@@ -15,6 +15,22 @@ interface Report {
   repliedAt: string | null;
 }
 
+function buildReplyMailto(r: Report): string {
+  const subject = `Re: ${r.questionExternalId ? `Question ${r.questionExternalId}` : "Your message to Qublem"}`;
+  // mailto: links have a practical length limit in some browsers/email
+  // clients (roughly 2000 characters total) — a link that's too long
+  // can silently fail to open at all, so long messages get truncated
+  // rather than risk that.
+  const MAX_QUOTE_LENGTH = 600;
+  const truncatedComment = r.comment.length > MAX_QUOTE_LENGTH ? r.comment.slice(0, MAX_QUOTE_LENGTH) + "... (truncated)" : r.comment;
+  const quoted = truncatedComment
+    .split("\n")
+    .map((line) => `> ${line}`)
+    .join("\n");
+  const body = `Hi ${r.name},\n\n\n\n---\nYour original message:\n${quoted}`;
+  return `mailto:${r.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function MessagesInboxClient({ initialReports }: { initialReports: Report[] }) {
   const [reports, setReports] = useState(initialReports);
   const [filter, setFilter] = useState<"pending" | "replied" | "all">("pending");
@@ -79,7 +95,7 @@ export function MessagesInboxClient({ initialReports }: { initialReports: Report
 
               <div className="mt-4 flex items-center gap-2">
                 <a
-                  href={`mailto:${r.email}?subject=${encodeURIComponent("Re: Your message to Qublem")}`}
+                  href={buildReplyMailto(r)}
                   className="flex items-center gap-1.5 rounded-lg bg-[#FF6B4A] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#D9502F]"
                 >
                   <Mail size={13} /> Reply via Email
