@@ -217,10 +217,16 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     let liveTimeSeconds = 0;
     if (s.status === "ACTIVE" && s.currentQuestionId && s.currentQuestionStartedAt) {
       const elapsed = Math.round((Date.now() - s.currentQuestionStartedAt.getTime()) / 1000);
-      // Sanity cap: if a question has been sitting open for an
-      // implausibly long time (e.g., left open overnight), don't show
-      // a misleading multi-hour number — cap at 2 hours.
-      liveTimeSeconds = Math.min(Math.max(0, elapsed), 7200);
+      const RECENCY_THRESHOLD_SECONDS = 30 * 60; // 30 minutes
+      // Real fix for a genuine bug: the old flat 2-hour cap still
+      // showed misleading multi-hour durations for sessions abandoned
+      // days ago (e.g., a question opened once and never touched
+      // again). Now: only count live time if the question was opened
+      // recently — beyond that, treat it as abandoned and show only
+      // the real, actually-measured time from submitted attempts.
+      if (elapsed <= RECENCY_THRESHOLD_SECONDS) {
+        liveTimeSeconds = Math.max(0, elapsed);
+      }
     }
     const displayTimeSeconds = totalTimeSeconds + liveTimeSeconds;
 

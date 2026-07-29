@@ -3,27 +3,26 @@ interface CategoryBarChartProps {
 }
 
 export function CategoryBarChart({ data }: CategoryBarChartProps) {
-  const starData = data;
-
   return (
     <>
       <div className="dark:hidden">
-        <BarSvg data={starData} posColor="#FF6B4A" negColor="#D9502F" labelColor="#2B2118" subLabelColor="#6B5D4F" zeroLineColor="#D8CBB5" />
+        <HorizontalBars data={data} posColor="#FF6B4A" negColor="#D9502F" labelColor="#2B2118" subLabelColor="#6B5D4F" zeroLineColor="#D8CBB5" trackColor="#F5EFE3" />
       </div>
       <div className="hidden dark:block">
-        <BarSvg data={starData} posColor="#FF7A5C" negColor="#F87171" labelColor="#F5F5F5" subLabelColor="#A3A3A3" zeroLineColor="#404040" />
+        <HorizontalBars data={data} posColor="#FF7A5C" negColor="#F87171" labelColor="#F5F5F5" subLabelColor="#A3A3A3" zeroLineColor="#404040" trackColor="#262626" />
       </div>
     </>
   );
 }
 
-function BarSvg({
+function HorizontalBars({
   data,
   posColor,
   negColor,
   labelColor,
   subLabelColor,
   zeroLineColor,
+  trackColor,
 }: {
   data: { categoryName: string; stars: number }[];
   posColor: string;
@@ -31,43 +30,48 @@ function BarSvg({
   labelColor: string;
   subLabelColor: string;
   zeroLineColor: string;
+  trackColor: string;
 }) {
-  const width = 640;
-  const height = 220;
-  const paddingTop = 24;
-  const paddingBottom = 32;
-  const barWidth = (width - 40) / data.length - 16;
-
   const max = 5;
   const min = -5;
-  const chartHeight = height - paddingTop - paddingBottom;
-  const zeroY = paddingTop + (max / (max - min)) * chartHeight;
-  const pxPerStar = chartHeight / (max - min);
+  const range = max - min;
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", height: "auto" }}>
-      <line x1="20" y1={zeroY} x2={width - 20} y2={zeroY} stroke={zeroLineColor} strokeWidth="1.5" strokeDasharray="4 4" />
-      <text x="20" y={zeroY + 4} fontSize="11" fill={subLabelColor}>0</text>
-
-      {data.map((d, i) => {
-        const x = 20 + i * ((width - 40) / data.length) + 8;
-        const barHeight = Math.abs(d.stars) * pxPerStar;
+    <div className="flex flex-col gap-4">
+      {data.map((d) => {
         const isNeg = d.stars < 0;
-        const y = isNeg ? zeroY : zeroY - barHeight;
-        const labelY = isNeg ? y + barHeight + 14 : y - 6;
+        const zeroPct = (max / range) * 100;
+        const fillPct = (Math.abs(d.stars) / range) * 100;
 
         return (
-          <g key={d.categoryName}>
-            <rect x={x} y={y} width={barWidth} height={Math.max(barHeight, 2)} rx="6" fill={isNeg ? negColor : posColor} />
-            <text x={x + barWidth / 2} y={labelY} fontSize="12" fontWeight="600" fill={labelColor} textAnchor="middle">
-              ★ {d.stars}
-            </text>
-            <text x={x + barWidth / 2} y={height - paddingBottom + 16} fontSize="11" fill={subLabelColor} textAnchor="middle">
-              {d.categoryName.length > 12 ? d.categoryName.slice(0, 11) + "…" : d.categoryName}
-            </text>
-          </g>
+          <div key={d.categoryName}>
+            <div className="mb-1 flex items-center justify-between">
+              <span className="text-sm font-medium" style={{ color: labelColor }}>
+                {d.categoryName}
+              </span>
+              <span className="text-sm font-bold" style={{ color: isNeg ? negColor : posColor }}>
+                ★ {d.stars}
+              </span>
+            </div>
+            <div className="relative h-3 overflow-hidden rounded-full" style={{ backgroundColor: trackColor }}>
+              <div className="absolute inset-y-0 w-px" style={{ left: `${zeroPct}%`, backgroundColor: zeroLineColor }} />
+              <div
+                className="absolute inset-y-0 rounded-full transition-all duration-500"
+                style={{
+                  backgroundColor: isNeg ? negColor : posColor,
+                  left: isNeg ? `${zeroPct - fillPct}%` : `${zeroPct}%`,
+                  width: `${fillPct}%`,
+                }}
+              />
+            </div>
+          </div>
         );
       })}
-    </svg>
+      <div className="mt-1 flex justify-between text-[10px]" style={{ color: subLabelColor }}>
+        <span>★ {min}</span>
+        <span>★ 0</span>
+        <span>★ {max}</span>
+      </div>
+    </div>
   );
 }
