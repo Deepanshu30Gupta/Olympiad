@@ -6,7 +6,7 @@ export function ExamMarquee() {
   const items = [...EXAMS, ...EXAMS];
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden py-2">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#FFFBF2] to-transparent dark:from-neutral-950" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#FFFBF2] to-transparent dark:from-neutral-950" />
 
@@ -14,7 +14,7 @@ export function ExamMarquee() {
         {items.map((exam, i) => (
           <span
             key={`${exam}-${i}`}
-            className="inline-block whitespace-nowrap rounded-full bg-[#ECE8FA] px-4 py-2 text-sm font-bold text-[#4C3AA0] transition-all duration-200 ease-out hover:-translate-y-1.5 hover:shadow-md dark:bg-indigo-950/40 dark:text-indigo-300"
+            className="inline-block whitespace-nowrap rounded-full bg-[#ECE8FA] px-4 py-2 text-sm font-bold text-[#4C3AA0] transition-all duration-200 ease-out hover:scale-105 hover:shadow-md dark:bg-indigo-950/40 dark:text-indigo-300"
           >
             {exam}
           </span>

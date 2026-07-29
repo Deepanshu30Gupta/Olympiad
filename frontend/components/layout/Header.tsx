@@ -3,22 +3,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Show, UserButton, useUser } from "@clerk/nextjs";
+import { Show, UserButton } from "@clerk/nextjs";
 import { Bell } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { ReportWidget } from "@/components/ReportWidget";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Practice", href: "/onboarding", protected: true },
-  { label: "Dashboard", href: "/dashboard", protected: true },
+  { label: "Practice", href: "/onboarding" },
+  { label: "Dashboard", href: "/dashboard" },
   { label: "About", href: "/story" },
   { label: "Contact Us", href: "/contact" },
 ];
 
 export function Header() {
   const pathname = usePathname();
-  const { isSignedIn } = useUser();
 
   function handleHomeClick(e: React.MouseEvent, href: string) {
     if (href === "/" && pathname === "/") {
@@ -39,11 +37,10 @@ export function Header() {
       <nav className="hidden items-center gap-10 md:flex">
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href;
-          const href = item.protected && !isSignedIn ? "/sign-up" : item.href;
           return (
             <Link
               key={item.label}
-              href={href}
+              href={item.href}
               onClick={(e) => handleHomeClick(e, item.href)}
               className={`relative whitespace-nowrap pb-1 text-sm font-medium transition-colors ${
                 active ? "text-[#FF6B4A]" : "text-[#2B2118] hover:text-[#FF6B4A] dark:text-neutral-300 dark:hover:text-[#FF6B4A]"
@@ -54,10 +51,6 @@ export function Header() {
             </Link>
           );
         })}
-        <ReportWidget
-          triggerLabel="Feedback"
-          triggerClassName="whitespace-nowrap text-sm font-medium text-[#2B2118] hover:text-[#FF6B4A] dark:text-neutral-300 dark:hover:text-[#FF6B4A]"
-        />
       </nav>
 
       <div className="flex items-center justify-end gap-4">

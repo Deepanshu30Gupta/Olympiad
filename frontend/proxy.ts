@@ -1,10 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-// Routes that do NOT require a signed-in user. Everything else is
-// protected by default. The webhook route is public deliberately —
-// it authenticates via Svix HMAC signature verification instead of a
-// Clerk session token, so if this route requires auth.protect(), Clerk's
-// own webhook calls would be rejected and user sync would silently break.
 const isPublicRoute = createRouteMatcher([
   "/",
   "/sign-in(.*)",
@@ -15,10 +11,31 @@ const isPublicRoute = createRouteMatcher([
   "/contact(.*)",
 ]);
 
+// These specific routes should send an unauthenticated visitor to
+// sign-up (the intended new-visitor path), not Clerk's default
+// sign-in redirect. This is handled here at the middleware level so
+// it applies no matter how the route is reached — a direct URL, a
+// bookmark, or any link — not just clicks from the header nav.
+const isSignUpRedirectRoute = createRouteMatcher([
+  "/onboarding(.*)",
+  "/dashboard(.*)",
+  "/leaderboard(.*)",
+  "/practice(.*)",
+  "/progress(.*)",
+  "/topics(.*)",
+  "/sessions(.*)",
+  "/bookmarks(.*)",
+]);
+
 export default clerkMiddleware(async (auth, req) => {
-  if (!isPublicRoute(req)) {
-    await auth.protect();
+  if (isPublicRoute(req)) return;
+
+  const { userId } = await auth();
+  if (!userId && isSignUpRedirectRoute(req)) {
+    return NextResponse.redirect(new URL("/sign-up", req.url));
   }
+
+  await auth.protect();
 });
 
 export const config = {

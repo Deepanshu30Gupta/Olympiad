@@ -32,7 +32,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="mx-4 mb-4 mt-10 overflow-hidden rounded-3xl border border-[#F0E6D6] bg-[#FFFBF2] px-8 py-10 dark:border-neutral-800 dark:bg-neutral-900 sm:mx-6">
+    <footer className="m-4 overflow-hidden rounded-3xl border border-[#F0E6D6] bg-[#FFFBF2] p-8 dark:border-neutral-800 dark:bg-neutral-900 sm:m-6 sm:p-10">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr]">
         <div>
           <Link href="/" className="flex items-center gap-2.5">
@@ -66,13 +66,6 @@ export function Footer() {
             >
               <LinkedinIcon size={16} />
             </span>
-            <a
-              href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent("Hello Qublem!")}`}
-              aria-label="Email"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F0E6D6] text-[#D9502F] transition-colors hover:bg-[#FFE8E0] dark:border-neutral-700 dark:text-[#FF9478] dark:hover:bg-neutral-800"
-            >
-              <Mail size={16} />
-            </a>
           </div>
         </div>
 
