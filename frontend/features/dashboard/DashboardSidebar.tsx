@@ -85,7 +85,7 @@ export function DashboardSidebar() {
         aria-label="Open sidebar menu"
         aria-expanded={mobileOpen}
         aria-controls="mobile-sidebar"
-        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-[#F0E6D6] bg-white text-[#6B5D4F] shadow-md transition-colors hover:bg-[#FFFBF2] hover:text-[#2B2118] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B4A] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 lg:hidden"
+        className="fixed left-4 top-[76px] z-40 flex h-10 w-10 items-center justify-center rounded-xl border border-[#F0E6D6] bg-white text-[#6B5D4F] shadow-md transition-colors hover:bg-[#FFFBF2] hover:text-[#2B2118] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B4A] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 lg:hidden"
       >
         <Menu size={20} />
       </button>
@@ -94,7 +94,7 @@ export function DashboardSidebar() {
       <div
         aria-hidden="true"
         onClick={() => setMobileOpen(false)}
-        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[45] bg-black/40 transition-opacity duration-300 lg:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
