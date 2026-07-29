@@ -41,7 +41,6 @@ export default function ContactPage() {
               <a href={`mailto:${SUPPORT_EMAIL}`} className="font-bold text-[#2B2118] hover:text-[#FF6B4A] dark:text-neutral-100 dark:hover:text-[#FF9478]">
                 {SUPPORT_EMAIL}
               </a>
-              <p className="text-xs text-[#6B5D4F] dark:text-neutral-500">We usually reply within 24 hours.</p>
             </div>
             <PaperAirplane color="#4C3AA0" className="pointer-events-none absolute -right-3 -top-3 hidden sm:block" />
           </div>
@@ -65,8 +64,10 @@ function EnvelopeIllustration({ className }: { className?: string }) {
       <path d="M60 110 L150 175 L240 110 L240 130 L150 195 L60 130 Z" fill="#FF9F45" />
       <path d="M85 95 L215 95 L215 190 L85 190 Z" fill="white" />
 
-      <circle cx="150" cy="140" r="26" fill="none" stroke="#4C3AA0" strokeWidth="6" />
-      <path d="M150 128 a12 12 0 1 0 0.1 0 M150 152 v10" stroke="#4C3AA0" strokeWidth="6" fill="none" strokeLinecap="round" />
+      <circle cx="150" cy="140" r="26" fill="none" stroke="#4C3AA0" strokeWidth="4" />
+      <text x="150" y="151" fontSize="30" fontWeight="700" fill="#4C3AA0" textAnchor="middle" fontFamily="Arial, sans-serif">
+        @
+      </text>
 
       <circle cx="30" cy="35" r="3" fill="#FFB238" />
       <circle cx="260" cy="60" r="2.5" fill="#6FCF52" />

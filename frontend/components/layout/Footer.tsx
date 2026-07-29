@@ -116,6 +116,12 @@ export function Footer() {
             >
               {SUPPORT_EMAIL}
             </a>
+            <Link
+              href="/contact"
+              className="mt-2 block rounded-xl bg-[#FF6B4A] px-3 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-[#D9502F]"
+            >
+              Send us a message
+            </Link>
           </div>
           {/* Constrained within this column now — no longer overlaps the
               bottom bar below it. */}

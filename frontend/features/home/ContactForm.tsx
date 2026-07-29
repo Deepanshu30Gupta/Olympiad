@@ -8,7 +8,7 @@ import { Spinner } from "@/components/ui/Spinner";
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -19,14 +19,13 @@ export function ContactForm() {
     setSubmitting(true);
     setError(null);
     try {
-      const combinedComment = subject.trim() ? `Subject: ${subject.trim()}\n\n${message.trim()}` : message.trim();
       const res = await submitReportAction({
         name,
         email,
-        phone: null,
+        phone: phone.trim() || null,
         questionId: null,
         questionExternalId: null,
-        comment: combinedComment,
+        comment: message.trim(),
       });
       if (res.error) {
         setError(res.error);
@@ -82,9 +81,10 @@ export function ContactForm() {
       </div>
 
       <input
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        placeholder="Subject"
+        type="tel"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        placeholder="Mobile Number"
         className="mt-4 w-full rounded-xl border border-[#F0E6D6] bg-[#FFFBF2] px-4 py-3 text-sm text-[#2B2118] outline-none focus:border-[#FF6B4A] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
       />
 
