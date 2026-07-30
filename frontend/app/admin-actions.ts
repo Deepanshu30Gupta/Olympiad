@@ -17,6 +17,18 @@ export async function getAllReportsAction() {
   return prisma.report.findMany({ orderBy: { createdAt: "desc" } });
 }
 
+/** Fetches a question with everything visible (all hints, the solution,
+ * the correct answer) for the admin preview page — deliberately not
+ * gated the way the student-facing flow is, since this exists so you
+ * can verify a reported question's accuracy at a glance. */
+export async function getQuestionForAdminPreview(externalId: string) {
+  await requireAdmin();
+  return prisma.question.findUnique({
+    where: { externalId },
+    include: { hints: { orderBy: { level: "asc" } } },
+  });
+}
+
 export async function markReportRepliedAction(reportId: string, replied: boolean) {
   try {
     await requireAdmin();
