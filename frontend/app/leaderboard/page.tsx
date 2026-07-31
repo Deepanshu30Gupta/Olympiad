@@ -7,8 +7,12 @@ import { LeaderboardSection } from "@/features/dashboard/LeaderboardSection";
 const RANK_COLORS = ["#FFB238", "#B0B0B0", "#CD7F32"];
 
 async function getRankedList(orderBy: "currentStreak" | "learnerScore") {
+  const adminEmail = process.env.ADMIN_EMAIL;
   const users = await prisma.user.findMany({
-    where: orderBy === "currentStreak" ? { currentStreak: { gt: 0 } } : undefined,
+    where: {
+      ...(orderBy === "currentStreak" ? { currentStreak: { gt: 0 } } : {}),
+      ...(adminEmail ? { email: { not: { equals: adminEmail, mode: "insensitive" } } } : {}),
+    },
     orderBy: { [orderBy]: "desc" },
     select: { id: true, name: true, email: true, currentStreak: true, learnerScore: true },
   });
@@ -23,6 +27,8 @@ function displayName(name: string | null, email: string): string {
 export default async function LeaderboardPage() {
   const clerkUser = await currentUser();
   const dbUser = clerkUser ? await prisma.user.findUnique({ where: { clerkId: clerkUser.id } }) : null;
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const isAdmin = !!(dbUser && adminEmail && dbUser.email.toLowerCase() === adminEmail.toLowerCase());
 
   const [streakList, ratingList] = await Promise.all([
     getRankedList("currentStreak"),
@@ -47,7 +53,7 @@ export default async function LeaderboardPage() {
             See who's training the hardest and climbing the fastest.
           </p>
 
-          {dbUser && (
+          {dbUser && !isAdmin && (
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="rounded-2xl bg-gradient-to-br from-[#FF6B4A] to-[#D9502F] p-4 text-white">
                 <div className="text-xs opacity-90">Your Streak Rank</div>
@@ -72,8 +78,8 @@ export default async function LeaderboardPage() {
               rankColors={RANK_COLORS}
               accent="#FF6B4A"
               emptyMessage="No active streaks yet — be the first!"
-              myRank={myStreakRank > 0 ? myStreakRank : null}
-              myValue={dbUser ? `${dbUser.currentStreak} day${dbUser.currentStreak !== 1 ? "s" : ""}` : null}
+              myRank={!isAdmin && myStreakRank > 0 ? myStreakRank : null}
+              myValue={!isAdmin && dbUser ? `${dbUser.currentStreak} day${dbUser.currentStreak !== 1 ? "s" : ""}` : null}
             />
             <LeaderboardSection
               title="Top Ratings"
@@ -82,8 +88,8 @@ export default async function LeaderboardPage() {
               rankColors={RANK_COLORS}
               accent="#4C3AA0"
               emptyMessage="No ratings yet — start practicing to appear here!"
-              myRank={myRatingRank > 0 ? myRatingRank : null}
-              myValue={dbUser ? `★ ${dbUser.learnerScore}` : null}
+              myRank={!isAdmin && myRatingRank > 0 ? myRatingRank : null}
+              myValue={!isAdmin && dbUser ? `★ ${dbUser.learnerScore}` : null}
             />
           </div>
         </div>
