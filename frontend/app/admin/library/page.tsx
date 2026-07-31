@@ -13,24 +13,24 @@ export default async function AdminQuestionLibraryPage() {
 
   const questions = await prisma.question.findMany({
     select: { externalId: true, problemNumber: true, examType: true, contestYear: true, contestSource: true },
-    orderBy: [{ examType: "asc" }, { contestYear: "desc" }, { problemNumber: "asc" }],
+    orderBy: [{ examType: "asc" }, { contestYear: "desc" }, { contestSource: "asc" }, { problemNumber: "asc" }],
   });
 
-  const grouped = new Map<string, Map<number, typeof questions>>();
+  const grouped = new Map<string, Map<string, typeof questions>>();
   for (const q of questions) {
     const exam = q.examType ?? "Unlabeled";
-    const year = q.contestYear ?? 0;
+    const source = q.contestSource ?? `${exam} ${q.contestYear ?? ""} (no contestSource set)`.trim();
     if (!grouped.has(exam)) grouped.set(exam, new Map());
     const examGroup = grouped.get(exam)!;
-    if (!examGroup.has(year)) examGroup.set(year, []);
-    examGroup.get(year)!.push(q);
+    if (!examGroup.has(source)) examGroup.set(source, []);
+    examGroup.get(source)!.push(q);
   }
 
-  const structured = Array.from(grouped.entries()).map(([exam, years]) => ({
+  const structured = Array.from(grouped.entries()).map(([exam, sources]) => ({
     exam,
-    years: Array.from(years.entries())
-      .sort((a, b) => b[0] - a[0])
-      .map(([year, qs]) => ({ year, questions: qs })),
+    sources: Array.from(sources.entries())
+      .sort((a, b) => b[0].localeCompare(a[0]))
+      .map(([source, qs]) => ({ source, questions: qs })),
   }));
 
   return (
@@ -40,8 +40,8 @@ export default async function AdminQuestionLibraryPage() {
           📚 Question Library
         </h1>
         <p className="mt-1 text-sm text-[#6B5D4F] dark:text-neutral-400">
-          {questions.length} questions. Click any problem to open it exactly as a student sees it — real
-          submit, hints, and Show Solution, all the same functionality.
+          {questions.length} questions, grouped by contest source — each real sitting shown separately.
+          Click any problem to open it exactly as a student sees it.
         </p>
 
         <QuestionLibraryClient structured={structured} />
