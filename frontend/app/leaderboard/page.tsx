@@ -11,7 +11,7 @@ async function getRankedList(orderBy: "currentStreak" | "learnerScore") {
   const users = await prisma.user.findMany({
     where: {
       ...(orderBy === "currentStreak" ? { currentStreak: { gt: 0 } } : {}),
-      ...(adminEmail ? { email: { not: { equals: adminEmail, mode: "insensitive" } } } : {}),
+      ...(adminEmail ? { email: { not: adminEmail, mode: "insensitive" as const } } : {}),
     },
     orderBy: { [orderBy]: "desc" },
     select: { id: true, name: true, email: true, currentStreak: true, learnerScore: true },
