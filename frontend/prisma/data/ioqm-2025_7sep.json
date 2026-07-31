@@ -4,7 +4,7 @@
   "examType": "IOQM",
   "questions": [
     {
-      "externalId": "IOQM-2025-P1",
+      "externalId": "IOQM-2025-07-P1",
       "examType": "IOQM",
       "problemNumber": 1,
       "statement": "If 60% of a number $x$ is 40, then what is $x\\%$ of 60?",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P2",
+      "externalId": "IOQM-2025-07-P2",
       "examType": "IOQM",
       "problemNumber": 2,
       "statement": "Find the number of positive integers $n$ less than or equal to 100, which are divisible by 3 but are not divisible by 2.",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P3",
+      "externalId": "IOQM-2025-07-P3",
       "examType": "IOQM",
       "problemNumber": 3,
       "statement": "The area of an integer-sided rectangle is 20. What is the minimum possible value of its perimeter?",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P4",
+      "externalId": "IOQM-2025-07-P4",
       "examType": "IOQM",
       "problemNumber": 4,
       "statement": "How many isosceles integer-sided triangles are there with perimeter 23?",
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P5",
+      "externalId": "IOQM-2025-07-P5",
       "examType": "IOQM",
       "problemNumber": 5,
       "statement": "How many 3-digit numbers $\\overline{abc}$ in base 10 are there with $a \\neq 0$ and $c = a + b$?",
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P6",
+      "externalId": "IOQM-2025-07-P6",
       "examType": "IOQM",
       "problemNumber": 6,
       "statement": "The age of a person (in years) in 2025 is a perfect square. His age (in years) was also a perfect square in 2012. His age (in years) will be a perfect cube $m$ years after 2025. Determine the smallest value of $m$.",
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P7",
+      "externalId": "IOQM-2025-07-P7",
       "examType": "IOQM",
       "problemNumber": 7,
       "statement": "The sum of two real numbers is a positive integer $n$ and the sum of their squares is $n+1012$. Find the maximum possible value of $n$.",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P8",
+      "externalId": "IOQM-2025-07-P8",
       "examType": "IOQM",
       "problemNumber": 8,
       "statement": "A quadrilateral has four vertices $A, B, C, D$. We want to colour each vertex in one of the four colours red, blue, green or yellow, so that every side of the quadrilateral and the diagonal $AC$ have end points of different colours. In how many ways can we do this?",
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P9",
+      "externalId": "IOQM-2025-07-P9",
       "examType": "IOQM",
       "problemNumber": 9,
       "statement": "Four sides and a diagonal of a quadrilateral are of lengths 10, 20, 28, 50, 75, not necessarily in that order. Which amongst them is the only possible length of the diagonal?",
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P10",
+      "externalId": "IOQM-2025-07-P10",
       "examType": "IOQM",
       "problemNumber": 10,
       "statement": "The height and the base radius of a closed right circular cylinder are positive integers and its total surface area is numerically equal to its volume. If its volume is $k\\pi$ where $k$ is a positive integer, what is the smallest possible value of $k$?",
@@ -325,7 +325,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P11",
+      "externalId": "IOQM-2025-07-P11",
       "examType": "IOQM",
       "problemNumber": 11,
       "statement": "Consider a fraction $\\frac{a}{b} \\neq \\frac{3}{4}$, where $a,b$ are positive integers with $\\gcd(a,b)=1$ and $b \\leq 15$. If this fraction is chosen closest to $\\frac{3}{4}$ amongst all such fractions, then what is the value of $a + b$?",
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P12",
+      "externalId": "IOQM-2025-07-P12",
       "examType": "IOQM",
       "problemNumber": 12,
       "statement": "Consider five-digit positive integers of the form $\\overline{abcab}$ that are divisible by the two digit number $\\overline{ab}$ but not divisible by 13. What is the largest possible sum of the digits of such a number?",
@@ -394,7 +394,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P13",
+      "externalId": "IOQM-2025-07-P13",
       "examType": "IOQM",
       "problemNumber": 13,
       "statement": "Three sides of a quadrilateral are $a=4\\sqrt{3}$, $b=9$ and $c=\\sqrt{3}$. The sides $a$ and $b$ enclose an angle of $30^\\circ$, and the sides $b$ and $c$ enclose an angle of $90^\\circ$. If the acute angle between the diagonals is $x^\\circ$, what is the value of $x$?",
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P14",
+      "externalId": "IOQM-2025-07-P14",
       "examType": "IOQM",
       "problemNumber": 14,
       "statement": "A function $f$ is defined on the set of integers such that for any two integers $m$ and $n$, $f(mn+1) = f(m)f(n) - f(n) - m + 2$ holds and $f(0)=1$. Determine the largest positive integer $N$ such that $\\sum_{k=1}^N f(k) < 100$.",
@@ -464,7 +464,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P15",
+      "externalId": "IOQM-2025-07-P15",
       "examType": "IOQM",
       "problemNumber": 15,
       "statement": "There are six coupons numbered 1 to 6 and six envelopes, also numbered 1 to 6. The first two coupons are placed together in any one envelope. Similarly, the third and the fourth are placed together in a different envelope, and the last two are placed together in yet another different envelope. How many ways can this be done if no coupon is placed in the envelope having the same number as the coupon?",
@@ -499,7 +499,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P16",
+      "externalId": "IOQM-2025-07-P16",
       "examType": "IOQM",
       "problemNumber": 16,
       "statement": "Let $f(x)$ and $g(x)$ be two polynomials of degree 2 such that $\\frac{f(-2)}{g(-2)} = \\frac{f(3)}{g(3)} = 4$. If $g(5)=2$, $f(7)=12$, $g(7)=-6$, what is the value of $f(5)$?",
@@ -533,7 +533,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P17",
+      "externalId": "IOQM-2025-07-P17",
       "examType": "IOQM",
       "problemNumber": 17,
       "statement": "$MTAI$ is a parallelogram of area $\\frac{40}{41}$ square units such that $MI = 1/MT$. If $d$ is the least possible length of the diagonal $MA$, and $d^2 = \\frac{a}{b}$, where $a,b$ are positive integers with $\\gcd(a,b)=1$, find $|a-b|$.",
@@ -568,7 +568,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P18",
+      "externalId": "IOQM-2025-07-P18",
       "examType": "IOQM",
       "problemNumber": 18,
       "statement": "Let $N$ be the number of nine-digit integers that can be obtained by permuting the digits of 223334444 and which have at least one 3 to the right of the right-most occurrence of 4. What is the remainder when $N$ is divided by 100?",
@@ -603,7 +603,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P19",
+      "externalId": "IOQM-2025-07-P19",
       "examType": "IOQM",
       "problemNumber": 19,
       "statement": "In triangle $ABC$, $\\angle B=90^\\circ$, $AB=1$ and $BC=2$. On the side $BC$ there are two points $D$ and $E$ such that $E$ lies between $C$ and $D$ and $DEFG$ is a square, where $F$ lies on $AC$ and $G$ lies on the circle through $B$ with centre $A$. If the area of $DEFG$ is $\\frac{m}{n}$ where $m$ and $n$ are positive integers with $\\gcd(m,n)=1$, what is the value of $m+n$?",
@@ -639,7 +639,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P20",
+      "externalId": "IOQM-2025-07-P20",
       "examType": "IOQM",
       "problemNumber": 20,
       "statement": "Let $f$ be the function defined by $f(n)=$ remainder when $n^n$ is divided by 7, for all positive integers $n$. Find the smallest positive integer $T$ such that $f(n+T)=f(n)$ for all positive integers $n$.",
@@ -674,7 +674,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P21",
+      "externalId": "IOQM-2025-07-P21",
       "examType": "IOQM",
       "problemNumber": 21,
       "statement": "For some real numbers $m,n$ and a positive integer $a$, the list $(a+1)n^2, m^2, a(n+1)^2$ consists of three consecutive integers written in increasing order. What is the largest possible value of $m^2$?",
@@ -708,7 +708,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P22",
+      "externalId": "IOQM-2025-07-P22",
       "examType": "IOQM",
       "problemNumber": 22,
       "statement": "There are $m$ blue marbles and $n$ red marbles on a table. Armaan and Babita play a game by taking turns. In each turn the player has to pick a marble of the colour of his/her choice. Armaan starts first, and the player who picks the last red marble wins. For how many choices of $(m,n)$ with $1 \\leq m,n \\leq 11$ can Armaan force a win?",
@@ -743,7 +743,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P23",
+      "externalId": "IOQM-2025-07-P23",
       "examType": "IOQM",
       "problemNumber": 23,
       "statement": "Let $ABCD$ be a rectangle and let $M,N$ be points lying on sides $AB$ and $BC$, respectively. Assume that $MC=CD$ and $MD=MN$, and that points $C,D,M,N$ lie on a circle. If $(AB/BC)^2 = m/n$ where $m$ and $n$ are positive integers with $\\gcd(m,n)=1$, what is the value of $m+n$?",
@@ -779,7 +779,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P24",
+      "externalId": "IOQM-2025-07-P24",
       "examType": "IOQM",
       "problemNumber": 24,
       "statement": "Let $P(x) = x^{2025}$, $Q(x) = x^4 + x^3 + 2x^2 + x + 1$. Let $R(x)$ be the polynomial remainder when the polynomial $P(x)$ is divided by the polynomial $Q(x)$. Find $R(3)$.",
@@ -814,7 +814,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P25",
+      "externalId": "IOQM-2025-07-P25",
       "examType": "IOQM",
       "problemNumber": 25,
       "statement": "For how many numbers $n$ in the set $\\{1,2,3,\\dots,37\\}$ can we split the $2n$ numbers $1,2,\\dots,2n$ into $n$ pairs $\\{a_i,b_i\\}$, $1\\leq i \\leq n$, such that $\\prod_{i=1}^n (a_i + b_i)$ is a square?",
@@ -849,7 +849,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P26",
+      "externalId": "IOQM-2025-07-P26",
       "examType": "IOQM",
       "problemNumber": 26,
       "statement": "Consider a sequence of real numbers of finite length. Consecutive four term averages of this sequence are strictly increasing, but consecutive seven term averages are strictly decreasing. What is the maximum possible length of such a sequence?",
@@ -885,7 +885,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P27",
+      "externalId": "IOQM-2025-07-P27",
       "examType": "IOQM",
       "problemNumber": 27,
       "statement": "Find the number of ordered triples $(a,b,c)$ of positive integers such that $1 \\leq a,b,c \\leq 50$ which satisfy the relation $\\frac{\\mathrm{lcm}(a,c) + \\mathrm{lcm}(b,c)}{a+b} = \\frac{26c}{27}$.",
@@ -920,7 +920,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P28",
+      "externalId": "IOQM-2025-07-P28",
       "examType": "IOQM",
       "problemNumber": 28,
       "statement": "Assume $a$ is a positive integer which is not a perfect square. Let $x,y$ be non-negative integers such that $\\sqrt{x} - \\sqrt{x+a} = \\sqrt{a} - y$. What is the largest possible value of $a$ such that $a < 100$?",
@@ -954,7 +954,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P29",
+      "externalId": "IOQM-2025-07-P29",
       "examType": "IOQM",
       "problemNumber": 29,
       "statement": "A regular polygon with $n \\geq 5$ vertices is said to be colourful if it is possible to colour the vertices using at most 6 colours such that each vertex is coloured with exactly one colour, and such that any 5 consecutive vertices have different colours. Find the largest number $n$ for which a regular polygon with $n$ vertices is not colourful.",
@@ -989,7 +989,7 @@
       ]
     },
     {
-      "externalId": "IOQM-2025-P30",
+      "externalId": "IOQM-2025-07-P30",
       "examType": "IOQM",
       "problemNumber": 30,
       "statement": "Let $S$ be a circle of radius 10 with centre $O$. Suppose $S_1$ and $S_2$ are two circles which touch $S$ internally and intersect each other at two distinct points $A$ and $B$. If $\\angle OAB = 90^\\circ$ what is the sum of the radii of $S_1$ and $S_2$?",
