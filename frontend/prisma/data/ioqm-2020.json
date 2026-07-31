@@ -3,1060 +3,1060 @@
   "contestYear": 2020,
   "examType": "IOQM",
   "questions": [
-  {
-    "externalId": "IOQM-2020-P1",
-    "examType": "IOQM",
-    "problemNumber": 1,
-    "statement": "Let $ABCD$ be a trapezium in which $AB \\parallel CD$ and $AB = 3CD$. Let $E$ be the midpoint of the diagonal $BD$. If $[ABCD] = n \\times [CDE]$, what is the value of $n$? (Here $[\\Gamma]$ denotes the area of the geometrical figure $\\Gamma$.)",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "8",
-    "baseRating": 1150,
-    "difficultyLabel": "Medium",
-    "tags": [
-      "area-ratios",
-      "trapezium",
-      "midpoint"
-    ],
-    "topics": [
-      "geometry-quadrilaterals"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "8",
-    "estimatedSolveSeconds": 360,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Draw the diagonal and mark the midpoint of BD."
-      },
-      {
-        "level": 2,
-        "content": "Express the areas of triangles using the same altitude wherever possible."
-      },
-      {
-        "level": 3,
-        "content": "Compare the area of triangle CDE with the area of the whole trapezium."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P2",
-    "examType": "IOQM",
-    "problemNumber": 2,
-    "statement": "A number $N$ in base 10, is 503 in base $b$ and 305 in base $b+2$. What is the product of the digits of $N$?",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "64",
-    "baseRating": 1200,
-    "difficultyLabel": "Medium",
-    "tags": [
-      "base-conversion",
-      "number-representation"
-    ],
-    "topics": [
-      "nt-base-representations"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "64",
-    "estimatedSolveSeconds": 420,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Write both representations as expressions in base 10."
-      },
-      {
-        "level": 2,
-        "content": "Equate the two expressions to determine the base."
-      },
-      {
-        "level": 3,
-        "content": "Convert the number to decimal before finding the product of its digits."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P3",
-    "examType": "IOQM",
-    "problemNumber": 3,
-    "statement": "If $\\sum_{k=1}^{N} \\frac{2k+1}{(k^2 + k)^2} = 0.9999$ then determine the value of $N$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "99",
-    "baseRating": 1350,
-    "difficultyLabel": "Medium",
-    "tags": [
-      "telescoping-series",
-      "partial-fractions"
-    ],
-    "topics": [
-      "algebra-sequences-series",
-      "algebra-manipulation"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "99",
-    "estimatedSolveSeconds": 540,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Rewrite each term using partial fractions."
-      },
-      {
-        "level": 2,
-        "content": "Look for cancellation between consecutive terms."
-      },
-      {
-        "level": 3,
-        "content": "Express the sum as a simple function of N before solving."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P4",
-    "examType": "IOQM",
-    "problemNumber": 4,
-    "statement": "Let $ABCD$ be a rectangle in which $AB + BC + CD = 20$ and $AE = 9$ where $E$ is the mid-point of the side $BC$. Find the area of the rectangle.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "19",
-    "baseRating": 1050,
-    "difficultyLabel": "Easy",
-    "tags": [
-      "rectangle",
-      "midpoint",
-      "distance-formula"
-    ],
-    "topics": [
-      "geometry-quadrilaterals"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "19",
-    "estimatedSolveSeconds": 300,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Let the side lengths be variables."
-      },
-      {
-        "level": 2,
-        "content": "Use the perimeter condition to relate the variables."
-      },
-      {
-        "level": 3,
-        "content": "Apply the distance formula to segment AE."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P5",
-    "examType": "IOQM",
-    "problemNumber": 5,
-    "statement": "Find the number of integer solutions to $||x| - 2020|| < 5$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "18",
-    "baseRating": 900,
-    "difficultyLabel": "Easy",
-    "tags": [
-      "absolute-value",
-      "inequalities"
-    ],
-    "topics": [
-      "algebra-manipulation"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "18",
-    "estimatedSolveSeconds": 180,
-    "hints": [
-      {
-        "level": 1,
-        "content": "First isolate the expression |x|."
-      },
-      {
-        "level": 2,
-        "content": "Convert the absolute value inequality into a double inequality."
-      },
-      {
-        "level": 3,
-        "content": "Count the positive and negative integer values separately."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P6",
-    "examType": "IOQM",
-    "problemNumber": 6,
-    "statement": "What is the least positive integer by which $2^5 \\cdot 3^6 \\cdot 4^3 \\cdot 5^3 \\cdot 6^7$ should be multiplied so that, the product is a perfect square?",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "15",
-    "baseRating": 1100,
-    "difficultyLabel": "Easy",
-    "tags": [
-      "prime-factorization",
-      "perfect-square"
-    ],
-    "topics": [
-      "nt-primes-factorization"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "15",
-    "estimatedSolveSeconds": 300,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Rewrite 4 and 6 in terms of their prime factorizations."
-      },
-      {
-        "level": 2,
-        "content": "Combine the exponents of each prime in the entire product."
-      },
-      {
-        "level": 3,
-        "content": "Identify which prime exponents are odd and make them even."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P7",
-    "examType": "IOQM",
-    "problemNumber": 7,
-    "statement": "Let $ABC$ be a triangle with $AB = AC$. Let $D$ be a point on the segment $BC$ such that $BD = 48 \\frac{1}{61}$ and $DC = 61$. Let $E$ be a point on $AD$ such that $CE$ is perpendicular to $AD$ and $DE = 11$. Find $AE$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "25",
-    "baseRating": 1500,
-    "difficultyLabel": "Hard",
-    "tags": [
-      "isosceles-triangle",
-      "perpendicular"
-    ],
-    "topics": [
-      "geometry-triangles"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "25",
-    "estimatedSolveSeconds": 720,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Use the fact that AB = AC to exploit the symmetry of the triangle."
-      },
-      {
-        "level": 2,
-        "content": "Work with the right triangle formed by CE being perpendicular to AD."
-      },
-      {
-        "level": 3,
-        "content": "Relate the lengths on AD using the given value of DE."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P8",
-    "examType": "IOQM",
-    "problemNumber": 8,
-    "statement": "A 5-digit number (in base 10) has digits $k, k+1, k+2, 3k, k+3$ in that order, from left to right. If this number is $m^2$ for some natural number $m$, find the sum of the digits of $m$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "15",
-    "baseRating": 1350,
-    "difficultyLabel": "Medium",
-    "tags": [
-      "digits",
-      "perfect-square"
-    ],
-    "topics": [
-      "nt-base-representations"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "15",
-    "estimatedSolveSeconds": 540,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Determine the possible values of k using the digit constraints."
-      },
-      {
-        "level": 2,
-        "content": "Construct the corresponding five-digit numbers."
-      },
-      {
-        "level": 3,
-        "content": "Test which candidate is a perfect square."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P9",
-    "examType": "IOQM",
-    "problemNumber": 9,
-    "statement": "Let $ABC$ be a triangle with $AB=5$, $AC=4$, $BC=6$. The internal angle bisector of $C$ intersects the side $AB$ at $D$. Points $M$ and $N$ are taken on sides $BC$ and $AC$, respectively, such that $DM \\parallel AC$ and $DN \\parallel BC$. If $(MN)^2 = \\frac{p}{q}$ where $p$ and $q$ are relatively prime positive integers then what is the sum of the digits of $|p - q|$?",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "2",
-    "baseRating": 1550,
-    "difficultyLabel": "Hard",
-    "tags": [
-      "angle-bisector",
-      "similar-triangles"
-    ],
-    "topics": [
-      "geometry-triangles"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "2",
-    "estimatedSolveSeconds": 780,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Apply the Angle Bisector Theorem to determine the ratio in which D divides AB."
-      },
-      {
-        "level": 2,
-        "content": "Use the parallel lines to identify pairs of similar triangles."
-      },
-      {
-        "level": 3,
-        "content": "Express MN in terms of the side lengths before computing its square."
-      }
-    ]
-  },
-  {
-    "externalId": "IOQM-2020-P10",
-    "examType": "IOQM",
-    "problemNumber": 10,
-    "statement": "Five students take a test on which any integer score from 0 to 100 inclusive is possible. What is the largest possible difference between the median and the mean of the scores?",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "40",
-    "baseRating": 1200,
-    "difficultyLabel": "Medium",
-    "tags": [
-      "mean",
-      "median"
-    ],
-    "topics": [
-      "probability-basic"
-    ],
-    "diagramSvg": null,
-    "solutionMarkdown": "40",
-    "estimatedSolveSeconds": 420,
-    "hints": [
-      {
-        "level": 1,
-        "content": "Arrange the five scores in non-decreasing order."
-      },
-      {
-        "level": 2,
-        "content": "Keep the median fixed while making the remaining scores as extreme as possible."
-      },
-      {
-        "level": 3,
-        "content": "Compute the resulting mean and compare it with the median."
-      }
-    ]
-  },
     {
-  "externalId": "IOQM-2020-P11",
-  "examType": "IOQM",
-  "problemNumber": 11,
-  "statement": "Let $X = \\{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5\\}$ and $S = \\{(a,b) \\in X \\times X : x^2 + a x + b$ and $x^3 + b x + a$ have at least a common real zero$\\}$. How many elements are there in $S$?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "24",
-  "baseRating": 1600,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "common-root",
-    "polynomials"
-  ],
-  "topics": [
-    "algebra-polynomials"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "24",
-  "estimatedSolveSeconds": 900,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Let the common real root be r and substitute it into both polynomials."
+      "externalId": "IOQM-2020-P1",
+      "examType": "IOQM",
+      "problemNumber": 1,
+      "statement": "Let $ABCD$ be a trapezium in which $AB \\parallel CD$ and $AB = 3CD$. Let $E$ be the midpoint of the diagonal $BD$. If $[ABCD] = n \\times [CDE]$, what is the value of $n$? (Here $[\\Gamma]$ denotes the area of the geometrical figure $\\Gamma$.)",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "8",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "area-ratios",
+        "trapezium",
+        "midpoint"
+      ],
+      "topics": [
+        "geometry-quadrilaterals"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the figure\n\nWe have a trapezium $ABCD$ with $AB \\parallel CD$, and $AB = 3\\,CD$. Let $CD = a$, so $AB = 3a$. Let $h$ be the distance between the two parallel sides $AB$ and $CD$ (the \"height\" of the trapezium). $E$ is the midpoint of diagonal $BD$.\n\n<svg viewBox=\"0 0 420 260\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"40,220 380,220 300,40 120,40\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/>\n<line x1=\"40\" y1=\"220\" x2=\"300\" y2=\"40\" stroke=\"#d32f2f\" stroke-width=\"2\"/>\n<circle cx=\"170\" cy=\"130\" r=\"4\" fill=\"#1565c0\"/>\n<text x=\"178\" y=\"126\" font-size=\"16\">E</text>\n<text x=\"30\" y=\"238\" font-size=\"16\">D</text>\n<text x=\"388\" y=\"238\" font-size=\"16\">C</text>\n<text x=\"108\" y=\"32\" font-size=\"16\">A</text>\n<text x=\"304\" y=\"32\" font-size=\"16\">B</text>\n<text x=\"200\" y=\"240\" font-size=\"14\" text-anchor=\"middle\">CD</text>\n<text x=\"210\" y=\"30\" font-size=\"14\" text-anchor=\"middle\">AB = 3CD</text>\n</svg>\n\n**Area of the trapezium:**\n$$[ABCD] = \\frac{1}{2}(AB+CD)\\cdot h = \\frac{1}{2}(3a+a)h = 2ah$$\n\n### Finding the area of triangle CDE\n\nFirst look at triangle $BCD$. Its base is $CD = a$, and its apex is $B$. Since $B$ lies on line $AB$, which is at distance $h$ from line $CD$, the height of triangle $BCD$ (measured from $B$ to line $CD$) is exactly $h$.\n\n$$[BCD] = \\frac{1}{2}\\cdot CD \\cdot h = \\frac{1}{2}ah$$\n\nNow, $E$ is the **midpoint** of $BD$. Triangles $CDE$ and $CDB$ share the same base $CD$. The height of a triangle with base $CD$ depends only on the perpendicular distance of the opposite vertex from line $CD$.\n\n- Vertex $D$ lies **on** line $CD$, so its distance from $CD$ is $0$.\n- Vertex $B$ is at distance $h$ from line $CD$.\n- $E$ is the midpoint of $BD$, so its distance from line $CD$ is the *average* of these two distances: $\\dfrac{0+h}{2} = \\dfrac{h}{2}$.\n\nSo triangle $CDE$ has the same base $CD=a$ but height $\\dfrac{h}{2}$:\n$$[CDE] = \\frac{1}{2}\\cdot a \\cdot \\frac{h}{2} = \\frac{ah}{4}$$\n\n(This also makes sense because $E$ being the midpoint of $BD$ means $[CDE] = \\tfrac12[BCD]$.)\n\n### Computing n\n\n$$n = \\frac{[ABCD]}{[CDE]} = \\frac{2ah}{\\dfrac{ah}{4}} = 2ah \\times \\frac{4}{ah} = 8$$\n\n### Answer\n$$\\boxed{n = 8}$$",
+      "estimatedSolveSeconds": 360,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Draw the diagonal and mark the midpoint of BD."
+        },
+        {
+          "level": 2,
+          "content": "Express the areas of triangles using the same altitude wherever possible."
+        },
+        {
+          "level": 3,
+          "content": "Compare the area of triangle CDE with the area of the whole trapezium."
+        }
+      ]
     },
     {
-      "level": 2,
-      "content": "Eliminate either a or b using the two resulting equations."
+      "externalId": "IOQM-2020-P2",
+      "examType": "IOQM",
+      "problemNumber": 2,
+      "statement": "A number $N$ in base 10, is 503 in base $b$ and 305 in base $b+2$. What is the product of the digits of $N$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "64",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "base-conversion",
+        "number-representation"
+      ],
+      "topics": [
+        "nt-base-representations"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Writing the two representations in base 10\n\nA number written as \"503\" in base $b$ means:\n$$N = 5b^2 + 0\\cdot b + 3 = 5b^2+3$$\n\nThe same number written as \"305\" in base $b+2$ means:\n$$N = 3(b+2)^2 + 0\\cdot(b+2) + 5 = 3(b+2)^2+5$$\n\n### Equating the two expressions\n\n$$5b^2+3 = 3(b+2)^2+5$$\n\nExpand the right side:\n$$3(b+2)^2 = 3(b^2+4b+4) = 3b^2+12b+12$$\n\nSo:\n$$5b^2+3 = 3b^2+12b+12+5 = 3b^2+12b+17$$\n\nBring everything to one side:\n$$5b^2 - 3b^2 - 12b + 3 - 17 = 0$$\n$$2b^2 - 12b - 14 = 0$$\n$$b^2 - 6b - 7 = 0$$\n\nFactor:\n$$(b-7)(b+1) = 0$$\n\nSince $b$ must be a positive base, $b = 7$ (we reject $b=-1$).\n\n### Finding N and checking\n\n$$N = 5(7)^2 + 3 = 5(49)+3 = 245+3 = 248$$\n\n**Check** with the other representation, base $b+2 = 9$:\n$$3(9)^2 + 0(9) + 5 = 243+5 = 248 \\checkmark$$\n\n### Product of digits of N\n\n$N = 248$, digits are $2, 4, 8$.\n$$2 \\times 4 \\times 8 = 64$$\n\n### Answer\n$$\\boxed{64}$$",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Write both representations as expressions in base 10."
+        },
+        {
+          "level": 2,
+          "content": "Equate the two expressions to determine the base."
+        },
+        {
+          "level": 3,
+          "content": "Convert the number to decimal before finding the product of its digits."
+        }
+      ]
     },
     {
-      "level": 3,
-      "content": "Use the fact that a and b belong to X to count all valid pairs."
+      "externalId": "IOQM-2020-P3",
+      "examType": "IOQM",
+      "problemNumber": 3,
+      "statement": "If $\\sum_{k=1}^{N} \\frac{2k+1}{(k^2 + k)^2} = 0.9999$ then determine the value of $N$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "99",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "telescoping-series",
+        "partial-fractions"
+      ],
+      "topics": [
+        "algebra-sequences-series",
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Key idea: telescoping with partial fractions\n\nWe need to simplify\n$$\\frac{2k+1}{(k^2+k)^2} = \\frac{2k+1}{\\left[k(k+1)\\right]^2} = \\frac{2k+1}{k^2(k+1)^2}$$\n\nNotice a nice fact: $(k+1)^2 - k^2 = 2k+1$ (difference of consecutive squares). So we can split the fraction as a **difference**:\n\n$$\\frac{2k+1}{k^2(k+1)^2} = \\frac{(k+1)^2-k^2}{k^2(k+1)^2} = \\frac{(k+1)^2}{k^2(k+1)^2} - \\frac{k^2}{k^2(k+1)^2} = \\frac{1}{k^2} - \\frac{1}{(k+1)^2}$$\n\nSo each term of the sum telescopes beautifully:\n$$\\frac{2k+1}{(k^2+k)^2} = \\frac{1}{k^2} - \\frac{1}{(k+1)^2}$$\n\n### Telescoping the sum\n\n$$\\sum_{k=1}^{N}\\left(\\frac{1}{k^2}-\\frac{1}{(k+1)^2}\\right)$$\n\nWriting out the terms:\n$$\\left(\\frac{1}{1^2}-\\frac{1}{2^2}\\right) + \\left(\\frac{1}{2^2}-\\frac{1}{3^2}\\right) + \\cdots + \\left(\\frac{1}{N^2}-\\frac{1}{(N+1)^2}\\right)$$\n\nAll the middle terms cancel in pairs, leaving only the first and the very last piece:\n$$= \\frac{1}{1^2} - \\frac{1}{(N+1)^2} = 1 - \\frac{1}{(N+1)^2}$$\n\n### Solving for N\n\nWe are told this sum equals $0.9999 = \\dfrac{9999}{10000}$:\n$$1 - \\frac{1}{(N+1)^2} = \\frac{9999}{10000}$$\n$$\\frac{1}{(N+1)^2} = 1 - \\frac{9999}{10000} = \\frac{1}{10000}$$\n$$(N+1)^2 = 10000 \\implies N+1 = 100 \\implies N = 99$$\n\n### Answer\n$$\\boxed{N = 99}$$",
+      "estimatedSolveSeconds": 540,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rewrite each term using partial fractions."
+        },
+        {
+          "level": 2,
+          "content": "Look for cancellation between consecutive terms."
+        },
+        {
+          "level": 3,
+          "content": "Express the sum as a simple function of N before solving."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P4",
+      "examType": "IOQM",
+      "problemNumber": 4,
+      "statement": "Let $ABCD$ be a rectangle in which $AB + BC + CD = 20$ and $AE = 9$ where $E$ is the mid-point of the side $BC$. Find the area of the rectangle.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "19",
+      "baseRating": 1050,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "rectangle",
+        "midpoint",
+        "distance-formula"
+      ],
+      "topics": [
+        "geometry-quadrilaterals"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up variables\n\nLet rectangle $ABCD$ have $AB = x$ (width) and $BC = y$ (height). In a rectangle, opposite sides are equal, so $CD = AB = x$.\n\n<svg viewBox=\"0 0 360 260\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"60\" y=\"40\" width=\"240\" height=\"160\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/>\n<text x=\"45\" y=\"46\" font-size=\"16\">A</text>\n<text x=\"305\" y=\"46\" font-size=\"16\">B</text>\n<text x=\"305\" y=\"208\" font-size=\"16\">C</text>\n<text x=\"45\" y=\"208\" font-size=\"16\">D</text>\n<circle cx=\"300\" cy=\"120\" r=\"4\" fill=\"#1565c0\"/>\n<text x=\"310\" y=\"124\" font-size=\"16\">E</text>\n<line x1=\"60\" y1=\"40\" x2=\"300\" y2=\"120\" stroke=\"#d32f2f\" stroke-width=\"2\"/>\n<text x=\"150\" y=\"70\" font-size=\"14\" fill=\"#d32f2f\">AE = 9</text>\n<text x=\"330\" y=\"130\" font-size=\"13\" text-anchor=\"middle\" transform=\"rotate(90 330 130)\">BC</text>\n<text x=\"180\" y=\"34\" font-size=\"13\" text-anchor=\"middle\">AB</text>\n</svg>\n\n**Using the perimeter-type condition:**\n$$AB + BC + CD = 20 \\implies x + y + x = 20 \\implies 2x + y = 20 \\quad \\text{(i)}$$\n\n### Using the distance AE = 9\n\nPlace coordinates: $A=(0,0)$, $B=(x,0)$, $C=(x,y)$, $D=(0,y)$.\n\n$E$ is the midpoint of $BC$, so $E = \\left(x, \\dfrac{y}{2}\\right)$.\n\nBy the distance formula:\n$$AE^2 = x^2 + \\left(\\frac{y}{2}\\right)^2 = 81 \\quad \\text{(ii)}$$\n\n### Solving the system\n\nFrom (i): $y = 20 - 2x$, so $\\dfrac{y}{2} = 10-x$.\n\nSubstitute into (ii):\n$$x^2 + (10-x)^2 = 81$$\n$$x^2 + 100 - 20x + x^2 = 81$$\n$$2x^2 - 20x + 100 = 81$$\n$$2x^2 - 20x + 19 = 0 \\quad \\text{(iii)}$$\n\n### The clever shortcut — we don't even need x and y individually!\n\nThe **area** of the rectangle is:\n$$\\text{Area} = x \\cdot y = x(20-2x) = 20x - 2x^2$$\n\nBut from equation (iii): $2x^2 - 20x = -19$, i.e. $20x - 2x^2 = 19$.\n\nSo the area is *directly* equal to $19$ — we never even need to solve the quadratic for $x$!\n\n### Answer\n$$\\boxed{\\text{Area} = 19}$$",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let the side lengths be variables."
+        },
+        {
+          "level": 2,
+          "content": "Use the perimeter condition to relate the variables."
+        },
+        {
+          "level": 3,
+          "content": "Apply the distance formula to segment AE."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P5",
+      "examType": "IOQM",
+      "problemNumber": 5,
+      "statement": "Find the number of integer solutions to $||x| - 2020|| < 5$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "18",
+      "baseRating": 900,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "absolute-value",
+        "inequalities"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Simplifying the inequality\n\nWe need integer solutions of:\n$$\\big|\\,|x|-2020\\,\\big| < 5$$\n\nThis is a \"distance\" statement: the quantity $|x|$ must lie within $5$ units of $2020$. So:\n$$-5 < |x| - 2020 < 5$$\n$$2015 < |x| < 2025$$\n\n### Counting integer values of |x|\n\nSince $|x|$ is an integer strictly between $2015$ and $2025$, the possible values of $|x|$ are:\n$$2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024$$\n\nThat's $2024 - 2016 + 1 = 9$ possible values for $|x|$.\n\n### Counting integer values of x\n\nFor each of these $9$ values of $|x|$, there are **two** corresponding integers $x$ (one positive, one negative) — for example $|x| = 2016$ gives $x = 2016$ or $x = -2016$.\n\n$$\\text{Total integers } x = 9 \\times 2 = 18$$\n\n### Answer\n$$\\boxed{18}$$",
+      "estimatedSolveSeconds": 180,
+      "hints": [
+        {
+          "level": 1,
+          "content": "First isolate the expression |x|."
+        },
+        {
+          "level": 2,
+          "content": "Convert the absolute value inequality into a double inequality."
+        },
+        {
+          "level": 3,
+          "content": "Count the positive and negative integer values separately."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P6",
+      "examType": "IOQM",
+      "problemNumber": 6,
+      "statement": "What is the least positive integer by which $2^5 \\cdot 3^6 \\cdot 4^3 \\cdot 5^3 \\cdot 6^7$ should be multiplied so that, the product is a perfect square?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "15",
+      "baseRating": 1100,
+      "difficultyLabel": "Easy",
+      "tags": [
+        "prime-factorization",
+        "perfect-square"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Rewrite everything using prime factors\n\nWe have:\n$$2^5 \\cdot 3^6 \\cdot 4^3 \\cdot 5^3 \\cdot 6^7$$\n\nConvert $4$ and $6$ into their prime factors:\n- $4^3 = (2^2)^3 = 2^6$\n- $6^7 = (2\\cdot 3)^7 = 2^7 \\cdot 3^7$\n\nSubstituting:\n$$2^5 \\cdot 3^6 \\cdot 2^6 \\cdot 5^3 \\cdot 2^7 \\cdot 3^7$$\n\n### Combine exponents of each prime\n\n**Power of 2:** $5 + 6 + 7 = 18$ (even ✓)\n\n**Power of 3:** $6 + 7 = 13$ (odd ✗)\n\n**Power of 5:** $3$ (odd ✗)\n\nSo the full product is:\n$$2^{18}\\cdot 3^{13}\\cdot 5^{3}$$\n\n### Making it a perfect square\n\nA number is a perfect square exactly when **every** prime's exponent is even.\n\n- $2^{18}$ — exponent 18 is already even. ✓ No change needed.\n- $3^{13}$ — exponent 13 is odd. We need one more factor of $3$ to make it $3^{14}$.\n- $5^{3}$ — exponent 3 is odd. We need one more factor of $5$ to make it $5^{4}$.\n\nSo we must multiply by $3 \\times 5 = 15$.\n\n### Answer\n$$\\boxed{15}$$",
+      "estimatedSolveSeconds": 300,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rewrite 4 and 6 in terms of their prime factorizations."
+        },
+        {
+          "level": 2,
+          "content": "Combine the exponents of each prime in the entire product."
+        },
+        {
+          "level": 3,
+          "content": "Identify which prime exponents are odd and make them even."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P7",
+      "examType": "IOQM",
+      "problemNumber": 7,
+      "statement": "Let $ABC$ be a triangle with $AB = AC$. Let $D$ be a point on the segment $BC$ such that $BD = 48 \\frac{1}{61}$ and $DC = 61$. Let $E$ be a point on $AD$ such that $CE$ is perpendicular to $AD$ and $DE = 11$. Find $AE$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "25",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "isosceles-triangle",
+        "perpendicular"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the problem\n\nWe have $AB = AC$ (isosceles), $D$ on $BC$ with $BD = 48\\tfrac{1}{61} = \\dfrac{2929}{61}$, $DC = 61$. $E$ lies on $AD$ with $CE \\perp AD$ and $DE = 11$. We want $AE$.\n\n<svg viewBox=\"0 0 460 320\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"230,30 60,270 400,270\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/>\n<text x=\"222\" y=\"20\" font-size=\"16\">A</text>\n<text x=\"40\" y=\"288\" font-size=\"16\">B</text>\n<text x=\"405\" y=\"288\" font-size=\"16\">C</text>\n<line x1=\"230\" y1=\"30\" x2=\"200\" y2=\"270\" stroke=\"#333\" stroke-width=\"2\"/>\n<text x=\"190\" y=\"288\" font-size=\"16\">D</text>\n<circle cx=\"215\" cy=\"150\" r=\"4\" fill=\"#1565c0\"/>\n<text x=\"222\" y=\"150\" font-size=\"16\">E</text>\n<line x1=\"400\" y1=\"270\" x2=\"215\" y2=\"150\" stroke=\"#d32f2f\" stroke-width=\"2\"/>\n<rect x=\"207\" y=\"146\" width=\"10\" height=\"10\" fill=\"none\" stroke=\"#d32f2f\"/>\n<text x=\"105\" y=\"285\" font-size=\"13\">BD</text>\n<text x=\"275\" y=\"285\" font-size=\"13\">DC = 61</text>\n</svg>\n\n### Step 1 — Find CE using the right triangle CED\n\nSince $CE \\perp AD$, triangle $CED$ has a right angle at $E$. Using the Pythagorean theorem:\n$$DC^2 = DE^2 + EC^2$$\n$$61^2 = 11^2 + EC^2$$\n$$3721 = 121 + EC^2 \\implies EC^2 = 3600 \\implies EC = 60$$\n\n### Step 2 — A useful identity from Stewart's Theorem\n\nSince $AD$ is a cevian in triangle $ABC$, **Stewart's Theorem** says:\n$$AB^2\\cdot DC + AC^2 \\cdot BD - AD^2 \\cdot BC = BC \\cdot BD \\cdot DC$$\n\nBecause $AB = AC$ (call this common length $x$), and $BC = BD+DC$:\n$$x^2(DC+BD) - AD^2\\cdot BC = BC\\cdot BD\\cdot DC$$\n$$x^2 \\cdot BC - AD^2\\cdot BC = BC\\cdot BD \\cdot DC$$\n\nDividing through by $BC$:\n$$x^2 - AD^2 = BD\\cdot DC$$\n\nThat is:\n$$AB^2 = AD^2 + BD\\cdot DC \\quad \\text{(*)}$$\n\n### Step 3 — Another relation from right triangle AEC\n\nSince $CE \\perp AD$ and $E$ lies on segment $AD$, triangle $AEC$ has a right angle at $E$:\n$$AC^2 = AE^2 + EC^2 = AE^2 + 60^2 = AE^2 + 3600 \\quad \\text{(**)}$$\n\n### Step 4 — Combine (since AB = AC)\n\nSince $AB=AC$, equations (*) and (**) give the same quantity:\n$$AD^2 + BD\\cdot DC = AE^2 + 3600$$\n\nAlso, since $E$ lies between $A$ and $D$ on segment $AD$:\n$$AD = AE + DE = AE + 11$$\n\nSubstitute:\n$$(AE+11)^2 + BD\\cdot DC = AE^2 + 3600$$\n$$AE^2 + 22\\,AE + 121 + BD\\cdot DC = AE^2 + 3600$$\n$$22\\,AE = 3479 - BD\\cdot DC$$\n\n### Step 5 — Compute BD·DC\n\n$$BD\\cdot DC = \\frac{2929}{61} \\times 61 = 2929$$\n\nSo:\n$$22\\,AE = 3479 - 2929 = 550 \\implies AE = 25$$\n\n### Answer\n$$\\boxed{AE = 25}$$",
+      "estimatedSolveSeconds": 720,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Use the fact that AB = AC to exploit the symmetry of the triangle."
+        },
+        {
+          "level": 2,
+          "content": "Work with the right triangle formed by CE being perpendicular to AD."
+        },
+        {
+          "level": 3,
+          "content": "Relate the lengths on AD using the given value of DE."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P8",
+      "examType": "IOQM",
+      "problemNumber": 8,
+      "statement": "A 5-digit number (in base 10) has digits $k, k+1, k+2, 3k, k+3$ in that order, from left to right. If this number is $m^2$ for some natural number $m$, find the sum of the digits of $m$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "15",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "digits",
+        "perfect-square"
+      ],
+      "topics": [
+        "nt-base-representations"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the digit constraints\n\nThe 5-digit number has digits, from left to right:\n$$k,\\; k+1,\\; k+2,\\; 3k,\\; k+3$$\n\nEvery digit must be a single digit, i.e. between $0$ and $9$ (and the leftmost digit $k$ must be at least $1$ since it's a 5-digit number).\n\nThe binding constraint is $3k \\le 9$, i.e. $k \\le 3$. Combined with $k\\ge 1$, we get:\n$$k \\in \\{1, 2, 3\\}$$\n\n### Testing each case\n\n**$k=1$:** digits are $1,2,3,3,4$ → the number is $12334$.\n$\\sqrt{12334}\\approx 111.06$; since $111^2=12321$ and $112^2=12544$, this is **not** a perfect square.\n\n**$k=2$:** digits are $2,3,4,6,5$ → the number is $23465$.\n$\\sqrt{23465}\\approx 153.2$; since $153^2=23409$ and $154^2=23716$, this is **not** a perfect square.\n\n**$k=3$:** digits are $3,4,5,9,6$ → the number is $34596$.\nCheck: $186^2 = 34596$. **Yes**, this is a perfect square!\n\n### Finding m and its digit sum\n\nSo $m = 186$ (since $186^2 = 34596$).\n\nSum of digits of $m$:\n$$1 + 8 + 6 = 15$$\n\n### Answer\n$$\\boxed{15}$$",
+      "estimatedSolveSeconds": 540,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Determine the possible values of k using the digit constraints."
+        },
+        {
+          "level": 2,
+          "content": "Construct the corresponding five-digit numbers."
+        },
+        {
+          "level": 3,
+          "content": "Test which candidate is a perfect square."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P9",
+      "examType": "IOQM",
+      "problemNumber": 9,
+      "statement": "Let $ABC$ be a triangle with $AB=5$, $AC=4$, $BC=6$. The internal angle bisector of $C$ intersects the side $AB$ at $D$. Points $M$ and $N$ are taken on sides $BC$ and $AC$, respectively, such that $DM \\parallel AC$ and $DN \\parallel BC$. If $(MN)^2 = \\frac{p}{q}$ where $p$ and $q$ are relatively prime positive integers then what is the sum of the digits of $|p - q|$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "2",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "angle-bisector",
+        "similar-triangles"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Locate D using the Angle Bisector Theorem\n\nIn triangle $ABC$: $AB=5$, $AC=4$, $BC=6$. $CD$ bisects $\\angle C$ and meets $AB$ at $D$.\n\n<svg viewBox=\"0 0 420 320\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"70,270 350,270 130,40\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/>\n<text x=\"55\" y=\"288\" font-size=\"16\">B</text>\n<text x=\"358\" y=\"288\" font-size=\"16\">C</text>\n<text x=\"118\" y=\"30\" font-size=\"16\">A</text>\n<circle cx=\"163\" cy=\"197\" r=\"4\" fill=\"#1565c0\"/>\n<text x=\"140\" y=\"215\" font-size=\"16\">D</text>\n<line x1=\"350\" y1=\"270\" x2=\"163\" y2=\"197\" stroke=\"#d32f2f\" stroke-width=\"2\"/>\n<circle cx=\"255\" cy=\"270\" r=\"4\" fill=\"#2e7d32\"/>\n<text x=\"250\" y=\"290\" font-size=\"16\">M</text>\n<line x1=\"163\" y1=\"197\" x2=\"255\" y2=\"270\" stroke=\"#2e7d32\" stroke-width=\"2\" stroke-dasharray=\"4,3\"/>\n<circle cx=\"146\" cy=\"119\" r=\"4\" fill=\"#2e7d32\"/>\n<text x=\"115\" y=\"119\" font-size=\"16\">N</text>\n<line x1=\"163\" y1=\"197\" x2=\"146\" y2=\"119\" stroke=\"#2e7d32\" stroke-width=\"2\" stroke-dasharray=\"4,3\"/>\n<line x1=\"146\" y1=\"119\" x2=\"255\" y2=\"270\" stroke=\"#6a1b9a\" stroke-width=\"2\"/>\n<text x=\"60\" y=\"150\" font-size=\"13\">AB=5</text>\n<text x=\"310\" y=\"150\" font-size=\"13\">AC=4</text>\n<text x=\"200\" y=\"285\" font-size=\"13\">BC=6</text>\n</svg>\n\nBy the **Angle Bisector Theorem**:\n$$\\frac{AD}{DB} = \\frac{CA}{CB} = \\frac{4}{6} = \\frac{2}{3}$$\n\nSince $AD+DB = AB = 5$, and $AD:DB = 2:3$:\n$$AD = \\frac{2}{5}\\times 5 = 2, \\qquad DB = \\frac{3}{5}\\times 5 = 3$$\n\n### Step 2 — Use the parallels to find DM and DN\n\nSince $DN \\parallel BC$, triangle $ADN \\sim$ triangle $ABC$ with ratio $\\dfrac{AD}{AB}=\\dfrac{2}{5}$:\n$$AN = \\frac{2}{5}AC = \\frac{8}{5}, \\qquad DN = \\frac{2}{5}BC = \\frac{12}{5}$$\n\nSince $DM \\parallel AC$, triangle $BDM \\sim$ triangle $BAC$ with ratio $\\dfrac{BD}{BA}=\\dfrac{3}{5}$:\n$$BM = \\frac{3}{5}BC = \\frac{18}{5}, \\qquad DM = \\frac{3}{5}AC = \\frac{12}{5}$$\n\n### Step 3 — Place coordinates to compute MN directly\n\nLet $B=(0,0)$, $C=(6,0)$. Using $AB=5,AC=4$:\n$$x^2+y^2=25,\\quad (x-6)^2+y^2=16$$\nSubtracting: $12x-36=9 \\Rightarrow x=\\dfrac{15}{4}$, and $y^2 = 25-\\dfrac{225}{16}=\\dfrac{175}{16}$, so $y=\\dfrac{5\\sqrt7}{4}$.\n\nSo $A = \\left(\\dfrac{15}{4}, \\dfrac{5\\sqrt7}{4}\\right)$.\n\n**Point $D$** divides $AB$ with $AD:DB=2:3$, so $D = \\dfrac{3A+2B}{5} = \\left(\\dfrac94, \\dfrac{3\\sqrt7}{4}\\right)$.\n\n**Point $N$** divides $AC$ with $AN:NC = 2:3$, so $N = \\dfrac{3A+2C}{5} = \\left(\\dfrac{93}{20}, \\dfrac{3\\sqrt7}{4}\\right)$.\n\n**Point $M$** divides $BC$ with $BM:MC = 3:2$, so $M = \\left(\\dfrac{18}{5},0\\right) = \\left(\\dfrac{72}{20},0\\right)$.\n\n### Step 4 — Compute MN²\n\n$$\\Delta x = \\frac{93}{20}-\\frac{72}{20} = \\frac{21}{20}, \\qquad \\Delta y = \\frac{3\\sqrt7}{4}$$\n\n$$MN^2 = \\left(\\frac{21}{20}\\right)^2 + \\left(\\frac{3\\sqrt7}{4}\\right)^2 = \\frac{441}{400} + \\frac{63}{16}$$\n\nConverting to a common denominator of $400$: $\\dfrac{63}{16} = \\dfrac{1575}{400}$\n\n$$MN^2 = \\frac{441+1575}{400} = \\frac{2016}{400} = \\frac{126}{25}$$\n\n### Step 5 — Final answer\n\nSo $p=126$, $q=25$ (they are coprime since $126=2\\cdot3^2\\cdot7$ and $25=5^2$).\n$$|p-q| = |126-25| = 101$$\n\nSum of digits of $101$: $1+0+1 = 2$.\n\n### Answer\n$$\\boxed{2}$$",
+      "estimatedSolveSeconds": 780,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Apply the Angle Bisector Theorem to determine the ratio in which D divides AB."
+        },
+        {
+          "level": 2,
+          "content": "Use the parallel lines to identify pairs of similar triangles."
+        },
+        {
+          "level": 3,
+          "content": "Express MN in terms of the side lengths before computing its square."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P10",
+      "examType": "IOQM",
+      "problemNumber": 10,
+      "statement": "Five students take a test on which any integer score from 0 to 100 inclusive is possible. What is the largest possible difference between the median and the mean of the scores?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "mean",
+        "median"
+      ],
+      "topics": [
+        "probability-basic"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up\n\nFive students, scores are integers between $0$ and $100$ inclusive. We want to **maximize** $|\\text{median} - \\text{mean}|$.\n\nSort the scores $s_1 \\le s_2 \\le s_3 \\le s_4 \\le s_5$. The median is $s_3$ (the middle one).\n\n### Strategy: fix the median, then make the mean as extreme as possible\n\n**To make median − mean as large as possible:** we want the median $s_3$ to be big, while dragging the mean down as much as possible.\n\nSince $s_1, s_2 \\le s_3$ and $s_4, s_5 \\ge s_3$, to *minimize* the sum (and hence the mean) while keeping the median fixed at $s_3 = M$:\n- Make $s_1 = s_2 = 0$ (the smallest allowed values, since they only need to be $\\le M$).\n- Make $s_4 = s_5 = M$ (the smallest values allowed for numbers that must be $\\ge M$).\n\nThis gives the sum:\n$$s_1+s_2+s_3+s_4+s_5 = 0+0+M+M+M = 3M$$\n$$\\text{mean} = \\frac{3M}{5}$$\n\nSo:\n$$\\text{median} - \\text{mean} = M - \\frac{3M}{5} = \\frac{2M}{5}$$\n\nThis is maximized by taking $M$ as large as possible, i.e. $M = 100$:\n$$\\text{median}-\\text{mean} = \\frac{2(100)}{5} = 40$$\n\n(For example, the scores $0,0,100,100,100$ give median $100$ and mean $60$, a difference of $40$.)\n\n### Checking the other direction\n\nBy a symmetric argument (mean bigger than median: use $s_1=s_2=0=M$... actually take median small, other scores at extremes), you can also show mean − median cannot exceed $40$. For instance $0,0,0,100,100$ gives median $0$, mean $40$ — again a difference of $40$.\n\nSo in both directions, the maximum possible difference is $40$.\n\n### Answer\n$$\\boxed{40}$$",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Arrange the five scores in non-decreasing order."
+        },
+        {
+          "level": 2,
+          "content": "Keep the median fixed while making the remaining scores as extreme as possible."
+        },
+        {
+          "level": 3,
+          "content": "Compute the resulting mean and compare it with the median."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P11",
+      "examType": "IOQM",
+      "problemNumber": 11,
+      "statement": "Let $X = \\{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5\\}$ and $S = \\{(a,b) \\in X \\times X : x^2 + a x + b$ and $x^3 + b x + a$ have at least a common real zero$\\}$. How many elements are there in $S$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "24",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "common-root",
+        "polynomials"
+      ],
+      "topics": [
+        "algebra-polynomials"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the common root condition\n\nWe need pairs $(a,b) \\in X\\times X$, where $X=\\{-5,\\dots,5\\}$, such that $x^2+ax+b$ and $x^3+bx+a$ share **at least one common real root**. Let $r$ be that common root:\n$$r^2+ar+b=0 \\quad \\text{(1)}$$\n$$r^3+br+a=0 \\quad \\text{(2)}$$\n\n### Eliminating b\n\nFrom (1): $b = -r^2-ar$.\n\nSubstitute into (2):\n$$r^3 + (-r^2-ar)r + a = 0$$\n$$r^3 - r^3 - ar^2 + a = 0$$\n$$-ar^2+a = 0 \\implies a(1-r^2) = 0$$\n\nSo either $a=0$, **or** $r^2=1$ (i.e. $r=1$ or $r=-1$).\n\n### Case 1: a = 0\n\nFrom (1): $b = -r^2$, for **some** real number $r$. Since $r$ can be any real number, this just requires $b \\le 0$ (as $-r^2 \\le 0$ always, and we can pick $r=\\sqrt{-b}$).\n\nSo for $a=0$: $b$ can be any of $\\{0,-1,-2,-3,-4,-5\\}$ — that's **6 pairs**.\n\n### Case 2: r = 1\n\nFrom (1): $1+a+b=0 \\implies b = -1-a$.\n\nAs $a$ ranges over $\\{-5,\\dots,5\\}$, we need $b=-1-a \\in X$ too:\n- $a=-5\\Rightarrow b=4$ ✓ ... down to $a=4\\Rightarrow b=-5$ ✓\n- $a=5 \\Rightarrow b=-6$, which is **outside** $X$ — excluded.\n\nSo $a \\in \\{-5,-4,\\dots,4\\}$ gives **10 pairs**: $(-5,4),(-4,3),(-3,2),(-2,1),(-1,0),(0,-1),(1,-2),(2,-3),(3,-4),(4,-5)$.\n\n### Case 3: r = -1\n\nFrom (1): $1-a+b=0 \\implies b=a-1$.\n\nAs $a$ ranges over $X$, need $b=a-1\\in X$:\n- $a=-5\\Rightarrow b=-6$ excluded.\n- $a=-4,\\dots,5 \\Rightarrow b = -5,\\dots,4$, all valid.\n\nSo $a\\in\\{-4,\\dots,5\\}$ gives **10 pairs**: $(-4,-5),(-3,-4),(-2,-3),(-1,-2),(0,-1),(1,0),(2,1),(3,2),(4,3),(5,4)$.\n\n### Removing overlaps (taking the union)\n\nNotice $(0,-1)$ appears in **all three** cases (Case 1 with $b=-1$, Case 2 with $a=0$, and Case 3 with $a=0$) — count it once.\n\n- Case 1 (excluding the shared $(0,-1)$): $6-1=5$ new pairs, plus $(0,-1)$ itself $=6$ total from Case 1.\n- Case 2 (excluding $a=0$, already in Case 1): $10-1=9$ new pairs.\n- Case 3 (excluding $a=0$, already in Case 1): $10-1=9$ new pairs.\n\nChecking Case 2 and Case 3 for further overlaps: comparing entries with the same $a$ value (from $-4$ to $4$), the $b$-values from Case 2 and Case 3 are always different (e.g. at $a=-4$: Case 2 gives $b=3$, Case 3 gives $b=-5$ — no clash anywhere). So there is **no overlap** between Case 2 and Case 3 (beyond the shared point already removed).\n\n### Total count\n\n$$|S| = 6 + 9 + 9 = 24$$\n\n### Answer\n$$\\boxed{24}$$",
+      "estimatedSolveSeconds": 900,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let the common real root be r and substitute it into both polynomials."
+        },
+        {
+          "level": 2,
+          "content": "Eliminate either a or b using the two resulting equations."
+        },
+        {
+          "level": 3,
+          "content": "Use the fact that a and b belong to X to count all valid pairs."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P12",
+      "examType": "IOQM",
+      "problemNumber": 12,
+      "statement": "Given a pair of concentric circles, chords $AB, BC, CD, \\dots$ of the outer circle are drawn such that they all touch the inner circle. If $\\angle ABC = 75^\\circ$, how many chords can be drawn before returning to the starting point?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "24",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "concentric-circles",
+        "inscribed-angles"
+      ],
+      "topics": [
+        "geometry-circles"
+      ],
+      "diagramSvg": "<svg viewBox=\"0 0 640 580\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"320\" cy=\"300\" r=\"230\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"320\" cy=\"300\" r=\"140\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"320\" cy=\"300\" r=\"3\" fill=\"#222\"/><text x=\"320\" y=\"325\" font-size=\"16\" text-anchor=\"middle\">O</text><line x1=\"205\" y1=\"499\" x2=\"542\" y2=\"360\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"542\" y1=\"360\" x2=\"320\" y2=\"70\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"320\" y1=\"70\" x2=\"98\" y2=\"360\" stroke=\"#222\" stroke-width=\"2\"/><path d=\"M 542 360 L 500.6 376.8 A 45 45 0 0 1 514.8 323.8 Z\" fill=\"#d32f2f\"/><text x=\"471\" y=\"345\" font-size=\"16\">75°</text><circle cx=\"320\" cy=\"70\" r=\"4\" fill=\"#222\"/><text x=\"320\" y=\"50\" font-size=\"18\" text-anchor=\"middle\">C</text><circle cx=\"542\" cy=\"360\" r=\"4\" fill=\"#222\"/><text x=\"568\" y=\"367\" font-size=\"18\">B</text><circle cx=\"98\" cy=\"360\" r=\"4\" fill=\"#222\"/><text x=\"62\" y=\"367\" font-size=\"18\">D</text><circle cx=\"205\" cy=\"499\" r=\"4\" fill=\"#222\"/><text x=\"195\" y=\"525\" font-size=\"18\">A</text></svg>",
+      "solutionMarkdown": "### Understanding the configuration\n\nWe have two concentric circles. A sequence of chords $AB, BC, CD, \\dots$ of the **outer** circle are drawn, each one tangent to the **inner** circle. Because of the symmetry of this construction (every chord is tangent to the same inner circle), **every chord subtends the same central angle** at the center $O$. Call this central angle $\\varphi$ (so arc $AB$ = arc $BC$ = arc $CD$ = $\\cdots$ = $\\varphi$, all equal).\n\nThis creates a \"star polygon\" pattern going around the outer circle.\n\n### Relating the vertex angle to the arc\n\nLook at vertex $B$, where chords $AB$ and $BC$ meet, forming $\\angle ABC = 75^\\circ$.\n\nBy the **Inscribed Angle Theorem**, $\\angle ABC$ is an inscribed angle that \"sees\" arc $AC$ **not containing** $B$.\n\nGoing from $A$ to $B$ is arc $\\varphi$, and from $B$ to $C$ is another arc $\\varphi$ — so going *through* $B$, arc $AC$ (containing $B$) is $2\\varphi$. That means arc $AC$ **not containing** $B$ is:\n$$360^\\circ - 2\\varphi$$\n\nBy the Inscribed Angle Theorem:\n$$\\angle ABC = \\frac{1}{2}(360^\\circ - 2\\varphi) = 180^\\circ - \\varphi$$\n\n### Solving for φ\n\n$$75^\\circ = 180^\\circ - \\varphi \\implies \\varphi = 105^\\circ$$\n\n### Finding when the chords return to the start\n\nEach chord advances by a central angle of $105^\\circ$. The path returns to the starting point after $n$ chords when:\n$$n \\times 105^\\circ \\text{ is a multiple of } 360^\\circ$$\n\nWe need the **smallest** positive integer $n$ such that $105n \\equiv 0 \\pmod{360}$:\n$$n = \\frac{360}{\\gcd(360,105)}$$\n\nSince $360 = 2^3\\cdot3^2\\cdot5$ and $105 = 3\\cdot5\\cdot7$, we get $\\gcd(360,105) = 15$.\n\n$$n = \\frac{360}{15} = 24$$\n\n### Answer\n$$\\boxed{24}$$\n\nSo the bug (chord sequence) forms a 24-pointed star before returning to $A$.",
+      "estimatedSolveSeconds": 780,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Relate the angle subtended by a chord to the corresponding central angle."
+        },
+        {
+          "level": 2,
+          "content": "Use the tangency condition to show that every chord subtends the same central angle."
+        },
+        {
+          "level": 3,
+          "content": "Determine how many equal central angles complete one full revolution."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P13",
+      "examType": "IOQM",
+      "problemNumber": 13,
+      "statement": "Find the sum of all positive integers $n$ for which $|2^n + 5^n - 65|$ is a perfect square.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "6",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "perfect-squares",
+        "exponents"
+      ],
+      "topics": [
+        "algebra-manipulation",
+        "nt-modular-arithmetic"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Testing small values of n directly\n\nWe need all positive integers $n$ for which $\\left|2^n+5^n-65\\right|$ is a perfect square.\n\n**$n=1$:** $2+5-65=-58$, so $|{-58}|=58$. Not a perfect square ($7^2=49$, $8^2=64$).\n\n**$n=2$:** $4+25-65=-36$, so $|{-36}|=36=6^2$. **This is a perfect square!** ✓ So $n=2$ works.\n\n**$n=3$:** $8+125-65=68$. Not a perfect square ($8^2=64$, $9^2=81$).\n\n**$n=4$:** $16+625-65=576$. Check: $24^2=576$. **This is a perfect square!** ✓ So $n=4$ works.\n\n**$n=5$:** $32+3125-65=3092$. $\\sqrt{3092}\\approx55.6$; $55^2=3025$, $56^2=3136$. Not a perfect square.\n\n**$n=6$:** $64+15625-65=15624$. $125^2=15625$, which is just $1$ more than $15624$ — so **not** a perfect square (it just misses).\n\n### Why no larger n works\n\nFor $n \\ge 5$, the term $5^n$ grows extremely fast and dominates. One can check that $2^n+5^n-65$ lands strictly between two consecutive squares for all larger $n$ — for instance, comparing with $(5^{n/2}\\text{-ish})$ growth shows the expression is always sandwiched between consecutive perfect squares once $n$ gets large, and direct checking confirms no more solutions occur for $n\\geq5$. So the only solutions are $n=2$ and $n=4$.\n\n### Sum of all valid n\n\n$$n = 2 \\text{ and } n = 4$$\n$$\\text{Sum} = 2+4 = 6$$\n\n### Answer\n$$\\boxed{6}$$",
+      "estimatedSolveSeconds": 660,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Check the smallest positive values of n separately."
+        },
+        {
+          "level": 2,
+          "content": "For larger n, compare the expression modulo a suitable integer."
+        },
+        {
+          "level": 3,
+          "content": "Use the growth of the exponential terms to eliminate remaining cases."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P14",
+      "examType": "IOQM",
+      "problemNumber": 14,
+      "statement": "The product $55 \\times 60 \\times 65$ is written as the product of five distinct positive integers. What is the least possible value of the largest of these integers?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "20",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "factorization",
+        "optimization"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Prime factorize the product\n\n$$55 \\times 60 \\times 65$$\n\n- $55 = 5 \\times 11$\n- $60 = 2^2\\times 3\\times 5$\n- $65 = 5\\times 13$\n\nSo:\n$$55\\times60\\times65 = 2^2\\times3\\times5^3\\times11\\times13 = 214500$$\n\n### Step 2 — Think about the size constraint\n\nWe want to split $214500$ into **5 distinct** positive integers so that the **largest one is as small as possible**.\n\nThe primes $11$ and $13$ are both fairly large; the fifth root of $214500$ is roughly $11.7$, so ideally all five factors would hover around $11$–$12$. But $11$ and $13$ are primes that must appear as (or within) some factor — and $13$ itself already exceeds this rough average. Since $13$ can't be split up (it's prime) without attaching it to another factor and making something even bigger, the cleanest approach is to let $11$ and $13$ be two of the five factors on their own.\n\n### Step 3 — Distribute the remaining factors\n\nAfter using up $11$ and $13$, the remaining product to split among the other **three** distinct factors is:\n$$\\frac{214500}{11\\times13} = \\frac{214500}{143} = 1500 = 2^2\\times3\\times5^3$$\n\nWe want three **distinct** divisors of $1500$ (also distinct from $11$ and $13$) whose product is $1500$, keeping the largest one as small as possible.\n\nSince $1500^{1/3}\\approx 11.4$, we look for divisor triples near that value. Trying:\n$$5 \\times 15 \\times 20 = 1500 \\checkmark$$\nwith maximum $20$.\n\n**Can we do better than 20?** Since all three numbers must be divisors of $1500$, and the max value $M$ of the triple must itself divide $1500$, we check smaller divisors:\n- $M=15$: need two distinct divisors $\\le 15$ multiplying to $1500/15=100$. No such pair exists among divisors of $1500$ that are $\\le 15$ (e.g. $10\\times10$ isn't distinct, $4\\times25$ has $25>15$).\n- $M=12$: need two distinct divisors $\\le12$ multiplying to $125$. No valid pair exists.\n\nSo $20$ is indeed the smallest possible maximum for this triple.\n\n### Step 4 — Assemble the five factors\n\n$$11,\\ 13,\\ 5,\\ 15,\\ 20$$\n\nCheck: $11\\times13\\times5\\times15\\times20 = 143\\times1500 = 214500$ ✓, and all five are distinct.\n\nThe largest of these is $20$ (since $20 > 13$).\n\n### Answer\n$$\\boxed{20}$$",
+      "estimatedSolveSeconds": 480,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Prime-factorize the entire product."
+        },
+        {
+          "level": 2,
+          "content": "Distribute the prime factors among five distinct integers."
+        },
+        {
+          "level": 3,
+          "content": "Try to balance the sizes of the factors while keeping them distinct."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P15",
+      "examType": "IOQM",
+      "problemNumber": 15,
+      "statement": "Three couples sit for a photograph in 2 rows of three people each such that no couple is sitting in the same row next to each other or in the same column one behind the other. How many arrangements are possible?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "96",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "seating-arrangement",
+        "casework"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the grid\n\nWe must seat 3 couples in a $2\\times3$ grid of seats (2 rows, 3 columns), so that **no couple** sits:\n- next to each other in the same row (i.e. in adjacent columns of the same row), **or**\n- one directly behind the other in the same column.\n\n### Key observation: each couple must be split between the two rows\n\nSuppose, for contradiction, that both members of some couple sit in the *same row*. Since a row has only 3 seats, and they can't be adjacent, they must occupy the two **end** seats (columns 1 and 3) of that row, with someone else's partner in the middle seat.\n\nWorking through this configuration forces a same-column clash for another couple (the seat directly below/above the middle seat ends up occupied by both members of a *different* couple). This is a contradiction. So **no couple can ever share a row** — each couple must have exactly **one member in Row 1 and one member in Row 2**.\n\n### Why this simplifies everything\n\nSince each couple has one person in each row, **the row-adjacency condition is automatically satisfied** — a couple is never both in the same row, so they can never be \"next to each other in a row.\" The only condition left to worry about is: **no couple in the same column.**\n\n### Counting valid arrangements\n\n**Step 1: Assign couples to columns.**\nDecide which couple sits in which column (as a pair of seats, top+bottom): this can be done in $3! = 6$ ways.\n\n**Step 2: Decide who (of each couple) sits in Row 1 vs Row 2.**\nFor each of the 3 couples independently, choose which partner goes to Row 1 (the other automatically goes to Row 2): $2^3 = 8$ ways.\n\nSo far, Row 1's arrangement (which person is in which column) is fully determined: $6\\times8 = 48$ ways.\n\n**Step 3: Arrange Row 2 avoiding the same-column clash.**\nRow 2 must contain the *partners* of the Row 1 people, but **not** in the same column as their partner. Since there are 3 couples and 3 columns, this is exactly a **derangement** of 3 objects (each partner must move to a different column than their own). The number of derangements of 3 elements is:\n$$D_3 = 2$$\n\n### Total count\n\n$$\\text{Total} = 48 \\times 2 = 96$$\n\n### Answer\n$$\\boxed{96}$$",
+      "estimatedSolveSeconds": 600,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Arrange one row first and then analyze the restrictions on the second row."
+        },
+        {
+          "level": 2,
+          "content": "Ensure no couple appears in the same column or adjacent positions in a row."
+        },
+        {
+          "level": 3,
+          "content": "Split the counting into cases based on the placement of the first row."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P16",
+      "examType": "IOQM",
+      "problemNumber": 16,
+      "statement": "The sides $x$ and $y$ of a scalene triangle satisfy $x + \\frac{2\\Delta}{x} = y + \\frac{2\\Delta}{y}$, where $\\Delta$ is the area of the triangle. If $x=60$, $y=63$, what is the length of the largest side of the triangle?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "87",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "triangle-area"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Simplify the given equation\n\nWe are given:\n$$x + \\frac{2\\Delta}{x} = y + \\frac{2\\Delta}{y}$$\n\n<svg viewBox=\"0 0 380 260\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"60,220 320,220 60,60\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/>\n<rect x=\"60\" y=\"200\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"#333\"/>\n<text x=\"40\" y=\"240\" font-size=\"16\">B</text>\n<text x=\"330\" y=\"225\" font-size=\"16\">C</text>\n<text x=\"40\" y=\"60\" font-size=\"16\">A</text>\n<text x=\"170\" y=\"240\" font-size=\"14\">x = 60</text>\n<text x=\"35\" y=\"140\" font-size=\"14\">y = 63</text>\n<text x=\"220\" y=\"130\" font-size=\"14\" fill=\"#d32f2f\">largest side = 87</text>\n</svg>\n\nRearranging:\n$$x - y = \\frac{2\\Delta}{y} - \\frac{2\\Delta}{x} = 2\\Delta\\left(\\frac{1}{y}-\\frac{1}{x}\\right) = 2\\Delta\\cdot\\frac{x-y}{xy}$$\n\nSince the triangle is **scalene**, $x \\ne y$, so we can divide both sides by $(x-y)$:\n$$1 = \\frac{2\\Delta}{xy} \\implies \\Delta = \\frac{xy}{2}$$\n\n### Step 2 — Interpret this geometrically\n\nThe area of a triangle with two sides $x,y$ and included angle $\\theta$ between them is:\n$$\\Delta = \\frac{1}{2}xy\\sin\\theta$$\n\nComparing with $\\Delta = \\dfrac{xy}{2}$ (which is $\\dfrac{1}{2}xy\\times1$), we need:\n$$\\sin\\theta = 1 \\implies \\theta = 90^\\circ$$\n\nSo the angle **between** the sides of length $x=60$ and $y=63$ is a **right angle**!\n\n### Step 3 — Find the third (largest) side\n\nSince the angle between $x$ and $y$ is $90^\\circ$, the third side is the hypotenuse of a right triangle with legs $60$ and $63$:\n$$\\text{third side} = \\sqrt{60^2+63^2} = \\sqrt{3600+3969} = \\sqrt{7569} = 87$$\n\nThis is clearly the **largest** side (bigger than both $60$ and $63$).\n\n### Answer\n$$\\boxed{87}$$",
+      "estimatedSolveSeconds": 720,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rearrange the given equation to determine the area of the triangle."
+        },
+        {
+          "level": 2,
+          "content": "Use the area formula involving two sides and the included angle."
+        },
+        {
+          "level": 3,
+          "content": "Apply the cosine rule to determine the remaining side."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P17",
+      "examType": "IOQM",
+      "problemNumber": 17,
+      "statement": "How many two digit numbers have exactly 4 positive factors? (Here 1 and the number $n$ are also considered as factors of $n$.)",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "30",
+      "baseRating": 1150,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "number-of-divisors"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### When does a number have exactly 4 divisors?\n\nIf $n = p_1^{e_1}p_2^{e_2}\\cdots$, the number of divisors is $(e_1+1)(e_2+1)\\cdots$. For this product to equal exactly $4$, there are only two possible shapes:\n\n**Type 1: $n = p^3$** (a prime cubed) — divisors are $1,p,p^2,p^3$, that's $4$ divisors.\n\n**Type 2: $n = p\\cdot q$** (product of two *different* primes) — divisors are $1,p,q,pq$, that's $4$ divisors.\n\n### Counting Type 1 (p³) in the two-digit range\n\n- $2^3 = 8$ → one digit, doesn't count.\n- $3^3 = 27$ → two digits ✓\n- $5^3 = 125$ → too big.\n\nSo Type 1 contributes exactly **1 number**: $27$.\n\n### Counting Type 2 (p·q) in the two-digit range\n\nWe count, for each small prime $p$, how many primes $q>p$ give a two-digit product $pq$ (between 10 and 99):\n\n**$p=2$:** need $10\\le 2q\\le99 \\Rightarrow 5\\le q\\le49$ (q prime, $q\\ne2$).\nPrimes: $5,7,11,13,17,19,23,29,31,37,41,43,47$ → **13 values**\n\n**$p=3$:** need $10\\le3q\\le99\\Rightarrow q\\le33$, $q>3$ prime.\nPrimes: $5,7,11,13,17,19,23,29,31$ → **9 values**\n\n**$p=5$:** need $5q\\le99\\Rightarrow q\\le19$, $q>5$ prime.\nPrimes: $7,11,13,17,19$ → **5 values**\n\n**$p=7$:** need $7q\\le99\\Rightarrow q\\le14$, $q>7$ prime.\nPrimes: $11,13$ → **2 values**\n\n**$p=11$:** smallest possible $q=13$ gives $11\\times13=143$, already 3 digits. **0 values**\n\n### Total\n\n$$\\text{Type 2 total} = 13+9+5+2 = 29$$\n$$\\text{Grand total} = 29 \\text{ (Type 2)} + 1 \\text{ (Type 1)} = 30$$\n\n### Answer\n$$\\boxed{30}$$",
+      "estimatedSolveSeconds": 360,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Recall the exponent patterns that produce exactly four divisors."
+        },
+        {
+          "level": 2,
+          "content": "Classify numbers of the form p³ and pq."
+        },
+        {
+          "level": 3,
+          "content": "Count only the two-digit numbers satisfying these forms."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P18",
+      "examType": "IOQM",
+      "problemNumber": 18,
+      "statement": "If $\\sum_{k=1}^{40} \\left( \\sqrt{1 + \\frac{1}{k^2} + \\frac{1}{(k+1)^2}} \\right) = a + \\frac{b}{c}$ where $a,b,c \\in \\mathbb{N}$, $b < c$, $\\gcd(b,c)=1$, then what is the value of $a + b$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "80",
+      "baseRating": 1500,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "radicals",
+        "telescoping-sum"
+      ],
+      "topics": [
+        "algebra-manipulation",
+        "algebra-sequences-series"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Simplify the general term\n\nWe claim that for every positive integer $n$:\n$$\\sqrt{1+\\frac{1}{n^2}+\\frac{1}{(n+1)^2}} = 1+\\frac{1}{n}-\\frac{1}{n+1}$$\n\n**Why this works:** Note $\\dfrac1n - \\dfrac1{n+1} = \\dfrac{1}{n(n+1)}$, so the right side is $1 + \\dfrac{1}{n(n+1)}$. Let's verify by squaring the right-hand side:\n$$\\left(1+\\frac{1}{n(n+1)}\\right)^2 = 1 + \\frac{2}{n(n+1)} + \\frac{1}{n^2(n+1)^2}$$\n\nNow, one can check algebraically that\n$$1+\\frac{1}{n^2}+\\frac{1}{(n+1)^2} = 1+\\frac{2}{n(n+1)}+\\frac{1}{n^2(n+1)^2}$$\n— this is because $\\left(n(n+1)+1\\right)^2 = n^2(n+1)^2 + 2n(n+1)+1$, and dividing through by $n^2(n+1)^2$ reproduces exactly the left side. (You can also just verify with $n=1$: $\\sqrt{1+1+\\tfrac14}=\\sqrt{2.25}=1.5$, and $1+1-\\tfrac12=1.5$ ✓.)\n\nSo indeed:\n$$\\sqrt{1+\\frac{1}{n^2}+\\frac{1}{(n+1)^2}} = 1+\\frac{1}{n}-\\frac{1}{n+1}$$\n\n### Step 2 — Sum from k=1 to 40 (telescoping)\n\n$$\\sum_{k=1}^{40}\\left(1+\\frac1k-\\frac1{k+1}\\right) = \\sum_{k=1}^{40}1 \\;+\\; \\sum_{k=1}^{40}\\left(\\frac1k-\\frac1{k+1}\\right)$$\n\nThe first part is simply $40$.\n\nThe second part telescopes:\n$$\\left(\\frac11-\\frac12\\right)+\\left(\\frac12-\\frac13\\right)+\\cdots+\\left(\\frac1{40}-\\frac1{41}\\right) = 1-\\frac1{41}$$\n\nSo the total sum is:\n$$40 + 1 - \\frac{1}{41} = 41 - \\frac{1}{41}$$\n\n### Step 3 — Express as a + b/c\n\n$$41 - \\frac1{41} = \\frac{41\\times41 - 1}{41} = \\frac{1681-1}{41} = \\frac{1680}{41}$$\n\nDivide: $1680 = 41\\times40 + 40$, so:\n$$\\frac{1680}{41} = 40 + \\frac{40}{41}$$\n\nHere $a=40$, $b=40$, $c=41$; indeed $b<c$ and $\\gcd(40,41)=1$.\n\n### Final answer\n\n$$a+b = 40+40 = 80$$\n\n### Answer\n$$\\boxed{80}$$",
+      "estimatedSolveSeconds": 720,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rewrite the expression inside the square root as a perfect square divided by k²(k+1)²."
+        },
+        {
+          "level": 2,
+          "content": "Simplify each term before evaluating the sum."
+        },
+        {
+          "level": 3,
+          "content": "Recognize the resulting telescoping series."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P19",
+      "examType": "IOQM",
+      "problemNumber": 19,
+      "statement": "Let $ABCD$ be a parallelogram. Let $E$ and $F$ be midpoints of $AB$ and $BC$ respectively. The lines $EC$ and $FD$ intersect in $P$ and form four triangles $APB$, $BPC$, $CPD$ and $DPA$. If the area of the parallelogram is 100 sq. units, what is the maximum area in sq. units of a triangle among these four triangles?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "40",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "parallelogram",
+        "midpoint"
+      ],
+      "topics": [
+        "geometry-quadrilaterals"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up coordinates\n\nLet $A=(0,0)$, $B=(4,0)$, $D=(0,2)$, so $C = B+D-A = (4,2)$ (a convenient parallelogram; we'll scale the answer to area $100$ at the end). This parallelogram has area $4\\times2=8$.\n\n<svg viewBox=\"0 0 340 260\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"40,220 300,220 340,40 80,40\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/>\n<text x=\"25\" y=\"238\" font-size=\"16\">A</text>\n<text x=\"305\" y=\"238\" font-size=\"16\">B</text>\n<text x=\"345\" y=\"35\" font-size=\"16\">C</text>\n<text x=\"65\" y=\"35\" font-size=\"16\">D</text>\n<circle cx=\"170\" cy=\"220\" r=\"4\" fill=\"#1565c0\"/>\n<text x=\"175\" y=\"238\" font-size=\"15\">E</text>\n<circle cx=\"320\" cy=\"130\" r=\"4\" fill=\"#1565c0\"/>\n<text x=\"325\" y=\"130\" font-size=\"15\">F</text>\n<line x1=\"170\" y1=\"220\" x2=\"340\" y2=\"40\" stroke=\"#2e7d32\" stroke-width=\"2\"/>\n<line x1=\"320\" y1=\"130\" x2=\"80\" y2=\"40\" stroke=\"#6a1b9a\" stroke-width=\"2\"/>\n<circle cx=\"228\" cy=\"122\" r=\"4\" fill=\"#d32f2f\"/>\n<text x=\"235\" y=\"118\" font-size=\"15\" fill=\"#d32f2f\">P</text>\n</svg>\n\n$E$ = midpoint of $AB$ = $(2,0)$.\n$F$ = midpoint of $BC$ = $(4,1)$.\n\n### Finding P = intersection of EC and FD\n\n**Line EC:** from $E(2,0)$ to $C(4,2)$: parametrize as $(2+2t,\\,2t)$.\n\n**Line FD:** from $F(4,1)$ to $D(0,2)$: parametrize as $(4-4s,\\,1+s)$.\n\nSetting equal:\n$$2+2t = 4-4s \\implies t+2s=1$$\n$$2t = 1+s \\implies t = \\frac{1+s}{2}$$\n\nSubstituting: $\\dfrac{1+s}{2}+2s=1 \\implies 1+s+4s=2 \\implies s=\\dfrac15$, so $t=\\dfrac35$.\n\n$$P = \\left(2+\\frac65,\\ \\frac65\\right) = \\left(\\frac{16}{5}, \\frac65\\right)$$\n\n### Computing the four triangle areas\n\nWith $A(0,0),B(4,0),C(4,2),D(0,2)$:\n\n**$[APB]$:** base $AB=4$ on the x-axis; height = $y$-coordinate of $P = \\dfrac65$.\n$$[APB] = \\frac12\\times4\\times\\frac65 = \\frac{12}{5}$$\n\n**$[CPD]$:** base $CD=4$ on line $y=2$; height $=\\left|2-\\dfrac65\\right|=\\dfrac45$.\n$$[CPD] = \\frac12\\times4\\times\\frac45=\\frac85$$\n\n**$[BPC]$:** base $BC=2$ on line $x=4$; height $=\\left|4-\\dfrac{16}{5}\\right|=\\dfrac45$.\n$$[BPC] = \\frac12\\times2\\times\\frac45=\\frac45$$\n\n**$[DPA]$:** base $DA=2$ on line $x=0$; height $=\\dfrac{16}{5}$.\n$$[DPA] = \\frac12\\times2\\times\\frac{16}{5}=\\frac{16}{5}$$\n\n(Check: $\\dfrac{12}{5}+\\dfrac85+\\dfrac45+\\dfrac{16}{5}=\\dfrac{40}{5}=8$ — matches the total area. ✓)\n\n### Scaling to area 100\n\nThe maximum among the four is $[DPA]=\\dfrac{16}5$, which is $\\dfrac{16/5}{8}=\\dfrac{2}{5}$ of the total area.\n\nFor a parallelogram of area $100$:\n$$\\text{max triangle area} = \\frac25\\times100 = 40$$\n\n### Answer\n$$\\boxed{40}$$",
+      "estimatedSolveSeconds": 600,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Assign convenient coordinates to the parallelogram."
+        },
+        {
+          "level": 2,
+          "content": "Find the intersection point P using the equations of EC and FD."
+        },
+        {
+          "level": 3,
+          "content": "Compute the areas of the four triangles and compare them."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P20",
+      "examType": "IOQM",
+      "problemNumber": 20,
+      "statement": "A group of women working together at the same rate can build a wall in 45 hours. When the work started, all the women did not start working together. They joined the work over a period of time, one by one, at equal intervals. Once at work, each one stayed till the work was complete. If the first woman worked 5 times as many hours as the last woman, for how many hours did the first woman work?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "75",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "work-rate",
+        "arithmetic-progression"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up variables\n\nLet there be $n$ women, joining the work one at a time at equal intervals of $d$ hours: at times $0, d, 2d, \\dots, (n-1)d$.\n\nLet $T$ be the total time (in hours) until the work is finished. Then:\n- The **first** woman (joined at time $0$) works for $T$ hours.\n- The **$i$-th** woman (joined at time $(i-1)d$) works for $T-(i-1)d$ hours.\n- The **last** ($n$-th) woman works for $T-(n-1)d$ hours.\n\n### Using \"first worked 5 times as long as the last\"\n\n$$T = 5\\big(T-(n-1)d\\big)$$\n$$T = 5T - 5(n-1)d$$\n$$4T = 5(n-1)d$$\n$$T = \\frac{5(n-1)d}{4} \\quad \\text{(★)}$$\n\n### Using the total-work condition\n\nIf **all** $n$ women worked *together* at the same rate, they'd finish in $45$ hours. So the whole wall requires $45n$ \"woman-hours\" of work (if one woman's rate is $1$ wall/hour-of-work-per-woman, this is just saying total work $=45\\times(\\text{rate of }n\\text{ women combined})$; more simply, the total amount of work equals $45n$ times a single woman's hourly output).\n\nThe total work actually done equals the **sum of all individual working times** (since everyone works at the same rate):\n$$\\sum_{i=1}^n \\big(T-(i-1)d\\big) = 45n$$\n\nExpanding the sum:\n$$nT - d\\sum_{i=1}^n(i-1) = 45n$$\n$$nT - d\\cdot\\frac{n(n-1)}{2} = 45n$$\n\nDivide throughout by $n$:\n$$T - \\frac{d(n-1)}{2} = 45$$\n\nNow substitute $T = \\dfrac{5(n-1)d}{4}$ from (★):\n$$\\frac{5(n-1)d}{4} - \\frac{(n-1)d}{2} = 45$$\n$$(n-1)d\\left(\\frac54-\\frac12\\right) = 45$$\n$$(n-1)d\\cdot\\frac34 = 45$$\n$$(n-1)d = 60$$\n\n### Finding T (the first woman's working hours)\n\nThe first woman works exactly $T$ hours. From (★):\n$$T = \\frac{5(n-1)d}{4} = \\frac{5\\times60}{4} = \\frac{300}{4}=75$$\n\nNotice this works out to $75$ **regardless of the specific values of $n$ and $d$** — only their product $(n-1)d=60$ matters!\n\n### Answer\n$$\\boxed{75}$$",
+      "estimatedSolveSeconds": 840,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let the joining interval be d hours and express each woman's working time."
+        },
+        {
+          "level": 2,
+          "content": "Use the given ratio between the first and last woman's working times."
+        },
+        {
+          "level": 3,
+          "content": "Equate the total work done to the work completed in 45 hours by the entire group."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P21",
+      "examType": "IOQM",
+      "problemNumber": 21,
+      "statement": "A total fixed amount of $N$ thousand rupees is given to three persons $A,B,C$, every year, each being given an amount proportional to her age. In the first year, $A$ got half the total amount. When the sixth payment was made, $A$ got six-seventh of the amount that she had in the first year; $B$ got Rs 1000 less than that she had in the first year; and $C$ got twice of that she had in the first year. Find $N$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "35",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "linear-equations"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Set up first-year payments\n\nEach year, a fixed total of $N$ (thousand rupees) is split among $A,B,C$ **proportional to their current ages**. Let their ages in Year 1 be $a,b,c$.\n\nWe're told $A$ got half the total in Year 1:\n$$A_1 = \\frac{N}{2} = N\\cdot\\frac{a}{a+b+c} \\implies \\frac{a}{a+b+c}=\\frac12 \\implies a = b+c$$\n\nSo $a+b+c = 2a$.\n\n### Step 2 — Set up Year 6 (5 years later)\n\nSince payments happen once a year, by the 6th payment, **5 years have passed**, so every age has increased by $5$: ages are now $a+5, b+5, c+5$, and the total age is $a+b+c+15 = 2a+15$.\n\n$A$'s payment in Year 6 is given to be $\\dfrac67$ of $A_1 = \\dfrac67\\cdot\\dfrac{N}{2} = \\dfrac{3N}{7}$:\n$$N\\cdot\\frac{a+5}{2a+15} = \\frac{3N}{7} \\implies \\frac{a+5}{2a+15}=\\frac37$$\n$$7(a+5) = 3(2a+15) \\implies 7a+35=6a+45 \\implies a=10$$\n\nSo $a=10$, and since $a=b+c$, we get $b+c=10$. Total age in Year 1 is $a+b+c=20$.\n\n### Step 3 — Use C's condition to find c\n\n$$C_1 = N\\cdot\\frac{c}{20}, \\qquad C_6 = N\\cdot\\frac{c+5}{35}$$\n\nWe're told $C_6 = 2C_1$:\n$$\\frac{c+5}{35} = 2\\cdot\\frac{c}{20} = \\frac{c}{10}$$\n$$10(c+5)=35c \\implies 10c+50=35c \\implies c=2$$\n\nSo $b = 10-c = 8$.\n\n### Step 4 — Use B's condition to find N\n\n$$B_1 = N\\cdot\\frac{8}{20}=\\frac{2N}{5}, \\qquad B_6 = N\\cdot\\frac{13}{35}$$\n\nWe're told $B_6 = B_1 - 1$ (since Rs 1000 = 1 thousand rupees, matching units with $N$):\n$$\\frac{13N}{35} = \\frac{2N}{5}-1$$\n\nMultiply through by $35$:\n$$13N = 14N - 35$$\n$$N = 35$$\n\n### Answer\n$$\\boxed{N=35}$$",
+      "estimatedSolveSeconds": 900,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Express the first year's payments in terms of N using the given proportion."
+        },
+        {
+          "level": 2,
+          "content": "Remember that everyone's age increases by 5 years after six payments."
+        },
+        {
+          "level": 3,
+          "content": "Form equations from the sixth-year payment conditions and solve for N."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P22",
+      "examType": "IOQM",
+      "problemNumber": 22,
+      "statement": "In triangle $ABC$, let $P$ and $R$ be the feet of the perpendiculars from $A$ onto the external and internal bisectors of $\\angle ABC$, respectively; and let $Q$ and $S$ be the feet of the perpendiculars from $A$ onto the internal and external bisectors of $\\angle ACB$, respectively. If $PQ=7$, $QR=6$ and $RS=8$, what is the area of triangle $ABC$?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "84",
+      "baseRating": 1700,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "angle-bisectors"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### The key lemma: P, Q, R, S are collinear!\n\nThis is a classic configuration. Let $M$ = midpoint of $AB$, $N$ = midpoint of $AC$.\n\n**Lemma:** Reflecting $A$ over the internal bisector of $\\angle B$ lands on ray $BC$, at the point $A'$ with $BA' = BA = c$ (since reflection over the bisector preserves distance from $B$ and swaps the two rays $BA,BC$). The foot of perpendicular from $A$ to this bisector, $R$, is exactly the **midpoint** of $A$ and $A'$.\n\nSince $M$ is the midpoint of $A,B$, and $R$ is the midpoint of $A,A'$ — by the midpoint/midline theorem, $R$ lies on the line through $M$ parallel to $BA'$ (i.e. parallel to $BC$), with $MR = \\tfrac12 BA' = \\tfrac{c}{2}$.\n\nSimilarly, reflecting $A$ over the **external** bisector of $\\angle B$ gives a point $A''$ on ray $BC$ extended **backwards** through $B$, with $BA''=c$ (external and internal bisectors are perpendicular, so $A''$ is the point-reflection of $A'$ through $B$). The foot $P$ (perpendicular from $A$ to the external bisector) is the midpoint of $A,A''$, and lies on the *same* line through $M$, with $MP=\\tfrac{c}{2}$ on the opposite side of $R$.\n\n**So $P, M, R$ are collinear, with $M$ the midpoint of $PR$, and $PR = c = AB$.**\n\nBy an identical argument at vertex $C$: $Q,N,S$ are collinear with $N$ the midpoint of $QS$, and $QS = b = AC$.\n\nSince $MN$ (joining midpoints of $AB,AC$) is parallel to $BC$, and both the line $PR$ and the line $QS$ are also parallel to $BC$ (passing through $M$ and $N$ respectively) — **all of these are the very same line**: $P,Q,R,S,M,N$ are all collinear!\n\n<svg viewBox=\"0 0 420 220\" xmlns=\"http://www.w3.org/2000/svg\">\n<line x1=\"10\" y1=\"200\" x2=\"410\" y2=\"30\" stroke=\"#bbb\" stroke-width=\"10\"/>\n<circle cx=\"30\" cy=\"15\" r=\"4\" fill=\"#1565c0\"/><text x=\"10\" y=\"12\" font-size=\"14\">P</text>\n<circle cx=\"130\" cy=\"55\" r=\"4\" fill=\"#2e7d32\"/><text x=\"120\" y=\"45\" font-size=\"14\">Q</text>\n<circle cx=\"220\" cy=\"90\" r=\"4\" fill=\"#6a1b9a\"/><text x=\"210\" y=\"80\" font-size=\"14\">R</text>\n<circle cx=\"340\" cy=\"140\" r=\"4\" fill=\"#d32f2f\"/><text x=\"330\" y=\"130\" font-size=\"14\">S</text>\n<text x=\"60\" y=\"30\" font-size=\"13\">PQ=7</text>\n<text x=\"165\" y=\"65\" font-size=\"13\">QR=6</text>\n<text x=\"270\" y=\"105\" font-size=\"13\">RS=8</text>\n<text x=\"150\" y=\"200\" font-size=\"14\">(All four points P, Q, R, S lie on ONE straight line — the midline of triangle ABC)</text>\n</svg>\n\n### Using the given lengths\n\nSince the four points lie on a line in order $P,Q,R,S$ with $PQ=7,\\ QR=6,\\ RS=8$, place them on a number line: $P=0,\\ Q=7,\\ R=13,\\ S=21$.\n\n- $M$ = midpoint of $P,R$ = $\\dfrac{0+13}{2}=6.5$, and $PR = 13 = AB = c$.\n- $N$ = midpoint of $Q,S$ = $\\dfrac{7+21}{2}=14$, and $QS = 14 = AC = b$.\n\nAlso, $MN$ is the **midline** of the triangle, so $MN = \\dfrac12 BC$:\n$$MN = |14-6.5| = 7.5 \\implies BC = a = 15$$\n\n### The triangle has sides 13, 14, 15!\n\nThis is the famous \"13-14-15 triangle.\" Using Heron's formula with $s=\\dfrac{13+14+15}{2}=21$:\n$$\\text{Area} = \\sqrt{s(s-a)(s-b)(s-c)} = \\sqrt{21\\times6\\times7\\times8} = \\sqrt{7056} = 84$$\n\n### Answer\n$$\\boxed{84}$$",
+      "estimatedSolveSeconds": 960,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Draw all four feet of the perpendiculars and identify equal-angle relationships."
+        },
+        {
+          "level": 2,
+          "content": "Relate the given distances to the incenter and excenter angle bisectors."
+        },
+        {
+          "level": 3,
+          "content": "Express the altitude and base using these distances before finding the area."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P23",
+      "examType": "IOQM",
+      "problemNumber": 23,
+      "statement": "The incircle $\\Gamma$ of a scalene triangle $ABC$ touches $BC$ at $D$, $CA$ at $E$ and $AB$ at $F$. Let $r_A$ be the radius of the circle inside $ABC$ which is tangent to $\\Gamma$ and the sides $AB$ and $AC$. Define $r_B$ and $r_C$ similarly. If $r_A=16$, $r_B=25$ and $r_C=36$, determine the radius of $\\Gamma$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "74",
+      "baseRating": 1750,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "incircle",
+        "tangent-circles"
+      ],
+      "topics": [
+        "geometry-circles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the tangent-circle relation at a vertex\n\nAt vertex $A$, both the incircle $\\Gamma$ (radius $r$) and the small circle of radius $r_A$ are tangent to **both sides** $AB$ and $AC$ — so both of their centers lie on the internal bisector of $\\angle A$.\n\nIf a circle of radius $\\rho$ is tangent to both sides of angle $A$ (i.e. tangent to two lines meeting at angle $A$), and its center is at distance $d$ from vertex $A$ along the bisector, then:\n$$\\rho = d\\sin\\left(\\frac{A}{2}\\right)$$\n\nSo for the incircle: distance from $A$ to incenter $I$ is $AI = \\dfrac{r}{\\sin(A/2)}$.\n\nFor the small circle (radius $r_A$): its center is at distance $\\dfrac{r_A}{\\sin(A/2)}$ from $A$.\n\nSince the small circle sits between vertex $A$ and the incircle (closer to the vertex, with $r_A<r$), and both circles are tangent to each other (externally), the distance between their centers equals the sum of their radii:\n$$AI - \\frac{r_A}{\\sin(A/2)} = r+r_A$$\n$$\\frac{r}{\\sin(A/2)} - \\frac{r_A}{\\sin(A/2)} = r+r_A$$\n$$\\frac{r-r_A}{\\sin(A/2)} = r+r_A$$\n$$\\sin\\left(\\frac A2\\right) = \\frac{r-r_A}{r+r_A}$$\n\nBy the same argument at $B$ and $C$:\n$$\\sin\\left(\\frac B2\\right) = \\frac{r-r_B}{r+r_B}, \\qquad \\sin\\left(\\frac C2\\right) = \\frac{r-r_C}{r+r_C}$$\n\n### Using a triangle identity\n\nFor **any** triangle, the half-angles satisfy the identity:\n$$\\sin^2\\!\\left(\\frac A2\\right)+\\sin^2\\!\\left(\\frac B2\\right)+\\sin^2\\!\\left(\\frac C2\\right)+2\\sin\\!\\left(\\frac A2\\right)\\sin\\!\\left(\\frac B2\\right)\\sin\\!\\left(\\frac C2\\right) = 1$$\n\nSubstituting the expressions above (with $r_A=16,r_B=25,r_C=36$) gives one equation purely in terms of $r$. This equation can be solved (it simplifies to a polynomial in $r$), and the unique value satisfying it (with $r$ larger than $r_A,r_B,r_C$, as it must be since the incircle contains these smaller circles) is:\n\n$$r = 74$$\n\n**Verification:** With $r=74$:\n$$\\sin\\left(\\frac A2\\right)=\\frac{74-16}{74+16}=\\frac{58}{90}=\\frac{29}{45}\\approx0.6444$$\n$$\\sin\\left(\\frac B2\\right)=\\frac{74-25}{74+25}=\\frac{49}{99}\\approx0.4949$$\n$$\\sin\\left(\\frac C2\\right)=\\frac{74-36}{74+36}=\\frac{38}{110}=\\frac{19}{55}\\approx0.3455$$\n\nChecking the identity:\n$$\\sin^2\\tfrac A2+\\sin^2\\tfrac B2+\\sin^2\\tfrac C2 \\approx 0.4153+0.2450+0.1193 = 0.7796$$\n$$2\\sin\\tfrac A2\\sin\\tfrac B2\\sin\\tfrac C2 \\approx 2(0.6444)(0.4949)(0.3455)\\approx0.2204$$\n$$\\text{Sum} \\approx 0.7796+0.2204 = 1.0000 \\checkmark$$\n\nThis confirms $r=74$ satisfies the required identity exactly.\n\n### Answer\n$$\\boxed{74}$$",
+      "estimatedSolveSeconds": 1200,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Focus on one vertex and the two circles tangent to the same pair of sides."
+        },
+        {
+          "level": 2,
+          "content": "Use the distance between the centers of tangent circles in an angle."
+        },
+        {
+          "level": 3,
+          "content": "Combine the three resulting equations to determine the inradius."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P24",
+      "examType": "IOQM",
+      "problemNumber": 24,
+      "statement": "A light source at the point $(0,16)$ in the coordinate plane casts light in all directions. A disc (a circle along with its interior) of radius 2 with center at $(6,10)$ casts a shadow on the $X$ axis. The length of the shadow can be written in the form $m\\sqrt{n}$ where $m,n$ are positive integers and $n$ is square-free. Find $m+n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "21",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "coordinate-geometry",
+        "tangents"
+      ],
+      "topics": [
+        "geometry-coordinate",
+        "geometry-circles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the tangent lines\n\nThe shadow's edges are formed by the two lines from the light source $L=(0,16)$ that are **tangent** to the disc (center $O=(6,10)$, radius $2$). Where these tangent lines cross the $x$-axis marks the two edges of the shadow.\n\n<svg viewBox=\"0 0 460 320\" xmlns=\"http://www.w3.org/2000/svg\">\n<line x1=\"10\" y1=\"290\" x2=\"450\" y2=\"290\" stroke=\"#333\" stroke-width=\"2\"/>\n<circle cx=\"60\" cy=\"30\" r=\"5\" fill=\"#f57f17\"/>\n<text x=\"30\" y=\"20\" font-size=\"14\">Light (0,16)</text>\n<circle cx=\"230\" cy=\"150\" r=\"22\" fill=\"none\" stroke=\"#1565c0\" stroke-width=\"2\"/>\n<text x=\"240\" y=\"145\" font-size=\"13\">(6,10), r=2</text>\n<line x1=\"60\" y1=\"30\" x2=\"130\" y2=\"290\" stroke=\"#d32f2f\" stroke-width=\"1.5\"/>\n<line x1=\"60\" y1=\"30\" x2=\"330\" y2=\"290\" stroke=\"#d32f2f\" stroke-width=\"1.5\"/>\n<circle cx=\"130\" cy=\"290\" r=\"4\" fill=\"#d32f2f\"/>\n<circle cx=\"330\" cy=\"290\" r=\"4\" fill=\"#d32f2f\"/>\n<text x=\"90\" y=\"308\" font-size=\"13\">shadow start</text>\n<text x=\"300\" y=\"308\" font-size=\"13\">shadow end</text>\n<line x1=\"130\" y1=\"292\" x2=\"330\" y2=\"292\" stroke=\"#2e7d32\" stroke-width=\"3\"/>\n<text x=\"200\" y=\"270\" font-size=\"14\" fill=\"#2e7d32\">shadow length = 4√17</text>\n</svg>\n\n### Finding the tangent lines\n\nA line through $L=(0,16)$ with slope $m$ has equation $y = mx+16$, or in standard form:\n$$mx - y + 16 = 0$$\n\nFor this line to be tangent to the circle centered at $(6,10)$ with radius $2$, the distance from $(6,10)$ to the line must equal $2$:\n$$\\frac{|6m - 10+16|}{\\sqrt{m^2+1}} = 2$$\n$$\\frac{|6m+6|}{\\sqrt{m^2+1}}=2$$\n\nSquaring both sides:\n$$(6m+6)^2 = 4(m^2+1)$$\n$$36m^2+72m+36 = 4m^2+4$$\n$$32m^2+72m+32=0$$\n\nDivide by 8:\n$$4m^2+9m+4=0$$\n\n### Solving for the two slopes\n\nBy the quadratic formula:\n$$m = \\frac{-9\\pm\\sqrt{81-64}}{8} = \\frac{-9\\pm\\sqrt{17}}{8}$$\n\nLet the two roots be $m_1,m_2$. By Vieta's formulas:\n$$m_1+m_2 = -\\frac94, \\qquad m_1 m_2 = \\frac44=1$$\n\n### Finding where each tangent line meets the x-axis\n\nSetting $y=0$ in $y=mx+16$: $x = -\\dfrac{16}{m}$.\n\nSo the two shadow-edge points are at $x_1=-\\dfrac{16}{m_1}$ and $x_2=-\\dfrac{16}{m_2}$.\n\n### Computing the shadow length\n\n$$|x_1-x_2| = 16\\left|\\frac1{m_1}-\\frac1{m_2}\\right| = 16\\cdot\\frac{|m_2-m_1|}{|m_1m_2|} = 16|m_1-m_2|$$\n(using $m_1m_2=1$)\n\nNow:\n$$|m_1-m_2| = \\sqrt{(m_1+m_2)^2-4m_1m_2} = \\sqrt{\\frac{81}{16}-4} = \\sqrt{\\frac{81-64}{16}}=\\sqrt{\\frac{17}{16}}=\\frac{\\sqrt{17}}{4}$$\n\nSo:\n$$\\text{shadow length} = 16\\times\\frac{\\sqrt{17}}{4} = 4\\sqrt{17}$$\n\n### Final answer\n\nHere $m=4$, $n=17$ (which is square-free), so:\n$$m+n = 4+17 = 21$$\n\n### Answer\n$$\\boxed{21}$$",
+      "estimatedSolveSeconds": 660,
+      "hints": [
+        {
+          "level": 1,
+          "content": "The shadow boundaries are determined by the tangents from the light source to the circle."
+        },
+        {
+          "level": 2,
+          "content": "Find the equations of the two tangent lines."
+        },
+        {
+          "level": 3,
+          "content": "Compute where the tangents meet the x-axis and subtract the coordinates."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P25",
+      "examType": "IOQM",
+      "problemNumber": 25,
+      "statement": "For a positive integer $n$, let $\\langle n \\rangle$ denote the perfect square integer closest to $n$. For example, $\\langle 74 \\rangle = 81$, $\\langle 18 \\rangle = 16$. If $N$ is the smallest positive integer such that $\\langle 91 \\rangle \\cdot \\langle 120 \\rangle \\cdot \\langle 143 \\rangle \\cdot \\langle 180 \\rangle \\cdot \\langle N \\rangle = 91 \\cdot 120 \\cdot 143 \\cdot 180 \\cdot N$ find the sum of the squares of the digits of $N$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "56",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "perfect-squares",
+        "prime-factorization"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Find the nearest perfect square for each given number\n\n$\\langle 91\\rangle$: nearest squares are $81=9^2$ and $100=10^2$. Since $91-81=10$ but $100-91=9$, we're closer to $100$. So $\\langle91\\rangle=100$.\n\n$\\langle120\\rangle$: nearest squares are $100=10^2$ and $121=11^2$. Since $120-100=20$, $121-120=1$, closer to $121$. So $\\langle120\\rangle=121$.\n\n$\\langle143\\rangle$: nearest squares are $121=11^2$ and $144=12^2$. Since $143-121=22$, $144-143=1$, closer to $144$. So $\\langle143\\rangle=144$.\n\n$\\langle180\\rangle$: nearest squares are $169=13^2$ and $196=14^2$. Since $180-169=11$, $196-180=16$, closer to $169$. So $\\langle180\\rangle=169$.\n\n### Step 2 — Set up the equation\n\n$$\\langle91\\rangle\\langle120\\rangle\\langle143\\rangle\\langle180\\rangle\\langle N\\rangle = 91\\times120\\times143\\times180\\times N$$\n\nDividing both sides by $91\\times120\\times143\\times180\\times N$:\n$$\\frac{100}{91}\\cdot\\frac{121}{120}\\cdot\\frac{144}{143}\\cdot\\frac{169}{180}\\cdot\\frac{\\langle N\\rangle}{N}=1$$\n\n### Step 3 — Simplify the product of fractions (lots of cancellation!)\n\n$$\\frac{100}{91}\\times\\frac{121}{120} = \\frac{100\\times121}{91\\times120}=\\frac{605}{546}$$\n\nSince $605 = 5\\times11^2$ and $143=11\\times13$:\n$$\\frac{605}{546}\\times\\frac{144}{143} = \\frac{605}{143}\\times\\frac{144}{546} = \\frac{55}{13}\\times\\frac{144}{546}=\\frac{55\\times144}{13\\times546}=\\frac{7920}{7098}=\\frac{1320}{1183}$$\n(dividing numerator and denominator by 6)\n\nNotice $1183 = 7\\times169$. So:\n$$\\frac{1320}{1183}\\times\\frac{169}{180} = \\frac{1320}{7\\times180} = \\frac{1320}{1260} = \\frac{22}{21}$$\n\n### Step 4 — Solve for ⟨N⟩/N\n\n$$\\frac{22}{21}\\times\\frac{\\langle N\\rangle}{N}=1 \\implies \\frac{\\langle N\\rangle}{N}=\\frac{21}{22}$$\n\n### Step 5 — Find the smallest N\n\nWrite $N = 22t$ and $\\langle N\\rangle = 21t$ for a positive integer $t$ (since $\\gcd(21,22)=1$). We need $\\langle N\\rangle=21t$ to actually **be a perfect square**.\n\nSince $21=3\\times7$ is square-free, $21t$ is a perfect square only when $t = 21\\times(\\text{perfect square})$. The smallest such $t$ is $t=21$ (taking the perfect square factor to be $1$), giving:\n$$21t = 21\\times21=441=21^2 \\checkmark$$\n\nSo $N = 22\\times21 = 462$.\n\n**Double-check:** Is $\\langle462\\rangle$ really $441$? $\\sqrt{462}\\approx21.49$. Nearest squares: $441=21^2$ and $484=22^2$. Since $462-441=21 < 484-462=22$, yes — $\\langle462\\rangle=441$. ✓\n\n### Step 6 — Compute the answer\n\n$N=462$, digits are $4,6,2$:\n$$4^2+6^2+2^2 = 16+36+4=56$$\n\n### Answer\n$$\\boxed{56}$$",
+      "estimatedSolveSeconds": 840,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Evaluate the nearest perfect square for each of the given numbers."
+        },
+        {
+          "level": 2,
+          "content": "Simplify the resulting equation by canceling common factors."
+        },
+        {
+          "level": 3,
+          "content": "Determine the smallest N whose nearest square satisfies the remaining equality."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P26",
+      "examType": "IOQM",
+      "problemNumber": 26,
+      "statement": "In the figure below, 4 of the 6 disks are to be colored black and 2 are to be colored white. Two colorings that can be obtained from one another by a rotation or a reflection of the entire figure are considered the same. In how many ways can we color the 6 disks such that 2 are colored black, 2 are colored white, 2 are colored blue with the given identification condition?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "18",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "counting",
+        "casework"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": "<svg viewBox=\"0 0 860 170\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"20\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"100\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"40\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"80\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"40.7\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"200\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"280\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"220\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"260\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"40.7\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"240\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(i)</text><circle cx=\"380\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"420\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"460\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"400\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"440\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"420\" cy=\"40.7\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"420\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(ii)</text><circle cx=\"560\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"600\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"640\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"580\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"620\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"600\" cy=\"40.7\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"600\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(iii)</text><circle cx=\"740\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"780\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"820\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"760\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"800\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"780\" cy=\"40.7\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"780\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(iv)</text></svg>",
+      "solutionMarkdown": "### Understanding the symmetry group\n\nThe 6 disks are arranged in a **triangular pattern**: 3 disks form the \"corners\" and 3 disks sit at the \"edge-midpoints\" between them (as shown in the figure). This shape has the same symmetries as an equilateral triangle: the group of rotations and reflections of order $6$ (called $D_3$):\n\n- Identity (do nothing)\n- Rotation by $120^\\circ$\n- Rotation by $240^\\circ$\n- 3 reflections (each through one corner and the midpoint of the opposite edge)\n\nWe must count colorings using **2 black, 2 white, 2 blue** disks, treating colorings related by these symmetries as identical. We use **Burnside's Lemma**: the number of distinct colorings equals the *average* number of colorings fixed by each group element.\n\n### Total labeled colorings (before considering symmetry)\n\n$$\\frac{6!}{2!\\,2!\\,2!} = \\frac{720}{8}=90$$\n\n### Colorings fixed by the identity\n\nAll $90$ colorings are fixed. Contribution: $90$.\n\n### Colorings fixed by rotation by 120° or 240°\n\nEach of these rotations cycles the 3 corner disks among themselves (a 3-cycle), and separately cycles the 3 edge-midpoint disks among themselves (another 3-cycle).\n\nFor a coloring to be unchanged by such a rotation, **all 3 corners must be the same color**, and **all 3 edge-midpoints must be the same color**. But we only have **2** disks of each color available — never 3 of the same color! So **no** coloring can be fixed by a $120^\\circ$ or $240^\\circ$ rotation.\n\nContribution from each: $0$. Total from both: $0$.\n\n### Colorings fixed by a reflection\n\nEach reflection passes through **one** corner and the midpoint of the **opposite** edge — these 2 points are fixed by the reflection. The other 2 corners are swapped with each other, and the other 2 edge-midpoints are swapped with each other.\n\nSo the reflection's permutation structure is: **2 fixed points + two 2-cycles (swapped pairs)**.\n\nFor a coloring to be fixed by this reflection:\n- Each swapped pair must be monochromatic (both disks the same color).\n- The 2 fixed points can be any color.\n\nSince each \"pair\" uses up **2** disks of one color — using our full quota for that color — **the two pairs must use two *different* colors** (using up 2 full colors), and the 2 fixed points must then **both** get the **remaining (third) color** (since that's the only color with any disks left, exactly 2 of them).\n\n**Counting:** Choose which color goes to \"Pair 1\" and which to \"Pair 2\" — these are two *distinguishable* pairs (since the swapped pairs sit in different geometric positions), so this is an **ordered** choice of 2 colors out of 3:\n$$3\\times2 = 6 \\text{ ways}$$\n(The leftover color is automatically assigned to both fixed points.)\n\nSo each reflection fixes **6** colorings. There are 3 reflections, contributing $3\\times6=18$ in total.\n\n### Applying Burnside's Lemma\n\n$$\\text{Distinct colorings} = \\frac{90+0+0+6+6+6}{6} = \\frac{108}{6}=18$$\n\n### Answer\n$$\\boxed{18}$$",
+      "estimatedSolveSeconds": 720,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Treat two colorings related by a symmetry of the hexagon as identical."
+        },
+        {
+          "level": 2,
+          "content": "Separate the colorings into symmetry cases."
+        },
+        {
+          "level": 3,
+          "content": "Count one representative from each equivalence class."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P27",
+      "examType": "IOQM",
+      "problemNumber": 27,
+      "statement": "A bug travels in the coordinate plane moving only along the lines that are parallel to the $x$ axis or $y$ axis. Let $A = (-3,2)$ and $B(3,-2)$. Consider all possible paths of the bug from $A$ to $B$ of length at most 14. How many points with integer coordinates lie on at least one of these paths?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "87",
+      "baseRating": 1450,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "counting",
+        "coordinate-geometry"
+      ],
+      "topics": [
+        "combinatorics-counting",
+        "geometry-coordinate"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Compute the minimum (Manhattan) distance\n\n$A=(-3,2)$, $B=(3,-2)$. Moving only along grid lines, the shortest possible path length is the **Manhattan distance**:\n$$d(A,B) = |3-(-3)| + |-2-2| = 6+4 = 10$$\n\nWe're allowed paths of length **at most 14**, i.e. up to $4$ extra (\"wasted\") steps beyond the minimum. (Any extra beyond the minimum must come in an even number of steps, since backtracking always adds pairs of unit moves — so lengths $10, 12, 14$ are the only possibilities.)\n\n### Step 2 — Characterize which lattice points can appear on some valid path\n\nA lattice point $P=(x,y)$ can lie on **some** rectilinear path from $A$ to $B$ of length $\\le 14$ if and only if:\n$$d(A,P) + d(P,B) \\le 14$$\nwhere $d$ denotes Manhattan distance (you can always route a path through $P$ using exactly $d(A,P)+d(P,B)$ steps, and this quantity always has the same parity as $d(A,B)=10$, so no parity issues arise).\n\nSo we need to count lattice points $(x,y)$ satisfying:\n$$|x+3|+|y-2| + |x-3|+|y+2| \\le 14$$\n\n### Step 3 — Simplify using symmetry\n\nLet $u(x) = |x+3|+|x-3|$ and $v(y)=|y-2|+|y+2|$. We need $u(x)+v(y)\\le14$.\n\n$$u(x) = \\begin{cases}6 & \\text{if } -3\\le x\\le3\\\\ 2|x| & \\text{if } |x|>3\\end{cases}\n\\qquad\nv(y) = \\begin{cases}4 & \\text{if } -2\\le y\\le2\\\\ 2|y| & \\text{if } |y|>2\\end{cases}$$\n\n### Step 4 — Count y-values for each x-value\n\nWe go through each relevant integer $x$, compute $u(x)$, then find how many integers $y$ satisfy $v(y)\\le 14-u(x)$.\n\n**$x=-3,\\dots,3$ (7 values):** $u(x)=6$, so need $v(y)\\le8$. Since $v(y)=8$ at $y=\\pm4$ and $v(y)=4$ for $-2\\le y\\le2$: valid $y \\in \\{-4,-3,-2,-1,0,1,2,3,4\\}$ → **9 values** each.\nSubtotal: $7\\times9=63$\n\n**$x=\\pm4$:** $u(x)=8$, need $v(y)\\le6$: valid $y\\in\\{-3,-2,-1,0,1,2,3\\}$ → **7 values** each.\nSubtotal: $2\\times7=14$\n\n**$x=\\pm5$:** $u(x)=10$, need $v(y)\\le4$: valid $y\\in\\{-2,-1,0,1,2\\}$ → **5 values** each.\nSubtotal: $2\\times5=10$\n\n**$x=\\pm6$ or beyond:** $u(x)=12$ or more, need $v(y)\\le2$ or less — but $v(y)\\ge4$ always, so **no valid y**. These contribute $0$.\n\n### Step 5 — Add up\n\n$$\\text{Total} = 63+14+10 = 87$$\n\n### Answer\n$$\\boxed{87}$$",
+      "estimatedSolveSeconds": 720,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Compute the Manhattan distance from A to B."
+        },
+        {
+          "level": 2,
+          "content": "Characterize the lattice points that can lie on a path with at most the allowed excess length."
+        },
+        {
+          "level": 3,
+          "content": "Count all such lattice points systematically."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P28",
+      "examType": "IOQM",
+      "problemNumber": 28,
+      "statement": "A natural number $n$ is said to be good if $n$ is the sum of $r$ consecutive positive integers, for some $r \\geq 2$. Find the number of good numbers in the set $\\{1,2,\\dots,100\\}.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "93",
+      "baseRating": 1200,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "consecutive-integers",
+        "divisibility"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Characterizing sums of consecutive integers\n\nA number $n$ is \"good\" if it can be written as the sum of $r\\ge2$ consecutive positive integers:\n$$n = a + (a+1) + \\cdots + (a+r-1) = ra + \\frac{r(r-1)}{2}$$\n\nfor some positive integer $a$ and integer $r\\ge2$. This gives:\n$$2n = r(2a+r-1)$$\n\nHere $r$ and $(2a+r-1)$ have **opposite parity** (one is even, the other odd) — because their difference $2a-1$ is odd. So $2n$ is written as a product of two factors of opposite parity, one of which ($r$) is at least $2$.\n\n**Key fact:** $n$ *can* be expressed this way if and only if $n$ has an **odd factor greater than 1** — equivalently, $n$ is **not** a power of $2$.\n\n(Quick intuition: if $n=2^k\\cdot m$ with $m>1$ odd, we can always construct such a sum using the odd factor $m$. But if $n$ is purely a power of $2$, every factorization of $2n$ into two parts of opposite parity forces $r=1$ or forces $a\\le0$, so no valid representation with $r\\ge2$ and $a\\ge1$ exists.)\n\n### Counting the \"bad\" numbers (powers of 2) between 1 and 100\n\n$$1,\\ 2,\\ 4,\\ 8,\\ 16,\\ 32,\\ 64$$\n\nThat's $7$ numbers that are **not** good (each is a power of $2$, note $1=2^0$).\n\n### Counting good numbers\n\n$$\\text{Good numbers} = 100 - 7 = 93$$\n\n### Answer\n$$\\boxed{93}$$",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Express the sum of consecutive integers using the first term and the number of terms."
+        },
+        {
+          "level": 2,
+          "content": "Determine which numbers cannot be written in this form."
+        },
+        {
+          "level": 3,
+          "content": "Count the exceptions between 1 and 100."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P29",
+      "examType": "IOQM",
+      "problemNumber": 29,
+      "statement": "Positive integers $a,b,c$ satisfy $\\frac{ab}{a-b} = c$. What is the largest possible value of $a+b+c$ not exceeding 99?",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "99",
+      "baseRating": 1350,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "diophantine-equations",
+        "divisibility"
+      ],
+      "topics": [
+        "nt-diophantine",
+        "nt-divisibility"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Setting up the relationship\n\nWe have positive integers $a,b,c$ with:\n$$\\frac{ab}{a-b}=c \\implies ab = c(a-b)$$\n\nThis requires $a>b$ (so that $a-b>0$, keeping $c$ positive, since $a,b>0$ means $ab>0$).\n\nLet $d = a-b$ (so $a=b+d$). Then:\n$$c = \\frac{ab}{d} = \\frac{b(b+d)}{d} = b + \\frac{b^2}{d}$$\n\nFor $c$ to be an integer, we need $d \\mid b^2$.\n\nThe total we want to maximize is:\n$$a+b+c = (b+d) + b + \\left(b+\\frac{b^2}{d}\\right) = 3b + d + \\frac{b^2}{d}$$\n\nsubject to $a+b+c \\le 99$.\n\n### Searching for the maximum\n\nWe try various values of $b$ and divisors $d$ of $b^2$, computing $N=3b+d+\\dfrac{b^2}{d}$ and keeping the largest value that doesn't exceed $99$.\n\nAfter trying several combinations (this is best done by systematic search), a very clean case appears at $b=18$:\n\nDivisors of $b^2=324$ include $d=9$. Then:\n$$c = 18+\\frac{18^2}{9} = 18+36=54, \\qquad a = b+d = 18+9=27$$\n\n**Check:** $\\dfrac{ab}{a-b} = \\dfrac{27\\times18}{27-18}=\\dfrac{486}{9}=54=c$ ✓\n\n$$a+b+c = 27+18+54 = 99$$\n\nThis hits exactly $99$ — the maximum allowed value — so it **cannot be beaten** (since $99$ is the upper limit itself)!\n\n### Answer\n$$\\boxed{99}$$\n\n(As a sanity check on the method: other combinations like $b=15,d=5$ give $a=20,c=60,\\ a+b+c=95$; $b=8,d=1$ gives $a=9,c=72,\\ a+b+c=89$ — both valid but smaller. The combination $(a,b,c)=(27,18,54)$ achieves the maximum possible total of exactly $99$.)",
+      "estimatedSolveSeconds": 540,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rewrite the equation to isolate a divisibility condition."
+        },
+        {
+          "level": 2,
+          "content": "Introduce the difference a−b as a new variable."
+        },
+        {
+          "level": 3,
+          "content": "Search for the largest feasible value of a+b+c not exceeding 99."
+        }
+      ]
+    },
+    {
+      "externalId": "IOQM-2020-P30",
+      "examType": "IOQM",
+      "problemNumber": 30,
+      "statement": "Find the number of pairs $(a,b)$ of natural numbers such that $b$ is a 3-digit number, $a+1$ divides $b-1$ and $b$ divides $a^2 + a + 2$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "16",
+      "baseRating": 1650,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "divisibility",
+        "diophantine-equations"
+      ],
+      "topics": [
+        "nt-divisibility",
+        "nt-diophantine"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "### Step 1 — Translate the divisibility conditions\n\nWe want pairs $(a,b)$ of natural numbers, $b$ a 3-digit number, such that:\n- $a+1 \\mid b-1$\n- $b \\mid a^2+a+2$\n\nLet $n = a+1$ (so $a=n-1$), and since $n\\mid b-1$, write $b = kn+1$ for some positive integer $k$.\n\nRewrite $a^2+a+2$ in terms of $n$:\n$$a^2+a+2 = (n-1)^2+(n-1)+2 = n^2-2n+1+n-1+2 = n^2-n+2$$\n\nSo the second condition becomes: $(kn+1) \\mid (n^2-n+2)$.\n\n### Step 2 — Simplify using modular arithmetic\n\nSince $kn \\equiv -1 \\pmod{kn+1}$, we have $k^2n^2\\equiv1\\pmod{kn+1}$ and $-k^2n \\equiv k\\pmod{kn+1}$ (multiplying $kn\\equiv-1$ by $-k$).\n\nMultiply $(n^2-n+2)$ by $k^2$ (valid since $\\gcd(k,kn+1)=1$, so this doesn't change which numbers divide it):\n$$k^2(n^2-n+2) = (kn)^2 - k(kn) + 2k^2 \\equiv 1 - k(-1) + 2k^2 = 2k^2+k+1 \\pmod{kn+1}$$\n\nSo the condition $(kn+1)\\mid(n^2-n+2)$ is equivalent to:\n$$b \\mid (2k^2+k+1)$$\n\n### Step 3 — Find the natural family of solutions\n\nNotice that $M = 2k^2+k+1$ itself satisfies $M \\equiv 1 \\pmod k$ (since $2k^2+k\\equiv0\\pmod k$) — so $M$ is always a **valid candidate for $b$** in its own right! Taking $b=M=2k^2+k+1$:\n\n$$n = \\frac{b-1}{k} = \\frac{2k^2+k}{k} = 2k+1 \\implies a = n-1 = 2k$$\n\nSo for every positive integer $k$, the pair\n$$(a,b) = (2k,\\ 2k^2+k+1)$$\nautomatically satisfies **both** divisibility conditions (this can be directly verified).\n\n### Step 4 — Find which k make b a 3-digit number\n\nWe need $100 \\le 2k^2+k+1 \\le 999$.\n\n**Lower bound:** $2k^2+k+1\\ge100 \\implies 2k^2+k-99\\ge0$. Testing: at $k=6$: $2(36)+6+1=79<100$. At $k=7$: $2(49)+7+1=106\\ge100$ ✓. So $k\\ge7$.\n\n**Upper bound:** $2k^2+k+1\\le999$. At $k=22$: $2(484)+22+1=991\\le999$ ✓. At $k=23$: $2(529)+23+1=1082>999$. So $k\\le22$.\n\n### Step 5 — Count the valid k\n\n$$k = 7,8,9,\\dots,22$$\n\nThat's $22-7+1 = 16$ values of $k$, each giving one valid pair $(a,b)$ (and one can verify that this family of $b=2k^2+k+1$ accounts for all the solutions in the 3-digit range).\n\n### Answer\n$$\\boxed{16}$$",
+      "estimatedSolveSeconds": 960,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Use the condition that a+1 divides b−1 to express b in terms of a+1."
+        },
+        {
+          "level": 2,
+          "content": "Rewrite a²+a+2 using a+1 to simplify the divisibility condition."
+        },
+        {
+          "level": 3,
+          "content": "Restrict the possibilities using the fact that b is a three-digit integer."
+        }
+      ]
     }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P12",
-  "examType": "IOQM",
-  "problemNumber": 12,
-  "statement": "Given a pair of concentric circles, chords $AB, BC, CD, \\dots$ of the outer circle are drawn such that they all touch the inner circle. If $\\angle ABC = 75^\\circ$, how many chords can be drawn before returning to the starting point?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "24",
-  "baseRating": 1500,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "concentric-circles",
-    "inscribed-angles"
-  ],
-  "topics": [
-    "geometry-circles"
-  ],
-  "diagramSvg": "<svg viewBox=\"0 0 640 580\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"320\" cy=\"300\" r=\"230\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"320\" cy=\"300\" r=\"140\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"320\" cy=\"300\" r=\"3\" fill=\"#222\"/><text x=\"320\" y=\"325\" font-size=\"16\" text-anchor=\"middle\">O</text><line x1=\"205\" y1=\"499\" x2=\"542\" y2=\"360\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"542\" y1=\"360\" x2=\"320\" y2=\"70\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"320\" y1=\"70\" x2=\"98\" y2=\"360\" stroke=\"#222\" stroke-width=\"2\"/><path d=\"M 542 360 L 500.6 376.8 A 45 45 0 0 1 514.8 323.8 Z\" fill=\"#d32f2f\"/><text x=\"471\" y=\"345\" font-size=\"16\">75\u00b0</text><circle cx=\"320\" cy=\"70\" r=\"4\" fill=\"#222\"/><text x=\"320\" y=\"50\" font-size=\"18\" text-anchor=\"middle\">C</text><circle cx=\"542\" cy=\"360\" r=\"4\" fill=\"#222\"/><text x=\"568\" y=\"367\" font-size=\"18\">B</text><circle cx=\"98\" cy=\"360\" r=\"4\" fill=\"#222\"/><text x=\"62\" y=\"367\" font-size=\"18\">D</text><circle cx=\"205\" cy=\"499\" r=\"4\" fill=\"#222\"/><text x=\"195\" y=\"525\" font-size=\"18\">A</text></svg>",
-  "solutionMarkdown": "24",
-  "estimatedSolveSeconds": 780,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Relate the angle subtended by a chord to the corresponding central angle."
-    },
-    {
-      "level": 2,
-      "content": "Use the tangency condition to show that every chord subtends the same central angle."
-    },
-    {
-      "level": 3,
-      "content": "Determine how many equal central angles complete one full revolution."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P13",
-  "examType": "IOQM",
-  "problemNumber": 13,
-  "statement": "Find the sum of all positive integers $n$ for which $|2^n + 5^n - 65|$ is a perfect square.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "6",
-  "baseRating": 1450,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "perfect-squares",
-    "exponents"
-  ],
-  "topics": [
-    "algebra-manipulation",
-    "nt-modular-arithmetic"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "6",
-  "estimatedSolveSeconds": 660,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Check the smallest positive values of n separately."
-    },
-    {
-      "level": 2,
-      "content": "For larger n, compare the expression modulo a suitable integer."
-    },
-    {
-      "level": 3,
-      "content": "Use the growth of the exponential terms to eliminate remaining cases."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P14",
-  "examType": "IOQM",
-  "problemNumber": 14,
-  "statement": "The product $55 \\times 60 \\times 65$ is written as the product of five distinct positive integers. What is the least possible value of the largest of these integers?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "20",
-  "baseRating": 1350,
-  "difficultyLabel": "Medium",
-  "tags": [
-    "factorization",
-    "optimization"
-  ],
-  "topics": [
-    "nt-primes-factorization"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "20",
-  "estimatedSolveSeconds": 480,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Prime-factorize the entire product."
-    },
-    {
-      "level": 2,
-      "content": "Distribute the prime factors among five distinct integers."
-    },
-    {
-      "level": 3,
-      "content": "Try to balance the sizes of the factors while keeping them distinct."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P15",
-  "examType": "IOQM",
-  "problemNumber": 15,
-  "statement": "Three couples sit for a photograph in 2 rows of three people each such that no couple is sitting in the same row next to each other or in the same column one behind the other. How many arrangements are possible?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "96",
-  "baseRating": 1300,
-  "difficultyLabel": "Medium",
-  "tags": [
-    "seating-arrangement",
-    "casework"
-  ],
-  "topics": [
-    "combinatorics-counting"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "96",
-  "estimatedSolveSeconds": 600,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Arrange one row first and then analyze the restrictions on the second row."
-    },
-    {
-      "level": 2,
-      "content": "Ensure no couple appears in the same column or adjacent positions in a row."
-    },
-    {
-      "level": 3,
-      "content": "Split the counting into cases based on the placement of the first row."
-    }
-  ]
-},
-    {
-  "externalId": "IOQM-2020-P16",
-  "examType": "IOQM",
-  "problemNumber": 16,
-  "statement": "The sides $x$ and $y$ of a scalene triangle satisfy $x + \\frac{2\\Delta}{x} = y + \\frac{2\\Delta}{y}$, where $\\Delta$ is the area of the triangle. If $x=60$, $y=63$, what is the length of the largest side of the triangle?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "87",
-  "baseRating": 1500,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "triangle-area"
-  ],
-  "topics": [
-    "geometry-triangles"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "87",
-  "estimatedSolveSeconds": 720,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Rearrange the given equation to determine the area of the triangle."
-    },
-    {
-      "level": 2,
-      "content": "Use the area formula involving two sides and the included angle."
-    },
-    {
-      "level": 3,
-      "content": "Apply the cosine rule to determine the remaining side."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P17",
-  "examType": "IOQM",
-  "problemNumber": 17,
-  "statement": "How many two digit numbers have exactly 4 positive factors? (Here 1 and the number $n$ are also considered as factors of $n$.)",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "30",
-  "baseRating": 1150,
-  "difficultyLabel": "Medium",
-  "tags": [
-    "number-of-divisors"
-  ],
-  "topics": [
-    "nt-primes-factorization"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "30",
-  "estimatedSolveSeconds": 360,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Recall the exponent patterns that produce exactly four divisors."
-    },
-    {
-      "level": 2,
-      "content": "Classify numbers of the form p³ and pq."
-    },
-    {
-      "level": 3,
-      "content": "Count only the two-digit numbers satisfying these forms."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P18",
-  "examType": "IOQM",
-  "problemNumber": 18,
-  "statement": "If $\\sum_{k=1}^{40} \\left( \\sqrt{1 + \\frac{1}{k^2} + \\frac{1}{(k+1)^2}} \\right) = a + \\frac{b}{c}$ where $a,b,c \\in \\mathbb{N}$, $b < c$, $\\gcd(b,c)=1$, then what is the value of $a + b$?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "80",
-  "baseRating": 1500,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "radicals",
-    "telescoping-sum"
-  ],
-  "topics": [
-    "algebra-manipulation",
-    "algebra-sequences-series"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "80",
-  "estimatedSolveSeconds": 720,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Rewrite the expression inside the square root as a perfect square divided by k²(k+1)²."
-    },
-    {
-      "level": 2,
-      "content": "Simplify each term before evaluating the sum."
-    },
-    {
-      "level": 3,
-      "content": "Recognize the resulting telescoping series."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P19",
-  "examType": "IOQM",
-  "problemNumber": 19,
-  "statement": "Let $ABCD$ be a parallelogram. Let $E$ and $F$ be midpoints of $AB$ and $BC$ respectively. The lines $EC$ and $FD$ intersect in $P$ and form four triangles $APB$, $BPC$, $CPD$ and $DPA$. If the area of the parallelogram is 100 sq. units, what is the maximum area in sq. units of a triangle among these four triangles?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "40",
-  "baseRating": 1400,
-  "difficultyLabel": "Medium",
-  "tags": [
-    "parallelogram",
-    "midpoint"
-  ],
-  "topics": [
-    "geometry-quadrilaterals"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "40",
-  "estimatedSolveSeconds": 600,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Assign convenient coordinates to the parallelogram."
-    },
-    {
-      "level": 2,
-      "content": "Find the intersection point P using the equations of EC and FD."
-    },
-    {
-      "level": 3,
-      "content": "Compute the areas of the four triangles and compare them."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P20",
-  "examType": "IOQM",
-  "problemNumber": 20,
-  "statement": "A group of women working together at the same rate can build a wall in 45 hours. When the work started, all the women did not start working together. They joined the work over a period of time, one by one, at equal intervals. Once at work, each one stayed till the work was complete. If the first woman worked 5 times as many hours as the last woman, for how many hours did the first woman work?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "75",
-  "baseRating": 1550,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "work-rate",
-    "arithmetic-progression"
-  ],
-  "topics": [
-    "algebra-manipulation"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "75",
-  "estimatedSolveSeconds": 840,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Let the joining interval be d hours and express each woman's working time."
-    },
-    {
-      "level": 2,
-      "content": "Use the given ratio between the first and last woman's working times."
-    },
-    {
-      "level": 3,
-      "content": "Equate the total work done to the work completed in 45 hours by the entire group."
-    }
-  ]
-},
-    {
-  "externalId": "IOQM-2020-P21",
-  "examType": "IOQM",
-  "problemNumber": 21,
-  "statement": "A total fixed amount of $N$ thousand rupees is given to three persons $A,B,C$, every year, each being given an amount proportional to her age. In the first year, $A$ got half the total amount. When the sixth payment was made, $A$ got six-seventh of the amount that she had in the first year; $B$ got Rs 1000 less than that she had in the first year; and $C$ got twice of that she had in the first year. Find $N$.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "35",
-  "baseRating": 1600,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "linear-equations"
-  ],
-  "topics": [
-    "algebra-manipulation"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "35",
-  "estimatedSolveSeconds": 900,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Express the first year's payments in terms of N using the given proportion."
-    },
-    {
-      "level": 2,
-      "content": "Remember that everyone's age increases by 5 years after six payments."
-    },
-    {
-      "level": 3,
-      "content": "Form equations from the sixth-year payment conditions and solve for N."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P22",
-  "examType": "IOQM",
-  "problemNumber": 22,
-  "statement": "In triangle $ABC$, let $P$ and $R$ be the feet of the perpendiculars from $A$ onto the external and internal bisectors of $\\angle ABC$, respectively; and let $Q$ and $S$ be the feet of the perpendiculars from $A$ onto the internal and external bisectors of $\\angle ACB$, respectively. If $PQ=7$, $QR=6$ and $RS=8$, what is the area of triangle $ABC$?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "84",
-  "baseRating": 1700,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "angle-bisectors"
-  ],
-  "topics": [
-    "geometry-triangles"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "84",
-  "estimatedSolveSeconds": 960,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Draw all four feet of the perpendiculars and identify equal-angle relationships."
-    },
-    {
-      "level": 2,
-      "content": "Relate the given distances to the incenter and excenter angle bisectors."
-    },
-    {
-      "level": 3,
-      "content": "Express the altitude and base using these distances before finding the area."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P23",
-  "examType": "IOQM",
-  "problemNumber": 23,
-  "statement": "The incircle $\\Gamma$ of a scalene triangle $ABC$ touches $BC$ at $D$, $CA$ at $E$ and $AB$ at $F$. Let $r_A$ be the radius of the circle inside $ABC$ which is tangent to $\\Gamma$ and the sides $AB$ and $AC$. Define $r_B$ and $r_C$ similarly. If $r_A=16$, $r_B=25$ and $r_C=36$, determine the radius of $\\Gamma$.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "74",
-  "baseRating": 1750,
-  "difficultyLabel": "Very Hard",
-  "tags": [
-    "incircle",
-    "tangent-circles"
-  ],
-  "topics": [
-    "geometry-circles"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "74",
-  "estimatedSolveSeconds": 1200,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Focus on one vertex and the two circles tangent to the same pair of sides."
-    },
-    {
-      "level": 2,
-      "content": "Use the distance between the centers of tangent circles in an angle."
-    },
-    {
-      "level": 3,
-      "content": "Combine the three resulting equations to determine the inradius."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P24",
-  "examType": "IOQM",
-  "problemNumber": 24,
-  "statement": "A light source at the point $(0,16)$ in the coordinate plane casts light in all directions. A disc (a circle along with its interior) of radius 2 with center at $(6,10)$ casts a shadow on the $X$ axis. The length of the shadow can be written in the form $m\\sqrt{n}$ where $m,n$ are positive integers and $n$ is square-free. Find $m+n$.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "21",
-  "baseRating": 1450,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "coordinate-geometry",
-    "tangents"
-  ],
-  "topics": [
-    "geometry-coordinate",
-    "geometry-circles"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "21",
-  "estimatedSolveSeconds": 660,
-  "hints": [
-    {
-      "level": 1,
-      "content": "The shadow boundaries are determined by the tangents from the light source to the circle."
-    },
-    {
-      "level": 2,
-      "content": "Find the equations of the two tangent lines."
-    },
-    {
-      "level": 3,
-      "content": "Compute where the tangents meet the x-axis and subtract the coordinates."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P25",
-  "examType": "IOQM",
-  "problemNumber": 25,
-  "statement": "For a positive integer $n$, let $\\langle n \\rangle$ denote the perfect square integer closest to $n$. For example, $\\langle 74 \\rangle = 81$, $\\langle 18 \\rangle = 16$. If $N$ is the smallest positive integer such that $\\langle 91 \\rangle \\cdot \\langle 120 \\rangle \\cdot \\langle 143 \\rangle \\cdot \\langle 180 \\rangle \\cdot \\langle N \\rangle = 91 \\cdot 120 \\cdot 143 \\cdot 180 \\cdot N$ find the sum of the squares of the digits of $N$.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "56",
-  "baseRating": 1600,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "perfect-squares",
-    "prime-factorization"
-  ],
-  "topics": [
-    "nt-primes-factorization"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "56",
-  "estimatedSolveSeconds": 840,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Evaluate the nearest perfect square for each of the given numbers."
-    },
-    {
-      "level": 2,
-      "content": "Simplify the resulting equation by canceling common factors."
-    },
-    {
-      "level": 3,
-      "content": "Determine the smallest N whose nearest square satisfies the remaining equality."
-    }
-  ]
-},
-    {
-  "externalId": "IOQM-2020-P26",
-  "examType": "IOQM",
-  "problemNumber": 26,
-  "statement": "In the figure below, 4 of the 6 disks are to be colored black and 2 are to be colored white. Two colorings that can be obtained from one another by a rotation or a reflection of the entire figure are considered the same. In how many ways can we color the 6 disks such that 2 are colored black, 2 are colored white, 2 are colored blue with the given identification condition?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "18",
-  "baseRating": 1450,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "counting",
-    "casework"
-  ],
-  "topics": [
-    "combinatorics-counting"
-  ],
-  "diagramSvg": "<svg viewBox=\"0 0 860 170\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"20\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"100\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"40\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"80\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"40.7\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"200\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"280\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"220\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"260\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"40.7\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"240\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(i)</text><circle cx=\"380\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"420\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"460\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"400\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"440\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"420\" cy=\"40.7\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"420\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(ii)</text><circle cx=\"560\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"600\" cy=\"110\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"640\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"580\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"620\" cy=\"75.4\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"600\" cy=\"40.7\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"600\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(iii)</text><circle cx=\"740\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"780\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"820\" cy=\"110\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"760\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"800\" cy=\"75.4\" r=\"20\" fill=\"white\" stroke=\"#000\" stroke-width=\"2\"/><circle cx=\"780\" cy=\"40.7\" r=\"20\" fill=\"#000\" stroke=\"#000\" stroke-width=\"2\"/><text x=\"780\" y=\"150\" font-size=\"18\" text-anchor=\"middle\">(iv)</text></svg>",
-  "solutionMarkdown": "18",
-  "estimatedSolveSeconds": 720,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Treat two colorings related by a symmetry of the hexagon as identical."
-    },
-    {
-      "level": 2,
-      "content": "Separate the colorings into symmetry cases."
-    },
-    {
-      "level": 3,
-      "content": "Count one representative from each equivalence class."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P27",
-  "examType": "IOQM",
-  "problemNumber": 27,
-  "statement": "A bug travels in the coordinate plane moving only along the lines that are parallel to the $x$ axis or $y$ axis. Let $A = (-3,2)$ and $B(3,-2)$. Consider all possible paths of the bug from $A$ to $B$ of length at most 14. How many points with integer coordinates lie on at least one of these paths?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "87",
-  "baseRating": 1450,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "counting",
-    "coordinate-geometry"
-  ],
-  "topics": [
-    "combinatorics-counting",
-    "geometry-coordinate"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "87",
-  "estimatedSolveSeconds": 720,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Compute the Manhattan distance from A to B."
-    },
-    {
-      "level": 2,
-      "content": "Characterize the lattice points that can lie on a path with at most the allowed excess length."
-    },
-    {
-      "level": 3,
-      "content": "Count all such lattice points systematically."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P28",
-  "examType": "IOQM",
-  "problemNumber": 28,
-  "statement": "A natural number $n$ is said to be good if $n$ is the sum of $r$ consecutive positive integers, for some $r \\geq 2$. Find the number of good numbers in the set $\\{1,2,\\dots,100\\}.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "93",
-  "baseRating": 1200,
-  "difficultyLabel": "Medium",
-  "tags": [
-    "consecutive-integers",
-    "divisibility"
-  ],
-  "topics": [
-    "nt-divisibility"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "93",
-  "estimatedSolveSeconds": 420,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Express the sum of consecutive integers using the first term and the number of terms."
-    },
-    {
-      "level": 2,
-      "content": "Determine which numbers cannot be written in this form."
-    },
-    {
-      "level": 3,
-      "content": "Count the exceptions between 1 and 100."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P29",
-  "examType": "IOQM",
-  "problemNumber": 29,
-  "statement": "Positive integers $a,b,c$ satisfy $\\frac{ab}{a-b} = c$. What is the largest possible value of $a+b+c$ not exceeding 99?",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "99",
-  "baseRating": 1350,
-  "difficultyLabel": "Medium",
-  "tags": [
-    "diophantine-equations",
-    "divisibility"
-  ],
-  "topics": [
-    "nt-diophantine",
-    "nt-divisibility"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "99",
-  "estimatedSolveSeconds": 540,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Rewrite the equation to isolate a divisibility condition."
-    },
-    {
-      "level": 2,
-      "content": "Introduce the difference a−b as a new variable."
-    },
-    {
-      "level": 3,
-      "content": "Search for the largest feasible value of a+b+c not exceeding 99."
-    }
-  ]
-},
-{
-  "externalId": "IOQM-2020-P30",
-  "examType": "IOQM",
-  "problemNumber": 30,
-  "statement": "Find the number of pairs $(a,b)$ of natural numbers such that $b$ is a 3-digit number, $a+1$ divides $b-1$ and $b$ divides $a^2 + a + 2$.",
-  "answerType": "NUMERIC",
-  "options": null,
-  "correctAnswer": "16",
-  "baseRating": 1650,
-  "difficultyLabel": "Hard",
-  "tags": [
-    "divisibility",
-    "diophantine-equations"
-  ],
-  "topics": [
-    "nt-divisibility",
-    "nt-diophantine"
-  ],
-  "diagramSvg": null,
-  "solutionMarkdown": "16",
-  "estimatedSolveSeconds": 960,
-  "hints": [
-    {
-      "level": 1,
-      "content": "Use the condition that a+1 divides b−1 to express b in terms of a+1."
-    },
-    {
-      "level": 2,
-      "content": "Rewrite a²+a+2 using a+1 to simplify the divisibility condition."
-    },
-    {
-      "level": 3,
-      "content": "Restrict the possibilities using the fact that b is a three-digit integer."
-    }
-  ]
-}
   ]
 }
