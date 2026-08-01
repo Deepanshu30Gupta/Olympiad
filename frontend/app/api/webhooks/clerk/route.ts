@@ -1,6 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import { sendEmail, buildPersonalizedEmailBody } from "@/lib/send-email";
 
 interface ClerkUserEvent {
   type: string;
@@ -54,13 +55,44 @@ export async function POST(req: Request) {
 
     const name = [first_name, last_name].filter(Boolean).join(" ") || null;
 
-    await prisma.user.upsert({
+    const newUser = await prisma.user.upsert({
       where: { clerkId: id },
       update: {},
       create: { clerkId: id, email, name },
     });
 
     console.log(`Synced new user: ${email} (${id})`);
+
+    // Real welcome flow — fires immediately on sign-up, both channels
+    // at once. Deliberately fire-and-forget-ish: a welcome message
+    // failing to send should never break account creation itself, so
+    // errors here are logged, not thrown.
+    const welcomeMessage =
+      "Welcome to Qublem! We're excited to have you here. Head over to Practice to get matched with your first question, or check out the Leaderboard to see where you stand. Good luck — and have fun training!";
+
+    try {
+      await prisma.notification.create({
+        data: {
+          title: "Welcome to Qublem! 🎉",
+          body: welcomeMessage,
+          deliveryMode: "both",
+          recipientCount: 1,
+          recipients: { create: [{ userId: newUser.id }] },
+        },
+      });
+    } catch (err) {
+      console.error("Failed to create welcome notification:", err);
+    }
+
+    try {
+      await sendEmail({
+        to: email,
+        subject: "Welcome to Qublem! 🎉",
+        text: buildPersonalizedEmailBody(name ?? "there", welcomeMessage),
+      });
+    } catch (err) {
+      console.error("Failed to send welcome email:", err);
+    }
   }
 
   if (event.type === "user.updated") {

@@ -24,7 +24,7 @@ export function ComposeMessageClient() {
   const [body, setBody] = useState("");
   const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("notification");
   const [sending, setSending] = useState(false);
-  const [result, setResult] = useState<{ error: string | null; emailStatus: string; recipientCount: number } | null>(null);
+  const [result, setResult] = useState<{ error: string | null; emailStatus: string; recipientCount: number; failedRecipients?: string[] } | null>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -216,6 +216,12 @@ export function ComposeMessageClient() {
               {result.emailStatus === "sent" && " Email sent to each individually."}
               {result.emailStatus === "not_configured" && " Email skipped — GMAIL_USER/GMAIL_APP_PASSWORD aren't set up yet."}
               {result.emailStatus === "failed" && " Email failed to send."}
+              {result.emailStatus === "partial" && " Some emails failed to send."}
+              {result.failedRecipients && result.failedRecipients.length > 0 && (
+                <div className="mt-1.5">
+                  Failed for: {result.failedRecipients.join(", ")}
+                </div>
+              )}
             </>
           )}
         </div>

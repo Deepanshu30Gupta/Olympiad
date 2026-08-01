@@ -2,6 +2,7 @@
 
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
+import { sendEmail, sendEmailBatch, buildPersonalizedEmailBody } from "@/lib/send-email";
 
 async function requireAdmin() {
   const clerkUser = await currentUser();
@@ -116,10 +117,6 @@ export async function getAllUsersAlphabeticalAction() {
   return users.sort((a, b) => (a.name ?? a.email).localeCompare(b.name ?? b.email));
 }
 
-function buildPersonalizedEmailBody(recipientName: string, message: string): string {
-  return `Hi ${recipientName},\n\n${message}\n\nRegards,\nDeepanshu Gupta\nFounder, Qublem`;
-}
-
 export async function sendNotificationAction({
   title,
   body,
@@ -164,42 +161,33 @@ export async function sendNotificationAction({
       },
     });
 
-    let emailStatus: "sent" | "skipped" | "not_configured" | "failed" = "skipped";
+    let emailStatus: "sent" | "skipped" | "not_configured" | "failed" | "partial" = "skipped";
+    let failedRecipients: string[] = [];
     if (deliveryMode === "email" || deliveryMode === "both") {
-      if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      const results = await sendEmailBatch(
+        targetUsers.map((u) => ({
+          to: u.email,
+          subject: title.trim(),
+          text: buildPersonalizedEmailBody(u.name ?? "there", body.trim()),
+        }))
+      );
+      const succeeded = results.filter((r) => r.sent);
+      failedRecipients = results.filter((r) => !r.sent).map((r) => r.to);
+
+      if (results[0]?.reason === "not_configured") {
         emailStatus = "not_configured";
+      } else if (succeeded.length === results.length) {
+        emailStatus = "sent";
+        await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
+      } else if (succeeded.length > 0) {
+        emailStatus = "partial";
+        await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
       } else {
-        try {
-          const nodemailer = await import("nodemailer");
-          const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: process.env.GMAIL_USER,
-              pass: process.env.GMAIL_APP_PASSWORD,
-            },
-          });
-          // Same privacy-safe pattern as before — one individual email
-          // per recipient, sequential (not parallel) since Gmail SMTP
-          // is more likely to rate-limit a burst of simultaneous sends
-          // than a dedicated transactional email API would.
-          for (const u of targetUsers) {
-            await transporter.sendMail({
-              from: `"Qublem" <${process.env.GMAIL_USER}>`,
-              to: u.email,
-              subject: title.trim(),
-              text: buildPersonalizedEmailBody(u.name ?? "there", body.trim()),
-            });
-          }
-          emailStatus = "sent";
-          await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
-        } catch (emailErr) {
-          console.error("Notification email failed:", emailErr);
-          emailStatus = "failed";
-        }
+        emailStatus = "failed";
       }
     }
 
-    return { error: null, emailStatus, recipientCount: targetUsers.length };
+    return { error: null, emailStatus, recipientCount: targetUsers.length, failedRecipients };
   } catch (err) {
     console.error("sendNotificationAction failed:", err);
     return { error: "Couldn't send. Please try again.", emailStatus: "skipped" as const, recipientCount: 0 };
