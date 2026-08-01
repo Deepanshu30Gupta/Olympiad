@@ -105,18 +105,33 @@ export async function searchUsersAction(query: string) {
  * for each recipient. Email is a genuine best-effort add-on: if
  * RESEND_API_KEY isn't configured yet, this skips email entirely and
  * tells the caller so, rather than silently failing or faking success. */
+export type DeliveryMode = "notification" | "email" | "both";
+
+/** All users, alphabetically by name (falling back to email for users
+ * with no name set) — for the 'browse all' dropdown, separate from
+ * search. */
+export async function getAllUsersAlphabeticalAction() {
+  await requireAdmin();
+  const users = await prisma.user.findMany({ select: { id: true, name: true, email: true } });
+  return users.sort((a, b) => (a.name ?? a.email).localeCompare(b.name ?? b.email));
+}
+
+function buildPersonalizedEmailBody(recipientName: string, message: string): string {
+  return `Hi ${recipientName},\n\n${message}\n\nRegards,\nDeepanshu Gupta\nFounder, Qublem`;
+}
+
 export async function sendNotificationAction({
   title,
   body,
   recipientUserIds,
   sendToAll,
-  alsoEmail,
+  deliveryMode,
 }: {
   title: string;
   body: string;
   recipientUserIds: string[];
   sendToAll: boolean;
-  alsoEmail: boolean;
+  deliveryMode: DeliveryMode;
 }) {
   try {
     await requireAdmin();
@@ -125,39 +140,47 @@ export async function sendNotificationAction({
     }
 
     const targetUsers = sendToAll
-      ? await prisma.user.findMany({ select: { id: true, email: true } })
-      : await prisma.user.findMany({ where: { id: { in: recipientUserIds } }, select: { id: true, email: true } });
+      ? await prisma.user.findMany({ select: { id: true, email: true, name: true } })
+      : await prisma.user.findMany({ where: { id: { in: recipientUserIds } }, select: { id: true, email: true, name: true } });
 
     if (targetUsers.length === 0) {
       return { error: "No recipients selected.", emailStatus: "skipped" as const, recipientCount: 0 };
     }
 
-    const notification = await prisma.notification.create({
-      data: {
-        title: title.trim(),
-        body: body.trim(),
-        recipients: {
-          create: targetUsers.map((u) => ({ userId: u.id })),
+    if (deliveryMode === "notification" || deliveryMode === "both") {
+      await prisma.notification.create({
+        data: {
+          title: title.trim(),
+          body: body.trim(),
+          recipients: { create: targetUsers.map((u) => ({ userId: u.id })) },
         },
-      },
-    });
+      });
+    }
 
     let emailStatus: "sent" | "skipped" | "not_configured" | "failed" = "skipped";
-    if (alsoEmail) {
+    if (deliveryMode === "email" || deliveryMode === "both") {
       if (!process.env.RESEND_API_KEY) {
         emailStatus = "not_configured";
       } else {
         try {
           const { Resend } = await import("resend");
           const resend = new Resend(process.env.RESEND_API_KEY);
-          await resend.emails.send({
-            from: process.env.RESEND_FROM_EMAIL || "Qublem <onboarding@resend.dev>",
-            to: targetUsers.map((u) => u.email),
-            subject: title.trim(),
-            text: body.trim(),
-          });
+          // Real privacy fix: send ONE email per recipient, each with
+          // only that person's own address in `to` and their own name
+          // in the greeting — never a single email listing everyone,
+          // which would expose every recipient's address to every
+          // other recipient.
+          await Promise.all(
+            targetUsers.map((u) =>
+              resend.emails.send({
+                from: process.env.RESEND_FROM_EMAIL || "Qublem <onboarding@resend.dev>",
+                to: u.email,
+                subject: title.trim(),
+                text: buildPersonalizedEmailBody(u.name ?? "there", body.trim()),
+              })
+            )
+          );
           emailStatus = "sent";
-          await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
         } catch (emailErr) {
           console.error("Notification email failed:", emailErr);
           emailStatus = "failed";

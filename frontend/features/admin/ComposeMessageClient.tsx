@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Search, X, Send } from "lucide-react";
-import { searchUsersAction, sendNotificationAction } from "@/app/admin-actions";
+import { useState, useEffect, useRef } from "react";
+import { Search, X, Send, ChevronDown, List } from "lucide-react";
+import { searchUsersAction, getAllUsersAlphabeticalAction, sendNotificationAction, type DeliveryMode } from "@/app/admin-actions";
 
 interface UserOption {
   id: string;
@@ -15,11 +15,24 @@ export function ComposeMessageClient() {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<UserOption[]>([]);
   const [selected, setSelected] = useState<UserOption[]>([]);
+
+  const [browseOpen, setBrowseOpen] = useState(false);
+  const [allUsers, setAllUsers] = useState<UserOption[]>([]);
+  const browseRef = useRef<HTMLDivElement>(null);
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [alsoEmail, setAlsoEmail] = useState(false);
+  const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("notification");
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState<{ error: string | null; emailStatus: string; recipientCount: number } | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (browseRef.current && !browseRef.current.contains(e.target as Node)) setBrowseOpen(false);
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   async function handleSearch(value: string) {
     setQuery(value);
@@ -29,6 +42,14 @@ export function ComposeMessageClient() {
     }
     const results = await searchUsersAction(value);
     setSearchResults(results.filter((r) => !selected.some((s) => s.id === r.id)));
+  }
+
+  async function handleOpenBrowse() {
+    setBrowseOpen(!browseOpen);
+    if (!browseOpen && allUsers.length === 0) {
+      const users = await getAllUsersAlphabeticalAction();
+      setAllUsers(users);
+    }
   }
 
   function addUser(u: UserOption) {
@@ -50,7 +71,7 @@ export function ComposeMessageClient() {
       body,
       recipientUserIds: selected.map((u) => u.id),
       sendToAll: mode === "all",
-      alsoEmail,
+      deliveryMode,
     });
     setResult(res);
     setSending(false);
@@ -80,15 +101,46 @@ export function ComposeMessageClient() {
 
       {mode === "selected" && (
         <div className="mt-4">
-          <div className="relative">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B5D4F] dark:text-neutral-500" />
-            <input
-              value={query}
-              onChange={(e) => handleSearch(e.target.value)}
-              placeholder="Search by name or email..."
-              className="w-full rounded-lg border border-[#F0E6D6] py-2 pl-9 pr-3 text-sm outline-none focus:border-[#4C3AA0] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
-            />
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B5D4F] dark:text-neutral-500" />
+              <input
+                value={query}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder="Search by name or email..."
+                className="w-full rounded-lg border border-[#F0E6D6] py-2 pl-9 pr-3 text-sm outline-none focus:border-[#4C3AA0] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+              />
+            </div>
+
+            <div className="relative" ref={browseRef}>
+              <button
+                onClick={handleOpenBrowse}
+                className="flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-[#F0E6D6] px-3 py-2 text-sm font-medium text-[#6B5D4F] transition-colors hover:border-[#4C3AA0]/50 dark:border-neutral-700 dark:text-neutral-400"
+              >
+                <List size={15} /> Browse All <ChevronDown size={13} className={`transition-transform duration-200 ${browseOpen ? "rotate-180" : ""}`} />
+              </button>
+              {browseOpen && (
+                <div className="absolute right-0 top-11 z-20 max-h-72 w-64 overflow-y-auto rounded-lg border border-[#F0E6D6] bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
+                  {allUsers.length === 0 ? (
+                    <p className="p-3 text-center text-xs text-[#6B5D4F] dark:text-neutral-500">Loading...</p>
+                  ) : (
+                    allUsers
+                      .filter((u) => !selected.some((s) => s.id === u.id))
+                      .map((u) => (
+                        <button
+                          key={u.id}
+                          onClick={() => addUser(u)}
+                          className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-[#FFFBF2] dark:hover:bg-neutral-700"
+                        >
+                          <span className="text-[#2B2118] dark:text-neutral-200">{u.name ?? u.email}</span>
+                        </button>
+                      ))
+                  )}
+                </div>
+              )}
+            </div>
           </div>
+
           {searchResults.length > 0 && (
             <div className="mt-1 flex flex-col gap-1 rounded-lg border border-[#F0E6D6] bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800">
               {searchResults.map((u) => (
@@ -132,10 +184,27 @@ export function ComposeMessageClient() {
         className="mt-3 w-full resize-y rounded-lg border border-[#F0E6D6] px-4 py-2.5 text-sm outline-none focus:border-[#4C3AA0] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
       />
 
-      <label className="mt-3 flex items-center gap-2 text-sm text-[#6B5D4F] dark:text-neutral-400">
-        <input type="checkbox" checked={alsoEmail} onChange={(e) => setAlsoEmail(e.target.checked)} className="rounded" />
-        Also send via email
-      </label>
+      <div className="mt-3 flex flex-col gap-1.5">
+        <p className="text-xs font-semibold text-[#6B5D4F] dark:text-neutral-400">Send via</p>
+        <div className="flex gap-2">
+          {(["notification", "email", "both"] as DeliveryMode[]).map((m) => (
+            <button
+              key={m}
+              onClick={() => setDeliveryMode(m)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                deliveryMode === m ? "bg-[#4C3AA0] text-white" : "bg-[#F0E6D6] text-[#6B5D4F] dark:bg-neutral-800 dark:text-neutral-400"
+              }`}
+            >
+              {m === "notification" ? "In-App Only" : m === "email" ? "Email Only" : "Both"}
+            </button>
+          ))}
+        </div>
+        {(deliveryMode === "email" || deliveryMode === "both") && (
+          <p className="text-[11px] text-[#8A7C6C] dark:text-neutral-600">
+            Each recipient gets their own individual email — no one sees who else it was sent to.
+          </p>
+        )}
+      </div>
 
       {result && (
         <div className={`mt-3 rounded-lg px-3 py-2 text-xs ${result.error ? "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300" : "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"}`}>
@@ -144,9 +213,9 @@ export function ComposeMessageClient() {
           ) : (
             <>
               Sent to {result.recipientCount} user{result.recipientCount !== 1 ? "s" : ""}.
-              {result.emailStatus === "sent" && " Email sent too."}
+              {result.emailStatus === "sent" && " Email sent to each individually."}
               {result.emailStatus === "not_configured" && " Email skipped — RESEND_API_KEY isn't set up yet."}
-              {result.emailStatus === "failed" && " Notification sent, but the email failed to send."}
+              {result.emailStatus === "failed" && " Email failed to send."}
             </>
           )}
         </div>
