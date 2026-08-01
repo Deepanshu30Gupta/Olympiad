@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     // failing to send should never break account creation itself, so
     // errors here are logged, not thrown.
     const welcomeMessage =
-      "Welcome to Qublem! We're excited to have you here. Head over to Practice to get matched with your first question, or check out the Leaderboard to see where you stand. Good luck — and have fun training!";
+      "Welcome to Qublem! We're excited to have you here. Head over to Practice to get matched with your first question, or check out the Leaderboard to see where you stand. Good luck, and have fun training!";
 
     try {
       await prisma.notification.create({
