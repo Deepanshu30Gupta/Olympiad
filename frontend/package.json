@@ -14,16 +14,15 @@
     "@clerk/themes": "^2.4.57",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
-    "@types/nodemailer": "^8.0.1",
     "framer-motion": "^12.42.2",
     "katex": "^0.17.0",
     "lucide-react": "^1.27.0",
     "marked": "^18.0.6",
     "next": "16.2.10",
-    "nodemailer": "^9.0.3",
     "pg": "^8.22.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "resend": "^6.18.1",
     "svix": "^1.96.1"
   },
   "devDependencies": {

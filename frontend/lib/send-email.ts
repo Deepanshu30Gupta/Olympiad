@@ -15,48 +15,34 @@ export async function sendEmail({
   subject: string;
   text: string;
 }): Promise<{ sent: boolean; reason?: string }> {
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+  if (!process.env.RESEND_API_KEY) {
     return { sent: false, reason: "not_configured" };
   }
 
-  const nodemailer = await import("nodemailer");
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
+  const { Resend } = await import("resend");
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
-  // One retry with a short delay — recovers transient rate-limit
-  // rejections. Doesn't help with a receiving server permanently
-  // distrusting an unverified Gmail sender, only genuine "try again
-  // in a moment" cases.
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      await transporter.sendMail({
-        from: `"Qublem" <${process.env.GMAIL_USER}>`,
+      const result = await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL || "Qublem <onboarding@resend.dev>",
         to,
         subject,
         text,
       });
+      if (result.error) throw new Error(result.error.message);
       return { sent: true };
     } catch (err) {
       console.error(`sendEmail attempt ${attempt} failed for ${to}:`, err);
-      if (attempt === 1) await sleep(2000);
+      if (attempt === 1) await sleep(1500);
     }
   }
   return { sent: false, reason: "failed" };
 }
 
-/** Sends to many recipients with real spacing between each one —
- * looks like normal usage rather than the rapid-fire bulk pattern
- * Gmail's own anti-abuse systems specifically watch for. Returns
- * per-recipient results so callers can report exactly who succeeded
- * and who didn't, rather than a vague aggregate. */
 export async function sendEmailBatch(
   recipients: { to: string; subject: string; text: string }[],
-  delayMs: number = 1200
+  delayMs: number = 400
 ): Promise<{ to: string; sent: boolean; reason?: string }[]> {
   const results: { to: string; sent: boolean; reason?: string }[] = [];
   for (const [index, r] of recipients.entries()) {
