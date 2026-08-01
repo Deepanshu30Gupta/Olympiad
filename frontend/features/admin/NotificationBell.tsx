@@ -75,7 +75,7 @@ export function NotificationBell() {
                     {!n.read && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B4A]" />}
                     <span className="text-sm font-semibold text-[#2B2118] dark:text-neutral-100">{n.title}</span>
                   </div>
-                  <p className="mt-1 text-xs text-[#6B5D4F] dark:text-neutral-400">{n.body}</p>
+                  <p className="mt-1 whitespace-pre-wrap text-xs text-[#6B5D4F] dark:text-neutral-400">{n.body}</p>
                   <p className="mt-1 text-[10px] text-[#8A7C6C] dark:text-neutral-600">
                     {new Date(n.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                   </p>

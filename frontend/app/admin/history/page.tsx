@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { Mail, Bell, MailPlus } from "lucide-react";
 import { getNotificationHistoryAction } from "@/app/admin-actions";
+import { RecipientListToggle } from "@/features/admin/RecipientListToggle";
 
 export default async function AdminHistoryPage() {
   const clerkUser = await currentUser();
@@ -40,7 +41,7 @@ export default async function AdminHistoryPage() {
                 <div className="flex items-start justify-between gap-3">
                   <span className="font-semibold text-[#2B2118] dark:text-neutral-100">{n.title}</span>
                   <span className="shrink-0 text-xs text-[#6B5D4F] dark:text-neutral-500">
-                    {new Date(n.createdAt).toLocaleString(undefined, { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}
+                    {new Date(n.createdAt).toLocaleString("en-IN", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", timeZone: "Asia/Kolkata" })}
                   </span>
                 </div>
                 <p className="mt-2 whitespace-pre-wrap text-sm text-[#2B2118]/80 dark:text-neutral-300">{n.body}</p>
@@ -60,6 +61,7 @@ export default async function AdminHistoryPage() {
                     </span>
                   )}
                 </div>
+                <RecipientListToggle recipients={n.recipients} />
               </div>
             ))}
           </div>

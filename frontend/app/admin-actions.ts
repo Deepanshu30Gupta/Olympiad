@@ -147,21 +147,20 @@ export async function sendNotificationAction({
       return { error: "No recipients selected.", emailStatus: "skipped" as const, recipientCount: 0 };
     }
 
-    // Real fix: always create the audit record, regardless of delivery
-    // mode. Previously an "Email Only" send created no database row at
-    // all, meaning it was completely untracked — this is what actually
-    // powers the sent-history view now. NotificationRecipient rows
-    // (which drive the in-app bell) are still only created when
-    // in-app delivery is actually part of this send.
+    // Real fix: always create recipient rows regardless of delivery
+    // mode, so the History page can always show exactly who a message
+    // went to — even for Email Only sends, which previously had zero
+    // recorded recipient list, just a count. The bell/inbox query is
+    // updated separately to filter these correctly by the parent
+    // notification's deliveryMode, so an Email Only send still never
+    // shows up in anyone's in-app notifications.
     const notification = await prisma.notification.create({
       data: {
         title: title.trim(),
         body: body.trim(),
         deliveryMode,
         recipientCount: targetUsers.length,
-        ...(deliveryMode === "notification" || deliveryMode === "both"
-          ? { recipients: { create: targetUsers.map((u) => ({ userId: u.id })) } }
-          : {}),
+        recipients: { create: targetUsers.map((u) => ({ userId: u.id })) },
       },
     });
 
@@ -216,7 +215,10 @@ export async function getMyNotificationsAction() {
   if (!dbUser) return { notifications: [], unreadCount: 0 };
 
   const recipients = await prisma.notificationRecipient.findMany({
-    where: { userId: dbUser.id },
+    where: {
+      userId: dbUser.id,
+      notification: { deliveryMode: { in: ["notification", "both"] } },
+    },
     include: { notification: true },
     orderBy: { notification: { createdAt: "desc" } },
     take: 20,
@@ -263,6 +265,7 @@ export async function getNotificationHistoryAction() {
   await requireAdmin();
   const notifications = await prisma.notification.findMany({
     orderBy: { createdAt: "desc" },
+    include: { recipients: { include: { user: { select: { name: true, email: true } } } } },
     take: 100,
   });
   return notifications.map((n) => ({
@@ -273,5 +276,6 @@ export async function getNotificationHistoryAction() {
     deliveryMode: n.deliveryMode,
     recipientCount: n.recipientCount,
     emailSent: n.emailSent,
+    recipients: n.recipients.map((r) => ({ name: r.user.name, email: r.user.email })),
   }));
 }
