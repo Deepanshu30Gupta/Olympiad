@@ -83,3 +83,140 @@ export async function markReportRepliedAction(reportId: string, replied: boolean
     return { error: "Couldn't update. Please try again." };
   }
 }
+
+/** Real user search for the admin compose UI — searches by name or
+ * email, so you can find specific people to message. */
+export async function searchUsersAction(query: string) {
+  await requireAdmin();
+  if (!query.trim()) return [];
+  return prisma.user.findMany({
+    where: {
+      OR: [
+        { name: { contains: query, mode: "insensitive" } },
+        { email: { contains: query, mode: "insensitive" } },
+      ],
+    },
+    select: { id: true, name: true, email: true },
+    take: 20,
+  });
+}
+
+/** Sends a notification — always creates the real in-app notification
+ * for each recipient. Email is a genuine best-effort add-on: if
+ * RESEND_API_KEY isn't configured yet, this skips email entirely and
+ * tells the caller so, rather than silently failing or faking success. */
+export async function sendNotificationAction({
+  title,
+  body,
+  recipientUserIds,
+  sendToAll,
+  alsoEmail,
+}: {
+  title: string;
+  body: string;
+  recipientUserIds: string[];
+  sendToAll: boolean;
+  alsoEmail: boolean;
+}) {
+  try {
+    await requireAdmin();
+    if (!title.trim() || !body.trim()) {
+      return { error: "Title and message are required.", emailStatus: "skipped" as const, recipientCount: 0 };
+    }
+
+    const targetUsers = sendToAll
+      ? await prisma.user.findMany({ select: { id: true, email: true } })
+      : await prisma.user.findMany({ where: { id: { in: recipientUserIds } }, select: { id: true, email: true } });
+
+    if (targetUsers.length === 0) {
+      return { error: "No recipients selected.", emailStatus: "skipped" as const, recipientCount: 0 };
+    }
+
+    const notification = await prisma.notification.create({
+      data: {
+        title: title.trim(),
+        body: body.trim(),
+        recipients: {
+          create: targetUsers.map((u) => ({ userId: u.id })),
+        },
+      },
+    });
+
+    let emailStatus: "sent" | "skipped" | "not_configured" | "failed" = "skipped";
+    if (alsoEmail) {
+      if (!process.env.RESEND_API_KEY) {
+        emailStatus = "not_configured";
+      } else {
+        try {
+          const { Resend } = await import("resend");
+          const resend = new Resend(process.env.RESEND_API_KEY);
+          await resend.emails.send({
+            from: process.env.RESEND_FROM_EMAIL || "Qublem <onboarding@resend.dev>",
+            to: targetUsers.map((u) => u.email),
+            subject: title.trim(),
+            text: body.trim(),
+          });
+          emailStatus = "sent";
+          await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
+        } catch (emailErr) {
+          console.error("Notification email failed:", emailErr);
+          emailStatus = "failed";
+        }
+      }
+    }
+
+    return { error: null, emailStatus, recipientCount: targetUsers.length };
+  } catch (err) {
+    console.error("sendNotificationAction failed:", err);
+    return { error: "Couldn't send. Please try again.", emailStatus: "skipped" as const, recipientCount: 0 };
+  }
+}
+
+/** Real per-user notification fetch — any signed-in user can call
+ * this for their own notifications, no admin check needed here. */
+export async function getMyNotificationsAction() {
+  const clerkUser = await currentUser();
+  if (!clerkUser) return { notifications: [], unreadCount: 0 };
+  const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
+  if (!dbUser) return { notifications: [], unreadCount: 0 };
+
+  const recipients = await prisma.notificationRecipient.findMany({
+    where: { userId: dbUser.id },
+    include: { notification: true },
+    orderBy: { notification: { createdAt: "desc" } },
+    take: 20,
+  });
+
+  return {
+    notifications: recipients.map((r) => ({
+      id: r.id,
+      title: r.notification.title,
+      body: r.notification.body,
+      createdAt: r.notification.createdAt.toISOString(),
+      read: !!r.readAt,
+    })),
+    unreadCount: recipients.filter((r) => !r.readAt).length,
+  };
+}
+
+export async function markNotificationReadAction(recipientId: string) {
+  const clerkUser = await currentUser();
+  if (!clerkUser) return { error: "Not signed in." };
+  const dbUser = await prisma.user.findUnique({ where: { clerkId: clerkUser.id } });
+  if (!dbUser) return { error: "User not found." };
+
+  await prisma.notificationRecipient.updateMany({
+    where: { id: recipientId, userId: dbUser.id },
+    data: { readAt: new Date() },
+  });
+  return { error: null };
+}
+
+/** Lightweight admin check for UI purposes (like showing/hiding the nav
+ * item) — doesn't expose the admin email to the client, just a boolean. */
+export async function isCurrentUserAdminAction(): Promise<boolean> {
+  const clerkUser = await currentUser();
+  const email = clerkUser?.emailAddresses[0]?.emailAddress;
+  const adminEmail = process.env.ADMIN_EMAIL;
+  return !!(email && adminEmail && email.toLowerCase() === adminEmail.toLowerCase());
+}

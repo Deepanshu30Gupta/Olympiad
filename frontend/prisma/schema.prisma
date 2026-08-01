@@ -51,6 +51,8 @@ model User {
   attempts       Attempt[]
   savedQuestions SavedQuestion[]
   practiceSessions PracticeSession[]
+
+  notifications NotificationRecipient[]
 }
 
 model Report {
@@ -82,6 +84,28 @@ model PracticeSession {
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   attempts Attempt[]
   name String?
+}
+
+model Notification {
+  id         String   @id @default(cuid())
+  title      String
+  body       String
+  createdAt  DateTime @default(now())
+  emailSent  Boolean  @default(false)
+
+  recipients NotificationRecipient[]
+}
+
+model NotificationRecipient {
+  id             String    @id @default(cuid())
+  notificationId String
+  userId         String
+  readAt         DateTime?
+
+  notification Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([notificationId, userId])
 }
 
 model Topic {

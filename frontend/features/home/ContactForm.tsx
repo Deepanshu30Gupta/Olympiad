@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
 import { Send } from "lucide-react";
 import { submitReportAction } from "@/app/actions";
 import { Spinner } from "@/components/ui/Spinner";
 
 export function ContactForm() {
+  const { user, isSignedIn } = useUser();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -13,6 +15,16 @@ export function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Auto-fill from the signed-in user, visibly, so they never have to
+  // retype what Clerk already knows about them.
+  useEffect(() => {
+    if (isSignedIn && user) {
+      if (user.fullName) setName(user.fullName);
+      if (user.primaryEmailAddress?.emailAddress) setEmail(user.primaryEmailAddress.emailAddress);
+      if (user.primaryPhoneNumber?.phoneNumber) setPhone(user.primaryPhoneNumber.phoneNumber);
+    }
+  }, [isSignedIn, user]);
 
   async function handleSubmit() {
     if (!name.trim() || !email.trim() || !message.trim() || submitting) return;

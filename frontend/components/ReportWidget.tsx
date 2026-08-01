@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useUser } from "@clerk/nextjs";
 import { submitReportAction } from "@/app/actions";
 import { Spinner } from "@/components/ui/Spinner";
 
@@ -18,6 +19,7 @@ export function ReportWidget({
   triggerLabel = "Report an issue",
   triggerClassName,
 }: ReportWidgetProps) {
+  const { user, isSignedIn } = useUser();
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [name, setName] = useState("");
@@ -29,6 +31,17 @@ export function ReportWidget({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => setMounted(true), []);
+
+  // Auto-fill from the signed-in user — question reports always come
+  // from a signed-in student, so this should populate reliably every
+  // time, no manual retyping needed.
+  useEffect(() => {
+    if (isSignedIn && user) {
+      if (user.fullName) setName(user.fullName);
+      if (user.primaryEmailAddress?.emailAddress) setEmail(user.primaryEmailAddress.emailAddress);
+      if (user.primaryPhoneNumber?.phoneNumber) setPhone(user.primaryPhoneNumber.phoneNumber);
+    }
+  }, [isSignedIn, user]);
 
   useEffect(() => {
     if (!open) return;
@@ -52,9 +65,6 @@ export function ReportWidget({
     setOpen(false);
     setTimeout(() => {
       setSubmitted(false);
-      setName("");
-      setEmail("");
-      setPhone("");
       setComment("");
       setError(null);
     }, 200);
