@@ -214,7 +214,7 @@ export function ComposeMessageClient() {
             <>
               Sent to {result.recipientCount} user{result.recipientCount !== 1 ? "s" : ""}.
               {result.emailStatus === "sent" && " Email sent to each individually."}
-              {result.emailStatus === "not_configured" && " Email skipped — RESEND_API_KEY isn't set up yet."}
+              {result.emailStatus === "not_configured" && " Email skipped — GMAIL_USER/GMAIL_APP_PASSWORD aren't set up yet."}
               {result.emailStatus === "failed" && " Email failed to send."}
             </>
           )}

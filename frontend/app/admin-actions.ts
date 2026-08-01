@@ -167,22 +167,30 @@ export async function sendNotificationAction({
 
     let emailStatus: "sent" | "skipped" | "not_configured" | "failed" = "skipped";
     if (deliveryMode === "email" || deliveryMode === "both") {
-      if (!process.env.RESEND_API_KEY) {
+      if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
         emailStatus = "not_configured";
       } else {
         try {
-          const { Resend } = await import("resend");
-          const resend = new Resend(process.env.RESEND_API_KEY);
-          await Promise.all(
-            targetUsers.map((u) =>
-              resend.emails.send({
-                from: process.env.RESEND_FROM_EMAIL || "Qublem <onboarding@resend.dev>",
-                to: u.email,
-                subject: title.trim(),
-                text: buildPersonalizedEmailBody(u.name ?? "there", body.trim()),
-              })
-            )
-          );
+          const nodemailer = await import("nodemailer");
+          const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+              user: process.env.GMAIL_USER,
+              pass: process.env.GMAIL_APP_PASSWORD,
+            },
+          });
+          // Same privacy-safe pattern as before — one individual email
+          // per recipient, sequential (not parallel) since Gmail SMTP
+          // is more likely to rate-limit a burst of simultaneous sends
+          // than a dedicated transactional email API would.
+          for (const u of targetUsers) {
+            await transporter.sendMail({
+              from: `"Qublem" <${process.env.GMAIL_USER}>`,
+              to: u.email,
+              subject: title.trim(),
+              text: buildPersonalizedEmailBody(u.name ?? "there", body.trim()),
+            });
+          }
           emailStatus = "sent";
           await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
         } catch (emailErr) {
