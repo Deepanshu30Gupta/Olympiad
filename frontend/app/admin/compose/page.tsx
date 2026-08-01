@@ -25,6 +25,9 @@ export default async function AdminComposePage() {
             <Link href="/admin/library" className="rounded-lg border border-[#F0E6D6] px-3 py-1.5 text-xs font-semibold text-[#6B5D4F] hover:border-[#FF6B4A]/50 dark:border-neutral-800 dark:text-neutral-400">
               Library
             </Link>
+            <Link href="/admin/history" className="rounded-lg border border-[#F0E6D6] px-3 py-1.5 text-xs font-semibold text-[#6B5D4F] hover:border-[#FF6B4A]/50 dark:border-neutral-800 dark:text-neutral-400">
+              History
+            </Link>
           </div>
         </div>
         <p className="mt-1 text-sm text-[#6B5D4F] dark:text-neutral-400">

@@ -147,15 +147,23 @@ export async function sendNotificationAction({
       return { error: "No recipients selected.", emailStatus: "skipped" as const, recipientCount: 0 };
     }
 
-    if (deliveryMode === "notification" || deliveryMode === "both") {
-      await prisma.notification.create({
-        data: {
-          title: title.trim(),
-          body: body.trim(),
-          recipients: { create: targetUsers.map((u) => ({ userId: u.id })) },
-        },
-      });
-    }
+    // Real fix: always create the audit record, regardless of delivery
+    // mode. Previously an "Email Only" send created no database row at
+    // all, meaning it was completely untracked — this is what actually
+    // powers the sent-history view now. NotificationRecipient rows
+    // (which drive the in-app bell) are still only created when
+    // in-app delivery is actually part of this send.
+    const notification = await prisma.notification.create({
+      data: {
+        title: title.trim(),
+        body: body.trim(),
+        deliveryMode,
+        recipientCount: targetUsers.length,
+        ...(deliveryMode === "notification" || deliveryMode === "both"
+          ? { recipients: { create: targetUsers.map((u) => ({ userId: u.id })) } }
+          : {}),
+      },
+    });
 
     let emailStatus: "sent" | "skipped" | "not_configured" | "failed" = "skipped";
     if (deliveryMode === "email" || deliveryMode === "both") {
@@ -165,11 +173,6 @@ export async function sendNotificationAction({
         try {
           const { Resend } = await import("resend");
           const resend = new Resend(process.env.RESEND_API_KEY);
-          // Real privacy fix: send ONE email per recipient, each with
-          // only that person's own address in `to` and their own name
-          // in the greeting — never a single email listing everyone,
-          // which would expose every recipient's address to every
-          // other recipient.
           await Promise.all(
             targetUsers.map((u) =>
               resend.emails.send({
@@ -181,6 +184,7 @@ export async function sendNotificationAction({
             )
           );
           emailStatus = "sent";
+          await prisma.notification.update({ where: { id: notification.id }, data: { emailSent: true } });
         } catch (emailErr) {
           console.error("Notification email failed:", emailErr);
           emailStatus = "failed";
@@ -242,4 +246,24 @@ export async function isCurrentUserAdminAction(): Promise<boolean> {
   const email = clerkUser?.emailAddresses[0]?.emailAddress;
   const adminEmail = process.env.ADMIN_EMAIL;
   return !!(email && adminEmail && email.toLowerCase() === adminEmail.toLowerCase());
+}
+
+/** Real send history — every message ever sent, regardless of
+ * delivery mode, newest first. This is the actual record you asked
+ * for: what was shared, when, and via which channel. */
+export async function getNotificationHistoryAction() {
+  await requireAdmin();
+  const notifications = await prisma.notification.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 100,
+  });
+  return notifications.map((n) => ({
+    id: n.id,
+    title: n.title,
+    body: n.body,
+    createdAt: n.createdAt.toISOString(),
+    deliveryMode: n.deliveryMode,
+    recipientCount: n.recipientCount,
+    emailSent: n.emailSent,
+  }));
 }

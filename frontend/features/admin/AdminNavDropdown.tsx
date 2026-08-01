@@ -2,13 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Shield, ChevronDown, Inbox, BookOpen, Send } from "lucide-react";
+import { Shield, ChevronDown, Inbox, BookOpen, Send, History } from "lucide-react";
 import { isCurrentUserAdminAction } from "@/app/admin-actions";
 
 const ADMIN_LINKS = [
   { label: "Messages", href: "/admin/messages", icon: Inbox },
   { label: "Question Library", href: "/admin/library", icon: BookOpen },
   { label: "Send a Message", href: "/admin/compose", icon: Send },
+  { label: "Sent History", href: "/admin/history", icon: History },
 ];
 
 export function AdminNavDropdown() {

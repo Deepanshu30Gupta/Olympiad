@@ -92,6 +92,8 @@ model Notification {
   body       String
   createdAt  DateTime @default(now())
   emailSent  Boolean  @default(false)
+  deliveryMode String @default("notification")   // NEW — tracks which channel(s): "notification" | "email" | "both"
+  recipientCount Int  @default(0)                 // NEW — snapshot of how many people, for the history view
 
   recipients NotificationRecipient[]
 }
