@@ -59,13 +59,15 @@ export function Footer() {
             >
               <InstagramIcon size={16} />
             </a>
-            <span
-              aria-label="LinkedIn (not yet linked — needs a real URL)"
-              title="LinkedIn URL not yet provided"
-              className="flex h-9 w-9 cursor-not-allowed items-center justify-center rounded-full border border-[#F0E6D6] text-[#8A7C6C] opacity-50 dark:border-neutral-700 dark:text-neutral-600"
+            <a
+              href="https://www.linkedin.com/company/qublem"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F0E6D6] text-[#D9502F] transition-colors hover:bg-[#FFE8E0] dark:border-neutral-700 dark:text-[#FF9478] dark:hover:bg-neutral-800"
             >
               <LinkedinIcon size={16} />
-            </span>
+            </a>
           </div>
         </div>
 

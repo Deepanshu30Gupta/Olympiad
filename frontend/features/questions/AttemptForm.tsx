@@ -20,6 +20,7 @@ interface AttemptFormProps {
   hints: Hint[];
   surrenderLockSeconds: number;
   startedAtMs: number;
+  accumulatedSeconds: number;
 }
 
 type SubmitResult = {
@@ -38,6 +39,7 @@ export function AttemptForm({
   hints,
   surrenderLockSeconds,
   startedAtMs: startedAtMsProp,
+  accumulatedSeconds,
 }: AttemptFormProps) {
   const startedAtMs = useRef(startedAtMsProp);
   const router = useRouter();
@@ -74,6 +76,7 @@ export function AttemptForm({
         questionId,
         userAnswer: answer,
         startedAtMs: startedAtMs.current,
+        accumulatedSeconds,
         hintLevelUsed: revealedHintLevel || null,
         confidenceRating: null,
         previousAttemptId: attemptId,
@@ -112,6 +115,7 @@ export function AttemptForm({
         sessionId,
         questionId,
         startedAtMs: startedAtMs.current,
+        accumulatedSeconds,
         hintLevelUsed: revealedHintLevel || null,
         previousAttemptId: attemptId,
       });
@@ -272,11 +276,21 @@ export function AttemptForm({
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-[#6B5D4F] dark:text-neutral-500">
-            <span>Time:</span>
-            <span className="font-mono text-[#2B2118] dark:text-neutral-300">
-              {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
+          <div className="flex items-center gap-3 text-xs text-[#6B5D4F] dark:text-neutral-500">
+            <span className="flex items-center gap-1.5">
+              <span>This session:</span>
+              <span className="font-mono text-[#2B2118] dark:text-neutral-300">
+                {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
+              </span>
             </span>
+            {accumulatedSeconds > 0 && (
+              <span className="flex items-center gap-1.5">
+                <span>Total:</span>
+                <span className="font-mono text-[#2B2118] dark:text-neutral-300">
+                  {Math.floor((accumulatedSeconds + elapsedSeconds) / 60)}:{String((accumulatedSeconds + elapsedSeconds) % 60).padStart(2, "0")}
+                </span>
+              </span>
+            )}
           </div>
         </div>
 
@@ -302,8 +316,11 @@ export function AttemptForm({
 
   return (
     <div className="mt-6">
-      <div className="mb-4 font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
-        {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}
+      <div className="mb-4 flex items-center gap-3 font-mono text-xs text-[#6B5D4F] dark:text-neutral-500">
+        <span>This session: {Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, "0")}</span>
+        {accumulatedSeconds > 0 && (
+          <span>Total: {Math.floor((accumulatedSeconds + elapsedSeconds) / 60)}:{String((accumulatedSeconds + elapsedSeconds) % 60).padStart(2, "0")}</span>
+        )}
       </div>
 
       {error && (

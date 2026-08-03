@@ -39,15 +39,20 @@ function buildHtmlBody(recipientName: string, message: string): string {
             </tr>
           </table>
           <p style="margin-top: 16px; font-size: 12px; color: #8A7C6C; line-height: 1.6;">
-            Qublem — Adaptive practice for Math Olympiads<br />
+            Qublem — Prepare like a champion
+          </p>
+          <p style="margin-top: 4px; font-size: 12px;">
             <a href="https://qublem.in" style="color: #4C3AA0; text-decoration: none;">qublem.in</a>
             &nbsp;·&nbsp;
             <a href="mailto:support.qublem.in@gmail.com" style="color: #4C3AA0; text-decoration: none;">support.qublem.in@gmail.com</a>
           </p>
-          <p style="margin-top: 4px; font-size: 12px; color: #8A7C6C;">
-            <a href="https://qublem.in" style="color: #4C3AA0; text-decoration: none;">qublem.in</a>
-            &nbsp;·&nbsp;
-            <a href="mailto:support.qublem.in@gmail.com" style="color: #4C3AA0; text-decoration: none;">support.qublem.in@gmail.com</a>
+          <p style="margin-top: 10px;">
+            <a href="https://www.instagram.com/qublem.in?igsh=MTU2ZnRmeXVib3hucg==" style="text-decoration: none; margin: 0 6px;">
+              <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" width="20" height="20" style="vertical-align: middle;" />
+            </a>
+            <a href="https://www.linkedin.com/company/qublem" style="text-decoration: none; margin: 0 6px;">
+              <img src="https://cdn-icons-png.flaticon.com/24/145/145807.png" alt="LinkedIn" width="20" height="20" style="vertical-align: middle;" />
+            </a>
           </p>
         </td>
       </tr>
