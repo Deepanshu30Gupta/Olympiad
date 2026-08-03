@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { sendEmail, buildPersonalizedEmailBody } from "@/lib/send-email";
+import { sendPersonalizedEmail } from "@/lib/send-email";
 
 interface ClerkUserEvent {
   type: string;
@@ -70,8 +70,9 @@ export async function POST(req: Request) {
     const welcomeMessage =
       "Welcome to Qublem! We're excited to have you here. Head over to Practice to get matched with your first question, or check out the Leaderboard to see where you stand. Good luck, and have fun training!";
 
+    let welcomeNotificationId: string | null = null;
     try {
-      await prisma.notification.create({
+      const notification = await prisma.notification.create({
         data: {
           title: "Welcome to Qublem! 🎉",
           body: welcomeMessage,
@@ -80,16 +81,27 @@ export async function POST(req: Request) {
           recipients: { create: [{ userId: newUser.id }] },
         },
       });
+      welcomeNotificationId = notification.id;
     } catch (err) {
       console.error("Failed to create welcome notification:", err);
     }
 
     try {
-      await sendEmail({
+      const result = await sendPersonalizedEmail({
         to: email,
         subject: "Welcome to Qublem! 🎉",
-        text: buildPersonalizedEmailBody(name ?? "there", welcomeMessage),
+        recipientName: name ?? "there",
+        message: welcomeMessage,
       });
+      // Real fix: this was never updating emailSent after a
+      // successful send, so History always showed "failed" for
+      // welcome emails regardless of whether they actually delivered.
+      if (result.sent && welcomeNotificationId) {
+        await prisma.notification.update({
+          where: { id: welcomeNotificationId },
+          data: { emailSent: true },
+        });
+      }
     } catch (err) {
       console.error("Failed to send welcome email:", err);
     }

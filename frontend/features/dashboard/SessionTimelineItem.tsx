@@ -12,6 +12,7 @@ interface SessionQuestion {
   attemptId: string;
   externalId: string;
   status: string;
+  timeSeconds: number;
 }
 
 export function SessionTimelineItem({
@@ -222,6 +223,9 @@ export function SessionTimelineItem({
                             {q.status === "SOLVED" ? "✓" : q.status === "WRONG" ? "✗" : "—"}
                           </span>
                           <span className="truncate text-[#8A7C6C] dark:text-neutral-500">{q.externalId}</span>
+                          <span className="ml-auto shrink-0 text-[#8A7C6C] dark:text-neutral-600">
+                            {Math.floor(q.timeSeconds / 60)}m {q.timeSeconds % 60}s
+                          </span>
                         </Link>
                       </li>
                     );

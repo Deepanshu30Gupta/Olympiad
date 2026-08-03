@@ -158,7 +158,7 @@ export interface SessionSummary {
   totalTimeSeconds: number;
   accuracyPct: number;
   netRatingChange: number | null;
-  questions: { attemptId: string; externalId: string; status: string }[];
+  questions: { attemptId: string; externalId: string; status: string; timeSeconds: number }[];
   examTypes: string[];
   topicFocus: string[];
 }
@@ -208,24 +208,22 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     const totalAttempted = dedupedAttempts.length;
     const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
 
-    // Real fix for the previous 'wrong time' bug — that used
-    // session.updatedAt as a proxy, which isn't reliable (it can shift
-    // for reasons unrelated to actual solving time). This now uses the
-    // precise currentQuestionStartedAt timestamp, which is ONLY set
-    // when a question is genuinely opened and cleared the moment it's
-    // submitted or the session stops being active — so it can't drift.
+    // Real fix superseding the old recency-cap approach — that guessed
+    // based on a 30-minute cutoff, which is exactly what caused time to
+    // silently reset to zero if a student came back to a question after
+    // a longer gap. Now uses the persisted, checkpointed accumulator
+    // (banked on every resume, regardless of gap length) plus a small
+    // live-tick for the current visit if still actively within it.
     let liveTimeSeconds = 0;
     if (s.status === "ACTIVE" && s.currentQuestionId && s.currentQuestionStartedAt) {
-      const elapsed = Math.round((Date.now() - s.currentQuestionStartedAt.getTime()) / 1000);
-      const RECENCY_THRESHOLD_SECONDS = 30 * 60; // 30 minutes
-      // Real fix for a genuine bug: the old flat 2-hour cap still
-      // showed misleading multi-hour durations for sessions abandoned
-      // days ago (e.g., a question opened once and never touched
-      // again). Now: only count live time if the question was opened
-      // recently — beyond that, treat it as abandoned and show only
-      // the real, actually-measured time from submitted attempts.
-      if (elapsed <= RECENCY_THRESHOLD_SECONDS) {
-        liveTimeSeconds = Math.max(0, elapsed);
+      liveTimeSeconds = s.currentQuestionAccumulatedSeconds;
+      const elapsedThisVisit = Math.round((Date.now() - s.currentQuestionStartedAt.getTime()) / 1000);
+      // Only add the current visit's live tick if it's still plausibly
+      // an active viewing session (sanity bound, not a hard data loss
+      // like the old cutoff — the banked accumulator above is never
+      // discarded regardless of this check).
+      if (elapsedThisVisit <= 30 * 60) {
+        liveTimeSeconds += Math.max(0, elapsedThisVisit);
       }
     }
     const displayTimeSeconds = totalTimeSeconds + liveTimeSeconds;
@@ -262,6 +260,7 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
         attemptId: a.id,
         externalId: a.question.externalId,
         status: a.status,
+        timeSeconds: a.activeSolvingSeconds ?? 0,
       })),
       examTypes: s.examTypes,
       topicFocus: s.topicFocus,

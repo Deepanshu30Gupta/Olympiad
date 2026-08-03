@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Mail, Check, RotateCcw, Copy, ExternalLink } from "lucide-react";
-import { markReportRepliedAction } from "@/app/admin-actions";
+import { markReportRepliedAction, previewQuestionAsAdminAction } from "@/app/admin-actions";
 
 interface Report {
   id: string;
@@ -30,6 +30,36 @@ function buildReplyMailto(r: Report): string {
 
 type TypeFilter = "questions" | "contact" | "all";
 type StatusFilter = "pending" | "replied" | "all";
+
+function QuestionReportLink({ externalId }: { externalId: string }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  async function handleClick() {
+    if (loading) return;
+    setLoading(true);
+    try {
+      const res = await previewQuestionAsAdminAction(externalId);
+      if (res.sessionId) {
+        router.push(`/practice?sessionId=${res.sessionId}&returnTo=%2Fadmin%2Fmessages`);
+      } else {
+        setLoading(false);
+      }
+    } catch {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      disabled={loading}
+      className="mt-1 inline-flex items-center gap-1 rounded-full bg-[#ECE8FA] px-2 py-0.5 text-[10px] font-semibold text-[#4C3AA0] transition-colors hover:bg-[#DDD6F3] disabled:opacity-50 dark:bg-indigo-950/40 dark:text-indigo-300"
+    >
+      {loading ? "Opening..." : `Re: ${externalId}`} <ExternalLink size={10} />
+    </button>
+  );
+}
 
 export function MessagesInboxClient({ initialReports }: { initialReports: Report[] }) {
   const [reports, setReports] = useState(initialReports);
@@ -89,12 +119,7 @@ export function MessagesInboxClient({ initialReports }: { initialReports: Report
                     {r.phone && <span className="text-xs text-[#6B5D4F] dark:text-neutral-500">· {r.phone}</span>}
                   </div>
                   {r.questionExternalId && (
-                    <Link
-                      href={`/admin/question/${encodeURIComponent(r.questionExternalId)}`}
-                      className="mt-1 inline-flex items-center gap-1 rounded-full bg-[#ECE8FA] px-2 py-0.5 text-[10px] font-semibold text-[#4C3AA0] transition-colors hover:bg-[#DDD6F3] dark:bg-indigo-950/40 dark:text-indigo-300"
-                    >
-                      Re: {r.questionExternalId} <ExternalLink size={10} />
-                    </Link>
+                    <QuestionReportLink externalId={r.questionExternalId} />
                   )}
                 </div>
                 <span className="shrink-0 text-xs text-[#6B5D4F] dark:text-neutral-500">
