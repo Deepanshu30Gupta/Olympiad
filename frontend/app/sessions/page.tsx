@@ -16,7 +16,7 @@ interface SessionForClient {
   totalTimeSeconds: number;
   accuracyPct: number;
   netRatingChange: number | null;
-  questions: { attemptId: string; externalId: string; status: string }[];
+  questions: { attemptId: string; externalId: string; status: string; timeSeconds: number }[];
   examTypes: string[];
   topicFocus: string[];
 }
