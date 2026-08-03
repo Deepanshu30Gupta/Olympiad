@@ -2,7 +2,7 @@
 
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
-import { sendEmail, sendEmailBatch, buildPersonalizedEmailBody } from "@/lib/send-email";
+import { sendPersonalizedEmailBatch } from "@/lib/send-email";
 
 async function requireAdmin() {
   const clerkUser = await currentUser();
@@ -164,11 +164,12 @@ export async function sendNotificationAction({
     let emailStatus: "sent" | "skipped" | "not_configured" | "failed" | "partial" = "skipped";
     let failedRecipients: string[] = [];
     if (deliveryMode === "email" || deliveryMode === "both") {
-      const results = await sendEmailBatch(
+      const results = await sendPersonalizedEmailBatch(
         targetUsers.map((u) => ({
           to: u.email,
           subject: title.trim(),
-          text: buildPersonalizedEmailBody(u.name ?? "there", body.trim()),
+          recipientName: u.name ?? "there",
+          message: body.trim(),
         }))
       );
       const succeeded = results.filter((r) => r.sent);
