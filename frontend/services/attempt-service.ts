@@ -28,7 +28,6 @@ interface SubmitAttemptParams {
   sessionId: string | null;
   status: AttemptStatus;
   startedAt: Date;
-  accumulatedSeconds: number;
   hintLevelUsed: number | null;
   solutionViewed: boolean;
   confidenceRating: number | null;
@@ -156,7 +155,7 @@ export async function submitAttempt(params: SubmitAttemptParams) {
         status: params.status,
         startedAt: params.startedAt,
         submittedAt: new Date(),
-        activeSolvingSeconds: params.accumulatedSeconds + Math.round((Date.now() - params.startedAt.getTime()) / 1000),
+        activeSolvingSeconds: Math.round((Date.now() - params.startedAt.getTime()) / 1000),
         hintLevelUsed: params.hintLevelUsed,
         solutionViewed: params.solutionViewed,
         confidenceRating: params.confidenceRating,

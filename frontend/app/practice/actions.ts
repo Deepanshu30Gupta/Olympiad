@@ -41,7 +41,6 @@ interface SubmitAnswerInput {
   questionId: string;
   userAnswer: string;
   startedAtMs: number;
-  accumulatedSeconds: number;
   hintLevelUsed: number | null;
   confidenceRating: number | null;
   previousAttemptId?: string | null;
@@ -73,7 +72,6 @@ export async function submitAnswerAction(input: SubmitAnswerInput): Promise<Subm
       sessionId: input.sessionId,
       status: isCorrect ? "SOLVED" : "WRONG",
       startedAt: new Date(input.startedAtMs),
-      accumulatedSeconds: input.accumulatedSeconds,
       hintLevelUsed: input.hintLevelUsed,
       solutionViewed: false,
       confidenceRating: input.confidenceRating,
@@ -114,7 +112,6 @@ interface SurrenderInput {
   sessionId: string;
   questionId: string;
   startedAtMs: number;
-  accumulatedSeconds: number;
   hintLevelUsed: number | null;
   previousAttemptId?: string | null;
 }
@@ -140,7 +137,6 @@ export async function surrenderAction(input: SurrenderInput): Promise<SurrenderR
       sessionId: input.sessionId,
       status: "SURRENDERED",
       startedAt: new Date(input.startedAtMs),
-      accumulatedSeconds: input.accumulatedSeconds,
       hintLevelUsed: input.hintLevelUsed,
       solutionViewed: true,
       confidenceRating: null,
