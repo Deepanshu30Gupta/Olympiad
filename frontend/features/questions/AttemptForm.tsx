@@ -20,7 +20,6 @@ interface AttemptFormProps {
   hints: Hint[];
   surrenderLockSeconds: number;
   startedAtMs: number;
-  accumulatedSeconds: number;
 }
 
 type SubmitResult = {
@@ -39,7 +38,6 @@ export function AttemptForm({
   hints,
   surrenderLockSeconds,
   startedAtMs: startedAtMsProp,
-  accumulatedSeconds,
 }: AttemptFormProps) {
   const startedAtMs = useRef(startedAtMsProp);
   const router = useRouter();
@@ -76,7 +74,6 @@ export function AttemptForm({
         questionId,
         userAnswer: answer,
         startedAtMs: startedAtMs.current,
-        accumulatedSeconds,
         hintLevelUsed: revealedHintLevel || null,
         confidenceRating: null,
         previousAttemptId: attemptId,
@@ -115,7 +112,6 @@ export function AttemptForm({
         sessionId,
         questionId,
         startedAtMs: startedAtMs.current,
-        accumulatedSeconds,
         hintLevelUsed: revealedHintLevel || null,
         previousAttemptId: attemptId,
       });

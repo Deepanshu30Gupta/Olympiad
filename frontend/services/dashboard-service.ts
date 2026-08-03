@@ -207,23 +207,12 @@ export async function getAllSessionsWithStats(userId: string): Promise<SessionSu
     const totalTimeSeconds = dedupedAttempts.reduce((sum, a) => sum + (a.activeSolvingSeconds ?? 0), 0);
     const totalAttempted = dedupedAttempts.length;
     const accuracyPct = totalAttempted > 0 ? Math.round((solved / totalAttempted) * 100) : 0;
-
-    // Real fix superseding the old recency-cap approach — that guessed
-    // based on a 30-minute cutoff, which is exactly what caused time to
-    // silently reset to zero if a student came back to a question after
-    // a longer gap. Now uses the persisted, checkpointed accumulator
-    // (banked on every resume, regardless of gap length) plus a small
-    // live-tick for the current visit if still actively within it.
     let liveTimeSeconds = 0;
     if (s.status === "ACTIVE" && s.currentQuestionId && s.currentQuestionStartedAt) {
-      liveTimeSeconds = s.currentQuestionAccumulatedSeconds;
-      const elapsedThisVisit = Math.round((Date.now() - s.currentQuestionStartedAt.getTime()) / 1000);
-      // Only add the current visit's live tick if it's still plausibly
-      // an active viewing session (sanity bound, not a hard data loss
-      // like the old cutoff — the banked accumulator above is never
-      // discarded regardless of this check).
-      if (elapsedThisVisit <= 30 * 60) {
-        liveTimeSeconds += Math.max(0, elapsedThisVisit);
+      const elapsed = Math.round((Date.now() - s.currentQuestionStartedAt.getTime()) / 1000);
+      const RECENCY_THRESHOLD_SECONDS = 30 * 60; // 30 minutes
+      if (elapsed <= RECENCY_THRESHOLD_SECONDS) {
+        liveTimeSeconds = Math.max(0, elapsed);
       }
     }
     const displayTimeSeconds = totalTimeSeconds + liveTimeSeconds;

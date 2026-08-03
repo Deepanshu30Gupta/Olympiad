@@ -34,8 +34,6 @@ export async function createSession(
 }
 
 export async function renameSession(sessionId: string, userId: string, name: string) {
-  // Scoped by userId too, not just sessionId — prevents renaming a
-  // session that isn't yours even if you somehow guessed its id.
   return prisma.practiceSession.updateMany({
     where: { id: sessionId, userId },
     data: { name: name.trim().slice(0, 60) || undefined },
@@ -68,36 +66,11 @@ export async function getOrPickCurrentQuestion(
       include: { hints: { orderBy: { level: "asc" } } },
     });
     if (question) {
-      if (!session.currentQuestionStartedAt) {
-        const startedAt = await stampQuestionStart(sessionId);
-        return { question, reason: "Resumed — this question was already in progress.", startedAt, accumulatedSeconds: session.currentQuestionAccumulatedSeconds };
-      }
-
-      // Real fix: bank the elapsed time from this visit into the
-      // persistent accumulator, then start a fresh clock — rather than
-      // trusting one timestamp with a recency cutoff (which is what
-      // caused time to silently reset to zero if you came back after
-      // more than 30 minutes). Capped per-checkpoint at 2 hours as a
-      // sanity bound against a genuinely abandoned tab left open for
-      // days inflating the total.
-      const elapsedThisVisit = Math.min(
-        Math.max(0, Math.round((Date.now() - session.currentQuestionStartedAt.getTime()) / 1000)),
-        7200
-      );
-      const newAccumulated = session.currentQuestionAccumulatedSeconds + elapsedThisVisit;
-      const startedAt = new Date();
-      await prisma.practiceSession.update({
-        where: { id: sessionId },
-        data: { currentQuestionStartedAt: startedAt, currentQuestionAccumulatedSeconds: newAccumulated },
-      });
-      return { question, reason: "Resumed — this question was already in progress.", startedAt, accumulatedSeconds: newAccumulated };
+      const startedAt = session.currentQuestionStartedAt ?? (await stampQuestionStart(sessionId));
+      return { question, reason: "Resumed — this question was already in progress.", startedAt };
     }
   }
 
-  // A queued session (e.g. "Practice All Bookmarks") serves questions
-  // from its explicit list, in order, instead of the adaptive engine —
-  // this is what makes that feature genuinely self-contained rather
-  // than falling back to normal recommendations after the first one.
   if (session.queuedQuestionIds.length > 0) {
     const nextQueuedId = session.queuedQuestionIds[0];
     const question = await prisma.question.findUnique({
@@ -111,14 +84,11 @@ export async function getOrPickCurrentQuestion(
         data: {
           currentQuestionId: question.id,
           currentQuestionStartedAt: startedAt,
-          currentQuestionAccumulatedSeconds: 0,
           queuedQuestionIds: session.queuedQuestionIds.slice(1),
         },
       });
-      return { question, reason: "Next bookmarked question.", startedAt, accumulatedSeconds: 0 };
+      return { question, reason: "Next bookmarked question.", startedAt };
     }
-    // Queued question no longer exists (e.g. deleted) — drop it and
-    // fall through to try the rest of the queue / adaptive engine.
     await prisma.practiceSession.update({
       where: { id: sessionId },
       data: { queuedQuestionIds: session.queuedQuestionIds.slice(1) },
@@ -135,12 +105,12 @@ export async function getOrPickCurrentQuestion(
     const startedAt = new Date();
     await prisma.practiceSession.update({
       where: { id: sessionId },
-      data: { currentQuestionId: result.question.id, currentQuestionStartedAt: startedAt, currentQuestionAccumulatedSeconds: 0 },
+      data: { currentQuestionId: result.question.id, currentQuestionStartedAt: startedAt },
     });
-    return { ...result, startedAt, accumulatedSeconds: 0 };
+    return { ...result, startedAt };
   }
 
-  return { ...result, startedAt: null, accumulatedSeconds: 0 };
+  return { ...result, startedAt: null };
 }
 
 async function stampQuestionStart(sessionId: string): Promise<Date> {
@@ -152,7 +122,7 @@ async function stampQuestionStart(sessionId: string): Promise<Date> {
 export async function advanceSession(sessionId: string) {
   await prisma.practiceSession.update({
     where: { id: sessionId },
-    data: { currentQuestionId: null, currentQuestionStartedAt: null, currentQuestionAccumulatedSeconds: 0, questionsCompleted: { increment: 1 } },
+    data: { currentQuestionId: null, currentQuestionStartedAt: null, questionsCompleted: { increment: 1 } },
   });
 }
 
