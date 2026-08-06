@@ -47,6 +47,7 @@ const TAXONOMY = [
       { slug: "geometry-coordinate", name: "Coordinate Geometry" },
       { slug: "geometry-transformations", name: "Transformations & Symmetry" },
       { slug: "geometry-quadrilaterals", name: "Quadrilaterals & Polygons" },
+      { slug: "geometry-solids", name: "3D Geometry & Solids" },
     ],
   },
   {

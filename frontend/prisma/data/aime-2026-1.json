@@ -1,317 +1,547 @@
-[
-  {
-    "externalId": "AIMEI-2026-P1",
-    "examType": "AIME",
-    "problemNumber": 1,
-    "statement": "Patrick started walking at a constant speed along a straight road from his school to the park. One hour after Patrick left, Tanya started running at a constant speed of 2 miles per hour faster than Patrick walked, following the same straight road from the school to the park. One hour after Tanya left, José started bicycling at a constant speed of 7 miles per hour faster than Tanya ran, following the same straight road from the school to the park. All three people arrived at the park at the same time. The distance from the school to the park is $\\dfrac{m}{n}$ miles, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "277",
-    "baseRating": 1300,
-    "difficultyLabel": "Medium",
-    "tags": ["rate-problems", "systems-of-equations", "arrival-time"],
-    "topics": ["algebra-manipulation"],
-    "diagramSvg": null,
-    "solutionMarkdown": "277",
-    "estimatedSolveSeconds": 360,
-    "hints": [
-      { "level": 1, "content": "Let Patrick's speed be $v$ and express the distance $d$ using the total time each person actually spends traveling — remember Tanya and José leave later." },
-      { "level": 2, "content": "Since all three arrive together, write two separate equations relating $d$ and $v$ using the fact that Tanya's travel time is 1 hour less than Patrick's, and José's is 2 hours less than Patrick's." },
-      { "level": 3, "content": "Eliminate $v$ between your two equations — you should be able to solve for $d$ directly without ever finding $v$ explicitly." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P2",
-    "examType": "AIME",
-    "problemNumber": 2,
-    "statement": "Find the number of positive integer palindromes written in base 10, with no zero digits, and whose digits add up to 13. For example, 42124 has these properties. Recall that a palindrome is a number whose representation reads the same from left to right as from right to left.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "62",
-    "baseRating": 1400,
-    "difficultyLabel": "Medium",
-    "tags": ["palindromes", "digit-sums", "casework"],
-    "topics": ["combinatorics-counting"],
-    "diagramSvg": null,
-    "solutionMarkdown": "62",
-    "estimatedSolveSeconds": 480,
-    "hints": [
-      { "level": 1, "content": "Handle palindromes of each length separately — the way digits pair up (and whether there's a lone middle digit) depends on whether the length is odd or even." },
-      { "level": 2, "content": "For a palindrome, only the first half of the digits is actually free to choose — express the total digit sum in terms of just that first half." },
-      { "level": 3, "content": "For each valid length, count the number of ways to choose digits 1-9 (no zeros) for the free half so that the corresponding total sum equals 13, then add up across all valid lengths." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P3",
-    "examType": "AIME",
-    "problemNumber": 3,
-    "statement": "A hemisphere with radius 200 sits on top of a horizontal circular disk with radius 200, and the hemisphere and disk have the same center. Let $\\mathcal{T}$ be the region of points $P$ in the disk such that a sphere of radius 42 can be placed on top of the disk at $P$ and lie completely inside the hemisphere. The area of $\\mathcal{T}$ divided by the area of the disk is $\\dfrac{p}{q}$, where $p$ and $q$ are relatively prime positive integers. Find $p + q$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "79",
-    "baseRating": 1600,
-    "difficultyLabel": "Hard",
-    "tags": ["hemisphere", "tangent-spheres", "locus"],
-    "topics": ["geometry-solids"],
-    "diagramSvg": null,
-    "solutionMarkdown": "79",
-    "estimatedSolveSeconds": 600,
-    "hints": [
-      { "level": 1, "content": "If the small sphere sits on the disk at horizontal distance $x$ from the center, find the distance from the hemisphere's center to the small sphere's center in terms of $x$ and the small sphere's radius." },
-      { "level": 2, "content": "The small sphere fits entirely inside the hemisphere exactly when that center-to-center distance plus the small sphere's radius doesn't exceed the hemisphere's radius — turn this into an inequality on $x$." },
-      { "level": 3, "content": "The inequality on $x$ describes a disk of some radius around the center — compute its area and compare it to the area of the full disk of radius 200." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P4",
-    "examType": "AIME",
-    "problemNumber": 4,
-    "statement": "Find the number of integers less than or equal to 100 that are equal to $a + b + ab$ for some choice of distinct positive integers $a$ and $b$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "70",
-    "baseRating": 1450,
-    "difficultyLabel": "Medium",
-    "tags": ["factorization", "distinct-integers"],
-    "topics": ["nt-primes-factorization"],
-    "diagramSvg": null,
-    "solutionMarkdown": "70",
-    "estimatedSolveSeconds": 420,
-    "hints": [
-      { "level": 1, "content": "Rewrite $a + b + ab$ as $(a+1)(b+1) - 1$ — this turns the problem into a question about factoring." },
-      { "level": 2, "content": "Since $a \\neq b$, the two factors $a+1$ and $b+1$ must be distinct integers, each at least 2." },
-      { "level": 3, "content": "Count values of $n \\le 100$ such that $n+1$ can be written as a product of two distinct integers each $\\ge 2$ — be careful not to double-count values reachable in more than one way." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P5",
-    "examType": "AIME",
-    "problemNumber": 5,
-    "statement": "A plane contains points $A$ and $B$ with $AB = 1$. Point $A$ is rotated in the plane counterclockwise through an acute angle $\\theta$ around point $B$ to point $A'$. Then $B$ is rotated in the plane clockwise through angle $\\theta$ around point $A'$ to point $B'$. Suppose $AB' = \\dfrac{4}{3}$. The value of $\\cos \\theta$ can be written as $\\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "65",
-    "baseRating": 1550,
-    "difficultyLabel": "Hard",
-    "tags": ["rotation", "law-of-cosines", "isosceles-triangle"],
-    "topics": ["geometry-triangles"],
-    "diagramSvg": null,
-    "solutionMarkdown": "65",
-    "estimatedSolveSeconds": 540,
-    "hints": [
-      { "level": 1, "content": "Rotating $A$ about $B$ preserves the distance from $B$, so $BA' = BA = 1$. Rotating $B$ about $A'$ preserves the distance from $A'$, so $A'B' = A'B$ — figure out what $A'B$ equals." },
-      { "level": 2, "content": "Work out $\\angle AA'B$ from the first rotation, and note that $\\angle BA'B' = \\theta$ from the second rotation — combine these to find $\\angle AA'B'$." },
-      { "level": 3, "content": "You now know two sides of triangle $AA'B'$ ($A'A$ and $A'B'$) and the angle between them — apply the Law of Cosines to relate this to $AB' = 4/3$." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P6",
-    "examType": "AIME",
-    "problemNumber": 6,
-    "statement": "The product of all positive real numbers $x$ satisfying the equation $\\sqrt[20]{x^{\\log_{2026} x}} = 26x$ is an integer $P$. Find the number of positive integer divisors of $P$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "441",
-    "baseRating": 1600,
-    "difficultyLabel": "Hard",
-    "tags": ["logarithms", "vieta", "divisor-counting"],
-    "topics": ["algebra-manipulation", "nt-primes-factorization"],
-    "diagramSvg": null,
-    "solutionMarkdown": "441",
-    "estimatedSolveSeconds": 600,
-    "hints": [
-      { "level": 1, "content": "Take $\\log_{2026}$ of both sides and substitute $y = \\log_{2026} x$ — the left side becomes something involving $y^2$." },
-      { "level": 2, "content": "You should end up with a quadratic equation in $y$. Use Vieta's formulas to find the sum of its two roots without solving for them individually." },
-      { "level": 3, "content": "The product of the two valid $x$-values equals $2026$ raised to the sum of the corresponding $y$-values. Factor $2026$ into primes, then use that exponent to count $P$'s divisors." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P7",
-    "examType": "AIME",
-    "problemNumber": 7,
-    "statement": "Find the number of functions $\\pi$ mapping the set $A = \\{1,2,3,4,5,6\\}$ onto $A$ such that for every $a \\in A$, $\\pi(\\pi(\\pi(\\pi(\\pi(a))))) = a$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "396",
-    "baseRating": 1550,
-    "difficultyLabel": "Hard",
-    "tags": ["permutations", "cycle-structure"],
-    "topics": ["combinatorics-counting"],
-    "diagramSvg": null,
-    "solutionMarkdown": "396",
-    "estimatedSolveSeconds": 480,
-    "hints": [
-      { "level": 1, "content": "A function from a finite set onto itself is automatically a bijection — so $\\pi$ is a permutation, and you should think in terms of its cycle decomposition." },
-      { "level": 2, "content": "The condition $\\pi^5 = \\text{id}$ means every cycle length in $\\pi$ must divide 5. Since 5 is prime, that restricts cycle lengths to just 1 and 5." },
-      { "level": 3, "content": "List every way to partition 6 elements into cycles of length 1 and/or 5, and for each partition type, count how many distinct permutations have that cycle structure." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P8",
-    "examType": "AIME",
-    "problemNumber": 8,
-    "statement": "Let $N$ be the number of positive integer divisors of $17017^{17}$ that leave a remainder of 5 upon division by 12. Find the remainder when $N$ is divided by 1000.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "244",
-    "baseRating": 1700,
-    "difficultyLabel": "Hard",
-    "tags": ["divisor-counting", "modular-arithmetic"],
-    "topics": ["nt-primes-factorization", "nt-modular-arithmetic"],
-    "diagramSvg": null,
-    "solutionMarkdown": "244",
-    "estimatedSolveSeconds": 720,
-    "hints": [
-      { "level": 1, "content": "Start by fully factoring 17017 into primes, then write out the prime factorization of $17017^{17}$ — every divisor is a product of prime powers within those bounds." },
-      { "level": 2, "content": "A divisor's residue mod 12 depends only on the residues of its individual prime-power factors mod 12 — work out the possible residues each prime's power can take." },
-      { "level": 3, "content": "Use casework (or a generating-function-style count) over the exponent choices for each prime to count divisors whose product is $\\equiv 5 \\pmod{12}$, then reduce that count mod 1000." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P9",
-    "examType": "AIME",
-    "problemNumber": 9,
-    "statement": "Joanne has a blank fair six-sided die and six stickers each displaying a different integer from 1 to 6. Joanne rolls the die and then places the sticker labeled 1 on the top face of the die. She then rolls the die again, places the sticker labeled 2 on the top face, and continues this process to place the rest of the stickers in order. If the die ever lands with a sticker already on its top face, the new sticker is placed to cover the old sticker. Let $p$ be the conditional probability that at the end of the process exactly one face has been left blank, given that all the even-numbered stickers are visible on faces of the die. Then $p$ can be written as $\\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "29",
-    "baseRating": 1750,
-    "difficultyLabel": "Very Hard",
-    "tags": ["conditional-probability", "sequential-process"],
-    "topics": ["probability-basic", "combinatorics-counting"],
-    "diagramSvg": null,
-    "solutionMarkdown": "29",
-    "estimatedSolveSeconds": 900,
-    "hints": [
-      { "level": 1, "content": "Track which physical face is on top at each of the 6 rolls — remember that landing on an already-stickered face just covers it with the new sticker, so only the LAST sticker placed on each face actually stays visible." },
-      { "level": 2, "content": "\"All even stickers visible\" means stickers 2, 4, and 6 must each be the last one placed on whichever face they land on — think about which rolls (3rd, 5th, or 6th) could possibly cover an even sticker, and rule those out." },
-      { "level": 3, "content": "Set up the conditional probability as a ratio: count outcomes where all even stickers survive AND exactly one face stays blank, divided by outcomes where all even stickers simply survive — count each systematically over the 6 rolls." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P10",
-    "examType": "AIME",
-    "problemNumber": 10,
-    "statement": "Let $\\triangle ABC$ have side lengths $AB = 13$, $BC = 14$, and $CA = 15$. Triangle $\\triangle A'B'C'$ is obtained by rotating $\\triangle ABC$ about its circumcenter so that $\\overline{A'C'}$ is perpendicular to $\\overline{BC}$, with $A'$ and $B$ not on the same side of line $B'C'$. Find the integer closest to the area of hexagon $AA'CC'BB'$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "156",
-    "baseRating": 1750,
-    "difficultyLabel": "Very Hard",
-    "tags": ["circumcenter", "rotation", "hexagon-area"],
-    "topics": ["geometry-triangles", "geometry-circles"],
-    "diagramSvg": null,
-    "solutionMarkdown": "156",
-    "estimatedSolveSeconds": 780,
-    "hints": [
-      { "level": 1, "content": "Since the rotation is about the circumcenter, all six points $A, B, C, A', B', C'$ lie on the same circumscribed circle — compute that circle's radius first using the 13-14-15 triangle." },
-      { "level": 2, "content": "Use the perpendicularity condition between $A'C'$ and $BC$ to pin down exactly how far the triangle was rotated." },
-      { "level": 3, "content": "Break the hexagon $AA'CC'BB'$ into triangles from the circumcenter (or from the original triangle's vertices), and add or subtract areas based on how the rotated copy overlaps the original." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P11",
-    "examType": "AIME",
-    "problemNumber": 11,
-    "statement": "The integers from 1 to 64 are placed in some order into an $8 \\times 8$ grid of cells with one number in each cell. Let $a_{i,j}$ be the number placed in the cell in row $i$ and column $j$, and let $M$ be the sum of the absolute differences between adjacent cells. That is, $$M = \\sum_{i=1}^{8} \\sum_{j=1}^{7} \\bigl(|a_{i,j+1} - a_{i,j}| + |a_{j+1,i} - a_{j,i}|\\bigr).$$ Find the remainder when the maximum possible value of $M$ is divided by 1000.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "896",
-    "baseRating": 1800,
-    "difficultyLabel": "Very Hard",
-    "tags": ["extremal-arrangement", "grid-optimization"],
-    "topics": ["combinatorics-counting"],
-    "diagramSvg": null,
-    "solutionMarkdown": "896",
-    "estimatedSolveSeconds": 900,
-    "hints": [
-      { "level": 1, "content": "Instead of thinking about specific placements, think about how many times each number $k$ can appear as the larger (or smaller) value in an adjacent pair — this bounds each number's total contribution to $M$." },
-      { "level": 2, "content": "To push $M$ as large as possible, you want small and large numbers sitting next to each other as often as the grid's adjacency structure allows — consider a zigzag or interleaved arrangement rather than a natural ordering." },
-      { "level": 3, "content": "Work out the maximum theoretical contribution for each number based on how many neighbors it has (edge/corner cells have fewer), sum these contributions, then reduce mod 1000." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P12",
-    "examType": "AIME",
-    "problemNumber": 12,
-    "statement": "Triangle $\\triangle ABC$ lies in plane $\\mathcal{P}$ with $AB = 6$, $AC = 4$, and $\\angle BAC = 90^\\circ$. Let $D$ be the reflection across $\\overline{BC}$ of the centroid of $\\triangle ABC$. Four spheres, all on the same side of $\\mathcal{P}$, have radii 1, 2, 3, and $r$ and are tangent to $\\mathcal{P}$ at points $A$, $B$, $C$, and $D$, respectively. The four spheres are also each tangent to a second plane $\\mathcal{T}$ and are all on the same side of $\\mathcal{T}$. The value of $r$ can be written as $\\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "161",
-    "baseRating": 1850,
-    "difficultyLabel": "Very Hard",
-    "tags": ["tangent-spheres", "centroid", "coordinate-geometry-3d"],
-    "topics": ["geometry-solids", "geometry-triangles"],
-    "diagramSvg": null,
-    "solutionMarkdown": "161",
-    "estimatedSolveSeconds": 960,
-    "hints": [
-      { "level": 1, "content": "Since each sphere is tangent to both $\\mathcal{P}$ and $\\mathcal{T}$, there's a direct linear relationship between a sphere's radius and the position of its tangent point on $\\mathcal{P}$ relative to the line where the two planes meet." },
-      { "level": 2, "content": "Set up coordinates for $A$, $B$, $C$ in plane $\\mathcal{P}$ using the right angle at $A$, and use the known radii at those three points to determine that linear relationship precisely." },
-      { "level": 3, "content": "Find $D$'s coordinates as the centroid reflected across $BC$, then apply the same linear relationship you found to compute $r$." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P13",
-    "examType": "AIME",
-    "problemNumber": 13,
-    "statement": "For each nonnegative integer $r$ less than 502, define $$S_r = \\sum_{m \\ge 0} \\binom{10\\,000}{502m + r},$$ where $\\binom{10\\,000}{n}$ is defined to be 0 when $n > 10\\,000$. That is, $S_r$ is the sum of all the binomial coefficients of the form $\\binom{10\\,000}{k}$ for which $0 \\le k \\le 10\\,000$ and $k - r$ is a multiple of 502. Find the number of integers in the list $S_0, S_1, S_2, \\dots, S_{501}$ that are multiples of the prime number 503.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "39",
-    "baseRating": 1900,
-    "difficultyLabel": "Very Hard",
-    "tags": ["binomial-coefficients", "lucas-theorem", "roots-of-unity-filter"],
-    "topics": ["nt-modular-arithmetic"],
-    "diagramSvg": null,
-    "solutionMarkdown": "39",
-    "estimatedSolveSeconds": 900,
-    "hints": [
-      { "level": 1, "content": "Since 503 is prime and 502 = 503 − 1, think about each binomial coefficient $\\binom{10000}{k} \\bmod 503$ using Lucas' Theorem, which relates this to the base-503 digits of 10000 and $k$." },
-      { "level": 2, "content": "Write 10000 in base 503, and figure out how the condition \"$k \\equiv r \\pmod{502}$\" constrains $k$'s base-503 digits as $k$ ranges over all multiples-of-502-apart values." },
-      { "level": 3, "content": "For each residue $r$, determine whether every single term making up $S_r$ vanishes mod 503 (making $S_r \\equiv 0$) or whether at least one nonzero term survives — count how many $r$ fall into the first case." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P14",
-    "examType": "AIME",
-    "problemNumber": 14,
-    "statement": "In an equiangular pentagon, the sum of the squares of the side lengths equals 308, and the sum of the squares of the diagonal lengths equals 800. The square of the perimeter of the pentagon can be expressed as $m\\sqrt{n}$, where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. Find $m + n$.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "681",
-    "baseRating": 1850,
-    "difficultyLabel": "Very Hard",
-    "tags": ["equiangular-pentagon", "law-of-cosines", "perimeter"],
-    "topics": ["geometry-polygons"],
-    "diagramSvg": null,
-    "solutionMarkdown": "681",
-    "estimatedSolveSeconds": 840,
-    "hints": [
-      { "level": 1, "content": "Every interior angle of an equiangular pentagon is $108°$ — use this fixed angle to express each diagonal's length via the Law of Cosines in terms of two adjacent sides." },
-      { "level": 2, "content": "Let the five side lengths be variables and write out all five diagonals-squared in terms of these variables — you'll notice each diagonal-squared expression involves a side-squared sum plus a cross term with $\\cos 108°$." },
-      { "level": 3, "content": "Sum all five diagonal-squared expressions and compare against the given total of 800; combine this with the given sum of sides-squared (308) to isolate an expression for the perimeter squared." }
-    ]
-  },
-  {
-    "externalId": "AIMEI-2026-P15",
-    "examType": "AIME",
-    "problemNumber": 15,
-    "statement": "Let $a$, $b$, and $n$ be positive integers with both $a$ and $b$ greater than or equal to 2 and less than or equal to $2n$. Define an $a \\times b$ cell loop in a $2n \\times 2n$ grid of cells to be the $2a + 2b - 4$ cells that surround an $(a-2) \\times (b-2)$ (possibly empty) rectangle of cells in the grid. Find the number of ways to partition a $10 \\times 10$ grid of cells into 5 cell loops so that every cell of the grid belongs to exactly one cell loop.",
-    "answerType": "NUMERIC",
-    "options": null,
-    "correctAnswer": "83",
-    "baseRating": 2000,
-    "difficultyLabel": "Very Hard",
-    "tags": ["nested-loops", "grid-partition", "extremal-combinatorics"],
-    "topics": ["combinatorics-counting"],
-    "diagramSvg": null,
-    "solutionMarkdown": "83",
-    "estimatedSolveSeconds": 1200,
-    "hints": [
-      { "level": 1, "content": "Picture the loops as nested rectangular rings, each one surrounding the next — figure out how the outer dimensions of one loop relate to the outer dimensions of the loop nested inside it." },
-      { "level": 2, "content": "Since exactly 5 loops must nest all the way down to fill a $10\\times10$ grid, work out which sequences of shrinking rectangle dimensions are actually consistent with 5 total loops and no leftover cells." },
-      { "level": 3, "content": "For each valid sequence of nested dimensions, count how many ways the loop shapes can be assigned (some loops may allow more than one valid $a\\times b$ pairing) — sum over all valid sequences, being careful about ordering and symmetry." }
-    ]
-  }
-]
+{
+  "contestSource": "AIME-I 2026",
+  "contestYear": 2026,
+  "examType": "AIME",
+  "questions": [
+    {
+      "externalId": "AIMEI-2026-P1",
+      "examType": "AIME",
+      "problemNumber": 1,
+      "statement": "Patrick started walking at a constant speed along a straight road from his school to the park. One hour after Patrick left, Tanya started running at a constant speed of 2 miles per hour faster than Patrick walked, following the same straight road from the school to the park. One hour after Tanya left, José started bicycling at a constant speed of 7 miles per hour faster than Tanya ran, following the same straight road from the school to the park. All three people arrived at the park at the same time. The distance from the school to the park is $\\dfrac{m}{n}$ miles, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "277",
+      "baseRating": 1300,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "rate-problems",
+        "systems-of-equations",
+        "arrival-time"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "277\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_1\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 360,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Let Patrick's speed be $v$ and express the distance $d$ using the total time each person actually spends traveling — remember Tanya and José leave later."
+        },
+        {
+          "level": 2,
+          "content": "Since all three arrive together, write two separate equations relating $d$ and $v$ using the fact that Tanya's travel time is 1 hour less than Patrick's, and José's is 2 hours less than Patrick's."
+        },
+        {
+          "level": 3,
+          "content": "Eliminate $v$ between your two equations — you should be able to solve for $d$ directly without ever finding $v$ explicitly."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P2",
+      "examType": "AIME",
+      "problemNumber": 2,
+      "statement": "Find the number of positive integer palindromes written in base 10, with no zero digits, and whose digits add up to 13. For example, 42124 has these properties. Recall that a palindrome is a number whose representation reads the same from left to right as from right to left.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "62",
+      "baseRating": 1400,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "palindromes",
+        "digit-sums",
+        "casework"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "62\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_2\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 480,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Handle palindromes of each length separately — the way digits pair up (and whether there's a lone middle digit) depends on whether the length is odd or even."
+        },
+        {
+          "level": 2,
+          "content": "For a palindrome, only the first half of the digits is actually free to choose — express the total digit sum in terms of just that first half."
+        },
+        {
+          "level": 3,
+          "content": "For each valid length, count the number of ways to choose digits 1-9 (no zeros) for the free half so that the corresponding total sum equals 13, then add up across all valid lengths."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P3",
+      "examType": "AIME",
+      "problemNumber": 3,
+      "statement": "A hemisphere with radius 200 sits on top of a horizontal circular disk with radius 200, and the hemisphere and disk have the same center. Let $\\mathcal{T}$ be the region of points $P$ in the disk such that a sphere of radius 42 can be placed on top of the disk at $P$ and lie completely inside the hemisphere. The area of $\\mathcal{T}$ divided by the area of the disk is $\\dfrac{p}{q}$, where $p$ and $q$ are relatively prime positive integers. Find $p + q$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "79",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "hemisphere",
+        "tangent-spheres",
+        "locus"
+      ],
+      "topics": [
+        "geometry-solids"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "79\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_3\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 600,
+      "hints": [
+        {
+          "level": 1,
+          "content": "If the small sphere sits on the disk at horizontal distance $x$ from the center, find the distance from the hemisphere's center to the small sphere's center in terms of $x$ and the small sphere's radius."
+        },
+        {
+          "level": 2,
+          "content": "The small sphere fits entirely inside the hemisphere exactly when that center-to-center distance plus the small sphere's radius doesn't exceed the hemisphere's radius — turn this into an inequality on $x$."
+        },
+        {
+          "level": 3,
+          "content": "The inequality on $x$ describes a disk of some radius around the center — compute its area and compare it to the area of the full disk of radius 200."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P4",
+      "examType": "AIME",
+      "problemNumber": 4,
+      "statement": "Find the number of integers less than or equal to 100 that are equal to $a + b + ab$ for some choice of distinct positive integers $a$ and $b$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "70",
+      "baseRating": 1450,
+      "difficultyLabel": "Medium",
+      "tags": [
+        "factorization",
+        "distinct-integers"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "70\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_4\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 420,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rewrite $a + b + ab$ as $(a+1)(b+1) - 1$ — this turns the problem into a question about factoring."
+        },
+        {
+          "level": 2,
+          "content": "Since $a \\neq b$, the two factors $a+1$ and $b+1$ must be distinct integers, each at least 2."
+        },
+        {
+          "level": 3,
+          "content": "Count values of $n \\le 100$ such that $n+1$ can be written as a product of two distinct integers each $\\ge 2$ — be careful not to double-count values reachable in more than one way."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P5",
+      "examType": "AIME",
+      "problemNumber": 5,
+      "statement": "A plane contains points $A$ and $B$ with $AB = 1$. Point $A$ is rotated in the plane counterclockwise through an acute angle $\\theta$ around point $B$ to point $A'$. Then $B$ is rotated in the plane clockwise through angle $\\theta$ around point $A'$ to point $B'$. Suppose $AB' = \\dfrac{4}{3}$. The value of $\\cos \\theta$ can be written as $\\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "65",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "rotation",
+        "law-of-cosines",
+        "isosceles-triangle"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "65\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_5\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 540,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Rotating $A$ about $B$ preserves the distance from $B$, so $BA' = BA = 1$. Rotating $B$ about $A'$ preserves the distance from $A'$, so $A'B' = A'B$ — figure out what $A'B$ equals."
+        },
+        {
+          "level": 2,
+          "content": "Work out $\\angle AA'B$ from the first rotation, and note that $\\angle BA'B' = \\theta$ from the second rotation — combine these to find $\\angle AA'B'$."
+        },
+        {
+          "level": 3,
+          "content": "You now know two sides of triangle $AA'B'$ ($A'A$ and $A'B'$) and the angle between them — apply the Law of Cosines to relate this to $AB' = 4/3$."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P6",
+      "examType": "AIME",
+      "problemNumber": 6,
+      "statement": "The product of all positive real numbers $x$ satisfying the equation $\\sqrt[20]{x^{\\log_{2026} x}} = 26x$ is an integer $P$. Find the number of positive integer divisors of $P$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "441",
+      "baseRating": 1600,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "logarithms",
+        "vieta",
+        "divisor-counting"
+      ],
+      "topics": [
+        "algebra-manipulation",
+        "nt-primes-factorization"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "441\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_6\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 600,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Take $\\log_{2026}$ of both sides and substitute $y = \\log_{2026} x$ — the left side becomes something involving $y^2$."
+        },
+        {
+          "level": 2,
+          "content": "You should end up with a quadratic equation in $y$. Use Vieta's formulas to find the sum of its two roots without solving for them individually."
+        },
+        {
+          "level": 3,
+          "content": "The product of the two valid $x$-values equals $2026$ raised to the sum of the corresponding $y$-values. Factor $2026$ into primes, then use that exponent to count $P$'s divisors."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P7",
+      "examType": "AIME",
+      "problemNumber": 7,
+      "statement": "Find the number of functions $\\pi$ mapping the set $A = \\{1,2,3,4,5,6\\}$ onto $A$ such that for every $a \\in A$, $\\pi(\\pi(\\pi(\\pi(\\pi(a))))) = a$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "396",
+      "baseRating": 1550,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "permutations",
+        "cycle-structure"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "396\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_7\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 480,
+      "hints": [
+        {
+          "level": 1,
+          "content": "A function from a finite set onto itself is automatically a bijection — so $\\pi$ is a permutation, and you should think in terms of its cycle decomposition."
+        },
+        {
+          "level": 2,
+          "content": "The condition $\\pi^5 = \\text{id}$ means every cycle length in $\\pi$ must divide 5. Since 5 is prime, that restricts cycle lengths to just 1 and 5."
+        },
+        {
+          "level": 3,
+          "content": "List every way to partition 6 elements into cycles of length 1 and/or 5, and for each partition type, count how many distinct permutations have that cycle structure."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P8",
+      "examType": "AIME",
+      "problemNumber": 8,
+      "statement": "Let $N$ be the number of positive integer divisors of $17017^{17}$ that leave a remainder of 5 upon division by 12. Find the remainder when $N$ is divided by 1000.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "244",
+      "baseRating": 1700,
+      "difficultyLabel": "Hard",
+      "tags": [
+        "divisor-counting",
+        "modular-arithmetic"
+      ],
+      "topics": [
+        "nt-primes-factorization",
+        "nt-modular-arithmetic"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "244\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_8\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 720,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Start by fully factoring 17017 into primes, then write out the prime factorization of $17017^{17}$ — every divisor is a product of prime powers within those bounds."
+        },
+        {
+          "level": 2,
+          "content": "A divisor's residue mod 12 depends only on the residues of its individual prime-power factors mod 12 — work out the possible residues each prime's power can take."
+        },
+        {
+          "level": 3,
+          "content": "Use casework (or a generating-function-style count) over the exponent choices for each prime to count divisors whose product is $\\equiv 5 \\pmod{12}$, then reduce that count mod 1000."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P9",
+      "examType": "AIME",
+      "problemNumber": 9,
+      "statement": "Joanne has a blank fair six-sided die and six stickers each displaying a different integer from 1 to 6. Joanne rolls the die and then places the sticker labeled 1 on the top face of the die. She then rolls the die again, places the sticker labeled 2 on the top face, and continues this process to place the rest of the stickers in order. If the die ever lands with a sticker already on its top face, the new sticker is placed to cover the old sticker. Let $p$ be the conditional probability that at the end of the process exactly one face has been left blank, given that all the even-numbered stickers are visible on faces of the die. Then $p$ can be written as $\\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "29",
+      "baseRating": 1750,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "conditional-probability",
+        "sequential-process"
+      ],
+      "topics": [
+        "probability-basic",
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "29\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_9\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 900,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Track which physical face is on top at each of the 6 rolls — remember that landing on an already-stickered face just covers it with the new sticker, so only the LAST sticker placed on each face actually stays visible."
+        },
+        {
+          "level": 2,
+          "content": "\"All even stickers visible\" means stickers 2, 4, and 6 must each be the last one placed on whichever face they land on — think about which rolls (3rd, 5th, or 6th) could possibly cover an even sticker, and rule those out."
+        },
+        {
+          "level": 3,
+          "content": "Set up the conditional probability as a ratio: count outcomes where all even stickers survive AND exactly one face stays blank, divided by outcomes where all even stickers simply survive — count each systematically over the 6 rolls."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P10",
+      "examType": "AIME",
+      "problemNumber": 10,
+      "statement": "Let $\\triangle ABC$ have side lengths $AB = 13$, $BC = 14$, and $CA = 15$. Triangle $\\triangle A'B'C'$ is obtained by rotating $\\triangle ABC$ about its circumcenter so that $\\overline{A'C'}$ is perpendicular to $\\overline{BC}$, with $A'$ and $B$ not on the same side of line $B'C'$. Find the integer closest to the area of hexagon $AA'CC'BB'$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "156",
+      "baseRating": 1750,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "circumcenter",
+        "rotation",
+        "hexagon-area"
+      ],
+      "topics": [
+        "geometry-triangles",
+        "geometry-circles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "156\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_10\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 780,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Since the rotation is about the circumcenter, all six points $A, B, C, A', B', C'$ lie on the same circumscribed circle — compute that circle's radius first using the 13-14-15 triangle."
+        },
+        {
+          "level": 2,
+          "content": "Use the perpendicularity condition between $A'C'$ and $BC$ to pin down exactly how far the triangle was rotated."
+        },
+        {
+          "level": 3,
+          "content": "Break the hexagon $AA'CC'BB'$ into triangles from the circumcenter (or from the original triangle's vertices), and add or subtract areas based on how the rotated copy overlaps the original."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P11",
+      "examType": "AIME",
+      "problemNumber": 11,
+      "statement": "The integers from 1 to 64 are placed in some order into an $8 \\times 8$ grid of cells with one number in each cell. Let $a_{i,j}$ be the number placed in the cell in row $i$ and column $j$, and let $M$ be the sum of the absolute differences between adjacent cells. That is, $$M = \\sum_{i=1}^{8} \\sum_{j=1}^{7} \\bigl(|a_{i,j+1} - a_{i,j}| + |a_{j+1,i} - a_{j,i}|\\bigr).$$ Find the remainder when the maximum possible value of $M$ is divided by 1000.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "896",
+      "baseRating": 1800,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "extremal-arrangement",
+        "grid-optimization"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "896\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_11\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 900,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Instead of thinking about specific placements, think about how many times each number $k$ can appear as the larger (or smaller) value in an adjacent pair — this bounds each number's total contribution to $M$."
+        },
+        {
+          "level": 2,
+          "content": "To push $M$ as large as possible, you want small and large numbers sitting next to each other as often as the grid's adjacency structure allows — consider a zigzag or interleaved arrangement rather than a natural ordering."
+        },
+        {
+          "level": 3,
+          "content": "Work out the maximum theoretical contribution for each number based on how many neighbors it has (edge/corner cells have fewer), sum these contributions, then reduce mod 1000."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P12",
+      "examType": "AIME",
+      "problemNumber": 12,
+      "statement": "Triangle $\\triangle ABC$ lies in plane $\\mathcal{P}$ with $AB = 6$, $AC = 4$, and $\\angle BAC = 90^\\circ$. Let $D$ be the reflection across $\\overline{BC}$ of the centroid of $\\triangle ABC$. Four spheres, all on the same side of $\\mathcal{P}$, have radii 1, 2, 3, and $r$ and are tangent to $\\mathcal{P}$ at points $A$, $B$, $C$, and $D$, respectively. The four spheres are also each tangent to a second plane $\\mathcal{T}$ and are all on the same side of $\\mathcal{T}$. The value of $r$ can be written as $\\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "161",
+      "baseRating": 1850,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "tangent-spheres",
+        "centroid",
+        "coordinate-geometry-3d"
+      ],
+      "topics": [
+        "geometry-solids",
+        "geometry-triangles"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "161\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_12\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 960,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Since each sphere is tangent to both $\\mathcal{P}$ and $\\mathcal{T}$, there's a direct linear relationship between a sphere's radius and the position of its tangent point on $\\mathcal{P}$ relative to the line where the two planes meet."
+        },
+        {
+          "level": 2,
+          "content": "Set up coordinates for $A$, $B$, $C$ in plane $\\mathcal{P}$ using the right angle at $A$, and use the known radii at those three points to determine that linear relationship precisely."
+        },
+        {
+          "level": 3,
+          "content": "Find $D$'s coordinates as the centroid reflected across $BC$, then apply the same linear relationship you found to compute $r$."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P13",
+      "examType": "AIME",
+      "problemNumber": 13,
+      "statement": "For each nonnegative integer $r$ less than 502, define $$S_r = \\sum_{m \\ge 0} \\binom{10\\,000}{502m + r},$$ where $\\binom{10\\,000}{n}$ is defined to be 0 when $n > 10\\,000$. That is, $S_r$ is the sum of all the binomial coefficients of the form $\\binom{10\\,000}{k}$ for which $0 \\le k \\le 10\\,000$ and $k - r$ is a multiple of 502. Find the number of integers in the list $S_0, S_1, S_2, \\dots, S_{501}$ that are multiples of the prime number 503.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "39",
+      "baseRating": 1900,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "binomial-coefficients",
+        "lucas-theorem",
+        "roots-of-unity-filter"
+      ],
+      "topics": [
+        "nt-modular-arithmetic"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "39\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_13\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 900,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Since 503 is prime and 502 = 503 − 1, think about each binomial coefficient $\\binom{10000}{k} \\bmod 503$ using Lucas' Theorem, which relates this to the base-503 digits of 10000 and $k$."
+        },
+        {
+          "level": 2,
+          "content": "Write 10000 in base 503, and figure out how the condition \"$k \\equiv r \\pmod{502}$\" constrains $k$'s base-503 digits as $k$ ranges over all multiples-of-502-apart values."
+        },
+        {
+          "level": 3,
+          "content": "For each residue $r$, determine whether every single term making up $S_r$ vanishes mod 503 (making $S_r \\equiv 0$) or whether at least one nonzero term survives — count how many $r$ fall into the first case."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P14",
+      "examType": "AIME",
+      "problemNumber": 14,
+      "statement": "In an equiangular pentagon, the sum of the squares of the side lengths equals 308, and the sum of the squares of the diagonal lengths equals 800. The square of the perimeter of the pentagon can be expressed as $m\\sqrt{n}$, where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. Find $m + n$.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "681",
+      "baseRating": 1850,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "equiangular-pentagon",
+        "law-of-cosines",
+        "perimeter"
+      ],
+      "topics": [
+        "geometry-quadrilaterals"
+      ],
+      "diagramSvg": null,
+      "solutionMarkdown": "681\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_14\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 840,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Every interior angle of an equiangular pentagon is $108°$ — use this fixed angle to express each diagonal's length via the Law of Cosines in terms of two adjacent sides."
+        },
+        {
+          "level": 2,
+          "content": "Let the five side lengths be variables and write out all five diagonals-squared in terms of these variables — you'll notice each diagonal-squared expression involves a side-squared sum plus a cross term with $\\cos 108°$."
+        },
+        {
+          "level": 3,
+          "content": "Sum all five diagonal-squared expressions and compare against the given total of 800; combine this with the given sum of sides-squared (308) to isolate an expression for the perimeter squared."
+        }
+      ]
+    },
+    {
+      "externalId": "AIMEI-2026-P15",
+      "examType": "AIME",
+      "problemNumber": 15,
+      "statement": "Let $a$, $b$, and $n$ be positive integers with both $a$ and $b$ greater than or equal to 2 and less than or equal to $2n$. Define an $a \\times b$ cell loop in a $2n \\times 2n$ grid of cells to be the $2a + 2b - 4$ cells that surround an $(a-2) \\times (b-2)$ (possibly empty) rectangle of cells in the grid. For example, the following diagram shows a way to partition a 6 x 6 grid of cells into 4 cell loops. Find the number of ways to partition a $10 \\times 10$ grid of cells into 5 cell loops so that every cell of the grid belongs to exactly one cell loop.",
+      "answerType": "NUMERIC",
+      "options": null,
+      "correctAnswer": "83",
+      "baseRating": 2000,
+      "difficultyLabel": "Very Hard",
+      "tags": [
+        "nested-loops",
+        "grid-partition",
+        "extremal-combinatorics"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
+      "diagramSvg": "<svg viewBox=\"0 0 600 600\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"0\" y=\"0\" width=\"400\" height=\"400\" fill=\"#2196F3\"/><rect x=\"100\" y=\"100\" width=\"200\" height=\"200\" fill=\"#FF7A6E\"/><rect x=\"0\" y=\"400\" width=\"400\" height=\"200\" fill=\"#FFFFFF\"/><rect x=\"400\" y=\"0\" width=\"200\" height=\"600\" fill=\"#FFEB3B\"/><g stroke=\"#333333\" stroke-width=\"1.5\"><line x1=\"100\" y1=\"0\" x2=\"100\" y2=\"600\"/><line x1=\"200\" y1=\"0\" x2=\"200\" y2=\"600\"/><line x1=\"300\" y1=\"0\" x2=\"300\" y2=\"600\"/><line x1=\"400\" y1=\"0\" x2=\"400\" y2=\"600\"/><line x1=\"500\" y1=\"0\" x2=\"500\" y2=\"600\"/><line x1=\"0\" y1=\"100\" x2=\"600\" y2=\"100\"/><line x1=\"0\" y1=\"200\" x2=\"600\" y2=\"200\"/><line x1=\"0\" y1=\"300\" x2=\"600\" y2=\"300\"/><line x1=\"0\" y1=\"400\" x2=\"600\" y2=\"400\"/><line x1=\"0\" y1=\"500\" x2=\"600\" y2=\"500\"/></g><rect x=\"0\" y=\"0\" width=\"600\" height=\"600\" fill=\"none\" stroke=\"#000000\" stroke-width=\"8\" rx=\"8\"/><rect x=\"0\" y=\"0\" width=\"400\" height=\"400\" fill=\"none\" stroke=\"#000000\" stroke-width=\"8\"/><rect x=\"100\" y=\"100\" width=\"200\" height=\"200\" fill=\"none\" stroke=\"#000000\" stroke-width=\"8\" rx=\"6\"/><circle cx=\"200\" cy=\"200\" r=\"20\" fill=\"#000000\"/><line x1=\"150\" y1=\"500\" x2=\"350\" y2=\"500\" stroke=\"#000000\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"500\" y1=\"100\" x2=\"500\" y2=\"500\" stroke=\"#000000\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
+      "solutionMarkdown": "83\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_15\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "estimatedSolveSeconds": 1200,
+      "hints": [
+        {
+          "level": 1,
+          "content": "Picture the loops as nested rectangular rings, each one surrounding the next — figure out how the outer dimensions of one loop relate to the outer dimensions of the loop nested inside it."
+        },
+        {
+          "level": 2,
+          "content": "Since exactly 5 loops must nest all the way down to fill a $10\\times10$ grid, work out which sequences of shrinking rectangle dimensions are actually consistent with 5 total loops and no leftover cells."
+        },
+        {
+          "level": 3,
+          "content": "For each valid sequence of nested dimensions, count how many ways the loop shapes can be assigned (some loops may allow more than one valid $a\\times b$ pairing) — sum over all valid sequences, being careful about ordering and symmetry."
+        }
+      ]
+    }
+  ]
+}
