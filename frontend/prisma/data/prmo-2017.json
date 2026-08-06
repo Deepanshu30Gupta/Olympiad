@@ -13,15 +13,24 @@
       "correctAnswer": "28",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["Divisibility"],
+      "tags": ["digit-sum-divisibility", "combined-modulus-condition", "case-enumeration"],
       "topics": ["nt-divisibility"],
       "diagramSvg": null,
       "solutionMarkdown": "28",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "List which digit sums between 1 and 27 are multiples of 7."},
-        {"level": 2, "content": "For each valid digit-sum, count 1-, 2-, and 3-digit numbers with that digit sum."},
-        {"level": 3, "content": "From those, further restrict to numbers whose digit sum is also a multiple of 3 (i.e. divisible by 3)."}
+        {
+          "level": 1,
+          "content": "List which digit sums between 1 and 27 are multiples of 7."
+        },
+        {
+          "level": 2,
+          "content": "For each valid digit-sum, count 1-, 2-, and 3-digit numbers with that digit sum."
+        },
+        {
+          "level": 3,
+          "content": "From those, further restrict to numbers whose digit sum is also a multiple of 3 (i.e. divisible by 3)."
+        }
       ]
     },
     {
@@ -34,15 +43,24 @@
       "correctAnswer": "73",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Symmetric Expressions", "Factorization"],
+      "tags": ["substitution-sqrt-a-b", "sum-and-difference-of-cubes", "factoring-identity"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "73",
       "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Let $x=\\sqrt a$, $y=\\sqrt b$ and rewrite both equations in terms of x and y."},
-        {"level": 2, "content": "Add the two equations and factor the result using $x^3+y^3$ and $x^2y+xy^2$ identities."},
-        {"level": 3, "content": "Show the sum factors as $(x+y)(x-y)^2+xy(x+y)$ or similar, then solve for x+y."}
+        {
+          "level": 1,
+          "content": "Let $x=\\sqrt a$, $y=\\sqrt b$ and rewrite both equations in terms of x and y."
+        },
+        {
+          "level": 2,
+          "content": "Add the two equations and factor the result using $x^3+y^3$ and $x^2y+xy^2$ identities."
+        },
+        {
+          "level": 3,
+          "content": "Show the sum factors as $(x+y)(x-y)^2+xy(x+y)$ or similar, then solve for x+y."
+        }
       ]
     },
     {
@@ -55,15 +73,24 @@
       "correctAnswer": "16",
       "baseRating": 1050,
       "difficultyLabel": "Easy",
-      "tags": ["Sequences"],
+      "tags": ["work-rate", "combined-labor", "remaining-work"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "16",
       "estimatedSolveSeconds": 180,
       "hints": [
-        {"level": 1, "content": "Compute the fraction of work done by team A alone in the first 6 days."},
-        {"level": 2, "content": "Add the work done by team B during the 2 days it overlaps with team A."},
-        {"level": 3, "content": "Find the remaining work and divide by team B's daily rate."}
+        {
+          "level": 1,
+          "content": "Compute the fraction of work done by team A alone in the first 6 days."
+        },
+        {
+          "level": 2,
+          "content": "Add the work done by team B during the 2 days it overlaps with team A."
+        },
+        {
+          "level": 3,
+          "content": "Find the remaining work and divide by team B's daily rate."
+        }
       ]
     },
     {
@@ -76,15 +103,24 @@
       "correctAnswer": "25",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Quadratic Expressions", "Factorization"],
+      "tags": ["vietas-formulas", "factor-pair-search", "minimize-coefficient-sum"],
       "topics": ["algebra-polynomials"],
       "diagramSvg": null,
       "solutionMarkdown": "25",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Use Vieta's formulas: the roots of each quadratic multiply to the constant term and sum to the negative of the linear coefficient."},
-        {"level": 2, "content": "List all factor pairs of 20 (for negative integer roots) and of the constant term of the second quadratic given its root sum is 17."},
-        {"level": 3, "content": "Compute a and b for each valid factorization and minimize a+b."}
+        {
+          "level": 1,
+          "content": "Use Vieta's formulas: the roots of each quadratic multiply to the constant term and sum to the negative of the linear coefficient."
+        },
+        {
+          "level": 2,
+          "content": "List all factor pairs of 20 (for negative integer roots) and of the constant term of the second quadratic given its root sum is 17."
+        },
+        {
+          "level": 3,
+          "content": "Compute a and b for each valid factorization and minimize a+b."
+        }
       ]
     },
     {
@@ -97,15 +133,24 @@
       "correctAnswer": "48",
       "baseRating": 1250,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences", "Exponents"],
+      "tags": ["geometric-progression", "logarithmic-relation", "equal-power-condition"],
       "topics": ["algebra-sequences-series"],
       "diagramSvg": null,
       "solutionMarkdown": "48",
       "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "Write u and w in terms of v and the common ratio r."},
-        {"level": 2, "content": "Take logarithms of all three expressions to convert the equal-power condition into linear relations."},
-        {"level": 3, "content": "Combine the relations to eliminate r and solve for n."}
+        {
+          "level": 1,
+          "content": "Write u and w in terms of v and the common ratio r."
+        },
+        {
+          "level": 2,
+          "content": "Take logarithms of all three expressions to convert the equal-power condition into linear relations."
+        },
+        {
+          "level": 3,
+          "content": "Combine the relations to eliminate r and solve for n."
+        }
       ]
     },
     {
@@ -118,15 +163,24 @@
       "correctAnswer": "83",
       "baseRating": 1100,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences"],
+      "tags": ["partial-fractions", "telescoping-sum", "lowest-terms-reduction"],
       "topics": ["algebra-sequences-series"],
       "diagramSvg": null,
       "solutionMarkdown": "83",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Decompose the general term using partial fractions of the form A/n + B/(n+1) + C/(n+2)."},
-        {"level": 2, "content": "Notice the telescoping pattern when summing from n=1 to 9."},
-        {"level": 3, "content": "Simplify the resulting fraction to lowest terms before computing q-p."}
+        {
+          "level": 1,
+          "content": "Decompose the general term using partial fractions of the form A/n + B/(n+1) + C/(n+2)."
+        },
+        {
+          "level": 2,
+          "content": "Notice the telescoping pattern when summing from n=1 to 9."
+        },
+        {
+          "level": 3,
+          "content": "Simplify the resulting fraction to lowest terms before computing q-p."
+        }
       ]
     },
     {
@@ -139,14 +193,24 @@
       "correctAnswer": "29",
       "baseRating": 900,
       "difficultyLabel": "Easy",
-      "tags": ["Inequalities"],
+      "tags": ["increasing-function-bound", "square-root-inequality", "boundary-estimation"],
       "topics": ["inequalities-classical"],
       "diagramSvg": null,
       "solutionMarkdown": "29",
-      "estimatedSolveSeconds": 150,
+      "estimatedSolveSeconds": 190,
       "hints": [
-        {"level": 1, "content": "Since the function is increasing in n, find the boundary value of n where equality is nearly reached."},
-        {"level": 2, "content": "Square or bound the inequality to estimate the largest valid n."}
+        {
+          "level": 1,
+          "content": "Since the function is increasing in n, find the boundary value of n where equality is nearly reached."
+        },
+        {
+          "level": 2,
+          "content": "Square or bound the inequality to estimate the largest valid n."
+        },
+        {
+          "level": 3,
+          "content": "Determine precisely the last integer n that still satisfies the inequality, then count all positive integers up through it."
+        }
       ]
     },
     {
@@ -159,15 +223,28 @@
       "correctAnswer": "7",
       "baseRating": 1050,
       "difficultyLabel": "Easy",
-      "tags": ["Diophantine Equations"],
+      "tags": [
+        "linear-diophantine-equation",
+        "general-solution-parametrization",
+        "non-negative-solution-count"
+      ],
       "topics": ["nt-diophantine"],
       "diagramSvg": null,
       "solutionMarkdown": "7",
       "estimatedSolveSeconds": 180,
       "hints": [
-        {"level": 1, "content": "Set up the linear equation $11x+13y=1000$ for non-negative integers x, y."},
-        {"level": 2, "content": "Find one particular solution, then use the general solution form for linear Diophantine equations."},
-        {"level": 3, "content": "Count how many values in the general solution keep both x and y non-negative."}
+        {
+          "level": 1,
+          "content": "Set up the linear equation $11x+13y=1000$ for non-negative integers x, y."
+        },
+        {
+          "level": 2,
+          "content": "Find one particular solution, then use the general solution form for linear Diophantine equations."
+        },
+        {
+          "level": 3,
+          "content": "Count how many values in the general solution keep both x and y non-negative."
+        }
       ]
     },
     {
@@ -180,15 +257,24 @@
       "correctAnswer": "60",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Graph Theory", "Counting"],
+      "tags": ["directed-cycle-counting", "complete-graph", "cycle-length-casework"],
       "topics": ["combinatorics-graph-theory"],
       "diagramSvg": null,
       "solutionMarkdown": "60",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "Consider cycles of each possible length through A, from 3 up to 5 vertices."},
-        {"level": 2, "content": "For a cycle of length k, count the number of ways to choose and order the other k-1 cities."},
-        {"level": 3, "content": "Remember each undirected cycle corresponds to two directed traversals; sum over all cycle lengths."}
+        {
+          "level": 1,
+          "content": "Consider cycles of each possible length through A, from 3 up to 5 vertices."
+        },
+        {
+          "level": 2,
+          "content": "For a cycle of length k, count the number of ways to choose and order the other k-1 cities."
+        },
+        {
+          "level": 3,
+          "content": "Remember each undirected cycle corresponds to two directed traversals; sum over all cycle lengths."
+        }
       ]
     },
     {
@@ -201,15 +287,28 @@
       "correctAnswer": "48",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Casework"],
+      "tags": [
+        "independent-set-selection",
+        "adjacency-and-opposite-constraint",
+        "guest-assignment-count"
+      ],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "48",
       "estimatedSolveSeconds": 340,
       "hints": [
-        {"level": 1, "content": "Model the room-adjacency and opposite-room constraints as a graph and find independent sets of size 4."},
-        {"level": 2, "content": "Use the symmetry between the two sides of the corridor to organize casework."},
-        {"level": 3, "content": "Multiply the number of valid room selections by the number of ways to assign the 4 distinct guests."}
+        {
+          "level": 1,
+          "content": "Model the room-adjacency and opposite-room constraints as a graph and find independent sets of size 4."
+        },
+        {
+          "level": 2,
+          "content": "Use the symmetry between the two sides of the corridor to organize casework."
+        },
+        {
+          "level": 3,
+          "content": "Multiply the number of valid room selections by the number of ways to assign the 4 distinct guests."
+        }
       ]
     },
     {
@@ -222,15 +321,24 @@
       "correctAnswer": "60",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences"],
+      "tags": ["trigonometric-period", "least-common-multiple", "periodic-function"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "60",
       "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "Find the periods of the two individual trigonometric terms separately, in units of π."},
-        {"level": 2, "content": "The overall period must be a common multiple of both individual periods."},
-        {"level": 3, "content": "Find the least common multiple to get the smallest valid n."}
+        {
+          "level": 1,
+          "content": "Find the periods of the two individual trigonometric terms separately, in units of π."
+        },
+        {
+          "level": 2,
+          "content": "The overall period must be a common multiple of both individual periods."
+        },
+        {
+          "level": 3,
+          "content": "Find the least common multiple to get the smallest valid n."
+        }
       ]
     },
     {
@@ -243,15 +351,24 @@
       "correctAnswer": "42",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Quadratic Expressions"],
+      "tags": ["ratio-setup", "absent-student-equation", "quadratic-in-parameter"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "42",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Let the total number of boys be 4k and girls be 3k for some positive integer k."},
-        {"level": 2, "content": "Use the absent-student information to set up an equation relating present boys and present girls."},
-        {"level": 3, "content": "Solve the resulting quadratic in k."}
+        {
+          "level": 1,
+          "content": "Let the total number of boys be 4k and girls be 3k for some positive integer k."
+        },
+        {
+          "level": 2,
+          "content": "Use the absent-student information to set up an equation relating present boys and present girls."
+        },
+        {
+          "level": 3,
+          "content": "Solve the resulting quadratic in k."
+        }
       ]
     },
     {
@@ -262,18 +379,26 @@
       "answerType": "NUMERIC",
       "options": null,
       "difficultyLabel": "Hard",
-      "options": null,
       "correctAnswer": "24",
       "baseRating": 1600,
-      "tags": ["Coordinate Geometry", "Perpendicularity"],
+      "tags": ["coordinate-bash", "foot-of-perpendicular", "perpendicularity-condition"],
       "topics": ["geometry-coordinate"],
       "diagramSvg": null,
       "solutionMarkdown": "24",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Assign coordinates to the rectangle with A at the origin."},
-        {"level": 2, "content": "Find F as the foot of perpendicular from B to AC using coordinate projections."},
-        {"level": 3, "content": "Impose the condition FE ⊥ BD and solve for the ratio AB:BC."}
+        {
+          "level": 1,
+          "content": "Assign coordinates to the rectangle with A at the origin."
+        },
+        {
+          "level": 2,
+          "content": "Find F as the foot of perpendicular from B to AC using coordinate projections."
+        },
+        {
+          "level": 3,
+          "content": "Impose the condition FE ⊥ BD and solve for the ratio AB:BC."
+        }
       ]
     },
     {
@@ -286,15 +411,24 @@
       "correctAnswer": "10",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences"],
+      "tags": ["fractional-and-integer-part", "geometric-progression", "golden-ratio-equation"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "10",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Write x = [x] + {x} and use the geometric progression condition to relate {x} and [x]."},
-        {"level": 2, "content": "Solve the resulting equation for x, treating [x] as an unknown positive integer and checking consistency."},
-        {"level": 3, "content": "Once x is found numerically, determine the smallest n with $x^n>100$."}
+        {
+          "level": 1,
+          "content": "Write x = [x] + {x} and use the geometric progression condition to relate {x} and [x]."
+        },
+        {
+          "level": 2,
+          "content": "Solve the resulting equation for x, treating [x] as an unknown positive integer and checking consistency."
+        },
+        {
+          "level": 3,
+          "content": "Once x is found numerically, determine the smallest n with $x^n>100$."
+        }
       ]
     },
     {
@@ -307,15 +441,24 @@
       "correctAnswer": "51",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences"],
+      "tags": ["average-to-sum-conversion", "bounding-by-achievability", "extremal-removed-sum"],
       "topics": ["algebra-sequences-series"],
       "diagramSvg": null,
       "solutionMarkdown": "51",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Express the sum of all n numbers and set up an equation using the given average of the remaining n-2 numbers."},
-        {"level": 2, "content": "Bound n by requiring the sum removed, $\\frac{n(n+1)}{2}-17(n-2)$, to be achievable by two distinct numbers strictly between 1 and n."},
-        {"level": 3, "content": "Maximize the removed sum over all valid n."}
+        {
+          "level": 1,
+          "content": "Express the sum of all n numbers and set up an equation using the given average of the remaining n-2 numbers."
+        },
+        {
+          "level": 2,
+          "content": "Bound n by requiring the sum removed, $\\frac{n(n+1)}{2}-17(n-2)$, to be achievable by two distinct numbers strictly between 1 and n."
+        },
+        {
+          "level": 3,
+          "content": "Maximize the removed sum over all valid n."
+        }
       ]
     },
     {
@@ -328,15 +471,24 @@
       "correctAnswer": "36",
       "baseRating": 1250,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences"],
+      "tags": ["rational-common-ratio", "two-digit-constraint", "bounded-search"],
       "topics": ["algebra-sequences-series"],
       "diagramSvg": null,
       "solutionMarkdown": "36",
       "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "Let the common ratio be a rational number p/q in lowest terms, since all terms are integers."},
-        {"level": 2, "content": "The middle term must be divisible by $q^2$; use the 2-digit constraint to bound possibilities."},
-        {"level": 3, "content": "Search small coprime (p,q) pairs that keep all five terms as 2-digit integers."}
+        {
+          "level": 1,
+          "content": "Let the common ratio be a rational number p/q in lowest terms, since all terms are integers."
+        },
+        {
+          "level": 2,
+          "content": "The middle term must be divisible by $q^2$; use the 2-digit constraint to bound possibilities."
+        },
+        {
+          "level": 3,
+          "content": "Search small coprime (p,q) pairs that keep all five terms as 2-digit integers."
+        }
       ]
     },
     {
@@ -349,15 +501,24 @@
       "correctAnswer": "21",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Quadratic Expressions", "Symmetric Expressions"],
+      "tags": ["sum-of-squares-identity", "forced-equality-case", "symmetric-substitution"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "21",
       "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Notice that $x^2+4y^2+16z^2 = 2(xy+4yz+2zx)$ resembles an expansion of $(x-2y)^2+(2y-4z)^2+(4z-x)^2$ or similar."},
-        {"level": 2, "content": "Try to show the given conditions force $x=2y=4z$."},
-        {"level": 3, "content": "Substitute back to find individual values of x, y, z, then compute the target sum."}
+        {
+          "level": 1,
+          "content": "Notice that $x^2+4y^2+16z^2 = 2(xy+4yz+2zx)$ resembles an expansion of $(x-2y)^2+(2y-4z)^2+(4z-x)^2$ or similar."
+        },
+        {
+          "level": 2,
+          "content": "Try to show the given conditions force $x=2y=4z$."
+        },
+        {
+          "level": 3,
+          "content": "Substitute back to find individual values of x, y, z, then compute the target sum."
+        }
       ]
     },
     {
@@ -370,15 +531,24 @@
       "correctAnswer": "36",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Polynomials"],
+      "tags": ["vietas-formulas", "missing-root-recovery", "zero-cubic-coefficient"],
       "topics": ["algebra-polynomials"],
       "diagramSvg": null,
       "solutionMarkdown": "36",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Since the polynomial has degree 4 but only 3 given roots, let the fourth root be r and use Vieta's formulas."},
-        {"level": 2, "content": "The coefficient of $x^3$ is 0, which determines r from the sum of the four roots."},
-        {"level": 3, "content": "Use the product of all four roots to find c."}
+        {
+          "level": 1,
+          "content": "Since the polynomial has degree 4 but only 3 given roots, let the fourth root be r and use Vieta's formulas."
+        },
+        {
+          "level": 2,
+          "content": "The coefficient of $x^3$ is 0, which determines r from the sum of the four roots."
+        },
+        {
+          "level": 3,
+          "content": "Use the product of all four roots to find c."
+        }
       ]
     },
     {
@@ -391,15 +561,24 @@
       "correctAnswer": "73",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Counting", "Casework"],
+      "tags": ["quadrilateral-inequality", "complementary-counting", "ordered-triple-constraint"],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "73",
       "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "Recall the quadrilateral inequality: each side must be less than the sum of the other three."},
-        {"level": 2, "content": "Since a<b<c<10, the binding constraint is $10 < a+b+c$."},
-        {"level": 3, "content": "Count triples with $a<b<c<10$ satisfying $a+b+c>10$ using complementary counting."}
+        {
+          "level": 1,
+          "content": "Recall the quadrilateral inequality: each side must be less than the sum of the other three."
+        },
+        {
+          "level": 2,
+          "content": "Since a<b<c<10, the binding constraint is $10 < a+b+c$."
+        },
+        {
+          "level": 3,
+          "content": "Count triples with $a<b<c<10$ satisfying $a+b+c>10$ using complementary counting."
+        }
       ]
     },
     {
@@ -412,14 +591,24 @@
       "correctAnswer": "60",
       "baseRating": 1000,
       "difficultyLabel": "Easy",
-      "tags": ["Prime Numbers", "Counting"],
+      "tags": ["prime-factorization", "stars-and-bars", "exponent-distribution"],
       "topics": ["nt-primes-factorization"],
       "diagramSvg": null,
       "solutionMarkdown": "60",
-      "estimatedSolveSeconds": 160,
+      "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Factor 108 into primes and distribute each prime's exponent among a, b, c independently."},
-        {"level": 2, "content": "Use stars and bars separately for each prime's exponent distribution, then multiply the counts."}
+        {
+          "level": 1,
+          "content": "Factor 108 into primes and distribute each prime's exponent among a, b, c independently."
+        },
+        {
+          "level": 2,
+          "content": "Use stars and bars separately for each prime's exponent distribution, then multiply the counts."
+        },
+        {
+          "level": 3,
+          "content": "Multiply the two exponent-distribution counts together to get the total number of ordered triples."
+        }
       ]
     },
     {
@@ -432,15 +621,24 @@
       "correctAnswer": "47",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Diophantine Equations", "Prime Numbers"],
+      "tags": ["quadratic-factoring", "prime-power-testing", "bounded-integer-search"],
       "topics": ["nt-diophantine"],
       "diagramSvg": null,
       "solutionMarkdown": "47",
       "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Factor the left side of the equation if possible, or analyze it as a quadratic in x."},
-        {"level": 2, "content": "Test small integer values of x directly since the quadratic grows quickly."},
-        {"level": 3, "content": "For each resulting value, check whether it's a prime power and record the prime."}
+        {
+          "level": 1,
+          "content": "Factor the left side of the equation if possible, or analyze it as a quadratic in x."
+        },
+        {
+          "level": 2,
+          "content": "Test small integer values of x directly since the quadratic grows quickly."
+        },
+        {
+          "level": 3,
+          "content": "For each resulting value, check whether it's a prime power and record the prime."
+        }
       ]
     },
     {
@@ -453,15 +651,24 @@
       "correctAnswer": "30",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Area", "Quadrilaterals"],
+      "tags": ["rectangle-parametrization", "area-subtraction", "system-of-equations"],
       "topics": ["geometry-quadrilaterals"],
       "diagramSvg": null,
       "solutionMarkdown": "30",
       "estimatedSolveSeconds": 320,
       "hints": [
-        {"level": 1, "content": "Let the rectangle have width w and height h, and parameterize E and F's positions."},
-        {"level": 2, "content": "Express each given triangle's area in terms of w, h and the parameters, then set up equations."},
-        {"level": 3, "content": "Use area(AEF) = area(ABCD) − area(ADE) − area(CEF) − area(ABF) to finish."}
+        {
+          "level": 1,
+          "content": "Let the rectangle have width w and height h, and parameterize E and F's positions."
+        },
+        {
+          "level": 2,
+          "content": "Express each given triangle's area in terms of w, h and the parameters, then set up equations."
+        },
+        {
+          "level": 3,
+          "content": "Use area(AEF) = area(ABCD) − area(ADE) − area(CEF) − area(ABF) to finish."
+        }
       ]
     },
     {
@@ -474,15 +681,24 @@
       "correctAnswer": "75",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Circles", "Area"],
+      "tags": ["chord-distance-relation", "circular-segment-area", "region-between-chords"],
       "topics": ["geometry-circles"],
       "diagramSvg": null,
       "solutionMarkdown": "75",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Find the perpendicular distance from O to each chord using the chord-length/radius relationship."},
-        {"level": 2, "content": "Compute the areas of the two circular segments cut off outside the region between the chords."},
-        {"level": 3, "content": "Subtract those segment areas from the total circle area to get the middle region."}
+        {
+          "level": 1,
+          "content": "Find the perpendicular distance from O to each chord using the chord-length/radius relationship."
+        },
+        {
+          "level": 2,
+          "content": "Compute the areas of the two circular segments cut off outside the region between the chords."
+        },
+        {
+          "level": 3,
+          "content": "Subtract those segment areas from the total circle area to get the middle region."
+        }
       ]
     },
     {
@@ -495,15 +711,24 @@
       "correctAnswer": "20",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Circles", "Power of a Point"],
+      "tags": ["diameter-right-angle", "tangent-length-formula", "power-of-a-point"],
       "topics": ["geometry-circles"],
       "diagramSvg": null,
       "solutionMarkdown": "20",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Use the fact that AB is a diameter to note that angle $AA_1B$ and angle $AB_1B$ are right angles."},
-        {"level": 2, "content": "Relate the tangent length from A (and from B) to $\\Omega_2$ using the tangent-length formula involving OP and the radius of $\\Omega_2$."},
-        {"level": 3, "content": "Combine the right-triangle relations with the tangent-length equations to solve for the radius of $\\Omega_1$."}
+        {
+          "level": 1,
+          "content": "Use the fact that AB is a diameter to note that angle $AA_1B$ and angle $AB_1B$ are right angles."
+        },
+        {
+          "level": 2,
+          "content": "Relate the tangent length from A (and from B) to $\\Omega_2$ using the tangent-length formula involving OP and the radius of $\\Omega_2$."
+        },
+        {
+          "level": 3,
+          "content": "Combine the right-triangle relations with the tangent-length equations to solve for the radius of $\\Omega_1$."
+        }
       ]
     },
     {
@@ -516,15 +741,24 @@
       "correctAnswer": "28",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Modular Arithmetic", "Prime Numbers"],
+      "tags": ["korselt-criterion", "squarefree-modulus", "minimize-prime-sum"],
       "topics": ["nt-modular-arithmetic"],
       "diagramSvg": null,
       "solutionMarkdown": "28",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Use a Fermat/Korselt-type criterion: $n^{3pq}-n$ divisible by 3pq for all n requires $3pq$ to be squarefree and $(prime-1)$ divides $(3pq-1)$ for each prime factor."},
-        {"level": 2, "content": "Apply this condition separately to 3, p, and q."},
-        {"level": 3, "content": "Search small primes p, q satisfying all resulting divisibility conditions to minimize p+q."}
+        {
+          "level": 1,
+          "content": "Use a Fermat/Korselt-type criterion: $n^{3pq}-n$ divisible by 3pq for all n requires $3pq$ to be squarefree and $(prime-1)$ divides $(3pq-1)$ for each prime factor."
+        },
+        {
+          "level": 2,
+          "content": "Apply this condition separately to 3, p, and q."
+        },
+        {
+          "level": 3,
+          "content": "Search small primes p, q satisfying all resulting divisibility conditions to minimize p+q."
+        }
       ]
     },
     {
@@ -537,15 +771,24 @@
       "correctAnswer": "97",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["GCD and LCM", "Prime Numbers"],
+      "tags": ["wilsons-theorem", "factorial-gcd", "prime-vs-composite-successor"],
       "topics": ["nt-gcd-lcm"],
       "diagramSvg": null,
       "solutionMarkdown": "97",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Note that $(n+1)! = (n+1)\\cdot n!$, so $\\gcd(n!+1,(n+1)!) = \\gcd(n!+1, n+1)$."},
-        {"level": 2, "content": "Use Wilson's theorem to analyze this gcd when n+1 is prime versus composite."},
-        {"level": 3, "content": "Determine which n<100 gives the maximal gcd value."}
+        {
+          "level": 1,
+          "content": "Note that $(n+1)! = (n+1)\\cdot n!$, so $\\gcd(n!+1,(n+1)!) = \\gcd(n!+1, n+1)$."
+        },
+        {
+          "level": 2,
+          "content": "Use Wilson's theorem to analyze this gcd when n+1 is prime versus composite."
+        },
+        {
+          "level": 3,
+          "content": "Determine which n<100 gives the maximal gcd value."
+        }
       ]
     },
     {
@@ -558,15 +801,24 @@
       "correctAnswer": "13",
       "baseRating": 1650,
       "difficultyLabel": "Hard",
-      "tags": ["Area", "Quadrilaterals"],
+      "tags": ["trapezium-diagonal-triangles", "equal-area-relation", "area-maximization"],
       "topics": ["geometry-quadrilaterals"],
       "diagramSvg": null,
       "solutionMarkdown": "13",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Recall that in a trapezium, the two triangles adjacent to the parallel sides have equal area, and the other two triangles' areas multiply to that same common value squared."},
-        {"level": 2, "content": "Use this relation to identify which of the given products (1296, 576) corresponds to which pair of triangles."},
-        {"level": 3, "content": "Set up the total area in terms of the two triangle areas and maximize under the given constraints."}
+        {
+          "level": 1,
+          "content": "Recall that in a trapezium, the two triangles adjacent to the parallel sides have equal area, and the other two triangles' areas multiply to that same common value squared."
+        },
+        {
+          "level": 2,
+          "content": "Use this relation to identify which of the given products (1296, 576) corresponds to which pair of triangles."
+        },
+        {
+          "level": 3,
+          "content": "Set up the total area in terms of the two triangle areas and maximize under the given constraints."
+        }
       ]
     }
   ]

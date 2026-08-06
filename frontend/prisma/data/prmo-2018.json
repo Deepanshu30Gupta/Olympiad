@@ -13,15 +13,24 @@
       "correctAnswer": "17",
       "baseRating": 1050,
       "difficultyLabel": "Easy",
-      "tags": ["Prime Numbers"],
+      "tags": ["volume-page-counts", "linear-equation-setup", "prime-factorization"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "17",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Let the first volume have p pages; express the page counts of the second and third volumes in terms of p."},
-        {"level": 2, "content": "Write the first-page numbers of each volume in terms of p and set their sum equal to 1709 to solve for p."},
-        {"level": 3, "content": "Compute the total pages n and factor it."}
+        {
+          "level": 1,
+          "content": "Let the first volume have p pages; express the page counts of the second and third volumes in terms of p."
+        },
+        {
+          "level": 2,
+          "content": "Write the first-page numbers of each volume in terms of p and set their sum equal to 1709 to solve for p."
+        },
+        {
+          "level": 3,
+          "content": "Compute the total pages n and factor it."
+        }
       ]
     },
     {
@@ -34,15 +43,24 @@
       "correctAnswer": "8",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Area", "Triangles"],
+      "tags": ["kite-quadrilateral", "diagonal-split-triangles", "tangential-quadrilateral-area"],
       "topics": ["geometry-quadrilaterals"],
       "diagramSvg": null,
       "solutionMarkdown": "8",
       "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "Since AB=AD and CB=CD, the quadrilateral is a kite symmetric about diagonal AC; use this to find AC and the total area via two triangles split by BD."},
-        {"level": 2, "content": "Compute the area of ABCD by finding heights from A and C to BD."},
-        {"level": 3, "content": "Use area = r × s (semiperimeter) for the tangential quadrilateral to solve for r."}
+        {
+          "level": 1,
+          "content": "Since AB=AD and CB=CD, the quadrilateral is a kite symmetric about diagonal AC; use this to find AC and the total area via two triangles split by BD."
+        },
+        {
+          "level": 2,
+          "content": "Compute the area of ABCD by finding heights from A and C to BD."
+        },
+        {
+          "level": 3,
+          "content": "Use area = r × s (semiperimeter) for the tangential quadrilateral to solve for r."
+        }
       ]
     },
     {
@@ -55,14 +73,24 @@
       "correctAnswer": "70",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Divisibility", "Casework"],
+      "tags": ["palindrome-structure", "modular-reduction", "digit-combination-count"],
       "topics": ["nt-divisibility"],
       "diagramSvg": null,
       "solutionMarkdown": "70",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Write $abccba$ as a linear combination of a, b, c using place values, then reduce each coefficient mod 7."},
-        {"level": 2, "content": "This reduces to a congruence relation among a, b, c mod 7; enumerate valid digit combinations with b restricted to odd digits."}
+        {
+          "level": 1,
+          "content": "Write $abccba$ as a linear combination of a, b, c using place values, then reduce each coefficient mod 7."
+        },
+        {
+          "level": 2,
+          "content": "This reduces to a congruence relation among a, b, c mod 7; enumerate valid digit combinations with b restricted to odd digits."
+        },
+        {
+          "level": 3,
+          "content": "Multiply the number of valid (a,c) pairs by the 5 possible odd choices for b to get the total count."
+        }
       ]
     },
     {
@@ -75,14 +103,24 @@
       "correctAnswer": "12",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Number Bases"],
+      "tags": ["base-b-polynomial", "cubic-equation-in-base", "integer-root-search"],
       "topics": ["nt-base-representations"],
       "diagramSvg": null,
       "solutionMarkdown": "12",
-      "estimatedSolveSeconds": 200,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Convert each side of the equation into a polynomial in base b."},
-        {"level": 2, "content": "Set the two polynomials equal and solve the resulting equation in b, checking which integer roots satisfy b≥10."}
+        {
+          "level": 1,
+          "content": "Convert each side of the equation into a polynomial in base b."
+        },
+        {
+          "level": 2,
+          "content": "Set the two polynomials equal and solve the resulting equation in b, checking which integer roots satisfy b≥10."
+        },
+        {
+          "level": 3,
+          "content": "Solve the resulting cubic in b, keeping only real roots that satisfy b≥10, then sum them."
+        }
       ]
     },
     {
@@ -95,15 +133,24 @@
       "correctAnswer": "84",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["Circles", "Perimeter"],
+      "tags": ["tangent-length-equality", "right-trapezium", "geometric-mean-relation"],
       "topics": ["geometry-quadrilaterals"],
       "diagramSvg": null,
       "solutionMarkdown": "84",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "PQ equals the height of the trapezium (since AD is perpendicular to the parallel sides and the incircle's diameter spans that height)."},
-        {"level": 2, "content": "Use equal tangent lengths from each vertex to express the sides in terms of PC, QB, and the radius."},
-        {"level": 3, "content": "Apply the tangential quadrilateral property (AB+CD=AD+BC) combined with a right-triangle relation to solve for the height."}
+        {
+          "level": 1,
+          "content": "PQ equals the height of the trapezium (since AD is perpendicular to the parallel sides and the incircle's diameter spans that height)."
+        },
+        {
+          "level": 2,
+          "content": "Use equal tangent lengths from each vertex to express the sides in terms of PC, QB, and the radius."
+        },
+        {
+          "level": 3,
+          "content": "Apply the tangential quadrilateral property (AB+CD=AD+BC) combined with a right-triangle relation to solve for the height."
+        }
       ]
     },
     {
@@ -116,14 +163,24 @@
       "correctAnswer": "18",
       "baseRating": 1100,
       "difficultyLabel": "Medium",
-      "tags": ["Diophantine Equations"],
+      "tags": ["substitution-elimination", "factoring-to-unit-product", "integer-solution-search"],
       "topics": ["nt-diophantine"],
       "diagramSvg": null,
       "solutionMarkdown": "18",
-      "estimatedSolveSeconds": 180,
+      "estimatedSolveSeconds": 230,
       "hints": [
-        {"level": 1, "content": "From the first equation, express c=a+b-1 and substitute into the second equation."},
-        {"level": 2, "content": "Simplify to a relation between a and b (likely factorable), then find all integer solutions."}
+        {
+          "level": 1,
+          "content": "From the first equation, express c=a+b-1 and substitute into the second equation."
+        },
+        {
+          "level": 2,
+          "content": "Simplify to a relation between a and b (likely factorable), then find all integer solutions."
+        },
+        {
+          "level": 3,
+          "content": "Solve the factored equation over the integers to get both solution pairs, then compute a^2+b^2+c^2 for each and sum the two results."
+        }
       ]
     },
     {
@@ -136,14 +193,24 @@
       "correctAnswer": "14",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Triangles", "Transformations"],
+      "tags": ["rotation-by-60-degrees", "point-to-vertex-distances", "hexagon-circumradius"],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "14",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Use a rotation by 60° about the center to relate the three consecutive vertices and set up relations involving P and its rotated images."},
-        {"level": 2, "content": "Alternatively, use coordinates with the hexagon's center at origin and the three consecutive vertices at known angles, then solve the distance equations for r."}
+        {
+          "level": 1,
+          "content": "Use a rotation by 60° about the center to relate the three consecutive vertices and set up relations involving P and its rotated images."
+        },
+        {
+          "level": 2,
+          "content": "Alternatively, use coordinates with the hexagon's center at origin and the three consecutive vertices at known angles, then solve the distance equations for r."
+        },
+        {
+          "level": 3,
+          "content": "Solve the resulting equation for r numerically and round to the nearest integer."
+        }
       ]
     },
     {
@@ -156,15 +223,24 @@
       "correctAnswer": "80",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Angle Chasing", "Circles"],
+      "tags": ["isosceles-triangle-from-radii", "angle-chasing", "exterior-angle-theorem"],
       "topics": ["geometry-circles"],
       "diagramSvg": null,
       "solutionMarkdown": "80",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Use the central angle / inscribed angle relationship: angle AOB relates to angle ACB (inscribed angle) which is 30°."},
-        {"level": 2, "content": "Note OC=OB (radii), so triangle OCB is isosceles; use the given 20° angles to find angle OBC and other angles around C."},
-        {"level": 3, "content": "Chase angles around triangle CDB or use the exterior angle theorem to find angle CDO."}
+        {
+          "level": 1,
+          "content": "Use the central angle / inscribed angle relationship: angle AOB relates to angle ACB (inscribed angle) which is 30°."
+        },
+        {
+          "level": 2,
+          "content": "Note OC=OB (radii), so triangle OCB is isosceles; use the given 20° angles to find angle OBC and other angles around C."
+        },
+        {
+          "level": 3,
+          "content": "Chase angles around triangle CDB or use the exterior angle theorem to find angle CDO."
+        }
       ]
     },
     {
@@ -177,15 +253,24 @@
       "correctAnswer": "81",
       "baseRating": 1100,
       "difficultyLabel": "Medium",
-      "tags": ["Quadratic Expressions"],
+      "tags": ["root-substitution", "difference-of-squares-factoring", "integer-factor-pairs"],
       "topics": ["algebra-polynomials"],
       "diagramSvg": null,
       "solutionMarkdown": "81",
       "estimatedSolveSeconds": 160,
       "hints": [
-        {"level": 1, "content": "Substitute $x=a+b$ into the quadratic and simplify the resulting equation in a and b."},
-        {"level": 2, "content": "Try to factor the simplified equation to find relations like $(a+?)(b+?) = $ constant."},
-        {"level": 3, "content": "Enumerate integer factor pairs of the constant to find all (a,b) and maximize b²."}
+        {
+          "level": 1,
+          "content": "Substitute $x=a+b$ into the quadratic and simplify the resulting equation in a and b."
+        },
+        {
+          "level": 2,
+          "content": "Try to factor the simplified equation to find relations like $(a+?)(b+?) = $ constant."
+        },
+        {
+          "level": 3,
+          "content": "Enumerate integer factor pairs of the constant to find all (a,b) and maximize b²."
+        }
       ]
     },
     {
@@ -198,15 +283,28 @@
       "correctAnswer": "24",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Triangles"],
+      "tags": [
+        "median-length-formula",
+        "perpendicular-medians-relation",
+        "sum-of-squares-of-sides"
+      ],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "24",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Recall the median length formulas relating each median to the side lengths a, b, c."},
-        {"level": 2, "content": "Use the perpendicularity of two medians condition: this gives a known relation like $b^2+c^2=5a^2$ (for medians from B and C)."},
-        {"level": 3, "content": "Combine with the formula for the third median (from A) equal to 30, and use the sum-of-squares identity for medians."}
+        {
+          "level": 1,
+          "content": "Recall the median length formulas relating each median to the side lengths a, b, c."
+        },
+        {
+          "level": 2,
+          "content": "Use the perpendicularity of two medians condition: this gives a known relation like $b^2+c^2=5a^2$ (for medians from B and C)."
+        },
+        {
+          "level": 3,
+          "content": "Combine with the formula for the third median (from A) equal to 30, and use the sum-of-squares identity for medians."
+        }
       ]
     },
     {
@@ -219,14 +317,24 @@
       "correctAnswer": "29",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Combinations"],
+      "tags": ["binomial-coefficient-equation", "factorization-search", "maximize-total-count"],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "29",
-      "estimatedSolveSeconds": 180,
+      "estimatedSolveSeconds": 230,
       "hints": [
-        {"level": 1, "content": "Let there be m cups without handles and n with handles; set up $\\binom{m}{2}\\binom{n}{3}=1200$."},
-        {"level": 2, "content": "Factor 1200 into a product of a triangular number and a tetrahedral-type number to find valid (m,n) pairs, then maximize m+n."}
+        {
+          "level": 1,
+          "content": "Let there be m cups without handles and n with handles; set up $\\binom{m}{2}\\binom{n}{3}=1200$."
+        },
+        {
+          "level": 2,
+          "content": "Factor 1200 into a product of a triangular number and a tetrahedral-type number to find valid (m,n) pairs, then maximize m+n."
+        },
+        {
+          "level": 3,
+          "content": "Compare m+n across all valid (m,n) factorizations of 1200 to identify the maximum."
+        }
       ]
     },
     {
@@ -239,14 +347,24 @@
       "correctAnswer": "88",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Counting", "Modular Arithmetic"],
+      "tags": ["roots-of-unity-filter", "sign-pattern-counting", "modular-sum-condition"],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "88",
-      "estimatedSolveSeconds": 240,
+      "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "Use a generating function / roots of unity filter approach with $\\omega=e^{2\\pi i/3}$ to count tuples with sum divisible by 3."},
-        {"level": 2, "content": "Compute the product $\\prod_{k=1}^8 (\\omega^k+\\omega^{-k})$ style expression for the filter, simplifying using periodicity of $k \\bmod 3$."}
+        {
+          "level": 1,
+          "content": "Use a generating function / roots of unity filter approach with $\\omega=e^{2\\pi i/3}$ to count tuples with sum divisible by 3."
+        },
+        {
+          "level": 2,
+          "content": "Compute the product $\\prod_{k=1}^8 (\\omega^k+\\omega^{-k})$ style expression for the filter, simplifying using periodicity of $k \\bmod 3$."
+        },
+        {
+          "level": 3,
+          "content": "Among the six terms with nonzero weight mod 3, only sign patterns totalling -6, 0, or 6 survive; count these, then multiply by the free choices for the two weight-0 terms."
+        }
       ]
     },
     {
@@ -259,15 +377,24 @@
       "correctAnswer": "24",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Triangles", "Angle Chasing"],
+      "tags": ["altitude-bisector-median-relation", "right-angle-cevians", "trigonometric-ratio"],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "24",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "In a right triangle, the altitude, bisector, and median from the right angle all lie between the same two rays; use their known relation to the angle B (or C)."},
-        {"level": 2, "content": "The altitude, bisector, and median lengths from A relate through trigonometric functions of half the angle between the legs."},
-        {"level": 3, "content": "Set up equations using $h = m\\cos\\theta$ type relations (where θ is the angle between median and altitude) to solve for the median."}
+        {
+          "level": 1,
+          "content": "In a right triangle, the altitude, bisector, and median from the right angle all lie between the same two rays; use their known relation to the angle B (or C)."
+        },
+        {
+          "level": 2,
+          "content": "The altitude, bisector, and median lengths from A relate through trigonometric functions of half the angle between the legs."
+        },
+        {
+          "level": 3,
+          "content": "Set up equations using $h = m\\cos\\theta$ type relations (where θ is the angle between median and altitude) to solve for the median."
+        }
       ]
     },
     {
@@ -280,15 +407,24 @@
       "correctAnswer": "19",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Logarithms"],
+      "tags": ["cosine-product-formula", "arithmetic-progression-of-angles", "logarithm-of-ratio"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "19",
       "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Split x's product into the cosines that appear in y and the remaining ones (those not multiples of 4°)."},
-        {"level": 2, "content": "Use the known product formula for cosines of angles in arithmetic progression to simplify y and the leftover part of x."},
-        {"level": 3, "content": "Combine simplifications to get y/x as a power of 2, then compute the logarithm."}
+        {
+          "level": 1,
+          "content": "Split x's product into the cosines that appear in y and the remaining ones (those not multiples of 4°)."
+        },
+        {
+          "level": 2,
+          "content": "Use the known product formula for cosines of angles in arithmetic progression to simplify y and the leftover part of x."
+        },
+        {
+          "level": 3,
+          "content": "Combine simplifications to get y/x as a power of 2, then compute the logarithm."
+        }
       ]
     },
     {
@@ -301,15 +437,24 @@
       "correctAnswer": "21",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Diophantine Equations"],
+      "tags": ["simultaneous-square-conditions", "linear-elimination", "small-square-search"],
       "topics": ["nt-diophantine"],
       "diagramSvg": null,
       "solutionMarkdown": "21",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Let $2a-b=p^2$, $a-2b=q^2$, $a+b=r^2$; find linear relations among p², q², r² by eliminating a and b."},
-        {"level": 2, "content": "Show that $r^2$ relates to $p^2$ and $q^2$ via a fixed linear combination, then search small square values satisfying it."},
-        {"level": 3, "content": "Once valid (p,q,r) are found, back-solve for a and b and verify they are natural numbers."}
+        {
+          "level": 1,
+          "content": "Let $2a-b=p^2$, $a-2b=q^2$, $a+b=r^2$; find linear relations among p², q², r² by eliminating a and b."
+        },
+        {
+          "level": 2,
+          "content": "Show that $r^2$ relates to $p^2$ and $q^2$ via a fixed linear combination, then search small square values satisfying it."
+        },
+        {
+          "level": 3,
+          "content": "Once valid (p,q,r) are found, back-solve for a and b and verify they are natural numbers."
+        }
       ]
     },
     {
@@ -322,14 +467,24 @@
       "correctAnswer": "55",
       "baseRating": 1000,
       "difficultyLabel": "Easy",
-      "tags": ["Parity"],
+      "tags": ["parity-classification", "sum-over-pairs", "odd-even-pair-count"],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "55",
-      "estimatedSolveSeconds": 180,
+      "estimatedSolveSeconds": 230,
       "hints": [
-        {"level": 1, "content": "Classify pairs (i,j) by the parities of i and j to determine when i+j is odd or even."},
-        {"level": 2, "content": "Compute each sum by grouping pairs based on parity classes among 1 to 10, then subtract."}
+        {
+          "level": 1,
+          "content": "Classify pairs (i,j) by the parities of i and j to determine when i+j is odd or even."
+        },
+        {
+          "level": 2,
+          "content": "Compute each sum by grouping pairs based on parity classes among 1 to 10, then subtract."
+        },
+        {
+          "level": 3,
+          "content": "Compute both sums explicitly using the counts and totals of the odd and even numbers from 1 to 10, then subtract."
+        }
       ]
     },
     {
@@ -342,15 +497,24 @@
       "correctAnswer": "30",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Triangles", "Congruence"],
+      "tags": ["law-of-cosines", "ambiguous-case-ssa", "vietas-formulas"],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "30",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Since angle A = angle D and two sides match (SSA-type ambiguous case), use the Law of Cosines to relate AC and DF to a common angle A."},
-        {"level": 2, "content": "Set up the Law of Cosines equation for both triangles; the two solutions for the third side are roots of the same quadratic in the side length."},
-        {"level": 3, "content": "Use Vieta's formulas on that quadratic to directly get the sum of the two roots (AC and DF)."}
+        {
+          "level": 1,
+          "content": "Since angle A = angle D and two sides match (SSA-type ambiguous case), use the Law of Cosines to relate AC and DF to a common angle A."
+        },
+        {
+          "level": 2,
+          "content": "Set up the Law of Cosines equation for both triangles; the two solutions for the third side are roots of the same quadratic in the side length."
+        },
+        {
+          "level": 3,
+          "content": "Use Vieta's formulas on that quadratic to directly get the sum of the two roots (AC and DF)."
+        }
       ]
     },
     {
@@ -363,14 +527,24 @@
       "correctAnswer": "16",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Symmetric Expressions", "Factorization"],
+      "tags": ["bounded-growth-comparison", "fixed-a-search", "integer-factor-search"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "16",
-      "estimatedSolveSeconds": 260,
+      "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "WLOG assume $a \\le b \\le c$ and analyze the equation as a bound: show that a cannot be too large by comparing growth rates."},
-        {"level": 2, "content": "Fix small values of a (starting at 4) and reduce to a two-variable equation in b and c, then search for integer solutions."}
+        {
+          "level": 1,
+          "content": "WLOG assume $a \\le b \\le c$ and analyze the equation as a bound: show that a cannot be too large by comparing growth rates."
+        },
+        {
+          "level": 2,
+          "content": "Fix small values of a (starting at 4) and reduce to a two-variable equation in b and c, then search for integer solutions."
+        },
+        {
+          "level": 3,
+          "content": "Once you find integer b,c for a given a, check they are ≥4 and not all equal to a, then compute a+b+c."
+        }
       ]
     },
     {
@@ -383,14 +557,24 @@
       "correctAnswer": "33",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["Number Bases"],
+      "tags": ["repunit-like-sum", "closed-form-summation", "digit-pattern-analysis"],
       "topics": ["nt-base-representations"],
       "diagramSvg": null,
       "solutionMarkdown": "33",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Express each term as $\\frac{6}{9}(10^k-1)$ and sum over k from 1 to 100 using a geometric series."},
-        {"level": 2, "content": "Simplify N into a closed form and examine its digit pattern directly (it should resemble mostly 7's with distinctive ends)."}
+        {
+          "level": 1,
+          "content": "Express each term as $\\frac{6}{9}(10^k-1)$ and sum over k from 1 to 100 using a geometric series."
+        },
+        {
+          "level": 2,
+          "content": "Simplify N into a closed form and examine its digit pattern directly (it should resemble mostly 7's with distinctive ends)."
+        },
+        {
+          "level": 3,
+          "content": "Carry out the addition digit by digit (or use the closed form) to identify exactly where the repeating 7-pattern starts and ends, then count its length."
+        }
       ]
     },
     {
@@ -403,14 +587,24 @@
       "correctAnswer": "17",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Casework"],
+      "tags": ["digit-product-bound", "quadratic-growth-comparison", "narrow-range-search"],
       "topics": ["nt-divisibility"],
       "diagramSvg": null,
       "solutionMarkdown": "17",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Since digit products are relatively small compared to n² for large n, bound n using the fact that the digit product of an n-digit number is much less than $10^{(\\text{digits})}$."},
-        {"level": 2, "content": "Test small ranges of n directly, checking when $n^2-15n-27$ is non-negative and matches the actual digit product."}
+        {
+          "level": 1,
+          "content": "Since digit products are relatively small compared to n² for large n, bound n using the fact that the digit product of an n-digit number is much less than $10^{(\\text{digits})}$."
+        },
+        {
+          "level": 2,
+          "content": "Test small ranges of n directly, checking when $n^2-15n-27$ is non-negative and matches the actual digit product."
+        },
+        {
+          "level": 3,
+          "content": "Within that narrow range, find every n where the actual digit product exactly equals n^2-15n-27, then sum all such n."
+        }
       ]
     },
     {
@@ -423,14 +617,28 @@
       "correctAnswer": "63",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Triangles", "Transformations"],
+      "tags": [
+        "centroid-of-orthocenter-triangle",
+        "homothety-scale-factor",
+        "area-ratio-from-similarity"
+      ],
       "topics": ["geometry-transformations"],
       "diagramSvg": null,
       "solutionMarkdown": "63",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Express each centroid $G_1,G_2,G_3$ as an average of vertex position vectors involving H."},
-        {"level": 2, "content": "Show that triangle $G_1G_2G_3$ is similar to ABC via a specific scale factor (a homothety), and find that ratio."}
+        {
+          "level": 1,
+          "content": "Express each centroid $G_1,G_2,G_3$ as an average of vertex position vectors involving H."
+        },
+        {
+          "level": 2,
+          "content": "Show that triangle $G_1G_2G_3$ is similar to ABC via a specific scale factor (a homothety), and find that ratio."
+        },
+        {
+          "level": 3,
+          "content": "Use that similarity ratio to relate the two areas directly: area(ABC) equals the square of the scale factor times area(G1G2G3)."
+        }
       ]
     },
     {
@@ -443,14 +651,24 @@
       "correctAnswer": "6",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Casework"],
+      "tags": ["divisor-of-total-sum", "minimum-part-size-bound", "partition-feasibility"],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "6",
-      "estimatedSolveSeconds": 260,
+      "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "The total sum 1 to 20 is 210; k must divide 210 and also be achievable as a subset sum multiple times over."},
-        {"level": 2, "content": "k must be at least 20 (to contain the element 20 in some subset) and no more than 210; check each divisor of 210 in that range for feasibility."}
+        {
+          "level": 1,
+          "content": "The total sum 1 to 20 is 210; k must divide 210 and also be achievable as a subset sum multiple times over."
+        },
+        {
+          "level": 2,
+          "content": "k must be at least 20 (to contain the element 20 in some subset) and no more than 210; check each divisor of 210 in that range for feasibility."
+        },
+        {
+          "level": 3,
+          "content": "List the divisors of 210 lying in the feasible range, then confirm each is actually realizable by an explicit partition."
+        }
       ]
     },
     {
@@ -463,15 +681,24 @@
       "correctAnswer": "14",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Inequalities"],
+      "tags": ["cauchy-schwarz-engel-form", "titus-lemma", "equality-case-check"],
       "topics": ["inequalities-cs-pm"],
       "diagramSvg": null,
       "solutionMarkdown": "14",
       "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Apply the Cauchy-Schwarz (Engel form / Titu's Lemma) inequality to the sum of fractions."},
-        {"level": 2, "content": "After applying Cauchy-Schwarz, the denominator simplifies to a multiple of (a+b+c); find the exact constant."},
-        {"level": 3, "content": "Check equality conditions (a=b=c) to confirm the bound is tight and extract n."}
+        {
+          "level": 1,
+          "content": "Apply the Cauchy-Schwarz (Engel form / Titu's Lemma) inequality to the sum of fractions."
+        },
+        {
+          "level": 2,
+          "content": "After applying Cauchy-Schwarz, the denominator simplifies to a multiple of (a+b+c); find the exact constant."
+        },
+        {
+          "level": 3,
+          "content": "Check equality conditions (a=b=c) to confirm the bound is tight and extract n."
+        }
       ]
     },
     {
@@ -484,14 +711,28 @@
       "correctAnswer": "27",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["Counting"],
+      "tags": [
+        "composition-to-partition-conversion",
+        "equilateral-isosceles-scalene-split",
+        "similarity-class-counting"
+      ],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "27",
-      "estimatedSolveSeconds": 200,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Count ordered integer triples (A,B,C) with A+B+C=180, A,B,C≥1, then adjust for the fact that similarity classes are unordered up to relabeling."},
-        {"level": 2, "content": "Use stars and bars for the ordered count, then divide appropriately accounting for triangles with repeated angle values (isosceles/equilateral)."}
+        {
+          "level": 1,
+          "content": "Count ordered integer triples (A,B,C) with A+B+C=180, A,B,C≥1, then adjust for the fact that similarity classes are unordered up to relabeling."
+        },
+        {
+          "level": 2,
+          "content": "Use stars and bars for the ordered count, then divide appropriately accounting for triangles with repeated angle values (isosceles/equilateral)."
+        },
+        {
+          "level": 3,
+          "content": "Split the ordered count into the equilateral case, the isosceles-but-not-equilateral cases, and the fully scalene cases, converting each to an unordered count before summing."
+        }
       ]
     },
     {
@@ -504,15 +745,24 @@
       "correctAnswer": "81",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Congruences"],
+      "tags": ["chinese-remainder-theorem", "remainder-set-search", "simultaneous-congruences"],
       "topics": ["nt-modular-arithmetic"],
       "diagramSvg": null,
       "solutionMarkdown": "81",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Use trial values of remainders mod 15 and mod 11 together to narrow down using the Chinese Remainder Theorem approach."},
-        {"level": 2, "content": "Since each modulus has 3 possible remainders, there are 27 combinations to check; look for patterns (e.g., remainder mod 15 minus remainder mod 13 being constant) to reduce cases."},
-        {"level": 3, "content": "Once a consistent small combination is found, solve the resulting simultaneous congruences via CRT for the smallest T."}
+        {
+          "level": 1,
+          "content": "Use trial values of remainders mod 15 and mod 11 together to narrow down using the Chinese Remainder Theorem approach."
+        },
+        {
+          "level": 2,
+          "content": "Since each modulus has 3 possible remainders, there are 27 combinations to check; look for patterns (e.g., remainder mod 15 minus remainder mod 13 being constant) to reduce cases."
+        },
+        {
+          "level": 3,
+          "content": "Once a consistent small combination is found, solve the resulting simultaneous congruences via CRT for the smallest T."
+        }
       ]
     },
     {
@@ -525,14 +775,24 @@
       "correctAnswer": "62",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Pigeonhole Principle", "Coloring"],
+      "tags": ["checkerboard-coloring", "near-maximum-independent-set", "row-column-pigeonhole"],
       "topics": ["combinatorics-pigeonhole"],
       "diagramSvg": null,
       "solutionMarkdown": "62",
-      "estimatedSolveSeconds": 260,
+      "estimatedSolveSeconds": 320,
       "hints": [
-        {"level": 1, "content": "Color the board like a checkerboard; consider the maximum independent set size and how close 60 is to that maximum."},
-        {"level": 2, "content": "Analyze how many squares must come from each color class and what near-maximum configurations look like, using row/column pigeonhole arguments."}
+        {
+          "level": 1,
+          "content": "Color the board like a checkerboard; consider the maximum independent set size and how close 60 is to that maximum."
+        },
+        {
+          "level": 2,
+          "content": "Analyze how many squares must come from each color class and what near-maximum configurations look like, using row/column pigeonhole arguments."
+        },
+        {
+          "level": 3,
+          "content": "Enumerate the near-maximum configurations obtained by perturbing a maximum independent set by one square, being careful not to double-count, then total them."
+        }
       ]
     },
     {
@@ -545,14 +805,24 @@
       "correctAnswer": "90",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Coloring", "Combinations"],
+      "tags": ["0-1-matrix-row-column-sums", "row-by-row-casework", "overlap-pattern-counting"],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "90",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "This is equivalent to counting 4x4 0-1 matrices with row sums and column sums equal to 2."},
-        {"level": 2, "content": "Build up row by row, tracking how many red squares remain to be placed in each column, using casework on overlap patterns between consecutive rows."}
+        {
+          "level": 1,
+          "content": "This is equivalent to counting 4x4 0-1 matrices with row sums and column sums equal to 2."
+        },
+        {
+          "level": 2,
+          "content": "Build up row by row, tracking how many red squares remain to be placed in each column, using casework on overlap patterns between consecutive rows."
+        },
+        {
+          "level": 3,
+          "content": "Sum the counts across all overlap-pattern cases (rows sharing 0, 1, or 2 red positions with the previous row) to get the total."
+        }
       ]
     },
     {
@@ -565,14 +835,28 @@
       "correctAnswer": "24",
       "baseRating": 1250,
       "difficultyLabel": "Medium",
-      "tags": ["Permutations", "Casework"],
+      "tags": [
+        "distinct-partition-of-8",
+        "multinomial-distribution",
+        "child-assignment-permutation"
+      ],
       "topics": ["combinatorics-counting"],
       "diagramSvg": null,
       "solutionMarkdown": "24",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Find all unordered triples of distinct positive integers summing to 8, representing the numbers of chocolates each child gets."},
-        {"level": 2, "content": "For each triple, count the number of ways to assign it to the 3 distinct children, then the number of ways to choose which chocolates go to which child."}
+        {
+          "level": 1,
+          "content": "Find all unordered triples of distinct positive integers summing to 8, representing the numbers of chocolates each child gets."
+        },
+        {
+          "level": 2,
+          "content": "For each triple, count the number of ways to assign it to the 3 distinct children, then the number of ways to choose which chocolates go to which child."
+        },
+        {
+          "level": 3,
+          "content": "Add the total arrangement counts from both qualifying triples to get N, then sum the digits of N."
+        }
       ]
     },
     {
@@ -585,15 +869,24 @@
       "correctAnswer": "30",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Angle Chasing", "Triangles"],
+      "tags": ["incenter-angle-formula", "cevian-through-incenter", "angle-bad-and-cad-split"],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "30",
       "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Use the incenter angle formula: angle BI1D = 90° + (angle BAD)/2 in triangle ABD, and similarly for the other incenter."},
-        {"level": 2, "content": "Relate angle BI1E to this incenter angle formula since E lies on line AI1, and derive an equation for angle BAD."},
-        {"level": 3, "content": "Apply the analogous formula for triangle ACD to find angle CI2F using the relation between angle BAD and angle CAD (which sum to angle BAC)."}
+        {
+          "level": 1,
+          "content": "Use the incenter angle formula: angle BI1D = 90° + (angle BAD)/2 in triangle ABD, and similarly for the other incenter."
+        },
+        {
+          "level": 2,
+          "content": "Relate angle BI1E to this incenter angle formula since E lies on line AI1, and derive an equation for angle BAD."
+        },
+        {
+          "level": 3,
+          "content": "Apply the analogous formula for triangle ACD to find angle CI2F using the relation between angle BAD and angle CAD (which sum to angle BAC)."
+        }
       ]
     },
     {
@@ -606,15 +899,28 @@
       "correctAnswer": "34",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Polynomials", "Number Bases"],
+      "tags": [
+        "nonnegative-integer-coefficients",
+        "base-5-style-digit-recovery",
+        "polynomial-evaluation"
+      ],
       "topics": ["algebra-polynomials"],
       "diagramSvg": null,
       "solutionMarkdown": "34",
       "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "Since coefficients are non-negative integers summing to 4 (from P(1)=4), there are limited possibilities for the coefficient multiset."},
-        {"level": 2, "content": "Use P(5)=136 to pin down exactly which powers of x have nonzero coefficients, treating it almost like a base-5 representation with digit sum 4."},
-        {"level": 3, "content": "Once coefficients are determined, evaluate P(3) directly."}
+        {
+          "level": 1,
+          "content": "Since coefficients are non-negative integers summing to 4 (from P(1)=4), there are limited possibilities for the coefficient multiset."
+        },
+        {
+          "level": 2,
+          "content": "Use P(5)=136 to pin down exactly which powers of x have nonzero coefficients, treating it almost like a base-5 representation with digit sum 4."
+        },
+        {
+          "level": 3,
+          "content": "Once coefficients are determined, evaluate P(3) directly."
+        }
       ]
     }
   ]

@@ -13,15 +13,30 @@
       "correctAnswer": "20",
       "baseRating": 950,
       "difficultyLabel": "Easy",
-      "tags": ["Coordinate Geometry"],
-      "topics": ["geometry-coordinate"],
+      "tags": [
+        "isosceles-trapezium",
+        "coordinate-setup",
+        "reflection-symmetry"
+      ],
+      "topics": [
+        "geometry-coordinate"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "20",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Since AB is horizontal, CD must also be horizontal, which constrains the y-coordinate of D."},
-        {"level": 2, "content": "Use the fact that ABCD is an isosceles trapezium (AD=BC) to relate D to the reflection of C."},
-        {"level": 3, "content": "Set up the distance equation AD=BC to solve for the x-coordinate of D."}
+        {
+          "level": 1,
+          "content": "Since AB is horizontal, CD must also be horizontal, which constrains the y-coordinate of D."
+        },
+        {
+          "level": 2,
+          "content": "Use the fact that ABCD is an isosceles trapezium (AD=BC) to relate D to the reflection of C."
+        },
+        {
+          "level": 3,
+          "content": "Set up the distance equation AD=BC to solve for the x-coordinate of D."
+        }
       ]
     },
     {
@@ -34,15 +49,30 @@
       "correctAnswer": "11",
       "baseRating": 1000,
       "difficultyLabel": "Easy",
-      "tags": ["Functional Equations", "Parity"],
-      "topics": ["algebra-functional-equations"],
+      "tags": [
+        "case-by-parity",
+        "function-composition",
+        "consistency-check"
+      ],
+      "topics": [
+        "algebra-functional-equations"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "11",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Split into cases based on the parity of n, then the parity of f(n)."},
-        {"level": 2, "content": "For each case write f(f(n)) explicitly as a function of n and set it equal to 99."},
-        {"level": 3, "content": "Check which resulting values of n are consistent with the parity assumed at the start of that case."}
+        {
+          "level": 1,
+          "content": "Split into cases based on the parity of n, then the parity of f(n)."
+        },
+        {
+          "level": 2,
+          "content": "For each case write f(f(n)) explicitly as a function of n and set it equal to 99."
+        },
+        {
+          "level": 3,
+          "content": "Check which resulting values of n are consistent with the parity assumed at the start of that case."
+        }
       ]
     },
     {
@@ -55,14 +85,30 @@
       "correctAnswer": "20",
       "baseRating": 800,
       "difficultyLabel": "Easy",
-      "tags": ["Divisibility", "Prime Numbers"],
-      "topics": ["nt-primes-factorization"],
+      "tags": [
+        "3-smooth-numbers",
+        "bounded-exponent-search",
+        "systematic-enumeration"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "20",
-      "estimatedSolveSeconds": 150,
+      "estimatedSolveSeconds": 190,
       "hints": [
-        {"level": 1, "content": "Such numbers must be of the form $2^a 3^b$ with a,b ≥ 0."},
-        {"level": 2, "content": "List the powers of 2 up to 100, then multiply by powers of 3 that keep the product within 100."}
+        {
+          "level": 1,
+          "content": "Such numbers must be of the form $2^a 3^b$ with a,b ≥ 0."
+        },
+        {
+          "level": 2,
+          "content": "List the powers of 2 up to 100, then multiply by powers of 3 that keep the product within 100."
+        },
+        {
+          "level": 3,
+          "content": "Sum the number of valid a-values you found for each value of b to get the total count."
+        }
       ]
     },
     {
@@ -75,15 +121,30 @@
       "correctAnswer": "11",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Counting", "Casework"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "opposite-face-pairing",
+        "hidden-face-minimization",
+        "digit-square-sum"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "11",
       "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "First find the three opposite pairs of the die: they must each multiply to $2^5$."},
-        {"level": 2, "content": "Only one face is hidden between the stacked dice (the touching faces); think about which faces you want visible."},
-        {"level": 3, "content": "Maximize the sum by choosing orientations so the smallest values are hidden or touching."}
+        {
+          "level": 1,
+          "content": "First find the three opposite pairs of the die: they must each multiply to $2^5$."
+        },
+        {
+          "level": 2,
+          "content": "Only one face is hidden between the stacked dice (the touching faces); think about which faces you want visible."
+        },
+        {
+          "level": 3,
+          "content": "Maximize the sum by choosing orientations so the smallest values are hidden or touching."
+        }
       ]
     },
     {
@@ -96,15 +157,31 @@
       "correctAnswer": "35",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Polynomials", "Modular Arithmetic"],
-      "topics": ["algebra-polynomials", "nt-modular-arithmetic"],
+      "tags": [
+        "binary-representation",
+        "coefficient-extraction",
+        "modular-reduction"
+      ],
+      "topics": [
+        "algebra-polynomials",
+        "nt-modular-arithmetic"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "35",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Note the exponents in each factor are powers of 2, so 2025's binary representation is key."},
-        {"level": 2, "content": "To get $x^{2025}$, choose the $x^{2^k}$ term from factors whose exponents sum to 2025, and the constant from the rest."},
-        {"level": 3, "content": "Since 2025's binary representation is unique, there is exactly one way to pick the x-terms; multiply the remaining constants."}
+        {
+          "level": 1,
+          "content": "Note the exponents in each factor are powers of 2, so 2025's binary representation is key."
+        },
+        {
+          "level": 2,
+          "content": "To get $x^{2025}$, choose the $x^{2^k}$ term from factors whose exponents sum to 2025, and the constant from the rest."
+        },
+        {
+          "level": 3,
+          "content": "Since 2025's binary representation is unique, there is exactly one way to pick the x-terms; multiply the remaining constants."
+        }
       ]
     },
     {
@@ -117,15 +194,30 @@
       "correctAnswer": "53",
       "baseRating": 1100,
       "difficultyLabel": "Medium",
-      "tags": ["Prime Numbers", "Parity"],
-      "topics": ["nt-primes-factorization"],
+      "tags": [
+        "prime-sum-decomposition",
+        "parity-argument",
+        "bounded-search"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "53",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Since 240 is even, consider the parity of the primes; only one prime can be even (2), so think about whether 2 can be included."},
-        {"level": 2, "content": "Try to maximize three of the primes near 70 to force the fourth (smallest) to be as large as possible."},
-        {"level": 3, "content": "Search primes close to 70 downward and check which combination of four distinct primes sums to 240."}
+        {
+          "level": 1,
+          "content": "Since 240 is even, consider the parity of the primes; only one prime can be even (2), so think about whether 2 can be included."
+        },
+        {
+          "level": 2,
+          "content": "Try to maximize three of the primes near 70 to force the fourth (smallest) to be as large as possible."
+        },
+        {
+          "level": 3,
+          "content": "Search primes close to 70 downward and check which combination of four distinct primes sums to 240."
+        }
       ]
     },
     {
@@ -138,16 +230,31 @@
       "correctAnswer": "26",
       "baseRating": 1250,
       "difficultyLabel": "Medium",
-      "tags": ["Divisibility", "GCD and LCM"],
-      "topics": ["nt-divisibility"],
+      "tags": [
+        "lcm-divisibility",
+        "cube-root-threshold",
+        "interval-counting"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
       "topicsNote": null,
       "diagramSvg": null,
       "solutionMarkdown": "26",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "For a given n, find the largest i with $i^3 \\le n$, then n must be divisible by lcm(1,2,...,i)."},
-        {"level": 2, "content": "Break the range 1 to 100 into intervals based on the value of that largest i."},
-        {"level": 3, "content": "In each interval, count multiples of the relevant lcm that lie within the bounds."}
+        {
+          "level": 1,
+          "content": "For a given n, find the largest i with $i^3 \\le n$, then n must be divisible by lcm(1,2,...,i)."
+        },
+        {
+          "level": 2,
+          "content": "Break the range 1 to 100 into intervals based on the value of that largest i."
+        },
+        {
+          "level": 3,
+          "content": "In each interval, count multiples of the relevant lcm that lie within the bounds."
+        }
       ]
     },
     {
@@ -160,15 +267,30 @@
       "correctAnswer": "16",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Casework"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "coprimality-constraint",
+        "grid-adjacency",
+        "constrained-placement"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "16",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "Identify which pairs among 1-6 are NOT coprime: (2,4),(2,6),(3,6),(4,6)."},
-        {"level": 2, "content": "These non-coprime numbers must never be placed in adjacent cells; think of it as a graph coloring/placement constraint."},
-        {"level": 3, "content": "Fix positions for 2, 4, 6 first since they conflict most, then count valid placements of 1, 3, 5."}
+        {
+          "level": 1,
+          "content": "Identify which pairs among 1-6 are NOT coprime: (2,4),(2,6),(3,6),(4,6)."
+        },
+        {
+          "level": 2,
+          "content": "These non-coprime numbers must never be placed in adjacent cells; think of it as a graph coloring/placement constraint."
+        },
+        {
+          "level": 3,
+          "content": "Fix positions for 2, 4, 6 first since they conflict most, then count valid placements of 1, 3, 5."
+        }
       ]
     },
     {
@@ -181,14 +303,30 @@
       "correctAnswer": "25",
       "baseRating": 850,
       "difficultyLabel": "Easy",
-      "tags": ["Area", "Circles"],
-      "topics": ["geometry-circles"],
+      "tags": [
+        "inscribed-square",
+        "diagonal-diameter-relation",
+        "floor-of-radius-expression"
+      ],
+      "topics": [
+        "geometry-circles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "25",
-      "estimatedSolveSeconds": 180,
+      "estimatedSolveSeconds": 220,
       "hints": [
-        {"level": 1, "content": "The largest square that fits in a circle has its diagonal equal to the circle's diameter."},
-        {"level": 2, "content": "Find the radius from the area, then relate the square's side to the diagonal."}
+        {
+          "level": 1,
+          "content": "The largest square that fits in a circle has its diagonal equal to the circle's diameter."
+        },
+        {
+          "level": 2,
+          "content": "Find the radius from the area, then relate the square's side to the diagonal."
+        },
+        {
+          "level": 3,
+          "content": "Compute the numeric value of the side length from the diagonal-diameter relation, then take the floor to get the largest integer n."
+        }
       ]
     },
     {
@@ -201,15 +339,30 @@
       "correctAnswer": "6",
       "baseRating": 1000,
       "difficultyLabel": "Easy",
-      "tags": ["Sequences"],
-      "topics": ["algebra-sequences-series"],
+      "tags": [
+        "telescoping-pairs",
+        "alternating-sum",
+        "inequality-solve"
+      ],
+      "topics": [
+        "algebra-sequences-series"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "6",
       "estimatedSolveSeconds": 180,
       "hints": [
-        {"level": 1, "content": "Group consecutive terms in pairs: $(2k)^2-(2k-1)^2$ simplifies nicely."},
-        {"level": 2, "content": "Sum the simplified pairs to get a closed formula in terms of n."},
-        {"level": 3, "content": "Solve the resulting inequality for n."}
+        {
+          "level": 1,
+          "content": "Group consecutive terms in pairs: $(2k)^2-(2k-1)^2$ simplifies nicely."
+        },
+        {
+          "level": 2,
+          "content": "Sum the simplified pairs to get a closed formula in terms of n."
+        },
+        {
+          "level": 3,
+          "content": "Solve the resulting inequality for n."
+        }
       ]
     },
     {
@@ -222,15 +375,30 @@
       "correctAnswer": "24",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Diophantine Equations", "Factorization"],
-      "topics": ["nt-diophantine"],
+      "tags": [
+        "repdigit-factorization",
+        "product-of-consecutive-odds",
+        "bounded-search"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "24",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Express $\\overline{ababab}$ as $10101 \\times \\overline{ab}$ and factor 10101."},
-        {"level": 2, "content": "Compare the factorization of $10101(10a+b)$ with $5(2m+1)(2m+3)(2m+5)$, matching factors like 3, 7, 13, 37."},
-        {"level": 3, "content": "Bound m using the rough size of the product to narrow down candidates quickly."}
+        {
+          "level": 1,
+          "content": "Express $\\overline{ababab}$ as $10101 \\times \\overline{ab}$ and factor 10101."
+        },
+        {
+          "level": 2,
+          "content": "Compare the factorization of $10101(10a+b)$ with $5(2m+1)(2m+3)(2m+5)$, matching factors like 3, 7, 13, 37."
+        },
+        {
+          "level": 3,
+          "content": "Bound m using the rough size of the product to narrow down candidates quickly."
+        }
       ]
     },
     {
@@ -243,15 +411,30 @@
       "correctAnswer": "8",
       "baseRating": 1650,
       "difficultyLabel": "Hard",
-      "tags": ["Diophantine Equations", "Valuations"],
-      "topics": ["nt-diophantine"],
+      "tags": [
+        "2-adic-valuation",
+        "sum-of-two-squares-power-of-2",
+        "case-analysis"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "8",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "If $m^2+n^4=2^k$, analyze the 2-adic valuations of $m$ and $n^2$."},
-        {"level": 2, "content": "Write $m=2^a m_1$, $n^2=2^b n_1$ with odd $m_1,n_1$ and compare valuations of $m^2$ and $n^4$."},
-        {"level": 3, "content": "Consider the case where $m$ and $n^2$ have equal 2-adic valuation, forcing $m_1^2+n_1^2$ to itself be a power of 2, which is very restrictive for odd numbers."}
+        {
+          "level": 1,
+          "content": "If $m^2+n^4=2^k$, analyze the 2-adic valuations of $m$ and $n^2$."
+        },
+        {
+          "level": 2,
+          "content": "Write $m=2^a m_1$, $n^2=2^b n_1$ with odd $m_1,n_1$ and compare valuations of $m^2$ and $n^4$."
+        },
+        {
+          "level": 3,
+          "content": "Consider the case where $m$ and $n^2$ have equal 2-adic valuation, forcing $m_1^2+n_1^2$ to itself be a power of 2, which is very restrictive for odd numbers."
+        }
       ]
     },
     {
@@ -264,15 +447,30 @@
       "correctAnswer": "96",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Area"],
-      "topics": ["geometry-quadrilaterals"],
+      "tags": [
+        "varignon-parallelogram",
+        "perpendicular-diagonals",
+        "diagonal-area-formula"
+      ],
+      "topics": [
+        "geometry-quadrilaterals"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "96",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "The midpoint segments being equal is a known condition equivalent to the diagonals being perpendicular."},
-        {"level": 2, "content": "Recall that a quadrilateral's area equals half the product of diagonals times the sine of the angle between them."},
-        {"level": 3, "content": "With diagonals fixed and perpendicularity established, maximize area over the remaining degrees of freedom."}
+        {
+          "level": 1,
+          "content": "The midpoint segments being equal is a known condition equivalent to the diagonals being perpendicular."
+        },
+        {
+          "level": 2,
+          "content": "Recall that a quadrilateral's area equals half the product of diagonals times the sine of the angle between them."
+        },
+        {
+          "level": 3,
+          "content": "With perpendicularity established, the angle between the diagonals is 90 degrees -- substitute the two diagonal lengths and this angle directly into the area formula."
+        }
       ]
     },
     {
@@ -285,15 +483,30 @@
       "correctAnswer": "10",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Circles", "Power of a Point"],
-      "topics": ["geometry-circles"],
+      "tags": [
+        "power-of-a-point",
+        "tangent-length",
+        "chord-distance-relation"
+      ],
+      "topics": [
+        "geometry-circles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "10",
       "estimatedSolveSeconds": 400,
       "hints": [
-        {"level": 1, "content": "Apply the power of a point from C with respect to circle S using the tangent length."},
-        {"level": 2, "content": "Set up coordinates with AB as a chord and express the power of point C via the secant through A and B extended appropriately, or via distance to center."},
-        {"level": 3, "content": "Use the perpendicular distance from the center to AB together with the given square side to relate the radius to the tangent length."}
+        {
+          "level": 1,
+          "content": "Apply the power of a point from C with respect to circle S using the tangent length."
+        },
+        {
+          "level": 2,
+          "content": "Set up coordinates with AB as a chord and express the power of point C via the secant through A and B extended appropriately, or via distance to center."
+        },
+        {
+          "level": 3,
+          "content": "Use the perpendicular distance from the center to AB together with the given square side to relate the radius to the tangent length."
+        }
       ]
     },
     {
@@ -306,15 +519,30 @@
       "correctAnswer": "31",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Diophantine Equations", "Factorization"],
-      "topics": ["nt-diophantine"],
+      "tags": [
+        "algebraic-factoring",
+        "coprime-multiplier-split",
+        "bounded-integer-search"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "31",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Try to factor both sides; notice the left side resembles $(ab+1)(cd+1)$-type expansions involving a and c grouped with 1."},
-        {"level": 2, "content": "Rewrite the equation as $17(a c+1)(bd+... )$-style products by regrouping terms with common factors like (ac+1) and (b+d)."},
-        {"level": 3, "content": "Since 17 and 20 are coprime, deduce that one grouped factor must be a multiple of 20 and the other of 17, then bound small integer solutions."}
+        {
+          "level": 1,
+          "content": "Try to factor both sides; notice the left side resembles $(ab+1)(cd+1)$-type expansions involving a and c grouped with 1."
+        },
+        {
+          "level": 2,
+          "content": "Rewrite the equation as $17(a c+1)(bd+... )$-style products by regrouping terms with common factors like (ac+1) and (b+d)."
+        },
+        {
+          "level": 3,
+          "content": "Since 17 and 20 are coprime, deduce that one grouped factor must be a multiple of 20 and the other of 17, then bound small integer solutions."
+        }
       ]
     },
     {
@@ -327,15 +555,30 @@
       "correctAnswer": "27",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Sequences"],
-      "topics": ["algebra-manipulation"],
+      "tags": [
+        "continued-fraction-simplification",
+        "term-by-term-matching",
+        "nested-fraction-reduction"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "27",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Simplify the left side's continued fraction from the innermost term outward to get a single reduced fraction."},
-        {"level": 2, "content": "Once you have the fraction as $p/q$, note $1$ minus that fraction gives another fraction; express it in continued fraction form starting with $1/x_1$."},
-        {"level": 3, "content": "Match the resulting continued fraction expansion term by term with $x_2,\\dots,x_7$."}
+        {
+          "level": 1,
+          "content": "Simplify the left side's continued fraction from the innermost term outward to get a single reduced fraction."
+        },
+        {
+          "level": 2,
+          "content": "Once you have the fraction as $p/q$, note $1$ minus that fraction gives another fraction; express it in continued fraction form starting with $1/x_1$."
+        },
+        {
+          "level": 3,
+          "content": "Match the resulting continued fraction expansion term by term with $x_2,\\dots,x_7$."
+        }
       ]
     },
     {
@@ -348,15 +591,30 @@
       "correctAnswer": "68",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Pigeonhole Principle"],
-      "topics": ["combinatorics-pigeonhole"],
+      "tags": [
+        "worst-case-set",
+        "pigeonhole-threshold",
+        "avoiding-prime-factors"
+      ],
+      "topics": [
+        "combinatorics-pigeonhole"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "68",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "To avoid a multiple of 6, the product must be missing a factor of 2 or of 3 entirely."},
-        {"level": 2, "content": "Find the worst-case draw: the maximum set of cards avoiding all multiples of 2, or avoiding all multiples of 3."},
-        {"level": 3, "content": "The answer is one more than the largest such 'bad' set size."}
+        {
+          "level": 1,
+          "content": "To avoid a multiple of 6, the product must be missing a factor of 2 or of 3 entirely."
+        },
+        {
+          "level": 2,
+          "content": "Find the worst-case draw: the maximum set of cards avoiding all multiples of 2, or avoiding all multiples of 3."
+        },
+        {
+          "level": 3,
+          "content": "The answer is one more than the largest such 'bad' set size."
+        }
       ]
     },
     {
@@ -369,15 +627,30 @@
       "correctAnswer": "84",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Recursion"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "lattice-path-recursion",
+        "forbidden-point-avoidance",
+        "parity-pattern"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "84",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Set up a recursive count $f(h,k)$ for the number of valid paths to each lattice point, skipping forbidden points."},
-        {"level": 2, "content": "Notice a pattern based on the parities of h and k for how f(h,k) relates to its neighbors."},
-        {"level": 3, "content": "Build up the grid row by row (or use the pattern) up to (7,12)."}
+        {
+          "level": 1,
+          "content": "Set up a recursive count $f(h,k)$ for the number of valid paths to each lattice point, skipping forbidden points."
+        },
+        {
+          "level": 2,
+          "content": "Notice a pattern based on the parities of h and k for how f(h,k) relates to its neighbors."
+        },
+        {
+          "level": 3,
+          "content": "Build up the grid row by row (or use the pattern) up to (7,12)."
+        }
       ]
     },
     {
@@ -390,15 +663,30 @@
       "correctAnswer": "44",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Prime Numbers", "GCD and LCM"],
-      "topics": ["nt-primes-factorization"],
+      "tags": [
+        "squarefree-part-grouping",
+        "perfect-square-product",
+        "combinations-within-group"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "44",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "For $mn$ to be a perfect square, $m$ and $n$ must have the same squarefree part."},
-        {"level": 2, "content": "Group integers 1 to 50 by their squarefree part, then count pairs within each group."},
-        {"level": 3, "content": "For a group of size $t$ (numbers sharing a squarefree part), the number of valid ordered pairs with $m<n$ is $\\binom{t}{2}$."}
+        {
+          "level": 1,
+          "content": "For $mn$ to be a perfect square, $m$ and $n$ must have the same squarefree part."
+        },
+        {
+          "level": 2,
+          "content": "Group integers 1 to 50 by their squarefree part, then count pairs within each group."
+        },
+        {
+          "level": 3,
+          "content": "For a group of size $t$ (numbers sharing a squarefree part), the number of valid ordered pairs with $m<n$ is $\\binom{t}{2}$."
+        }
       ]
     },
     {
@@ -411,15 +699,30 @@
       "correctAnswer": "9",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Casework"],
-      "topics": ["algebra-manipulation"],
+      "tags": [
+        "symmetric-equation-pair",
+        "sum-product-as-roots",
+        "digit-bound-casework"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "9",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "Add and subtract the two given equations to get symmetric relations in (a,c) and (b,d)."},
-        {"level": 2, "content": "This gives $(a+c)+(b+d)=ac+bd$ and similar; try treating $a+c$, $ac$ and $b+d$, $bd$ as roots of quadratics."},
-        {"level": 3, "content": "Since digits are between 1 and 9, bound the possible sums and products before enumerating."}
+        {
+          "level": 1,
+          "content": "Add and subtract the two given equations to get symmetric relations in (a,c) and (b,d)."
+        },
+        {
+          "level": 2,
+          "content": "This gives $(a+c)+(b+d)=ac+bd$ and similar; try treating $a+c$, $ac$ and $b+d$, $bd$ as roots of quadratics."
+        },
+        {
+          "level": 3,
+          "content": "Since digits are between 1 and 9, bound the possible sums and products before enumerating."
+        }
       ]
     },
     {
@@ -432,15 +735,30 @@
       "correctAnswer": "8",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["Functional Equations"],
-      "topics": ["algebra-functional-equations"],
+      "tags": [
+        "functional-substitution",
+        "linear-system-in-f",
+        "closed-form-evaluation"
+      ],
+      "topics": [
+        "algebra-functional-equations"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "8",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "Substitute $x$ and $3-x$ into the equation to get two equations relating $f(x)$ and $f(3-x)$."},
-        {"level": 2, "content": "Solve this linear system to express $f(x)$ explicitly in terms of $x$."},
-        {"level": 3, "content": "Plug in x=27 and x=25 into the derived formula."}
+        {
+          "level": 1,
+          "content": "Substitute $x$ and $3-x$ into the equation to get two equations relating $f(x)$ and $f(3-x)$."
+        },
+        {
+          "level": 2,
+          "content": "Solve this linear system to express $f(x)$ explicitly in terms of $x$."
+        },
+        {
+          "level": 3,
+          "content": "Plug in x=27 and x=25 into the derived formula."
+        }
       ]
     },
     {
@@ -453,15 +771,30 @@
       "correctAnswer": "14",
       "baseRating": 1700,
       "difficultyLabel": "Very Hard",
-      "tags": ["Counting", "Casework"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "subset-assignment",
+        "inclusion-exclusion",
+        "surjectivity-over-pairs"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "14",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "For each story, its 'liking set' among the three girls can be any subset of {G1,G2,G3} except the full set (since no story is liked by all three); there are 7 such subsets."},
-        {"level": 2, "content": "Count the total assignments over 4 stories, then subtract cases where some pair-only subset never appears."},
-        {"level": 3, "content": "Use inclusion-exclusion over the three 'pair' subsets to ensure each appears for at least one story."}
+        {
+          "level": 1,
+          "content": "For each story, its 'liking set' among the three girls can be any subset of {G1,G2,G3} except the full set (since no story is liked by all three); there are 7 such subsets."
+        },
+        {
+          "level": 2,
+          "content": "Count the total assignments over 4 stories, then subtract cases where some pair-only subset never appears."
+        },
+        {
+          "level": 3,
+          "content": "Use inclusion-exclusion over the three 'pair' subsets to ensure each appears for at least one story."
+        }
       ]
     },
     {
@@ -474,15 +807,30 @@
       "correctAnswer": "70",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Ceva", "Triangles"],
-      "topics": ["geometry-triangles"],
+      "tags": [
+        "mass-points",
+        "cevian-ratio",
+        "ceva-relation"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "70",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Use mass points or area ratios: assign masses to A, B, C such that P is the balance point."},
-        {"level": 2, "content": "The ratio BP/PE relates to the masses at A and C via the cevian through B and E."},
-        {"level": 3, "content": "Set up the mass equations from both given ratios and solve for the mass ratios, then find AP/PD."}
+        {
+          "level": 1,
+          "content": "Use mass points or area ratios: assign masses to A, B, C such that P is the balance point."
+        },
+        {
+          "level": 2,
+          "content": "The ratio BP/PE relates to the masses at A and C via the cevian through B and E."
+        },
+        {
+          "level": 3,
+          "content": "Set up the mass equations from both given ratios and solve for the mass ratios, then find AP/PD."
+        }
       ]
     },
     {
@@ -495,15 +843,30 @@
       "correctAnswer": "22",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Diophantine Equations"],
-      "topics": ["nt-diophantine"],
+      "tags": [
+        "difference-of-squares",
+        "exponential-vs-polynomial-bound",
+        "small-case-search"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "22",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "Rewrite $4^a = (2^a)^2$ and think of $b^2 - (2^a)^2 = 4a^2+4$, factoring the left side as a difference of squares."},
-        {"level": 2, "content": "Bound $b$ between $2^a$ and $2^a + $ something small for large a, since $4a^2+4$ grows much slower than $4^a$."},
-        {"level": 3, "content": "Test small values of a directly since the difference-of-squares bound restricts a to be small."}
+        {
+          "level": 1,
+          "content": "Rewrite $4^a = (2^a)^2$ and think of $b^2 - (2^a)^2 = 4a^2+4$, factoring the left side as a difference of squares."
+        },
+        {
+          "level": 2,
+          "content": "Bound $b$ between $2^a$ and $2^a + $ something small for large a, since $4a^2+4$ grows much slower than $4^a$."
+        },
+        {
+          "level": 3,
+          "content": "Test small values of a directly since the difference-of-squares bound restricts a to be small."
+        }
       ]
     },
     {
@@ -516,15 +879,30 @@
       "correctAnswer": "30",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Modular Arithmetic", "Congruences"],
-      "topics": ["nt-modular-arithmetic"],
+      "tags": [
+        "dual-periodicity",
+        "modular-power-cycle",
+        "residue-counting"
+      ],
+      "topics": [
+        "nt-modular-arithmetic"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "30",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Find the period of $2^n \\pmod 7$ and the period of $n^2 \\pmod 7$ separately."},
-        {"level": 2, "content": "Combine both periods to get the overall period of $2^n - n^2 \\pmod 7$ as a function of n."},
-        {"level": 3, "content": "Within one full period, count how many residues satisfy the congruence, then scale up to 105."}
+        {
+          "level": 1,
+          "content": "Find the period of $2^n \\pmod 7$ and the period of $n^2 \\pmod 7$ separately."
+        },
+        {
+          "level": 2,
+          "content": "Combine both periods to get the overall period of $2^n - n^2 \\pmod 7$ as a function of n."
+        },
+        {
+          "level": 3,
+          "content": "Within one full period, count how many residues satisfy the congruence, then scale up to 105."
+        }
       ]
     },
     {
@@ -537,15 +915,30 @@
       "correctAnswer": "92",
       "baseRating": 1800,
       "difficultyLabel": "Very Hard",
-      "tags": ["Triangles", "Circles"],
-      "topics": ["geometry-triangles"],
+      "tags": [
+        "euler-line",
+        "orthocenter-circumcenter-relation",
+        "equilateral-triangle-condition"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "92",
       "estimatedSolveSeconds": 540,
       "hints": [
-        {"level": 1, "content": "Recall that AH = 2·OD (distance from orthocenter to a vertex is twice the distance from circumcenter to the opposite side's midpoint)."},
-        {"level": 2, "content": "Use the Euler line relation OH and known vector identities like $\\vec{OH}=\\vec{OA}+\\vec{OB}+\\vec{OC}$."},
-        {"level": 3, "content": "Translate the equilateral condition on O, D, H into constraints on angle A and side BC, then compute the area."}
+        {
+          "level": 1,
+          "content": "Recall that AH = 2·OD (distance from orthocenter to a vertex is twice the distance from circumcenter to the opposite side's midpoint)."
+        },
+        {
+          "level": 2,
+          "content": "Use the Euler line relation OH and known vector identities like $\\vec{OH}=\\vec{OA}+\\vec{OB}+\\vec{OC}$."
+        },
+        {
+          "level": 3,
+          "content": "Translate the equilateral condition on O, D, H into constraints on angle A and side BC, then compute the area."
+        }
       ]
     },
     {
@@ -558,15 +951,30 @@
       "correctAnswer": "98",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["GCD and LCM", "Diophantine Equations"],
-      "topics": ["nt-gcd-lcm"],
+      "tags": [
+        "gcd-substitution",
+        "divisibility-isolation",
+        "small-case-search"
+      ],
+      "topics": [
+        "nt-gcd-lcm"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "98",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Let $d=\\gcd(a,b)$, $a=dx$, $b=dy$ with $\\gcd(x,y)=1$, and rewrite everything in terms of $d,x,y$."},
-        {"level": 2, "content": "The equation becomes $d^2xy = 406 + 11dxy + 7d$; try to isolate d and treat it as a divisibility condition."},
-        {"level": 3, "content": "Test small values of d to see when the resulting equation in x,y has coprime integer solutions."}
+        {
+          "level": 1,
+          "content": "Let $d=\\gcd(a,b)$, $a=dx$, $b=dy$ with $\\gcd(x,y)=1$, and rewrite everything in terms of $d,x,y$."
+        },
+        {
+          "level": 2,
+          "content": "The equation becomes $d^2xy = 406 + 11dxy + 7d$; try to isolate d and treat it as a divisibility condition."
+        },
+        {
+          "level": 3,
+          "content": "Test small values of d to see when the resulting equation in x,y has coprime integer solutions."
+        }
       ]
     },
     {
@@ -579,15 +987,30 @@
       "correctAnswer": "52",
       "baseRating": 1750,
       "difficultyLabel": "Very Hard",
-      "tags": ["Permutations", "Casework"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "local-minima-permutations",
+        "up-down-permutation-counting",
+        "fixed-endpoint-arrangement"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "52",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "Think of the arrangement as a permutation of heights 1 to 10 with fixed endpoints, and analyze 'local minima' among the interior 8 positions."},
-        {"level": 2, "content": "Relate the count of such permutations to up-down (alternating) permutation counting techniques."},
-        {"level": 3, "content": "Use known results or a direct recursive/combinatorial argument for permutations with exactly one interior local minimum."}
+        {
+          "level": 1,
+          "content": "Think of the arrangement as a permutation of heights 1 to 10 with fixed endpoints, and analyze 'local minima' among the interior 8 positions."
+        },
+        {
+          "level": 2,
+          "content": "Relate the count of such permutations to up-down (alternating) permutation counting techniques."
+        },
+        {
+          "level": 3,
+          "content": "Use known results or a direct recursive/combinatorial argument for permutations with exactly one interior local minimum."
+        }
       ]
     },
     {
@@ -600,15 +1023,30 @@
       "correctAnswer": "55",
       "baseRating": 1850,
       "difficultyLabel": "Very Hard",
-      "tags": ["Area", "Triangles"],
-      "topics": ["geometry-triangles"],
+      "tags": [
+        "incircle-tangent-lines",
+        "similar-corner-triangles",
+        "hexagon-area-by-subtraction"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "55",
       "estimatedSolveSeconds": 540,
       "hints": [
-        {"level": 1, "content": "First compute the area and inradius of triangle ABC using Heron's formula."},
-        {"level": 2, "content": "Each tangent line parallel to a side cuts off a small similar triangle at that corner; find the similarity ratio for each corner triangle."},
-        {"level": 3, "content": "Subtract the total area of the three corner triangles from the area of ABC to get the hexagon's area."}
+        {
+          "level": 1,
+          "content": "First compute the area and inradius of triangle ABC using Heron's formula."
+        },
+        {
+          "level": 2,
+          "content": "Each tangent line parallel to a side cuts off a small similar triangle at that corner; find the similarity ratio for each corner triangle."
+        },
+        {
+          "level": 3,
+          "content": "Subtract the total area of the three corner triangles from the area of ABC to get the hexagon's area."
+        }
       ]
     },
     {
@@ -621,15 +1059,30 @@
       "correctAnswer": "15",
       "baseRating": 1900,
       "difficultyLabel": "Very Hard",
-      "tags": ["Coloring", "Casework"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "monochromatic-pattern-avoidance",
+        "dodecagon-symmetry-classes",
+        "inclusion-exclusion-casework"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "15",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "Identify the 4 equilateral triangles and 3 squares formed by vertices of the regular dodecagon."},
-        {"level": 2, "content": "These triangles and squares partition or overlap the 12 vertices in a structured way; consider grouping vertices by residue mod 4 and mod 3."},
-        {"level": 3, "content": "Use casework on how colors are distributed across these triangle/square groups, applying inclusion-exclusion to avoid monochromatic ones."}
+        {
+          "level": 1,
+          "content": "Identify the 4 equilateral triangles and 3 squares formed by vertices of the regular dodecagon."
+        },
+        {
+          "level": 2,
+          "content": "These triangles and squares partition or overlap the 12 vertices in a structured way; consider grouping vertices by residue mod 4 and mod 3."
+        },
+        {
+          "level": 3,
+          "content": "Use casework on how colors are distributed across these triangle/square groups, applying inclusion-exclusion to avoid monochromatic ones."
+        }
       ]
     }
   ]

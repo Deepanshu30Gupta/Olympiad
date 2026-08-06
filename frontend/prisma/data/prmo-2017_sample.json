@@ -13,14 +13,24 @@
       "correctAnswer": "2",
       "baseRating": 950,
       "difficultyLabel": "Easy",
-      "tags": ["Factorization"],
+      "tags": ["clearing-denominators", "divisibility-bound", "sum-of-squares-identity"],
       "topics": ["algebra-manipulation"],
       "diagramSvg": null,
       "solutionMarkdown": "2",
-      "estimatedSolveSeconds": 150,
+      "estimatedSolveSeconds": 180,
       "hints": [
-        {"level": 1, "content": "Multiply both sides by ab to clear denominators."},
-        {"level": 2, "content": "Since a, b are positive integers, use bounding/divisibility to conclude a=b."}
+        {
+          "level": 1,
+          "content": "Multiply both sides by ab to clear denominators."
+        },
+        {
+          "level": 2,
+          "content": "Since a, b are positive integers, use bounding/divisibility to conclude a=b."
+        },
+        {
+          "level": 3,
+          "content": "The divisibility condition forces a+b to take only one small value -- pin it down, then compute a^2+b^2 = (a+b)^2 - 2ab."
+        }
       ]
     },
     {
@@ -33,14 +43,24 @@
       "correctAnswer": "3",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["Quadratic Expressions"],
+      "tags": ["common-root-elimination", "linear-substitution", "case-verification"],
       "topics": ["algebra-polynomials"],
       "diagramSvg": null,
       "solutionMarkdown": "3",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Let r be the common root and subtract the two equations to eliminate the quadratic term."},
-        {"level": 2, "content": "Express r linearly in terms of k, then substitute back into one of the original equations."}
+        {
+          "level": 1,
+          "content": "Let r be the common root and subtract the two equations to eliminate the quadratic term."
+        },
+        {
+          "level": 2,
+          "content": "Express r linearly in terms of k, then substitute back into one of the original equations."
+        },
+        {
+          "level": 3,
+          "content": "Check both cases that emerge from the elimination step (a special value of k, or a specific common root), and discard whichever one actually produces more than one shared root."
+        }
       ]
     },
     {
@@ -53,14 +73,24 @@
       "correctAnswer": "0",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Polynomials", "Divisibility"],
-      "topics": ["algebra-polynomials"],
+      "tags": ["integer-polynomial-divisibility", "factor-theorem", "universal-divisor-argument"],
+      "topics": ["algebra-polynomials", "nt-divisibility"],
       "diagramSvg": null,
       "solutionMarkdown": "0",
-      "estimatedSolveSeconds": 180,
+      "estimatedSolveSeconds": 210,
       "hints": [
-        {"level": 1, "content": "Recall that $P(n) - P(0)$ is always divisible by n for integer-coefficient polynomials."},
-        {"level": 2, "content": "Combine this with the given condition that n divides P(n) to conclude about P(0)."}
+        {
+          "level": 1,
+          "content": "Recall that $P(n) - P(0)$ is always divisible by n for integer-coefficient polynomials."
+        },
+        {
+          "level": 2,
+          "content": "Combine this with the given condition that n divides P(n) to conclude about P(0)."
+        },
+        {
+          "level": 3,
+          "content": "Determine which single integer is divisible by every positive integer n simultaneously -- that is the only value P(0) can take."
+        }
       ]
     },
     {
@@ -73,14 +103,24 @@
       "correctAnswer": "11",
       "baseRating": 750,
       "difficultyLabel": "Easy",
-      "tags": ["Prime Numbers"],
+      "tags": ["square-root-bounding", "prime-factorization", "direct-computation"],
       "topics": ["nt-primes-factorization"],
       "diagramSvg": null,
       "solutionMarkdown": "11",
-      "estimatedSolveSeconds": 90,
+      "estimatedSolveSeconds": 110,
       "hints": [
-        {"level": 1, "content": "Estimate the square root of 2014 to find k directly."},
-        {"level": 2, "content": "Factor the resulting k into primes."}
+        {
+          "level": 1,
+          "content": "Estimate the square root of 2014 to find k directly."
+        },
+        {
+          "level": 2,
+          "content": "Factor the resulting k into primes."
+        },
+        {
+          "level": 3,
+          "content": "Once you have k's prime factorization, pick out the largest prime appearing in it."
+        }
       ]
     },
     {
@@ -93,15 +133,24 @@
       "correctAnswer": "8",
       "baseRating": 1050,
       "difficultyLabel": "Easy",
-      "tags": ["Number Bases"],
+      "tags": ["digit-reversal-sum", "multiple-of-eleven", "perfect-square-check"],
       "topics": ["nt-base-representations"],
       "diagramSvg": null,
       "solutionMarkdown": "8",
       "estimatedSolveSeconds": 180,
       "hints": [
-        {"level": 1, "content": "Express N and its reversal in terms of its two digits, then add them."},
-        {"level": 2, "content": "Notice the sum is always a multiple of 11; determine which multiples of 11 in the valid range are perfect squares."},
-        {"level": 3, "content": "Count digit pairs producing each qualifying sum."}
+        {
+          "level": 1,
+          "content": "Express N and its reversal in terms of its two digits, then add them."
+        },
+        {
+          "level": 2,
+          "content": "Notice the sum is always a multiple of 11; determine which multiples of 11 in the valid range are perfect squares."
+        },
+        {
+          "level": 3,
+          "content": "Count digit pairs producing each qualifying sum."
+        }
       ]
     },
     {
@@ -114,15 +163,24 @@
       "correctAnswer": "84",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Triangles"],
+      "tags": ["pythagorean-factoring", "difference-of-squares", "perimeter-maximization"],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "84",
       "estimatedSolveSeconds": 200,
       "hints": [
-        {"level": 1, "content": "Consider 12 as a leg and use the Pythagorean relation $12^2 = c^2-b^2 = (c-b)(c+b)$."},
-        {"level": 2, "content": "To maximize the perimeter, minimize $c-b$, i.e., try $c-b=1$."},
-        {"level": 3, "content": "Solve for b and c under that choice and compute the perimeter."}
+        {
+          "level": 1,
+          "content": "Consider 12 as a leg and use the Pythagorean relation $12^2 = c^2-b^2 = (c-b)(c+b)$."
+        },
+        {
+          "level": 2,
+          "content": "To maximize the perimeter, minimize $c-b$, i.e., try $c-b=1$."
+        },
+        {
+          "level": 3,
+          "content": "Solve for b and c under that choice and compute the perimeter."
+        }
       ]
     },
     {
@@ -135,15 +193,24 @@
       "correctAnswer": "8",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Triangles", "Similarity"],
+      "tags": ["similar-right-triangles", "inradius-formula", "altitude-to-hypotenuse"],
       "topics": ["geometry-triangles"],
       "diagramSvg": null,
       "solutionMarkdown": "8",
       "estimatedSolveSeconds": 420,
       "hints": [
-        {"level": 1, "content": "Let AP = x and PD = 20-x, and use the right angle at P to relate x to AB=8 via similar triangles."},
-        {"level": 2, "content": "Show triangles APB, BPC, and CPD are all similar right triangles."},
-        {"level": 3, "content": "Express each inradius using the standard right-triangle inradius formula and sum them."}
+        {
+          "level": 1,
+          "content": "Let AP = x and PD = 20-x, and use the right angle at P to relate x to AB=8 via similar triangles."
+        },
+        {
+          "level": 2,
+          "content": "Show triangles APB, BPC, and CPD are all similar right triangles."
+        },
+        {
+          "level": 3,
+          "content": "Express each inradius using the standard right-triangle inradius formula and sum them."
+        }
       ]
     },
     {
@@ -156,14 +223,24 @@
       "correctAnswer": "12",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Prime Numbers"],
+      "tags": ["prime-digit-search", "two-digit-prime-check", "maximize-product"],
       "topics": ["nt-primes-factorization"],
       "diagramSvg": null,
       "solutionMarkdown": "12",
-      "estimatedSolveSeconds": 240,
+      "estimatedSolveSeconds": 280,
       "hints": [
-        {"level": 1, "content": "Restrict x and y to single-digit primes, and require 10x+y to also be prime."},
-        {"level": 2, "content": "Compute n=x·y·(10x+y) for each valid (x,y) and find the maximum."}
+        {
+          "level": 1,
+          "content": "Restrict x and y to single-digit primes, and require 10x+y to also be prime."
+        },
+        {
+          "level": 2,
+          "content": "Compute n=x·y·(10x+y) for each valid (x,y) and find the maximum."
+        },
+        {
+          "level": 3,
+          "content": "Compare n across all valid (x,y) pairs to find the maximum, then sum the digits of that maximal n."
+        }
       ]
     },
     {
@@ -176,14 +253,24 @@
       "correctAnswer": "62",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Extremal Principle", "Pigeonhole Principle"],
+      "tags": ["pairing-argument", "unpaired-elements", "extremal-subset"],
       "topics": ["combinatorics-pigeonhole"],
       "diagramSvg": null,
       "solutionMarkdown": "62",
-      "estimatedSolveSeconds": 220,
+      "estimatedSolveSeconds": 260,
       "hints": [
-        {"level": 1, "content": "Pair up numbers from 1 to 100 that sum to 125, and note some numbers have no partner in range."},
-        {"level": 2, "content": "From each summing pair, at most one can be included; count the unpaired numbers separately."}
+        {
+          "level": 1,
+          "content": "Pair up numbers from 1 to 100 that sum to 125, and note some numbers have no partner in range."
+        },
+        {
+          "level": 2,
+          "content": "From each summing pair, at most one can be included; count the unpaired numbers separately."
+        },
+        {
+          "level": 3,
+          "content": "Add the number of safe unpaired integers to the maximum number you can select from the pairs."
+        }
       ]
     },
     {
@@ -196,15 +283,24 @@
       "correctAnswer": "15",
       "baseRating": 1650,
       "difficultyLabel": "Hard",
-      "tags": ["Circles", "Power of a Point"],
+      "tags": ["homothety", "tangent-circle-relation", "power-of-a-point"],
       "topics": ["geometry-circles"],
       "diagramSvg": null,
       "solutionMarkdown": "15",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "Use the homothety centered at P that maps ω to Ω to relate points on ω to points on Ω."},
-        {"level": 2, "content": "Use the tangency of XY to ω to identify the point of tangency and relate distances."},
-        {"level": 3, "content": "Combine the ratio YZ=2PZ with the power of a point at the tangency to determine the angle."}
+        {
+          "level": 1,
+          "content": "Use the homothety centered at P that maps ω to Ω to relate points on ω to points on Ω."
+        },
+        {
+          "level": 2,
+          "content": "Use the tangency of XY to ω to identify the point of tangency and relate distances."
+        },
+        {
+          "level": 3,
+          "content": "Combine the ratio YZ=2PZ with the power of a point at the tangency to determine the angle."
+        }
       ]
     }
   ]

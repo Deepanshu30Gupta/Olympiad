@@ -13,15 +13,30 @@
       "correctAnswer": "22",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Counting", "Number Bases"],
-      "topics": ["combinatorics-counting", "nt-base-representations"],
+      "tags": [
+        "counting-in-interval",
+        "perfect-squares",
+        "floor-function"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "22",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "An element of $X_n$ is an integer exactly when $\\sqrt{4n}$ is an integer, i.e., $4n$ is a perfect square."},
-        {"level": 2, "content": "$M_n$ equals 1000 plus 1 if $\\sqrt{4n}$ is an integer, otherwise it equals 1000 minus the count needed to adjust for the fractional part crossing integers."},
-        {"level": 3, "content": "Compare the case where $4n$ is a perfect square against the case where it is not, to get the extreme values of $M_n$."}
+        {
+          "level": 1,
+          "content": "M_n counts how many perfect squares lie among the 1000 consecutive integers 4n+1, 4n+2, ..., 4n+1000 -- i.e. how many perfect squares fall in the interval (4n, 4n+1000]."
+        },
+        {
+          "level": 2,
+          "content": "This count equals floor(sqrt(4n+1000)) - floor(sqrt(4n)). Since consecutive perfect squares spread farther apart as numbers grow, this count is largest when 4n is smallest and smallest when 4n is largest."
+        },
+        {
+          "level": 3,
+          "content": "Evaluate the count at the two extreme values n=1 and n=1000 to get a and b, then find a-b."
+        }
       ]
     },
     {
@@ -34,15 +49,30 @@
       "correctAnswer": "54",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Logarithms", "Quadratic Expressions"],
-      "topics": ["algebra-manipulation"],
+      "tags": [
+        "logarithmic-equation",
+        "quadratic-substitution",
+        "counting-bounds"
+      ],
+      "topics": [
+        "algebra-manipulation"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "54",
       "estimatedSolveSeconds": 320,
       "hints": [
-        {"level": 1, "content": "Let $x=\\log_a b$; then $\\log_b a = 1/x$, giving a quadratic in x."},
-        {"level": 2, "content": "Solve for the two possible rational values of x."},
-        {"level": 3, "content": "Each value of x corresponds to $b=a^x$; count pairs (a,b) in range for each case, avoiding double-counting a=b."}
+        {
+          "level": 1,
+          "content": "Let $x=\\log_a b$; then $\\log_b a = 1/x$, giving a quadratic in x."
+        },
+        {
+          "level": 2,
+          "content": "Solve for the two possible rational values of x."
+        },
+        {
+          "level": 3,
+          "content": "Each value of x corresponds to $b=a^x$; count pairs (a,b) in range for each case, avoiding double-counting a=b."
+        }
       ]
     },
     {
@@ -55,15 +85,30 @@
       "correctAnswer": "23",
       "baseRating": 1200,
       "difficultyLabel": "Medium",
-      "tags": ["GCD and LCM", "Diophantine Equations"],
-      "topics": ["nt-diophantine"],
+      "tags": [
+        "farey-fractions",
+        "stern-brocot-tree",
+        "interval-search"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "23",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "Use the mediant of the two bounding fractions as a starting candidate."},
-        {"level": 2, "content": "For increasing denominators β, check if any integer α satisfies $16\\beta/37 < \\alpha < 7\\beta/16$."},
-        {"level": 3, "content": "The Stern-Brocot / Farey mediant approach quickly finds the minimal denominator."}
+        {
+          "level": 1,
+          "content": "Use the mediant of the two bounding fractions as a starting candidate."
+        },
+        {
+          "level": 2,
+          "content": "For increasing denominators β, check if any integer α satisfies $16\\beta/37 < \\alpha < 7\\beta/16$."
+        },
+        {
+          "level": 3,
+          "content": "The Stern-Brocot / Farey mediant approach quickly finds the minimal denominator."
+        }
       ]
     },
     {
@@ -76,15 +121,30 @@
       "correctAnswer": "7",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Diophantine Equations", "Modular Arithmetic"],
-      "topics": ["nt-diophantine"],
+      "tags": [
+        "modular-arithmetic",
+        "divisor-bounding",
+        "integer-search"
+      ],
+      "topics": [
+        "nt-diophantine"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "7",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "Rewrite the equation as $x^4+1 = (x-1)(y^3-23)$ and consider it modulo $x-1$."},
-        {"level": 2, "content": "Since $x^4+1 \\equiv 2 \\pmod{x-1}$, deduce that $x-1$ must divide 2."},
-        {"level": 3, "content": "Check the resulting small values of x and solve for y in each case."}
+        {
+          "level": 1,
+          "content": "Rewrite the equation as $x^4+1 = (x-1)(y^3-23)$ and consider it modulo $x-1$."
+        },
+        {
+          "level": 2,
+          "content": "Since $x^4+1 \\equiv 2 \\pmod{x-1}$, deduce that $x-1$ must divide 2."
+        },
+        {
+          "level": 3,
+          "content": "Check the resulting small values of x and solve for y in each case."
+        }
       ]
     },
     {
@@ -97,15 +157,30 @@
       "correctAnswer": "10",
       "baseRating": 1400,
       "difficultyLabel": "Medium",
-      "tags": ["Triangles", "Area"],
-      "topics": ["geometry-triangles"],
+      "tags": [
+        "vector-geometry",
+        "centroid",
+        "median-midpoints"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "10",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Use vectors with A as the origin to express B and C, then find G, Y, Z."},
-        {"level": 2, "content": "Recall G divides each median in ratio 2:1, and Y, Z are midpoints of the medians."},
-        {"level": 3, "content": "Compute the area of GYZ as a fraction of [ABC] using the cross product of the vector differences."}
+        {
+          "level": 1,
+          "content": "Use vectors with A as the origin to express B and C, then find G, Y, Z."
+        },
+        {
+          "level": 2,
+          "content": "Recall G divides each median in ratio 2:1, and Y, Z are midpoints of the medians."
+        },
+        {
+          "level": 3,
+          "content": "Compute the area of GYZ as a fraction of [ABC] using the cross product of the vector differences."
+        }
       ]
     },
     {
@@ -118,15 +193,30 @@
       "correctAnswer": "16",
       "baseRating": 1150,
       "difficultyLabel": "Medium",
-      "tags": ["Divisibility"],
-      "topics": ["nt-divisibility"],
+      "tags": [
+        "divisor-counting",
+        "interior-angle-formula",
+        "integer-constraint"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "16",
       "estimatedSolveSeconds": 240,
       "hints": [
-        {"level": 1, "content": "The interior angle of a regular k-gon is $180 - 360/k$ degrees."},
-        {"level": 2, "content": "Determine for which k this angle is an even integer, by analyzing when $360/k$ is an even integer."},
-        {"level": 3, "content": "List the resulting distinct angle values as k ranges over valid divisors."}
+        {
+          "level": 1,
+          "content": "The interior angle of a regular k-gon is $180 - 360/k$ degrees."
+        },
+        {
+          "level": 2,
+          "content": "Determine for which k this angle is an even integer, by analyzing when $360/k$ is an even integer."
+        },
+        {
+          "level": 3,
+          "content": "List the resulting distinct angle values as k ranges over valid divisors."
+        }
       ]
     },
     {
@@ -139,15 +229,30 @@
       "correctAnswer": "48",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Coloring"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "rotational-symmetry",
+        "direct-counting",
+        "combinatorial-multiplication"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "48",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "Fix 1 and 2 on a specific pair of opposite faces to remove rotational freedom about that axis."},
-        {"level": 2, "content": "Count the arrangements of 3,4,5,6 on the remaining four faces up to the rotations that still fix the 1-2 axis."},
-        {"level": 3, "content": "Independently assign colors to the three opposite-face pairs and multiply by the number of number-arrangements."}
+        {
+          "level": 1,
+          "content": "Fix 1 and 2 on a specific pair of opposite faces to remove rotational freedom about that axis."
+        },
+        {
+          "level": 2,
+          "content": "Count the arrangements of 3,4,5,6 on the remaining four faces up to the rotations that still fix the 1-2 axis."
+        },
+        {
+          "level": 3,
+          "content": "Independently assign colors to the three opposite-face pairs and multiply by the number of number-arrangements."
+        }
       ]
     },
     {
@@ -160,15 +265,30 @@
       "correctAnswer": "59",
       "baseRating": 1350,
       "difficultyLabel": "Medium",
-      "tags": ["Counting", "Recursion"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "tiling-recurrence",
+        "fibonacci-recurrence",
+        "case-analysis"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "59",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "Set up a recurrence for the number of tilings of a 2×n board using vertical dominoes, horizontal domino pairs, and the 2×2 tile."},
-        {"level": 2, "content": "Consider what can occupy the leftmost column(s): a vertical domino, two horizontal dominoes, or a 2×2 tile."},
-        {"level": 3, "content": "Compute the recurrence up to n=7, respecting the limit of seven dominoes total."}
+        {
+          "level": 1,
+          "content": "Set up a recurrence for the number of tilings of a 2×n board using vertical dominoes, horizontal domino pairs, and the 2×2 tile."
+        },
+        {
+          "level": 2,
+          "content": "Consider what can occupy the leftmost column(s): a vertical domino, two horizontal dominoes, or a 2×2 tile."
+        },
+        {
+          "level": 3,
+          "content": "Compute the recurrence up to n=7, respecting the limit of seven dominoes total."
+        }
       ]
     },
     {
@@ -181,15 +301,30 @@
       "correctAnswer": "17",
       "baseRating": 1250,
       "difficultyLabel": "Medium",
-      "tags": ["Prime Numbers", "Casework"],
-      "topics": ["nt-primes-factorization"],
+      "tags": [
+        "prime-factorization",
+        "case-analysis",
+        "squarefree-condition"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "17",
       "estimatedSolveSeconds": 300,
       "hints": [
-        {"level": 1, "content": "Since ab is prime, either a=1 and b is prime, or b=1 and a is prime."},
-        {"level": 2, "content": "Use the squarefree condition to rule out cases where a=b (since ab prime already limits this)."},
-        {"level": 3, "content": "For each subcase, use bc = product of two primes to determine c, then check abc ≤ 30 and squarefreeness."}
+        {
+          "level": 1,
+          "content": "Since ab is prime, either a=1 and b is prime, or b=1 and a is prime."
+        },
+        {
+          "level": 2,
+          "content": "Use the squarefree condition to rule out cases where a=b (since ab prime already limits this)."
+        },
+        {
+          "level": 3,
+          "content": "For each subcase, use bc = product of two primes to determine c, then check abc ≤ 30 and squarefreeness."
+        }
       ]
     },
     {
@@ -202,15 +337,30 @@
       "correctAnswer": "51",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Recurrence Relations", "Factorization"],
-      "topics": ["algebra-sequences-series"],
+      "tags": [
+        "linear-recurrence",
+        "invariant-identity",
+        "divisor-counting"
+      ],
+      "topics": [
+        "algebra-sequences-series"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "51",
       "estimatedSolveSeconds": 540,
       "hints": [
-        {"level": 1, "content": "Consider the quantity $D_n = a_{n+1}^2 - a_n a_{n+2}$ and find a recurrence relating $D_{n+1}$ to $D_n$."},
-        {"level": 2, "content": "Show $D_n$ follows a simple geometric-like pattern based on the recurrence's characteristic constant (-7)."},
-        {"level": 3, "content": "Compute $D_0$ directly and use the pattern to find $D_{49}$, then factor it to count divisors."}
+        {
+          "level": 1,
+          "content": "Consider the quantity $D_n = a_{n+1}^2 - a_n a_{n+2}$ and find a recurrence relating $D_{n+1}$ to $D_n$."
+        },
+        {
+          "level": 2,
+          "content": "Show $D_n$ follows a simple geometric-like pattern based on the recurrence's characteristic constant (-7)."
+        },
+        {
+          "level": 3,
+          "content": "Compute $D_0$ directly and use the pattern to find $D_{49}$, then factor it to count divisors."
+        }
       ]
     },
     {
@@ -223,15 +373,31 @@
       "correctAnswer": "14",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Diophantine Equations", "Quadratic Expressions"],
-      "topics": ["nt-diophantine", "algebra-manipulation"],
+      "tags": [
+        "discriminant-condition",
+        "bounding-technique",
+        "integer-search"
+      ],
+      "topics": [
+        "nt-diophantine",
+        "algebra-manipulation"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "14",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "View the equation as a quadratic in n: $4n^2-5n+(16-m^2)=0$."},
-        {"level": 2, "content": "Require the discriminant to be a perfect square, giving a Pell-like or bounded condition."},
-        {"level": 3, "content": "Bound m by comparing $m^2$ to nearby perfect-square expressions in n, then check small cases."}
+        {
+          "level": 1,
+          "content": "View the equation as a quadratic in n: $4n^2-5n+(16-m^2)=0$."
+        },
+        {
+          "level": 2,
+          "content": "Require the discriminant to be a perfect square, giving a Pell-like or bounded condition."
+        },
+        {
+          "level": 3,
+          "content": "Bound m by comparing $m^2$ to nearby perfect-square expressions in n, then check small cases."
+        }
       ]
     },
     {
@@ -244,15 +410,30 @@
       "correctAnswer": "18",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Polynomials", "Factorization"],
-      "topics": ["algebra-polynomials"],
+      "tags": [
+        "symmetric-identity",
+        "finite-differences",
+        "parity-argument"
+      ],
+      "topics": [
+        "algebra-polynomials"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "18",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "Recall $x^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx)$, which is zero iff $x+y+z=0$ or $x=y=z$."},
-        {"level": 2, "content": "Use finite differences of the cubic (second differences are linear, third differences constant) to relate p1, p2, p3."},
-        {"level": 3, "content": "Determine which case (sum zero or all equal) is consistent with c being odd, then compute the target expression."}
+        {
+          "level": 1,
+          "content": "Recall $x^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx)$, which is zero iff $x+y+z=0$ or $x=y=z$."
+        },
+        {
+          "level": 2,
+          "content": "Use finite differences of the cubic (second differences are linear, third differences constant) to relate p1, p2, p3."
+        },
+        {
+          "level": 3,
+          "content": "Determine which case (sum zero or all equal) is consistent with c being odd, then compute the target expression."
+        }
       ]
     },
     {
@@ -265,15 +446,30 @@
       "correctAnswer": "58",
       "baseRating": 1700,
       "difficultyLabel": "Very Hard",
-      "tags": ["Triangles", "Area"],
-      "topics": ["geometry-triangles"],
+      "tags": [
+        "exradii-identities",
+        "vietas-formulas",
+        "triangle-invariants"
+      ],
+      "topics": [
+        "geometry-triangles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "58",
       "estimatedSolveSeconds": 660,
       "hints": [
-        {"level": 1, "content": "Use $r_A r_B + r_B r_C + r_C r_A = s^2$ and $r_A r_B r_C = s \\cdot \\text{Area}$, where s is the semiperimeter, to find s."},
-        {"level": 2, "content": "Recover the area from $\\text{Area} = r_A(s-a)$ type relations, or via $1/r_A+1/r_B+1/r_C = 1/r$ style identities."},
-        {"level": 3, "content": "Once s and the individual side-related quantities are known, use Vieta's formulas to get p, q, r."}
+        {
+          "level": 1,
+          "content": "Use $r_A r_B + r_B r_C + r_C r_A = s^2$ and $r_A r_B r_C = s \\cdot \\text{Area}$, where s is the semiperimeter, to find s."
+        },
+        {
+          "level": 2,
+          "content": "Recover the area from $\\text{Area} = r_A(s-a)$ type relations, or via $1/r_A+1/r_B+1/r_C = 1/r$ style identities."
+        },
+        {
+          "level": 3,
+          "content": "Once s and the individual side-related quantities are known, use Vieta's formulas to get p, q, r."
+        }
       ]
     },
     {
@@ -286,15 +482,30 @@
       "correctAnswer": "40",
       "baseRating": 1450,
       "difficultyLabel": "Hard",
-      "tags": ["Coordinate Geometry", "Transformations"],
-      "topics": ["geometry-coordinate"],
+      "tags": [
+        "affine-combination",
+        "centroid-relation",
+        "vector-geometry"
+      ],
+      "topics": [
+        "geometry-coordinate"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "40",
       "estimatedSolveSeconds": 480,
       "hints": [
-        {"level": 1, "content": "Express D, E, F as affine combinations of A, B, C based on the given ratios."},
-        {"level": 2, "content": "Sum D+E+F and relate it to A+B+C, then divide by 3 to compare centroids K and G."},
-        {"level": 3, "content": "Use the vector relating K to G (a scalar multiple of G, since B is the origin) to compute GK directly from G's coordinates."}
+        {
+          "level": 1,
+          "content": "Express D, E, F as affine combinations of A, B, C based on the given ratios."
+        },
+        {
+          "level": 2,
+          "content": "Sum D+E+F and relate it to A+B+C, then divide by 3 to compare centroids K and G."
+        },
+        {
+          "level": 3,
+          "content": "Use the vector relating K to G (a scalar multiple of G, since B is the origin) to compute GK directly from G's coordinates."
+        }
       ]
     },
     {
@@ -307,15 +518,31 @@
       "correctAnswer": "3",
       "baseRating": 1800,
       "difficultyLabel": "Very Hard",
-      "tags": ["Circles", "Coordinate Geometry"],
-      "topics": ["geometry-circles", "geometry-coordinate"],
+      "tags": [
+        "45-degree-angle-property",
+        "circumcenter",
+        "coordinate-bash"
+      ],
+      "topics": [
+        "geometry-circles",
+        "geometry-coordinate"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "3",
       "estimatedSolveSeconds": 780,
       "hints": [
-        {"level": 1, "content": "Place the square in coordinates and parameterize M=(1,m), N=(n,1) with the perimeter condition on triangle MCN."},
-        {"level": 2, "content": "Notice the perimeter-2 condition is the classic setup where angle MAN = 45°, a key simplifying fact."},
-        {"level": 3, "content": "Use this 45° angle fact to simplify locating the circumcenters O and P, then compute the required ratio."}
+        {
+          "level": 1,
+          "content": "Place the square in coordinates and parameterize M=(1,m), N=(n,1) with the perimeter condition on triangle MCN."
+        },
+        {
+          "level": 2,
+          "content": "Notice the perimeter-2 condition is the classic setup where angle MAN = 45°, a key simplifying fact."
+        },
+        {
+          "level": 3,
+          "content": "Use this 45° angle fact to simplify locating the circumcenters O and P, then compute the required ratio."
+        }
       ]
     },
     {
@@ -328,15 +555,30 @@
       "correctAnswer": "94",
       "baseRating": 1750,
       "difficultyLabel": "Very Hard",
-      "tags": ["Graph Theory", "Coloring"],
-      "topics": ["combinatorics-graph-theory"],
+      "tags": [
+        "hexagon-diagonals",
+        "triangle-avoidance",
+        "independent-set"
+      ],
+      "topics": [
+        "combinatorics-graph-theory"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "94",
       "estimatedSolveSeconds": 720,
       "hints": [
-        {"level": 1, "content": "Reformulate: the blue diagonals must not contain a triangle (a blue-only triangle is forbidden)."},
-        {"level": 2, "content": "Only the 9 diagonals can be blue or red; the condition is equivalent to the blue subgraph on these being triangle-free."},
-        {"level": 3, "content": "Enumerate triangle-free subgraphs of the diagonal graph (accounting also for triangles formed using one side and diagonals) by cases on how many blue diagonals are chosen."}
+        {
+          "level": 1,
+          "content": "A triangle Ai Aj Ak automatically has a red side unless all three of its connecting segments are diagonals -- find exactly which vertex-triples have this property in a hexagon."
+        },
+        {
+          "level": 2,
+          "content": "There are only two such triples: the alternating vertex sets {A1,A3,A5} and {A2,A4,A6}. Together their connecting diagonals use 6 of the 9 total diagonals, and the red-side condition only constrains these two triangles."
+        },
+        {
+          "level": 3,
+          "content": "The remaining 3 diagonals (A1A4, A2A5, A3A6) are completely unconstrained. For each of the two triangles, count colorings of its 3 diagonals that are not all blue, then combine everything by the multiplication principle."
+        }
       ]
     },
     {
@@ -349,15 +591,31 @@
       "correctAnswer": "66",
       "baseRating": 1300,
       "difficultyLabel": "Medium",
-      "tags": ["Combinations", "Counting"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "order-statistics",
+        "expected-value",
+        "combinatorial-symmetry"
+      ],
+      "topics": [
+        "probability-expected-value",
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "66",
       "estimatedSolveSeconds": 360,
       "hints": [
-        {"level": 1, "content": "By symmetry, consider the average rank position among 5 elements chosen from 1 to 99."},
-        {"level": 2, "content": "The expected value of the k-th order statistic out of 5 drawn from {1,...,N} has a known simple formula."},
-        {"level": 3, "content": "Apply the formula for the 4th order statistic with N=99."}
+        {
+          "level": 1,
+          "content": "By symmetry, consider the average rank position among 5 elements chosen from 1 to 99."
+        },
+        {
+          "level": 2,
+          "content": "The expected value of the k-th order statistic out of 5 drawn from {1,...,N} has a known simple formula."
+        },
+        {
+          "level": 3,
+          "content": "Apply the formula for the 4th order statistic with N=99."
+        }
       ]
     },
     {
@@ -370,15 +628,30 @@
       "correctAnswer": "71",
       "baseRating": 1850,
       "difficultyLabel": "Very Hard",
-      "tags": ["Extremal Principle", "Graph Theory"],
-      "topics": ["combinatorics-geometry"],
+      "tags": [
+        "diagonal-crossings",
+        "graph-matching",
+        "extremal-construction"
+      ],
+      "topics": [
+        "combinatorics-geometry"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "71",
       "estimatedSolveSeconds": 900,
       "hints": [
-        {"level": 1, "content": "Think of diagonals as vertices of a new graph where an edge represents an interior crossing; the friendliness condition bounds the degree of this crossing graph by 1."},
-        {"level": 2, "content": "A degree-≤1 graph decomposes into isolated vertices and disjoint edges (matched pairs); try to construct many crossing pairs plus non-crossing diagonals."},
-        {"level": 3, "content": "Combine a non-crossing triangulation-like structure with added crossing pairs to maximize the total count, then prove this is optimal."}
+        {
+          "level": 1,
+          "content": "Think of diagonals as vertices of a new graph where an edge represents an interior crossing; the friendliness condition bounds the degree of this crossing graph by 1."
+        },
+        {
+          "level": 2,
+          "content": "A degree-≤1 graph decomposes into isolated vertices and disjoint edges (matched pairs); try to construct many crossing pairs plus non-crossing diagonals."
+        },
+        {
+          "level": 3,
+          "content": "Combine a non-crossing triangulation-like structure with added crossing pairs to maximize the total count, then prove this is optimal."
+        }
       ]
     },
     {
@@ -391,15 +664,30 @@
       "correctAnswer": "92",
       "baseRating": 1650,
       "difficultyLabel": "Hard",
-      "tags": ["Prime Numbers", "Casework"],
-      "topics": ["nt-primes-factorization"],
+      "tags": [
+        "digit-product",
+        "squarefree-condition",
+        "divisor-search"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "92",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "Squarefree digit-product forces digits to come only from {1,2,3,5,7} (since 4,6,8,9 introduce squared primes)."},
-        {"level": 2, "content": "P(n) is then a product of distinct primes among {2,3,5,7} raised to at most the first power collectively; bound how many of each digit can appear."},
-        {"level": 3, "content": "Maximize the total digit count subject to S(n) properly dividing the resulting small P(n)."}
+        {
+          "level": 1,
+          "content": "Squarefree digit-product forces digits to come only from {1,2,3,5,7} (since 4,6,8,9 introduce squared primes)."
+        },
+        {
+          "level": 2,
+          "content": "P(n) is then a product of distinct primes among {2,3,5,7} raised to at most the first power collectively; bound how many of each digit can appear."
+        },
+        {
+          "level": 3,
+          "content": "Maximize the total digit count subject to S(n) properly dividing the resulting small P(n)."
+        }
       ]
     },
     {
@@ -412,15 +700,30 @@
       "correctAnswer": "43",
       "baseRating": 1600,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Casework"],
-      "topics": ["combinatorics-counting"],
+      "tags": [
+        "divisor-casework",
+        "counting-sets-with-constraints",
+        "prime-factorization-of-constraint"
+      ],
+      "topics": [
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "43",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "Since 11 is prime, |A|×max(B)=11 forces (|A|,max(B)) to be (1,11) or (11,1)."},
-        {"level": 2, "content": "For each case, use max(A)×|B|=12 to find the compatible (max(A),|B|) pairs."},
-        {"level": 3, "content": "Count the number of valid sets A with the given size and max, and similarly for B, then multiply and sum over cases."}
+        {
+          "level": 1,
+          "content": "Since 11 is prime, |A|×max(B)=11 forces (|A|,max(B)) to be (1,11) or (11,1)."
+        },
+        {
+          "level": 2,
+          "content": "For each case, use max(A)×|B|=12 to find the compatible (max(A),|B|) pairs."
+        },
+        {
+          "level": 3,
+          "content": "Count the number of valid sets A with the given size and max, and similarly for B, then multiply and sum over cases."
+        }
       ]
     },
     {
@@ -433,15 +736,31 @@
       "correctAnswer": "15",
       "baseRating": 1700,
       "difficultyLabel": "Very Hard",
-      "tags": ["Counting", "Sequences"],
-      "topics": ["combinatorics-counting", "algebra-sequences-series"],
+      "tags": [
+        "non-increasing-sequences",
+        "partition-counting",
+        "optimization"
+      ],
+      "topics": [
+        "combinatorics-counting",
+        "algebra-sequences-series"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "15",
       "estimatedSolveSeconds": 720,
       "hints": [
-        {"level": 1, "content": "Express $\\sum f(i) = 2023 - n(n+1)/2$ and note this must be non-negative, bounding n."},
-        {"level": 2, "content": "Minimizing $\\sum f(i)$ means maximizing n subject to the non-negativity constraint and f being non-increasing."},
-        {"level": 3, "content": "For the optimal n, count non-increasing non-negative integer sequences with the fixed target sum using a partition-counting argument."}
+        {
+          "level": 1,
+          "content": "Express $\\sum f(i) = 2023 - n(n+1)/2$ and note this must be non-negative, bounding n."
+        },
+        {
+          "level": 2,
+          "content": "Minimizing $\\sum f(i)$ means maximizing n subject to the non-negativity constraint and f being non-increasing."
+        },
+        {
+          "level": 3,
+          "content": "For the optimal n, count non-increasing non-negative integer sequences with the fixed target sum using a partition-counting argument."
+        }
       ]
     },
     {
@@ -454,15 +773,30 @@
       "correctAnswer": "77",
       "baseRating": 1850,
       "difficultyLabel": "Very Hard",
-      "tags": ["Counting", "Casework"],
-      "topics": ["combinatorics-geometry"],
+      "tags": [
+        "cevians",
+        "planar-regions",
+        "combinatorial-geometry"
+      ],
+      "topics": [
+        "combinatorics-geometry"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "77",
       "estimatedSolveSeconds": 840,
       "hints": [
-        {"level": 1, "content": "Use Euler's formula for planar subdivisions: regions relate to the number of segment-segment interior intersection points."},
-        {"level": 2, "content": "Determine, based on how the 4 chosen pegs are distributed among the 3 sides, how many pairs of cevians cross inside the triangle."},
-        {"level": 3, "content": "Find which distributions give exactly the right number of interior crossings to produce 9 regions, then count peg selections for each."}
+        {
+          "level": 1,
+          "content": "Use Euler's formula for planar subdivisions: regions relate to the number of segment-segment interior intersection points."
+        },
+        {
+          "level": 2,
+          "content": "Determine, based on how the 4 chosen pegs are distributed among the 3 sides, how many pairs of cevians cross inside the triangle."
+        },
+        {
+          "level": 3,
+          "content": "Find which distributions give exactly the right number of interior crossings to produce 9 regions, then count peg selections for each."
+        }
       ]
     },
     {
@@ -475,15 +809,31 @@
       "correctAnswer": "18",
       "baseRating": 1900,
       "difficultyLabel": "Very Hard",
-      "tags": ["Coordinate Geometry", "Triangles"],
-      "topics": ["geometry-coordinate", "geometry-triangles"],
+      "tags": [
+        "incenter-condition",
+        "lattice-points",
+        "right-angle-locus"
+      ],
+      "topics": [
+        "geometry-coordinate",
+        "geometry-triangles"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "18",
       "estimatedSolveSeconds": 900,
       "hints": [
-        {"level": 1, "content": "The incenter lying at the origin, with the right angle at A, means the incircle is tangent to both legs at A, giving OA equal to the inradius times √2."},
-        {"level": 2, "content": "Use the fact that the angle bisector from A passes through O, constraining the directions of AB and AC to be reflections about line OA."},
-        {"level": 3, "content": "Parametrize legs as perpendicular directions from A and use the tangency/lattice conditions to find valid B, C."}
+        {
+          "level": 1,
+          "content": "The incenter lying at the origin, with the right angle at A, means the incircle is tangent to both legs at A, giving OA equal to the inradius times √2."
+        },
+        {
+          "level": 2,
+          "content": "Use the fact that the angle bisector from A passes through O, constraining the directions of AB and AC to be reflections about line OA."
+        },
+        {
+          "level": 3,
+          "content": "Parametrize legs as perpendicular directions from A and use the tangency/lattice conditions to find valid B, C."
+        }
       ]
     },
     {
@@ -496,15 +846,31 @@
       "correctAnswer": "31",
       "baseRating": 1550,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Casework"],
-      "topics": ["geometry-quadrilaterals", "combinatorics-counting"],
+      "tags": [
+        "trapezium-existence-condition",
+        "case-analysis",
+        "congruence-counting"
+      ],
+      "topics": [
+        "geometry-quadrilaterals",
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "31",
       "estimatedSolveSeconds": 540,
       "hints": [
-        {"level": 1, "content": "Choose two of the four sides to be the parallel pair, and check the trapezium existence condition on the other two."},
-        {"level": 2, "content": "The condition for a valid trapezium with parallel sides p, q (p≠q) and legs r,s is $|r-s| < |p-q| < r+s$."},
-        {"level": 3, "content": "For each choice of 4 distinct values from the set, determine which assignment (as parallel pair vs legs) yields valid, non-congruent trapeziums, avoiding double-counting via reflection symmetry."}
+        {
+          "level": 1,
+          "content": "Choose two of the four sides to be the parallel pair, and check the trapezium existence condition on the other two."
+        },
+        {
+          "level": 2,
+          "content": "The condition for a valid trapezium with parallel sides p, q (p≠q) and legs r,s is $|r-s| < |p-q| < r+s$."
+        },
+        {
+          "level": 3,
+          "content": "For each choice of 4 distinct values from the set, determine which assignment (as parallel pair vs legs) yields valid, non-congruent trapeziums, avoiding double-counting via reflection symmetry."
+        }
       ]
     },
     {
@@ -517,15 +883,30 @@
       "correctAnswer": "28",
       "baseRating": 1750,
       "difficultyLabel": "Very Hard",
-      "tags": ["Counting", "Casework"],
-      "topics": ["combinatorics-geometry"],
+      "tags": [
+        "perpendicular-chords",
+        "arc-counting",
+        "threshold-search"
+      ],
+      "topics": [
+        "combinatorics-geometry"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "28",
       "estimatedSolveSeconds": 780,
       "hints": [
-        {"level": 1, "content": "Two chords of a circle are perpendicular iff the sum of the arcs they subtend (on either 'side' pairing) equals half the circle."},
-        {"level": 2, "content": "Translate this into a counting condition on vertex indices modulo n, splitting into cases based on parity of n."},
-        {"level": 3, "content": "Derive a formula for the count of perpendicular diagonal pairs as a function of n, then find the smallest n exceeding 1000."}
+        {
+          "level": 1,
+          "content": "Two chords of a circle are perpendicular iff the sum of the arcs they subtend (on either 'side' pairing) equals half the circle."
+        },
+        {
+          "level": 2,
+          "content": "Translate this into a counting condition on vertex indices modulo n, splitting into cases based on parity of n."
+        },
+        {
+          "level": 3,
+          "content": "Derive a formula for the count of perpendicular diagonal pairs as a function of n, then find the smallest n exceeding 1000."
+        }
       ]
     },
     {
@@ -538,15 +919,31 @@
       "correctAnswer": "19",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Counting", "Number Bases"],
-      "topics": ["nt-base-representations", "combinatorics-counting"],
+      "tags": [
+        "binary-representation",
+        "carry-propagation",
+        "digit-dp"
+      ],
+      "topics": [
+        "nt-base-representations",
+        "combinatorics-counting"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "19",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "Model this as writing 100 as $\\sum c_i 2^i$ with $c_i \\in \\{0,1,2\\}$."},
-        {"level": 2, "content": "Build a recursive/digit-DP process from the least significant bit, tracking a possible carry."},
-        {"level": 3, "content": "Systematically enumerate the representations respecting the carry propagation to count all 19 valid ones."}
+        {
+          "level": 1,
+          "content": "Model this as writing 100 as $\\sum c_i 2^i$ with $c_i \\in \\{0,1,2\\}$."
+        },
+        {
+          "level": 2,
+          "content": "Build a recursive/digit-DP process from the least significant bit, tracking a possible carry."
+        },
+        {
+          "level": 3,
+          "content": "Systematically enumerate the representations respecting the carry propagation to count all 19 valid ones."
+        }
       ]
     },
     {
@@ -559,15 +956,31 @@
       "correctAnswer": "91",
       "baseRating": 1700,
       "difficultyLabel": "Very Hard",
-      "tags": ["Extremal Principle", "Pigeonhole Principle"],
-      "topics": ["combinatorics-counting", "combinatorics-pigeonhole"],
+      "tags": [
+        "extremal-pigeonhole",
+        "balanced-quadruples",
+        "counting-bound"
+      ],
+      "topics": [
+        "combinatorics-counting",
+        "combinatorics-pigeonhole"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "91",
       "estimatedSolveSeconds": 720,
       "hints": [
-        {"level": 1, "content": "Compute the total number of admissible quadruples with $a<b<d<c$ in range."},
-        {"level": 2, "content": "Compute how many of all admissible quadruples are balanced, to understand the 'density' of balanced ones."},
-        {"level": 3, "content": "Since S omits only a small number of quadruples from the full set, use an extremal/counting bound (e.g., each excluded quadruple removes at most one balanced one) to bound the minimum."}
+        {
+          "level": 1,
+          "content": "Compute the total number of admissible quadruples with $a<b<d<c$ in range."
+        },
+        {
+          "level": 2,
+          "content": "Compute how many of all admissible quadruples are balanced, to understand the 'density' of balanced ones."
+        },
+        {
+          "level": 3,
+          "content": "Since S omits only a small number of quadruples from the full set, use an extremal/counting bound (e.g., each excluded quadruple removes at most one balanced one) to bound the minimum."
+        }
       ]
     },
     {
@@ -580,15 +993,30 @@
       "correctAnswer": "67",
       "baseRating": 1800,
       "difficultyLabel": "Very Hard",
-      "tags": ["Invariants", "Coloring"],
-      "topics": ["combinatorics-geometry"],
+      "tags": [
+        "invariant-coloring",
+        "parity-argument",
+        "triangular-lattice"
+      ],
+      "topics": [
+        "combinatorics-geometry"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "67",
       "estimatedSolveSeconds": 780,
       "hints": [
-        {"level": 1, "content": "Try a 3-coloring of the triangular lattice points such that each small upward triangle has one vertex of each color."},
-        {"level": 2, "content": "Analyze how a move (flipping 3 mutually adjacent coins, i.e., one small triangle) affects the count of heads in each color class modulo 2."},
-        {"level": 3, "content": "Determine the invariant(s) in terms of n and find exactly which n allow all coins to reach tails."}
+        {
+          "level": 1,
+          "content": "Try a 3-coloring of the triangular lattice points such that each small upward triangle has one vertex of each color."
+        },
+        {
+          "level": 2,
+          "content": "Analyze how a move (flipping 3 mutually adjacent coins, i.e., one small triangle) affects the count of heads in each color class modulo 2."
+        },
+        {
+          "level": 3,
+          "content": "Determine the invariant(s) in terms of n and find exactly which n allow all coins to reach tails."
+        }
       ]
     },
     {
@@ -601,15 +1029,30 @@
       "correctAnswer": "95",
       "baseRating": 1500,
       "difficultyLabel": "Hard",
-      "tags": ["Factorization", "Casework"],
-      "topics": ["nt-primes-factorization"],
+      "tags": [
+        "multiplicative-partition",
+        "sum-product-equality",
+        "uniqueness-argument"
+      ],
+      "topics": [
+        "nt-primes-factorization"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "95",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "For a candidate n, enumerate all multisets of integers ≥2 (plus possibly extra 1's) whose product is n and whose sum is also n."},
-        {"level": 2, "content": "Note that adding a 1 to the multiset increases the sum by 1 without changing the product, so use this to bridge product-sum gaps."},
-        {"level": 3, "content": "Search downward from 99, checking uniqueness of the representation for each candidate."}
+        {
+          "level": 1,
+          "content": "For a candidate n, enumerate all multisets of integers ≥2 (plus possibly extra 1's) whose product is n and whose sum is also n."
+        },
+        {
+          "level": 2,
+          "content": "Note that adding a 1 to the multiset increases the sum by 1 without changing the product, so use this to bridge product-sum gaps."
+        },
+        {
+          "level": 3,
+          "content": "Search downward from 99, checking uniqueness of the representation for each candidate."
+        }
       ]
     },
     {
@@ -622,15 +1065,30 @@
       "correctAnswer": "18",
       "baseRating": 1650,
       "difficultyLabel": "Hard",
-      "tags": ["Divisibility", "Parity"],
-      "topics": ["nt-divisibility"],
+      "tags": [
+        "perfect-square-parity",
+        "cumulative-sum",
+        "floor-function"
+      ],
+      "topics": [
+        "nt-divisibility"
+      ],
       "diagramSvg": null,
       "solutionMarkdown": "18",
       "estimatedSolveSeconds": 600,
       "hints": [
-        {"level": 1, "content": "d(m) is odd exactly when m is a perfect square."},
-        {"level": 2, "content": "So the cumulative sum's parity flips exactly at each perfect square index; track how many flips have occurred up to n."},
-        {"level": 3, "content": "The parity at n depends on $\\lfloor\\sqrt n\\rfloor \\bmod 2$; count n≤2023 for which this makes the cumulative sum odd."}
+        {
+          "level": 1,
+          "content": "d(m) is odd exactly when m is a perfect square."
+        },
+        {
+          "level": 2,
+          "content": "So the cumulative sum's parity flips exactly at each perfect square index; track how many flips have occurred up to n."
+        },
+        {
+          "level": 3,
+          "content": "The parity at n depends on $\\lfloor\\sqrt n\\rfloor \\bmod 2$; count n≤2023 for which this makes the cumulative sum odd."
+        }
       ]
     }
   ]
