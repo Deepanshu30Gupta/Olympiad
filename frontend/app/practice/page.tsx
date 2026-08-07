@@ -174,6 +174,7 @@ export default async function PracticePage({
           hints={q.hints}
           surrenderLockSeconds={dbUser.surrenderLockSeconds}
           startedAtMs={result.startedAt ? result.startedAt.getTime() : Date.now()}
+          sourceUrl={q.sourceUrl}
         />
       </MainCol>
       <SideCol>

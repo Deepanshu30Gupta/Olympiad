@@ -152,6 +152,8 @@ model Question {
   diagramSvg       String?
   solutionMarkdown String
 
+  sourceUrl String?
+
   estimatedSolveSeconds Int?
 
   createdAt DateTime @default(now())

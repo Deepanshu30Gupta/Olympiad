@@ -45,6 +45,11 @@ interface SeedQuestion {
   estimatedSolveSeconds: number | null;
   examType: string | null;
   hints: { level: number; content: string }[];
+  /** Optional external reference link (e.g. AoPS wiki page) — kept
+   * separate from solutionMarkdown since that field is rendered through
+   * renderMathText, which deliberately HTML-escapes non-math text for
+   * security. This field is rendered as a real link by the UI instead. */
+  sourceUrl?: string | null;
 }
 
 interface SeedFile {
@@ -67,7 +72,6 @@ async function main() {
   console.log("Connecting to database...");
 
   for (const [index, q] of data.questions.entries()) {
-    // 1. Make sure every topic this question references exists.
     const topicRecords = await Promise.all(
       q.topics.map((slug) =>
         prisma.topic.upsert({
@@ -78,10 +82,6 @@ async function main() {
       )
     );
 
-    // 2. Upsert the question's own fields. currentRating is deliberately
-    //    excluded from the update branch — it's the live, Elo-calibrated
-    //    value from real student attempts, and a content edit should
-    //    never reset it.
     const question = await prisma.question.upsert({
       where: { externalId: q.externalId },
       update: {
@@ -99,6 +99,7 @@ async function main() {
         diagramSvg: q.diagramSvg,
         solutionMarkdown: q.solutionMarkdown,
         estimatedSolveSeconds: q.estimatedSolveSeconds,
+        sourceUrl: q.sourceUrl ?? null,
       },
       create: {
         externalId: q.externalId,
@@ -117,21 +118,15 @@ async function main() {
         diagramSvg: q.diagramSvg,
         solutionMarkdown: q.solutionMarkdown,
         estimatedSolveSeconds: q.estimatedSolveSeconds,
+        sourceUrl: q.sourceUrl ?? null,
       },
     });
 
-    // 3. Sync topic links: make the QuestionTopic rows exactly match the
-    //    JSON's topics array. Safe to fully replace — this join table
-    //    carries no data of its own beyond the link, so deleting and
-    //    recreating it loses nothing (unlike deleting a Question, which
-    //    would cascade into real Attempt/SavedQuestion/Hint data).
     await prisma.questionTopic.deleteMany({ where: { questionId: question.id } });
     await prisma.questionTopic.createMany({
       data: topicRecords.map((t) => ({ questionId: question.id, topicId: t.id })),
     });
 
-    // 4. Sync hints: remove any hint LEVEL no longer present in the JSON,
-    //    then upsert every hint currently in the JSON.
     const desiredLevels = q.hints.map((h) => h.level);
     await prisma.hint.deleteMany({
       where: { questionId: question.id, level: { notIn: desiredLevels } },

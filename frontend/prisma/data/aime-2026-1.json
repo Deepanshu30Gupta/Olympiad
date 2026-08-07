@@ -22,7 +22,7 @@
         "algebra-manipulation"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "277\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_1\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "277",
       "estimatedSolveSeconds": 360,
       "hints": [
         {
@@ -37,7 +37,8 @@
           "level": 3,
           "content": "Eliminate $v$ between your two equations — you should be able to solve for $d$ directly without ever finding $v$ explicitly."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_1"
     },
     {
       "externalId": "AIMEI-2026-P2",
@@ -58,7 +59,7 @@
         "combinatorics-counting"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "62\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_2\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "62",
       "estimatedSolveSeconds": 480,
       "hints": [
         {
@@ -73,7 +74,8 @@
           "level": 3,
           "content": "For each valid length, count the number of ways to choose digits 1-9 (no zeros) for the free half so that the corresponding total sum equals 13, then add up across all valid lengths."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_2"
     },
     {
       "externalId": "AIMEI-2026-P3",
@@ -94,7 +96,7 @@
         "geometry-solids"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "79\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_3\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "79",
       "estimatedSolveSeconds": 600,
       "hints": [
         {
@@ -109,7 +111,8 @@
           "level": 3,
           "content": "The inequality on $x$ describes a disk of some radius around the center — compute its area and compare it to the area of the full disk of radius 200."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_3"
     },
     {
       "externalId": "AIMEI-2026-P4",
@@ -129,7 +132,7 @@
         "nt-primes-factorization"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "70\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_4\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "70",
       "estimatedSolveSeconds": 420,
       "hints": [
         {
@@ -144,7 +147,8 @@
           "level": 3,
           "content": "Count values of $n \\le 100$ such that $n+1$ can be written as a product of two distinct integers each $\\ge 2$ — be careful not to double-count values reachable in more than one way."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_4"
     },
     {
       "externalId": "AIMEI-2026-P5",
@@ -165,7 +169,7 @@
         "geometry-triangles"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "65\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_5\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "65",
       "estimatedSolveSeconds": 540,
       "hints": [
         {
@@ -180,7 +184,8 @@
           "level": 3,
           "content": "You now know two sides of triangle $AA'B'$ ($A'A$ and $A'B'$) and the angle between them — apply the Law of Cosines to relate this to $AB' = 4/3$."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_5"
     },
     {
       "externalId": "AIMEI-2026-P6",
@@ -202,7 +207,7 @@
         "nt-primes-factorization"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "441\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_6\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "441",
       "estimatedSolveSeconds": 600,
       "hints": [
         {
@@ -217,7 +222,8 @@
           "level": 3,
           "content": "The product of the two valid $x$-values equals $2026$ raised to the sum of the corresponding $y$-values. Factor $2026$ into primes, then use that exponent to count $P$'s divisors."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_6"
     },
     {
       "externalId": "AIMEI-2026-P7",
@@ -237,7 +243,7 @@
         "combinatorics-counting"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "396\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_7\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "396",
       "estimatedSolveSeconds": 480,
       "hints": [
         {
@@ -252,7 +258,8 @@
           "level": 3,
           "content": "List every way to partition 6 elements into cycles of length 1 and/or 5, and for each partition type, count how many distinct permutations have that cycle structure."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_7"
     },
     {
       "externalId": "AIMEI-2026-P8",
@@ -273,7 +280,7 @@
         "nt-modular-arithmetic"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "244\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_8\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "244",
       "estimatedSolveSeconds": 720,
       "hints": [
         {
@@ -288,7 +295,8 @@
           "level": 3,
           "content": "Use casework (or a generating-function-style count) over the exponent choices for each prime to count divisors whose product is $\\equiv 5 \\pmod{12}$, then reduce that count mod 1000."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_8"
     },
     {
       "externalId": "AIMEI-2026-P9",
@@ -309,7 +317,7 @@
         "combinatorics-counting"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "29\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_9\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "29",
       "estimatedSolveSeconds": 900,
       "hints": [
         {
@@ -324,7 +332,8 @@
           "level": 3,
           "content": "Set up the conditional probability as a ratio: count outcomes where all even stickers survive AND exactly one face stays blank, divided by outcomes where all even stickers simply survive — count each systematically over the 6 rolls."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_9"
     },
     {
       "externalId": "AIMEI-2026-P10",
@@ -346,7 +355,7 @@
         "geometry-circles"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "156\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_10\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "156",
       "estimatedSolveSeconds": 780,
       "hints": [
         {
@@ -361,7 +370,8 @@
           "level": 3,
           "content": "Break the hexagon $AA'CC'BB'$ into triangles from the circumcenter (or from the original triangle's vertices), and add or subtract areas based on how the rotated copy overlaps the original."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_10"
     },
     {
       "externalId": "AIMEI-2026-P11",
@@ -381,7 +391,7 @@
         "combinatorics-counting"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "896\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_11\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "896",
       "estimatedSolveSeconds": 900,
       "hints": [
         {
@@ -396,7 +406,8 @@
           "level": 3,
           "content": "Work out the maximum theoretical contribution for each number based on how many neighbors it has (edge/corner cells have fewer), sum these contributions, then reduce mod 1000."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_11"
     },
     {
       "externalId": "AIMEI-2026-P12",
@@ -418,7 +429,7 @@
         "geometry-triangles"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "161\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_12\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "161",
       "estimatedSolveSeconds": 960,
       "hints": [
         {
@@ -433,7 +444,8 @@
           "level": 3,
           "content": "Find $D$'s coordinates as the centroid reflected across $BC$, then apply the same linear relationship you found to compute $r$."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_12"
     },
     {
       "externalId": "AIMEI-2026-P13",
@@ -454,7 +466,7 @@
         "nt-modular-arithmetic"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "39\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_13\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "39",
       "estimatedSolveSeconds": 900,
       "hints": [
         {
@@ -469,7 +481,8 @@
           "level": 3,
           "content": "For each residue $r$, determine whether every single term making up $S_r$ vanishes mod 503 (making $S_r \\equiv 0$) or whether at least one nonzero term survives — count how many $r$ fall into the first case."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_13"
     },
     {
       "externalId": "AIMEI-2026-P14",
@@ -490,7 +503,7 @@
         "geometry-quadrilaterals"
       ],
       "diagramSvg": null,
-      "solutionMarkdown": "681\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_14\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "681",
       "estimatedSolveSeconds": 840,
       "hints": [
         {
@@ -505,7 +518,8 @@
           "level": 3,
           "content": "Sum all five diagonal-squared expressions and compare against the given total of 800; combine this with the given sum of sides-squared (308) to isolate an expression for the perimeter squared."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_14"
     },
     {
       "externalId": "AIMEI-2026-P15",
@@ -526,7 +540,7 @@
         "combinatorics-counting"
       ],
       "diagramSvg": "<svg viewBox=\"0 0 600 600\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"0\" y=\"0\" width=\"400\" height=\"400\" fill=\"#2196F3\"/><rect x=\"100\" y=\"100\" width=\"200\" height=\"200\" fill=\"#FF7A6E\"/><rect x=\"0\" y=\"400\" width=\"400\" height=\"200\" fill=\"#FFFFFF\"/><rect x=\"400\" y=\"0\" width=\"200\" height=\"600\" fill=\"#FFEB3B\"/><g stroke=\"#333333\" stroke-width=\"1.5\"><line x1=\"100\" y1=\"0\" x2=\"100\" y2=\"600\"/><line x1=\"200\" y1=\"0\" x2=\"200\" y2=\"600\"/><line x1=\"300\" y1=\"0\" x2=\"300\" y2=\"600\"/><line x1=\"400\" y1=\"0\" x2=\"400\" y2=\"600\"/><line x1=\"500\" y1=\"0\" x2=\"500\" y2=\"600\"/><line x1=\"0\" y1=\"100\" x2=\"600\" y2=\"100\"/><line x1=\"0\" y1=\"200\" x2=\"600\" y2=\"200\"/><line x1=\"0\" y1=\"300\" x2=\"600\" y2=\"300\"/><line x1=\"0\" y1=\"400\" x2=\"600\" y2=\"400\"/><line x1=\"0\" y1=\"500\" x2=\"600\" y2=\"500\"/></g><rect x=\"0\" y=\"0\" width=\"600\" height=\"600\" fill=\"none\" stroke=\"#000000\" stroke-width=\"8\" rx=\"8\"/><rect x=\"0\" y=\"0\" width=\"400\" height=\"400\" fill=\"none\" stroke=\"#000000\" stroke-width=\"8\"/><rect x=\"100\" y=\"100\" width=\"200\" height=\"200\" fill=\"none\" stroke=\"#000000\" stroke-width=\"8\" rx=\"6\"/><circle cx=\"200\" cy=\"200\" r=\"20\" fill=\"#000000\"/><line x1=\"150\" y1=\"500\" x2=\"350\" y2=\"500\" stroke=\"#000000\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"500\" y1=\"100\" x2=\"500\" y2=\"500\" stroke=\"#000000\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
-      "solutionMarkdown": "83\n\n<a href=\"https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_15\" target=\"_blank\" rel=\"noopener noreferrer\">View full solution on AoPS</a>",
+      "solutionMarkdown": "83",
       "estimatedSolveSeconds": 1200,
       "hints": [
         {
@@ -541,7 +555,8 @@
           "level": 3,
           "content": "For each valid sequence of nested dimensions, count how many ways the loop shapes can be assigned (some loops may allow more than one valid $a\\times b$ pairing) — sum over all valid sequences, being careful about ordering and symmetry."
         }
-      ]
+      ],
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I_Problems/Problem_15"
     }
   ]
 }

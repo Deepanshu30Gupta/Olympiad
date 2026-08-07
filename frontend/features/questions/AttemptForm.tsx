@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { renderMathText } from "@/lib/render-math";
 import { submitAnswerAction, surrenderAction } from "@/app/practice/actions";
 import { Spinner } from "@/components/ui/Spinner";
-import { Eye } from "lucide-react";
+import { Eye, ExternalLink } from "lucide-react";
 
 interface Hint {
   level: number;
@@ -20,6 +20,7 @@ interface AttemptFormProps {
   hints: Hint[];
   surrenderLockSeconds: number;
   startedAtMs: number;
+  sourceUrl?: string | null;
 }
 
 type SubmitResult = {
@@ -38,6 +39,7 @@ export function AttemptForm({
   hints,
   surrenderLockSeconds,
   startedAtMs: startedAtMsProp,
+  sourceUrl,
 }: AttemptFormProps) {
   const startedAtMs = useRef(startedAtMsProp);
   const router = useRouter();
@@ -284,7 +286,19 @@ export function AttemptForm({
         </div>
 
         <div className="mt-6 border-t border-[#F0E6D6] pt-4 dark:border-neutral-800">
-          <div className="mb-2 text-sm font-medium text-[#2B2118] dark:text-neutral-300">Solution</div>
+          <div className="mb-2 flex items-center justify-between">
+            <div className="text-sm font-medium text-[#2B2118] dark:text-neutral-300">Solution</div>
+            {sourceUrl && (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs font-medium text-[#4C3AA0] hover:underline dark:text-indigo-400"
+              >
+                View full solution <ExternalLink size={12} />
+              </a>
+            )}
+          </div>
           <div
             className="text-sm leading-relaxed text-[#2B2118]/90 dark:text-neutral-300"
             dangerouslySetInnerHTML={{ __html: renderMathText(result.solutionMarkdown) }}
