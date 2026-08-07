@@ -230,6 +230,17 @@ export function AttemptForm({
           </div>
         )}
 
+        {sourceUrl && (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 flex w-fit items-center gap-2 rounded-lg border border-[#4C3AA0]/30 bg-[#ECE8FA] px-4 py-2.5 text-sm font-semibold text-[#4C3AA0] transition-colors hover:bg-[#DDD6F3] dark:border-indigo-700/50 dark:bg-indigo-950/40 dark:text-indigo-300 dark:hover:bg-indigo-950/70"
+          >
+            <ExternalLink size={16} /> View Full Solution on AoPS
+          </a>
+        )}
+
         {answerType === "MCQ" && options && (
           <div className="mt-4 flex flex-col gap-2">
             {Object.entries(options).map(([key, val]) => {
@@ -286,19 +297,7 @@ export function AttemptForm({
         </div>
 
         <div className="mt-6 border-t border-[#F0E6D6] pt-4 dark:border-neutral-800">
-          <div className="mb-2 flex items-center justify-between">
-            <div className="text-sm font-medium text-[#2B2118] dark:text-neutral-300">Solution</div>
-            {sourceUrl && (
-              <a
-                href={sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs font-medium text-[#4C3AA0] hover:underline dark:text-indigo-400"
-              >
-                View full solution <ExternalLink size={12} />
-              </a>
-            )}
-          </div>
+          <div className="mb-2 text-sm font-medium text-[#2B2118] dark:text-neutral-300">Solution</div>
           <div
             className="text-sm leading-relaxed text-[#2B2118]/90 dark:text-neutral-300"
             dangerouslySetInnerHTML={{ __html: renderMathText(result.solutionMarkdown) }}
